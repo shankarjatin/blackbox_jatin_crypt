@@ -14,7 +14,7 @@ router.get(
 );
 
 router.get("/login", (req, res)=>{
-	res.redirect("/auth/google");
+	res.render("login");
 })
 
 router.get("/logout", (req,res)=>{

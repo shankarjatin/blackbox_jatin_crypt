@@ -1,12 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 
-<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>A Basic HTML5 Template</title>
-  
+	<meta charset="utf-8" />
+	<title>BRL Crypthunt</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@600&family=Inconsolata:wght@400;500;700&display=swap" rel="stylesheet" />
+	<!-- Font Awsome -->
+	<script src="https://kit.fontawesome.com/86113b2a69.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+	<link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
+	<!-- navbar -->
+	<nav class="navbar navbar-expand-sm navbar-light bg-light">
+		<a class="navbar-brand" href="/">Crypthunt Game</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/rules">Rules</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/leaderboard">Leaderboard</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav">
+
+				<!-- if logged in  -->
+				<% if (typeof user != 'undefined') { %>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fas fa-user-circle"></i> Hi <%-user.name%>!
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/logout">logout</a>
+					</div>
+				</li>
+
+				<!-- else -->
+				<% } else { %>
+				<li class="nav-item">
+					<a class="nav-link" href="/login">Login</a>
+				</li>
+				<% } %>
+
+			</ul>
+		</div>
+	</nav>

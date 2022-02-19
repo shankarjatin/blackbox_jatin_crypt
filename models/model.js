@@ -2,13 +2,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const User = require("./user");
 
-const DB =
-//   "mongodb+srv://" +
-//     process.env.mongo_username +
-//     ":" +
-//     process.env.mongo_password +
-//     "@cluster0.wggru.mongodb.net/users?retryWrites=true&w=majority" ||
-  "mongodb://127.0.0.1:27017/crypthuntDB";
+const DB ="mongodb+srv://"+process.env.DB_USERNAME+":"+process.env.DB_PASSWORD+"@cluster0.7oiby.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
 //connecting with db
 mongoose

@@ -10,7 +10,7 @@ router.get(
 );
 
 router.get(
-  "/auth/google/secrets", google_auth_controllers.passport_google_callback
+  "/auth/google/cb", google_auth_controllers.passport_google_callback
 );
 
 router.get("/login", (req, res)=>{

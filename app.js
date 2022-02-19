@@ -28,6 +28,6 @@ app.use(passport.session()); // making express use passport.sessions
 app.set("view engine", "ejs");
 app.use("/", Router);
 
-app.listen(8000, function() {
+app.listen(process.env.PORT || 8000, function() {
 	console.log("Server started at port 8000.");
 });

@@ -1,16 +1,16 @@
+const express = require("express");
+const morgan = require("morgan");
+const session = require("express-session");
+const passport = require("passport");
+const ejs = require("ejs");
+const Router = require("./routes/router");
+
 require("dotenv").config(); // for using env variables
 require("./models/model");
 
-const express = require("express");
-const session = require("express-session");
-const passport = require("passport");
-
-const ejs = require("ejs");
-
-const Router = require("./routes/router");
-
 const app = express();
 
+app.use(morgan("short"));
 app.use(express.static("public"));
 app.use(express.urlencoded({
 	extended: true

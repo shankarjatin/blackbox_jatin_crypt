@@ -4,15 +4,13 @@ exports.rules = (req, res) => {
 	});
 }
 
-exports.leaderboard =
-	(req, res) => {
+exports.leaderboard =	(req, res) => {
 		res.render("leaderboard", {
 			user: req.user
 		});
 	}
 
-exports.game =
-	(req, res) => {
+exports.game = (req, res) => {
 		res.render("game", {
 			user: req.user
 		});

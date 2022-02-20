@@ -1,4 +1,11 @@
 <%- include("./partials/header.ejs"); %>
-  <!-- your content here... -->
-	<h1>Game</h1>
+<div style="text-align : center" >
+<h1 style="text-align : center">Level # <%-user.level%></h2>
+<img style="" src="private/r<%-user.level%>.png" />
+<form action="/game" method="POST" >
+<input class="form-control" type="text" name="answer" placeholder="Answer">
+<button class="btn btn-dark" type="submit" >Check</button>
+</form>
+</div>
 <%- include("./partials/footer.ejs"); %>
+

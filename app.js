@@ -15,7 +15,7 @@ const app = express();
 
 app.set("view engine", "ejs");
 
-app.use(morgan("short"));
+app.use(morgan("dev"));
 app.use(express.urlencoded({
 	extended: true
 }));
@@ -31,6 +31,18 @@ app.use(passport.session()); // making express use passport.sessions
 
 app.use(middleware.assets);
 app.use("/", Router);
+///////// delete in production
+const User = require("./models/user");
+const auth_middleware = require("./middlewares/auth_middleware.js");
+app.get("/reset", auth_middleware.check_login, function(req, res) {
+	User.findById(req.user._id, function(err, result) {
+		result.level = 1;
+		result.save(function() {
+			res.redirect("/");
+		})
+	})
+})
+////////
 app.use(middleware.error404);
 
 app.listen(process.env.PORT || 8000, function() {

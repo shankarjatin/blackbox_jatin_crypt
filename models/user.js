@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
   alias : String,
   email : String,
   googleId : String,
+	level: Number,
   score : Number,
 });
 

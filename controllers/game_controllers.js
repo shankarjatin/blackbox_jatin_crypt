@@ -9,8 +9,15 @@ exports.rules = (req, res) => {
 }
 
 exports.leaderboard = (req, res) => {
-	res.render("leaderboard", {
-		user: req.user
+	User.find({}).sort({level:-1}).exec(function(err, result){
+		if(err){
+			res.send("Some error occured in fetching leaderboard");
+		} else {
+			res.render("leaderboard", {
+				user: req.user,
+				leaderboard: result
+			})
+		}
 	});
 }
 

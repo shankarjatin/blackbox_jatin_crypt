@@ -19,7 +19,6 @@ exports.assets = (req, res, next) => {
 	const public_asset = req.url.substring(0, 8) == "/public/";
 	const private_asset = req.url.substring(0, 9) == "/private/";
 
-	console.log("asstets middleware");
 	const filePath = path.join(__dirname, "..", "assets", req.url);
 	fs.stat(filePath, function(err, fileInfo) {
 		if (err) {

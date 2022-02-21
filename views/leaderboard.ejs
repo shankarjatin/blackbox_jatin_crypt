@@ -1,6 +1,6 @@
 <%- include("./partials/header.ejs"); %>
 	<h1>Leaderboard</h1>
   <% leaderboard.forEach((element, rank) => { %>
-   <h1><%-rank + 1%>   |  <%-element.name%>  |  <%-element.level%></h1>
+   <h1><%-element.rank%>   |  <%-element.name%>  |  <%-element.level%></h1>
   <% }) %>
 <%- include("./partials/footer.ejs"); %>

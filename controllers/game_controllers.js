@@ -9,10 +9,25 @@ exports.rules = (req, res) => {
 }
 
 exports.leaderboard = (req, res) => {
-	User.find({}).sort({level:-1}).exec(function(err, result){
-		if(err){
+	User.find({}).lean().sort({
+		level: -1
+	}).exec(function(err, result) {
+		if (err) {
 			res.send("Some error occured in fetching leaderboard");
 		} else {
+
+			var rank = 0
+			var level = 100;
+			result.forEach((person, index) => {
+				if (person.level != level) {
+					rank += 1;
+					result[index].rank = rank;
+				} else {
+					result[index].rank = rank;
+				}
+				level = person.level;
+			})
+			
 			res.render("leaderboard", {
 				user: req.user,
 				leaderboard: result

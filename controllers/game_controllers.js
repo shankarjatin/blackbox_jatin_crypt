@@ -15,7 +15,11 @@ exports.leaderboard = (req, res) => {
 		if (err) {
 			res.send("Some error occured in fetching leaderboard");
 		} else {
-
+			/*
+			 * Below code is for calculating rank from sorted
+			 * players data fetched from database
+			 *  --> Players on equal level will have equal ranks.
+			 */
 			var rank = 0
 			var level = 100;
 			result.forEach((person, index) => {

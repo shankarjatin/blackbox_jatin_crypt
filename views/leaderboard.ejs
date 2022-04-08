@@ -1,6 +1,27 @@
 <%- include("./partials/header.ejs"); %>
-	<h1>Leaderboard</h1>
-  <% leaderboard.forEach((element, rank) => { %>
-   <h1><%-element.rank%>   |  <%-element.name%>  |  <%-element.level%></h1>
-  <% }) %>
+  <h1 id="rulesheading">LEADERBOARD</h1>
+  <div id="louter">
+    <div id="linner">
+      <table id="forwidth" >
+        <tr style="background-color: #ee3fa2;">
+          <th class="rl font rl-left rl-top">Rank</th>
+          <th class="name font rl-top">Name</th>
+          <th class="rl font rl-right rl-top">Level</th>
+        </tr>
+        <% leaderboard.forEach((element, rank) => { %>
+          <tr>
+            <td class="rl rl-left"><%-element.rank%></td>
+            <td class="name"><%-element.name%></td>
+            <td class="rl rl-right"><%-element.level%></td>
+          </tr>
+        <% }) %>
+        <tr>
+          <td class="rl rl-left rl-bottom"></td>
+          <td class="name rl-bottom"></td>
+          <td class="rl rl-right rl-bottom"></td>
+        </tr>
+      </table>
+    </div>
+  </div> 
+
 <%- include("./partials/footer.ejs"); %>

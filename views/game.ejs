@@ -1,11 +1,21 @@
 <%- include("./partials/header.ejs"); %>
-<div style="text-align : center" >
-<h1 style="text-align : center">Level # <%-user.level%></h2>
-<img style="" src="private/r<%-user.level%>.png" />
-<form action="/game" method="POST" >
-<input class="form-control" type="text" name="answer" placeholder="Answer">
-<button class="btn btn-dark" type="submit" >Check</button>
-</form>
-</div>
-<%- include("./partials/footer.ejs"); %>
 
+<div id="gamediv">
+    <h1 id="rulesheading">Level # <%-user.level%></h1>
+    <div id="gameoutdiv">
+        <div id="gameindiv">
+            <img style="" src="private/r<%-user.level%>.png" height="100%" width="100%" />
+        </div>
+    </div>
+    <form action="/game" method="POST" id="formdiv">
+        <div id="divform">
+            <input class="form-control" type="text" name="answer" placeholder="Answer" id="gameanswer">
+            <div id="checkdiv">
+                <button class="btn btn-dark" type="submit" id="lbutton">Check</button>
+            </div>	
+        </div>
+    </form>
+</div>
+</div>
+
+<%- include("./partials/footer.ejs"); %>

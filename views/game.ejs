@@ -15,7 +15,15 @@
             </div>	
         </div>
     </form>
+    <form action="/submit" method="POST" id="formdiv">
+        <button class="btn btn-success" type="submit" id="lbutton2">Submit</button>
+    </form>
 </div>
 </div>
+
+<% if (message != "None") { %>
+    <script>alert("<%-message%>")</script>
+<% } else { %>
+<% } %>    
 
 <%- include("./partials/footer.ejs"); %>

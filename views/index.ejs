@@ -88,5 +88,9 @@
 </div>
 </div>
 
+<% if (message != "None") { %>
+    <script>alert("<%-message%>")</script>
+<% } else { %>
+<% } %>
 
 <%- include("./partials/footer.ejs"); %>

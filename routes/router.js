@@ -10,7 +10,10 @@ router.get("/", (req,res)=>{
 	if(req.isAuthenticated()){
 		res.redirect("/game");
 	}else{
-	  res.render("index");
+		message = "None";
+		res.render("index", {
+			message: message
+		});
 	}
 })
 

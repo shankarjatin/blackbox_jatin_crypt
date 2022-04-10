@@ -9,7 +9,7 @@ function logmenu(){
     c++;
     if(c%2!=0)
     {
-        document.getElementById("logdiv").style.cssText="position: fixed; top: 10vh; right: 0%;";
+        document.getElementById("logdiv").style.cssText="position: fixed; top: 10vh; right: 2%;";
     }
     else{
         document.getElementById("logdiv").style.cssText="position: absolute; top: -200px;";

@@ -22,11 +22,11 @@ body{
   text-align: center;
   font-size: 16px;
 }
-#forborder {
-  border-bottom: 4px solid white;
+.logli:hover{
+  background-color: #ee3fa2;
 }
 #background {
-  background-image: url("../background.png");
+  background-image: url("../IMG-20220410-WA0000.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -51,14 +51,15 @@ body{
   overflow: auto;
 }
 .menuli {
-  width: 16%;
+  width: 36%;
   text-align: center;
   float: left;
 }
-#menuliwidth {
-  text-decoration: underline;
-  width: 30%;
-  font-weight: bold;
+#menuliwidth1{
+  width: 20%;
+}
+#menuliwidth2{
+  width: 28%;
 }
 .ali {
   color: white;
@@ -92,7 +93,7 @@ body{
 }
 #imgindiv {
   height: 80px;
-  width: 250px;
+  width: 680px;
   font-size: 0px;
 }
 #headingdiv {
@@ -114,7 +115,7 @@ body{
   justify-content: center;
   align-items: flex-end;
 }
-#lbutton {
+.lbutton {
   background-color: #ee3fa2;
   border: 6px solid #17132a;
   border-radius: 10px;
@@ -126,18 +127,17 @@ body{
   outline-width: 1px;
   outline-style: solid;
 }
-
-#lbutton2 {
+.lbutton:hover{
   background-color: #ee3fa2;
-  border: 6px solid #17132a;
+  border-color: #17132a;
+}
+#lbutton3 {
+  background-color: #ee3fa2;
+  border: 1px solid white;
   border-radius: 10px;
-  /* padding: 4px 30px; */
   color: white;
   font-family: 'Orbitron', sans-serif;
   font-weight: bold;
-  outline-color: white;
-  outline-width: 1px;
-  outline-style: solid;
 }
 
 #fouter {
@@ -152,12 +152,8 @@ body{
 #fh1 {
   padding: 4vh 0vw;
   margin: 0px;
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: #ffffff;
-  -webkit-text-fill-color: #17132a;
-  letter-spacing: 4px;
   font-family: 'Orbitron', sans-serif;
 }
 .qdiv {
@@ -196,7 +192,7 @@ hr {
 }
 #left {
   border: 2px solid white;
-  width: 240px;
+  width: 600px;
 }
 #contact {
   background-color: white;
@@ -264,7 +260,7 @@ hr {
   align-items: center;
 }
 #divform {
-  width: 260px;
+  width: 360px;
 }
 #gameanswer {
   width: 100%;
@@ -272,7 +268,7 @@ hr {
 #checkdiv {
   padding: 4vh 0vw;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 /*LEADERBOARD CSS*/
 #louter {
@@ -342,12 +338,6 @@ table tr:last-child td:last-child {
 }
 @media screen and (max-width: 1200px) {
   /*FRONT RESPONSIVE*/
-  .menuli {
-    width: 18%;
-  }
-  #menuliwidth {
-    width: 40%;
-  }
   #mainheading{
     font-size: 46px;
   }
@@ -413,10 +403,18 @@ table tr:last-child td:last-child {
     width: 22%;
   }
   #fh1{
-    font-size: 36px;
+    font-size: 24px;
   }
   #finner {
     width: 95%;
+  }
+  #left{
+    width: 540px;
+    font-size: 14px;
+  }
+  #imgindiv{
+    height: 60px;
+    width: 500px;
   }
   /*RULES RESPONSIVE*/
   #rulesheading {
@@ -433,6 +431,9 @@ table tr:last-child td:last-child {
     height: 400px;
     width: 400px;
     font-size: 0px;
+  }
+  #divform{
+    width: 280px;
   }
   /*LEADERBOARD RESPONSIVE*/
   #linner {
@@ -456,7 +457,10 @@ table tr:last-child td:last-child {
     padding: 10px 0px;
     text-align: left;
   }
-  #menuliwidth {
+  #menuliwidth1 {
+    width: 100%;
+  }
+  #menuliwidth2 {
     width: 100%;
   }
   #menubutton {
@@ -479,6 +483,23 @@ table tr:last-child td:last-child {
   }
   #finner {
     width: 95%;
+  }
+  .iconremove{
+    display: none;
+  }
+  #left{
+    width: 200px;
+  }
+  #icons{
+    padding: 0% 0%;
+    justify-content: space-evenly;
+  }
+  #imgindiv{
+    width: 200px;
+    height: 60px;
+  }
+  #imgchange3{
+    display: none;
   }
   /*RULES RESPONSIVE*/
   #rulesheading{
@@ -509,15 +530,11 @@ table tr:last-child td:last-child {
   #mainheading{
     font-size: 26px;
   }
-  #imgindiv {
-    height: 60px;
-    width: 200px;
-  }
   #finner {
     width: 95%;
   }
   #fh1 {
-    font-size: 30px;
+    font-size: 22px;
   }
   .qdiv {
     font-size: 16px;
@@ -570,6 +587,14 @@ table tr:last-child td:last-child {
     display: none;
   }
   #cross {
+    display: none;
+  }
+  .menuli:hover{
+    background-color: #ee3fa2;
+    border: 1px solid white;
+    border-radius: 10px;
+  }
+  #imgchange{
     display: none;
   }
 }

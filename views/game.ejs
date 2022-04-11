@@ -1,7 +1,7 @@
 <%- include("./partials/header.ejs"); %>
 
 <div id="gamediv">
-    <h1 id="rulesheading">Level # <%-user.level%></h1>
+    <h1 id="rulesheading" style="text-decoration: underline; text-decoration-color: #ee3fa2;">Level # <%-user.level%></h1>
     <div id="gameoutdiv">
         <div id="gameindiv">
             <img style="" src="private/r<%-user.level%>.png" height="100%" width="100%" />
@@ -11,12 +11,12 @@
         <div id="divform">
             <input class="form-control" type="text" name="answer" placeholder="Answer" id="gameanswer">
             <div id="checkdiv">
-                <button class="btn btn-dark" type="submit" id="lbutton">Check</button>
-            </div>	
-        </div>
-    </form>
-    <form action="/submit" method="POST" id="formdiv">
-        <button class="btn btn-success" type="submit" id="lbutton2">Submit</button>
+                <button class="btn btn-dark lbutton" type="submit">Check</button>
+                <form action="/submit" method="POST">
+                    <button class="btn btn-success lbutton" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>   
     </form>
 </div>
 </div>

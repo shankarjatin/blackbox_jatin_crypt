@@ -1,7 +1,16 @@
 <%- include("./partials/header.ejs"); %>
 
 <div id="gamediv">
+    <div id="outercountdown">
+        <div>
+            <div class="count">TIME LEFT</div>
+            <div id="countdown" class="count">3 : 0 : 0</div>
+        </div>
+    </div>
     <h1 id="rulesheading" style="text-decoration: underline; text-decoration-color: #ee3fa2;">Level # <%-user.level%></h1>
+    <div id="smallcount">
+        <div id="counter">TIME LEFT : 3 : 0 : 0</div>
+    </div>
     <div id="gameoutdiv">
         <div id="gameindiv">
             <img style="" src="private/r<%-user.level%>.png" height="100%" width="100%" />

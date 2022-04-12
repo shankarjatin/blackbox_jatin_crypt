@@ -33,16 +33,16 @@ for(let i=0;i<=question.length-1;i++)
         }
     });
 }
-let time=10800;
 let timer=document.getElementsByClassName("countdown");
-setInterval(updatecountdown,1000);
-function updatecountdown(){
-    for(let i=0;i<=timer.length;i++)
-    {
-        let hours=Math.floor(time/3600);
-        let minutes=Math.floor((time%3600)/60);
-        let seconds=Math.floor(time-3600*hours-60*minutes);
-        timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
-        time--;
+for(let i=0;i<=timer.length-1;i++)
+{
+    let time=10800;
+    setInterval(updatecountdown,1000);
+    function updatecountdown(){
+    let hours=Math.floor(time/3600);
+    let minutes=Math.floor((time%3600)/60);
+    let seconds=Math.floor(time-3600*hours-60*minutes);
+    timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
+    time--;
     }
 }

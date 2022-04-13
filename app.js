@@ -45,6 +45,17 @@ app.get("/reset", auth_middleware.check_login, function(req, res) {
 ////////
 app.use(middleware.error404);
 
+// const Game = require("./models/game");
+
+// const newGame = new Game({
+// 	title: "Test",
+// 	startTime: 1649836980000,  
+// 	endTime: 1649836980000,  
+// 	description: "starts at 1:00 pm"
+// });
+
+// newGame.save();
+
 app.listen(process.env.PORT || 8000, function() {
 	console.log("Server started at port 8000.");
 });

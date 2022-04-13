@@ -6,53 +6,88 @@
 	<title>BRL Crypthunt</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<!-- Google Font -->
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@600&family=Inconsolata:wght@400;500;700&display=swap" rel="stylesheet" />
+	<!-- Google Font-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 	<!-- Font Awsome -->
 	<script src="https://kit.fontawesome.com/86113b2a69.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-	<link rel="stylesheet" href="public/css/styles.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+		integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+	<link rel="stylesheet" type="text/css" href="public/css/styles.css">
 </head>
 
 <body>
-	<!-- navbar -->
-	<nav class="navbar navbar-expand-sm navbar-light bg-light">
-		<a class="navbar-brand" href="/">Crypthunt Game</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="/rules">Rules</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/leaderboard">Leaderboard</a>
-				</li>
-			</ul>
-			<ul class="navbar-nav">
 
-				<!-- if logged in  -->
-				<% if (typeof user != 'undefined') { %>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-user-circle"></i> Hi <%-user.name%>!
-					</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="/logout">logout</a>
-					</div>
-				</li>
-
-				<!-- else -->
-				<% } else { %>
-				<li class="nav-item">
-					<a class="nav-link" href="/login">Login</a>
-				</li>
-				<% } %>
-
+	<!-- if logged in  -->
+	<% if (typeof user != 'undefined') { %>
+		<div id="logdiv">
+			<ul id="logul">
+				<li class="logli"><a href="/logout" class="ali">Logout</a></li>
 			</ul>
 		</div>
-	</nav>
+		<div id="background">
+			<div id="menudiv" style="position: fixed; width: 100%;">
+				<div id="fulldiv">
+					<div id="menubutton">
+						<svg onclick="menuopen()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="cursor: pointer;" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+						</svg>&nbsp;<b id="removemenu">CryptHunt</b>
+					</div>
+					<ul id="menuul">
+						<li id="cross">
+							<svg onclick="menuclose()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+								<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+							</svg>
+						</li>
+						<li class="menuli"><a href="/game" class="ali">CRYPTHUNT GAME</a></li>
+						<li class="menuli" id="menuliwidth1"><a href="/rules" class="ali">Rules</a></li>
+						<li class="menuli" id="menuliwidth2"><a href="/leaderboard" class="ali">Leaderboard</a></li>
+					</ul>
+					<div id="hidiv">
+						<i class="fas fa-user-circle"></i>&nbsp;
+						<% var full_name = user.name%>
+						<% var first_name = full_name.split(' ')[0]; %>  
+						Hi <%-first_name%>!&nbsp;
+						<svg onclick="logmenu()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="cursor: pointer;" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+							<path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+						</svg>
+					</div>
+				</div>
+			</div>
+	<!-- else -->
+	<% } else { %>
+	<div id="logdiv">
+			<ul id="logul">
+				<li class="logli"><a href="/logout" class="ali">Logout</a></li>
+			</ul>
+		</div>
+		<div id="background">
+			<div id="menudiv" style="position: fixed; width: 100%;">
+				<div id="fulldiv">
+					<div id="menubutton">
+						<svg onclick="menuopen()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="cursor: pointer;" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+						</svg>&nbsp;<b id="removemenu">CryptHunt</b>
+					</div>
+					<ul id="menuul">
+						<li id="cross">
+							<svg onclick="menuclose()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+								<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+							</svg>
+						</li>
+						<li class="menuli"><a href="/" class="ali">CRYPTHUNT GAME</a></li>
+						<li class="menuli" id="menuliwidth1"><a href="/rules" class="ali">Rules</a></li>
+						<li class="menuli" id="menuliwidth2"><a href="/leaderboard" class="ali">Leaderboard</a></li>
+					</ul>
+					<div id="hidiv">
+						<a href="/auth/google"><button type="button" id="lbutton3">Login</button></a>&nbsp;
+					</div>
+				</div>
+			</div>
+	<% } %>
+
+	
+

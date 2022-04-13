@@ -1,11 +1,36 @@
 <%- include("./partials/header.ejs"); %>
-<div style="text-align : center" >
-<h1 style="text-align : center">Level # <%-user.level%></h2>
-<img style="" src="private/r<%-user.level%>.png" />
-<form action="/game" method="POST" >
-<input class="form-control" type="text" name="answer" placeholder="Answer">
-<button class="btn btn-dark" type="submit" >Check</button>
-</form>
-</div>
-<%- include("./partials/footer.ejs"); %>
 
+<div id="gamediv">
+    <div id="outercountdown">
+        <div>
+            <div class="count">TIME LEFT</div>
+            <div class="count countdown">3 : 0 : 0</div>
+        </div>
+    </div>
+    <h1 id="rulesheading" style="text-decoration: underline; text-decoration-color: #ee3fa2;">Level # <%-user.level%></h1>
+    <div id="smallcount">
+        <div id="counter">TIME LEFT : <b class="countdown">3 : 0 : 0</b></div>
+    </div>
+    <div id="gameoutdiv">
+        <div id="gameindiv">
+            <img style="" src="private/r<%-user.level%>.png" height="100%" width="100%" />
+        </div>
+    </div>
+    <form method="POST" id="formdiv">
+        <div id="divform">
+            <input class="form-control" type="text" name="answer" placeholder="Answer" id="gameanswer">
+            <div id="checkdiv">
+                <button class="btn btn-dark lbutton" type="submit" formaction="/game" >Check</button>
+                <button id="submit_btn" class="btn btn-success lbutton" onclick="return confirm('Are you sure?')" formaction="/submit" type="submit">Submit</button>
+            </div>
+        </div>   
+    </form>
+</div>
+</div>
+
+<% if (message != "None") { %>
+    <script>alert("<%-message%>")</script>
+<% } else { %>
+<% } %>    
+
+<%- include("./partials/footer.ejs"); %>

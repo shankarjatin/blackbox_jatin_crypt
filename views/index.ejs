@@ -120,6 +120,7 @@
 <% if (time_to_start != "None") { %>
     <script>
         let timer=document.getElementsByClassName("startbutton");
+        timer[0].disabled = true;
         for(let i=0;i<=timer.length-1;i++)
         {
             let time= Math.floor( Number("<%-time_to_start%>")/1000);
@@ -129,9 +130,10 @@
                 let minutes=Math.floor((time%3600)/60);
                 let seconds=Math.floor(time-3600*hours-60*minutes);
                 if(time<0){
-                    timer[i].innerHTML = `Start`;
+                    timer[0].disabled = false;
+                    timer[0].innerHTML = `Start`;
                 } else {
-                    timer[i].innerHTML = `Game starts in : ${hours} : ${minutes} : ${seconds}`;
+                    timer[0].innerHTML = `Game starts in : ${hours} : ${minutes} : ${seconds}`;
                 }
                 time--;
             }

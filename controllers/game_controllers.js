@@ -3,6 +3,27 @@ const Question = require("./../models/question");
 const User = require("./../models/user.js");
 const Game = require("./../models/game");
 
+exports.index = (req, res) => {
+	if (req.isAuthenticated()) {
+		res.redirect("/game");
+	} else {
+		var time = new Date();
+		Game.findOne({ title: process.env.GAME_TITLE }, function (err, result) {
+			if (err) {
+				res.send("Error in fetching game");
+			} else {
+				message = "None";
+				var time_to_start = result.startTime - time;
+				console.log(time_to_start);
+				res.render("index", {
+					message: message,
+					time_to_start: time_to_start
+				});
+			}
+		});
+	}
+};
+
 exports.rules = (req, res) => {
 	res.render("rules", {
 		user: req.user
@@ -13,7 +34,7 @@ exports.leaderboard = (req, res) => {
 	console.log("req at leaderboard");
 	User.find({}).lean().sort({
 		level: -1
-	}).exec(function(err, result) {
+	}).exec(function (err, result) {
 		if (err) {
 			res.send("Some error occured in fetching leaderboard");
 		} else {
@@ -33,7 +54,7 @@ exports.leaderboard = (req, res) => {
 				}
 				level = person.level;
 			})
-			
+
 			res.render("leaderboard", {
 				user: req.user,
 				leaderboard: result
@@ -45,22 +66,24 @@ exports.leaderboard = (req, res) => {
 exports.submit = (req, res) => {
 	console.log(req.user);
 	req.user.submitted = true;
-	req.user.save(function() {
+	req.user.save(function () {
 		res.redirect("/leaderboard");
 	})
 }
 
 exports.game = (req, res) => {
 	var time = new Date();
-	Game.findOne({title: process.env.GAME_TITLE}, function(err, result) {
-		if(err){
+	Game.findOne({ title: process.env.GAME_TITLE }, function (err, result) {
+		if (err) {
 			res.send("Error in fetching game");
 		} else {
-			if (req.user.submitted == true){
+			if (req.user.submitted == true) {
 				message = "You have already submitted. Please check your rank in the leaderboard";
 				req.logout();
+				var time_to_start = result.startTime - time;
 				res.render("index", {
-					message: message
+					message: message,
+					time_to_start: time_to_start
 				});
 			}
 			else if (req.user.level == process.env.MAX_LEVEL) {
@@ -83,28 +106,30 @@ exports.check = (req, res) => {
 	const attempted_answer = req.body.answer;
 	const userLevel = req.user.level;
 
-	Game.findOne({title: process.env.GAME_TITLE}, function(err, game_result) {
-		if(err){
+	Game.findOne({ title: process.env.GAME_TITLE }, function (err, game_result) {
+		if (err) {
 			res.send("Error in fetching game");
 		} else {
-			if (req.user.submitted == true){
+			if (req.user.submitted == true) {
 				message = "You have already submitted. Please check your rank in the leaderboard";
 				req.logout();
+				var time_to_start = game_result.startTime - time;
 				res.render("index", {
-					message: message
+					message: message,
+					time_to_start: time_to_start
 				});
 			} else {
 				Question.find({
 					level: userLevel
-				}, function(err, result) {
+				}, function (err, result) {
 					if (err) {
 						console.log("Error in fetching answer");
 						res.send("Some error occured");
 					} else {
-						User.findById(req.user._id, function(err, result2) {
+						User.findById(req.user._id, function (err, result2) {
 							if (attempted_answer == result[0].answer) {
 								result2.level += 1;
-								result2.save(function() {
+								result2.save(function () {
 									res.redirect("/game");
 								});
 							} else {

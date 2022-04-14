@@ -11,7 +11,7 @@
         <h1 id="mainheading">THE CRYPTIC HUNT IS BACK,<br>BIGGER, BETTER AND ZTCCUGPF</h1>
     </div>	
     <div id="buttondiv">
-        <a href="/auth/google"><button type="button" class="lbutton">Start</button></a>
+        <a href="/auth/google"><button type="button" class="lbutton startbutton">Start</button></a>
     </div>
 </div>
 <div id="fouter">
@@ -116,5 +116,28 @@
     <script>alert("<%-message%>")</script>
 <% } else { %>
 <% } %>
+
+<% if (time_to_start != "None") { %>
+    <script>
+        let timer=document.getElementsByClassName("startbutton");
+        for(let i=0;i<=timer.length-1;i++)
+        {
+            let time= Math.floor( Number("<%-time_to_start%>")/1000);
+            setInterval(updatecountdown,1000);
+            function updatecountdown(){
+                let hours=Math.floor(time/3600);
+                let minutes=Math.floor((time%3600)/60);
+                let seconds=Math.floor(time-3600*hours-60*minutes);
+                if(time<0){
+                    timer[i].innerHTML = `Start`;
+                } else {
+                    timer[i].innerHTML = `Game starts in : ${hours} : ${minutes} : ${seconds}`;
+                }
+                time--;
+            }
+        }
+    </script>
+<% } else { %>
+<% } %> 
 
 <%- include("./partials/footer.ejs"); %>

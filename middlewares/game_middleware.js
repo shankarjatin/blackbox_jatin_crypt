@@ -18,15 +18,19 @@ exports.check_game_timing = (req, res, next) => {
 					console.log(time);
 					console.log(result.endTime);
 					message = "Game has ended. ";
+					var time_to_start = result.startTime - time;
 					res.render("index", {
-						message: message
+						message: message,
+						time_to_start: time_to_start
 					});
 				}
 			}
 			else {
 				message = "Game has not started yet";
+				var time_to_start = result.startTime - time;
 				res.render("index", {
-					message: message
+					message: message,
+					time_to_start: time_to_start
 				});
 			}
 		}

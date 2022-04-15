@@ -45,10 +45,10 @@
             let minutes=Math.floor((time%3600)/60);
             let seconds=Math.floor(time-3600*hours-60*minutes);
             if(time<0){
-                timer[0].innerHTML = `00 : 00 : 00`;
+                timer[i].innerHTML = `00 : 00 : 00`;
                 window.location = "/submit";
             } else {
-                timer[0].innerHTML = `${hours} : ${minutes} : ${seconds}`;
+                timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
             }
             time--;
             }

@@ -5,6 +5,7 @@ const passport = require("passport");
 const ejs = require("ejs");
 const path = require("path");
 const fs = require("fs");
+const rateLimit = require("express-rate-limit");
 const Router = require("./routes/router");
 const middleware = require("./middlewares/middleware");
 
@@ -13,9 +14,15 @@ require("./models/model");
 
 const app = express();
 
+const limiter = rateLimit({
+	windowMs: 2 * 60 * 1000, // 10 minutes
+	max: 200, // limit each IP to 100 requests per windowMs
+});
+
 app.set("view engine", "ejs");
 
 app.use(morgan("dev"));
+app.use(limiter);
 app.use(express.urlencoded({
 	extended: true
 }));
@@ -31,6 +38,7 @@ app.use(passport.session()); // making express use passport.sessions
 
 app.use(middleware.assets);
 app.use("/", Router);
+
 ///////// delete in production
 const User = require("./models/user");
 const auth_middleware = require("./middlewares/auth_middleware.js");
@@ -43,6 +51,7 @@ app.get("/reset", auth_middleware.check_login, function(req, res) {
 	})
 })
 ////////
+
 app.use(middleware.error404);
 
 // const Game = require("./models/game");

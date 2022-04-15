@@ -126,18 +126,26 @@ exports.check = (req, res) => {
 						res.send("Some error occured");
 					} else {
 						User.findById(req.user._id, function (err, result2) {
+							const attempt = {
+								level: result2.level,
+								answer: attempted_answer,
+							}
 							if (attempted_answer == result[0].answer) {
+								result2.attempts.push(attempt);
 								result2.level += 1;
 								result2.save(function () {
 									res.redirect("/game");
 								});
 							} else {
-								message = "Wrong Answer";
-								var remaining_time = game_result.endTime - time;
-								res.render("game", {
-									user: req.user,
-									message: message,
-									remaining_time: remaining_time
+								result2.attempts.push(attempt);
+								result2.save(function () {
+									message = "Wrong Answer";
+									var remaining_time = game_result.endTime - time;
+									res.render("game", {
+										user: req.user,
+										message: message,
+										remaining_time: remaining_time
+									});
 								});
 							}
 						})

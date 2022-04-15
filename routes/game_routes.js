@@ -33,6 +33,11 @@ router.post("/submit",
 	game_controller.submit
 );
 
+router.get("/submit",
+	auth_middleware.check_login,
+	game_controller.submit
+);
+
 router.get("/test", function (req, res) {
 	res.send(req.isAuthenticated())
 });

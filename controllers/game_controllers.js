@@ -64,7 +64,6 @@ exports.leaderboard = (req, res) => {
 }
 
 exports.submit = (req, res) => {
-	console.log(req.user);
 	req.user.submitted = true;
 	req.user.save(function () {
 		res.redirect("/leaderboard");

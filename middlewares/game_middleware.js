@@ -26,7 +26,7 @@ exports.check_game_timing = (req, res, next) => {
 				}
 			}
 			else {
-				message = "Game has not started yet";
+				message = "Game has not started yet. Please read rules and wait for the game to start";
 				var time_to_start = result.startTime - time;
 				res.render("index", {
 					message: message,

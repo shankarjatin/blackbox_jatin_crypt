@@ -104,7 +104,9 @@ exports.game = (req, res) => {
 
 exports.check = (req, res) => {
 	var time = new Date();
-	const attempted_answer = req.body.answer;
+	var attempted_answer = req.body.answer;
+	attempted_answer = attempted_answer.replace(/\s/g, "").toLowerCase();
+	console.log(attempted_answer);
 	const userLevel = req.user.level;
 
 	Game.findOne({ title: process.env.GAME_TITLE }, function (err, game_result) {

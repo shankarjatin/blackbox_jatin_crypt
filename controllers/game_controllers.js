@@ -44,13 +44,15 @@ exports.leaderboard = (req, res) => {
 			 *  --> Players on equal level will have equal ranks.
 			 */
 			var rank = 0
+			var current_rank = 0
 			var level = 100;
 			result.forEach((person, index) => {
+				rank += 1;
 				if (person.level != level) {
-					rank += 1;
 					result[index].rank = rank;
+					current_rank = rank;
 				} else {
-					result[index].rank = rank;
+					result[index].rank = current_rank;
 				}
 				level = person.level;
 			})

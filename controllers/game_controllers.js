@@ -88,7 +88,13 @@ exports.game = (req, res) => {
 				});
 			}
 			else if (req.user.level == process.env.MAX_LEVEL) {
-				res.send("Well Done! You have solved all levels. <a href='/reset'>Reset</a>")
+				message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+				var time_to_start = result.startTime - time;
+				console.log(time_to_start);
+				res.render("index", {
+					message: message,
+					time_to_start: time_to_start
+				});
 			} else {
 				message = "None";
 				var remaining_time = result.endTime - time;

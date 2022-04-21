@@ -44,13 +44,15 @@ exports.leaderboard = (req, res) => {
 			 *  --> Players on equal level will have equal ranks.
 			 */
 			var rank = 0
+			var current_rank = 0
 			var level = 100;
 			result.forEach((person, index) => {
+				rank += 1;
 				if (person.level != level) {
-					rank += 1;
 					result[index].rank = rank;
+					current_rank = rank;
 				} else {
-					result[index].rank = rank;
+					result[index].rank = current_rank;
 				}
 				level = person.level;
 			})
@@ -86,7 +88,13 @@ exports.game = (req, res) => {
 				});
 			}
 			else if (req.user.level == process.env.MAX_LEVEL) {
-				res.send("Well Done! You have solved all levels. <a href='/reset'>Reset</a>")
+				message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+				var time_to_start = result.startTime - time;
+				console.log(time_to_start);
+				res.render("index", {
+					message: message,
+					time_to_start: time_to_start
+				});
 			} else {
 				message = "None";
 				var remaining_time = result.endTime - time;
@@ -102,7 +110,9 @@ exports.game = (req, res) => {
 
 exports.check = (req, res) => {
 	var time = new Date();
-	const attempted_answer = req.body.answer;
+	var attempted_answer = req.body.answer;
+	attempted_answer = attempted_answer.replace(/\s/g, "").toLowerCase();
+	console.log(attempted_answer);
 	const userLevel = req.user.level;
 
 	Game.findOne({ title: process.env.GAME_TITLE }, function (err, game_result) {

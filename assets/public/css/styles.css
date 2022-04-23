@@ -196,7 +196,7 @@ hr {
 }
 #left {
   border: 2px solid white;
-  width: 600px;
+  width: 650px;
 }
 #contact {
   background-color: white;
@@ -264,7 +264,7 @@ hr {
   outline-style: solid;
   position: fixed;
   top: 22vh;
-  right: 3%;
+  left: 3%;
 }
 .count{
   font-weight: bold;
@@ -315,7 +315,7 @@ hr {
 #checkdiv {
   padding: 4vh 0vw;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 /*LEADERBOARD CSS*/
 #louter {
@@ -435,7 +435,7 @@ table tr:last-child td:last-child {
     font-size: 16px;
     height: 60px;
     width: 120px;
-    right: 2%;
+    left: 2%;
   }
   /*LEADERBOARD RESPONSIVE*/
   #linner {
@@ -463,7 +463,7 @@ table tr:last-child td:last-child {
     width: 95%;
   }
   #left{
-    width: 540px;
+    width: 560px;
     font-size: 14px;
   }
   #imgindiv{
@@ -497,6 +497,9 @@ table tr:last-child td:last-child {
 @media screen and (max-width: 740px) {
   #outercountdown{
     display: none;
+  }
+  #checkdiv{
+    justify-content: space-evenly;
   }
 }
 @media screen and (max-width: 630px) {
@@ -664,5 +667,10 @@ table tr:last-child td:last-child {
 @media screen and (min-width: 741px) {
   #smallcount{
     display: none;
+  }
+  #submit_btn{
+    position: fixed;
+    top: 22vh;
+    right: 2%;
   }
 }

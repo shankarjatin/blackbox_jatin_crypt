@@ -10,6 +10,7 @@ body{
   color: white;
   position: absolute;
   top: -200px;
+  z-index: 2;
 }
 #logul {
   padding: 4px;
@@ -123,7 +124,7 @@ body{
   background-color: #ee3fa2;
   border: 6px solid #17132a;
   border-radius: 10px;
-  padding: 8px 30px;
+  padding: 8px 22px;
   color: white;
   font-family: 'Orbitron', sans-serif;
   font-weight: bold;
@@ -263,8 +264,8 @@ hr {
   outline-width: 4px;
   outline-style: solid;
   position: fixed;
-  top: 22vh;
-  left: 3%;
+  top: 12vh;
+  left: 10%;
 }
 .count{
   font-weight: bold;
@@ -401,6 +402,9 @@ table tr:last-child td:last-child {
     width: 520px;
     font-size: 0px;
   }
+  #outercountdown{
+    left: 8%;
+  }
   /*LEADERBOARD RESPONSIVE*/
   #linner {
     width: 850px;
@@ -435,7 +439,6 @@ table tr:last-child td:last-child {
     font-size: 16px;
     height: 60px;
     width: 120px;
-    left: 2%;
   }
   /*LEADERBOARD RESPONSIVE*/
   #linner {
@@ -670,7 +673,8 @@ table tr:last-child td:last-child {
   }
   #submit_btn{
     position: fixed;
-    top: 22vh;
-    right: 2%;
+    top: 12vh;
+    right: 6%;
+    z-index: 1;
   }
 }

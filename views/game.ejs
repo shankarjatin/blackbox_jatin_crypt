@@ -9,7 +9,7 @@
     </div>
     <h1 id="rulesheading" style="text-decoration: underline; text-decoration-color: #ee3fa2;">Level # <%-user.level%></h1>
     <div id="smallcount">
-        <div id="counter">TIME LEFT : <b class="countdown">3 : 0 : 0</b></div>
+        <div id="counter">TIME LEFT : <b class="countdown">0 : 0 : 0</b></div>
     </div>
     <div id="gameoutdiv">
         <div id="gameindiv">
@@ -21,7 +21,7 @@
             <input class="form-control" type="text" name="answer" placeholder="Answer" id="gameanswer">
             <div id="checkdiv">
                 <button class="btn btn-dark lbutton" type="submit" formaction="/game" >Check</button>
-                <button id="submit_btn" class="btn btn-success lbutton" onclick="return confirm('Are you sure?')" formaction="/submit" type="submit">Submit</button>
+                <button id="submit_btn" class="btn btn-success lbutton" onclick="return confirm('Do you want to FINAL SUBMIT? !!! Remember you will not be able to play this game after you FINAL SUBMIT !!! Are you sure?')" formaction="/submit" type="submit">Submit</button>
             </div>
         </div>   
     </form>
@@ -31,6 +31,30 @@
 <% if (message != "None") { %>
     <script>alert("<%-message%>")</script>
 <% } else { %>
-<% } %>    
+<% } %>
+
+<% if (remaining_time != "None") { %>
+    <script>
+        let timer=document.getElementsByClassName("countdown");
+        for(let i=0;i<=timer.length-1;i++)
+        {
+            let time= Math.floor( Number("<%-remaining_time%>")/1000);
+            setInterval(updatecountdown,1000);
+            function updatecountdown(){
+            let hours=Math.floor(time/3600);
+            let minutes=Math.floor((time%3600)/60);
+            let seconds=Math.floor(time-3600*hours-60*minutes);
+            if(time<0){
+                timer[i].innerHTML = `00 : 00 : 00`;
+                window.location = "/submit";
+            } else {
+                timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
+            }
+            time--;
+            }
+        }
+    </script>
+<% } else { %>
+<% } %> 
 
 <%- include("./partials/footer.ejs"); %>

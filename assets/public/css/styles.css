@@ -32,6 +32,7 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  min-height: 100vh;
 }
 #menudiv {
   background-color: #17132a;
@@ -61,7 +62,7 @@ body{
   width: 20%;
 }
 #menuliwidth2{
-  width: 28%;
+  width: 20%;
 }
 .ali {
   color: white;

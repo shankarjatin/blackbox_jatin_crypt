@@ -1,0 +1,15 @@
+<%- include("./partials/header.ejs"); %>
+
+<h1 id="rulesheading">Hints </h1>
+<div id="rulesdiv">
+	<div id="boxdiv">
+		<ul id="rulesul">
+            <% hints.forEach(element => { %>
+                <li class="rulesli">Level # <%- element.level %>  | <%- element.hint %> </li><hr>
+            <% }) %>
+        </ul>
+	</div>
+</div>
+</div>
+
+<%- include("./partials/footer.ejs"); %>

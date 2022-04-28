@@ -19,6 +19,8 @@ const limiter = rateLimit({
 	max: 200, // limit each IP to 100 requests per windowMs
 });
 
+app.set('trust proxy', 1);
+
 app.set("view engine", "ejs");
 
 app.use(morgan("dev"));

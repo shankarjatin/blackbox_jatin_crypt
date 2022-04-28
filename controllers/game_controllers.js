@@ -173,6 +173,7 @@ exports.get_hints = (req, res) => {
 			res.send("Error in fetching hints");
 		} else {
 			res.render("hints", {
+				user: req.user,
 				hints: result
 			})
 		}
@@ -185,6 +186,7 @@ exports.hint_manager = (req, res) => {
 			res.send("Error in fetching hints");
 		} else {
 			res.render("hint_manager", {
+				user: req.user,
 				hints: result
 			})
 		}

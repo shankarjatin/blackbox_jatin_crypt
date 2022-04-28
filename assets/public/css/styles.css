@@ -303,7 +303,7 @@ hr {
   font-size: 0px;
 }
 #formdiv {
-  height: 26vh;
+  height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -315,9 +315,12 @@ hr {
   width: 100%;
 }
 #checkdiv {
-  padding: 4vh 0vw;
+  padding: 3vh 0vw;
+}
+.checkd{
   display: flex;
   justify-content: center;
+  padding: 6px 0px;
 }
 /*LEADERBOARD CSS*/
 #louter {
@@ -626,9 +629,6 @@ table tr:last-child td:last-child {
     width: 95%;
   }
   /*GAME RESPONSIVE*/
-  #gamediv{
-    height: 100vh;
-  }
   #gameindiv {
     height: 280px;
     width: 280px;

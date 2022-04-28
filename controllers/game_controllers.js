@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Question = require("./../models/question");
 const User = require("./../models/user.js");
 const Game = require("./../models/game");
+const Hint = require("./../models/hint");
 
 exports.index = (req, res) => {
 	if (req.isAuthenticated()) {
@@ -162,6 +163,62 @@ exports.check = (req, res) => {
 					}
 				})
 			}
+		}
+	})
+}
+
+exports.get_hints = (req, res) => {
+	Hint.find({}, function (err, result) {
+		if (err) {
+			res.send("Error in fetching hints");
+		} else {
+			res.render("hints", {
+				user: req.user,
+				hints: result
+			})
+		}
+	})
+}
+
+exports.hint_manager = (req, res) => {
+	Hint.find({}, function (err, result) {
+		if (err) {
+			res.send("Error in fetching hints");
+		} else {
+			res.render("hint_manager", {
+				user: req.user,
+				hints: result
+			})
+		}
+	})
+}
+
+
+exports.submit_hint = (req, res) => {
+	const { level, hint } = req.body;
+
+	const new_hint = new Hint({
+		level: level,
+		hint: hint
+	})
+
+	new_hint.save(function (err) {
+		if (err) {
+			console.log(err);
+			res.send("Error in saving hints");
+		} else {
+			res.redirect("/hint_manager");
+		}
+	})
+}
+
+exports.delete_hint = (req, res) => {
+	const {id} = req.body ;
+	Hint.findByIdAndDelete(id, function (err) {
+		if (err) {
+			res.send("Error in deleting hint");
+		} else {
+			res.redirect("/hint_manager");
 		}
 	})
 }

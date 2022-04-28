@@ -38,6 +38,29 @@ router.get("/submit",
 	game_controller.submit
 );
 
+router.get("/hints",
+	game_controller.get_hints
+)
+
+router.get("/hint_manager",
+	auth_middleware.check_login,
+	auth_middleware.check_admin,
+	game_controller.hint_manager
+)
+
+router.post("/hints",
+	auth_middleware.check_login,
+	auth_middleware.check_admin,
+	game_controller.submit_hint
+)
+
+router.post("/delete_hint",
+	auth_middleware.check_login,
+	auth_middleware.check_admin,
+	game_controller.delete_hint
+)
+
+
 router.get("/test", function (req, res) {
 	res.send(req.isAuthenticated())
 });

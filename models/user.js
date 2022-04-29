@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
 		type: Number,
 		default: 0
 	},
+	blocked_message: {
+		type: String,
+		default: ""
+	},
 	attempts: [],
 	submitted: {
 		type: Boolean,

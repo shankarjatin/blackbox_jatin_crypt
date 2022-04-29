@@ -12,19 +12,19 @@ const middleware = require("./middlewares/middleware");
 require("dotenv").config(); // for using env variables
 require("./models/model");
 
-const app = express();
-
 const limiter = rateLimit({
 	windowMs: 2 * 60 * 1000, // 10 minutes
 	max: 200, // limit each IP to 100 requests per windowMs
 });
 
+const app = express();
 app.set('trust proxy', 1);
+app.use(limiter);
 
 app.set("view engine", "ejs");
 
 app.use(morgan("dev"));
-app.use(limiter);
+
 app.use(express.urlencoded({
 	extended: true
 }));

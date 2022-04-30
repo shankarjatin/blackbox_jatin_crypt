@@ -14,7 +14,7 @@ require("./models/model");
 
 const limiter = rateLimit({
 	windowMs: 2 * 60 * 1000, // 10 minutes
-	max: 200, // limit each IP to 100 requests per windowMs
+	max: 400, // limit each IP to 100 requests per windowMs
 });
 
 const app = express();

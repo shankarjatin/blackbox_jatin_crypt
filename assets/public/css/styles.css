@@ -274,7 +274,7 @@ hr {
 
 /*TIMER*/
 #outercountdown{
-  width: 140px;
+  width: 180px;
   height: 80px;
   display: flex;
   font-size: 20px;
@@ -606,6 +606,7 @@ table tr:last-child td:last-child {
   #counter{
     width: 170px;
     font-size: 14px;
+    margin-bottom: 32px;
   }
   /*LEADERBOARD responsive*/
   .font{

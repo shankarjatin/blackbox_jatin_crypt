@@ -16,6 +16,10 @@ router.get("/leaderboard",
 	game_controller.leaderboard
 );
 
+router.get("/original_leaderboard",
+	game_controller.original_leaderboard
+);
+
 router.get("/game",
 	auth_middleware.check_login,
 	game_middleware.check_game_timing,

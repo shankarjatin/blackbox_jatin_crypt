@@ -146,6 +146,15 @@ body{
   font-weight: bold;
 }
 
+.leaderboard_heading{
+  display: block;
+  text-align: center;
+}
+
+.original_leaderboard{
+  margin: 0 8px;
+}
+
 #fouter {
   display: flex;
   justify-content: center;
@@ -225,6 +234,7 @@ hr {
   text-align: center;
   font-size: 50px;
   font-family: 'Orbitron', sans-serif;
+  display: inline-block;
 }
 #rulesdiv {
   padding-bottom: 4vh;

@@ -66,6 +66,10 @@ exports.leaderboard = (req, res) => {
 	});
 }
 
+exports.original_leaderboard = (req, res) => {
+	res.render("original_leaderboard");
+}
+
 exports.submit = (req, res) => {
 	req.user.submitted = true;
 	req.user.save(function () {

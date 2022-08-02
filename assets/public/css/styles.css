@@ -234,8 +234,19 @@ hr {
   text-align: center;
   font-size: 50px;
   font-family: 'Orbitron', sans-serif;
+}
+
+#leaderboard_rulesheading {
+  padding: 14vh 0vw 4vh 0vw;
+  margin: 0px;
+  color: white;
+  text-align: center;
+  font-size: 50px;
+  font-family: 'Orbitron', sans-serif;
   display: inline-block;
 }
+
+
 #rulesdiv {
   padding-bottom: 4vh;
   display: flex;

@@ -26,14 +26,14 @@ const userSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
-	blackbox: {
-		level:{
+	
+		blackbox_level:{
 		       type: Number,
 		       default: 1},
-		points:{
+		black_points:{
 			type: Number,
 			default:0
-		}
+		
 
 	},
 },

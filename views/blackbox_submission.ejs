@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Input Example</title>
+  </head>
+  <body>
+    <h1>Enter Values</h1>
+    <!-- <form action="/ques" method="POST">
+      <label for="num1">Number 1:</label>
+      <input type="number" name="num1" id="num1" disabled><br><br>
+      <label for="num2">Number 2:</label>
+      <input type="number" name="num2" id="num2" disabled><br><br>
+      <label for="num3">Number 3:</label>
+      <input type="number" name="num3" id="num3" disabled><br><br>
+      <button type="submit">check combination</button> -->
+     <P> the combination of <%= x %> ,<%= y %> and <%= z %> </p>
+      <% if (result) { %>
+        <p> is: <%= result %></p>
+      <% } %>
+     
+     
+    <!-- </form> -->
+    <form action="/submit_blackbox" method="post">
+        <label for="text">enter your expression</label>
+        <input type="text" name="user_expression" id="text"><br><br>
+        <button type="submit">submit expression</button>
+        <p> instruction :<br> exaple input : a+b+c , (a*b)+c .<br> use a,b,c as variable !</p>
+    </form>
+  </body>
+</html>

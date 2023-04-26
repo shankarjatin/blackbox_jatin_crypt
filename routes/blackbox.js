@@ -16,5 +16,7 @@ router.post("/add-question",blackbox_controller.add_question);
 
 router.post("/black_ques",blackbox_controller.black_ques);
 
+router.post("/submit_blackbox",blackbox_controller.submit_blackbox);
+
 
 module.exports = router;

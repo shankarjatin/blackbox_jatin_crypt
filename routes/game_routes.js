@@ -3,10 +3,16 @@ const router = express.Router();
 const game_controller = require("./../controllers/game_controllers.js");
 const auth_middleware = require("./../middlewares/auth_middleware.js");
 const game_middleware = require("./../middlewares/game_middleware.js");
-
+const controller = require("./../controllers/controller.js");
 router.get("/",
 	game_controller.index
 );
+
+router.get("/home",
+controller.homeRoute
+)
+
+
 
 router.get("/rules",
 	game_controller.rules

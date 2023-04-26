@@ -8,4 +8,6 @@ const blackbox_controller = require("./../controllers/blackbox_controller.js");
 router.get("/blackbox",
 blackbox_controller.FirstPage
 )
+
+router.post("/add-question",blackbox_controller.add_question);
 module.exports = router;

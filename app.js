@@ -8,6 +8,7 @@ const fs = require("fs");
 const rateLimit = require("express-rate-limit");
 const Router = require("./routes/router");
 const middleware = require("./middlewares/middleware");
+const bodyParser=require("body-parser");
 
 require("dotenv").config(); // for using env variables
 require("./models/model");
@@ -24,6 +25,7 @@ app.use(limiter);
 app.set("view engine", "ejs");
 
 app.use(morgan("dev"));
+app.use(bodyParser.json());
 
 app.use(express.urlencoded({
 	extended: true

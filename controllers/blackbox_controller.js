@@ -13,6 +13,7 @@ exports.black_ques = async (req,res)=>{
     let ques_game = await Ques_BlackBox.findOne({level:level1})
     var expression_black = ques_game.answer_expression;
     var expression_real = eval(expression_black);
+    console.log(level1)
     console.log(expression_real);
     res.render("blackbox_submission",{x:a,y:b,z:c,result:expression_real})
 }
@@ -23,7 +24,7 @@ exports.submit_blackbox = async(req,res)=>{
     let ques_game = await Ques_BlackBox.findOne({level:level1})
     var expression_black = ques_game.answer_expression;
     
-    function testcase(){
+  
                 let a=Math.floor(Math.random() * 101);
                 let b=Math.floor(Math.random() * 101);
                 let c=Math.floor(Math.random() * 101);;
@@ -44,16 +45,16 @@ exports.submit_blackbox = async(req,res)=>{
                             }
                 if(testcase===3)
                 {console.log("logic coreect")
-                let gamer1 =  User.findOne({email:req.user.email} );
-               var level12= parseInt(gamer1.blackbox_level=gamer1.blackbox_level+1);
-               const addLevel =new User({
-                blackbox_level : level12
-            })
-            addLevel.save()
+
+await User.updateOne({email:req.user.email},{ $inc: { blackbox_level: 1 } })
+
+            //     let gamer1 = await  User.findOne({email:req.user.email} );
+            //    var level12= gamer1.blackbox_level + 1;
+               
+            
             res.render("blackbox_index")  
         }
-                     }
-                    testcase();
+                     
 
 
 }

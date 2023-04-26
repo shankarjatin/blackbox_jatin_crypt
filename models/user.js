@@ -25,7 +25,17 @@ const userSchema = new mongoose.Schema({
 	submitted: {
 		type: Boolean,
 		default: false
-	}
+	},
+	blackbox: {
+		level:{
+		       type: Number,
+		       default: 1},
+		points:{
+			type: Number,
+			default:0
+		}
+
+	},
 },
 	{ timestamps: true }
 );

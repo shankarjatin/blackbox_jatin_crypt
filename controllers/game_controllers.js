@@ -243,3 +243,15 @@ exports.updateQuestion=(req,res,next)=>{
 		throw err;
 	})
 }
+
+exports.finalLeaderBoard=(req,res,next)=>{
+	User.find({}).lean().sort({score:-1}).select("name score -_id").then(result=>{
+		console.log(result);
+		res.status(200).json({
+			message:"fetched Succeddfully",
+			result:result,
+		})
+	}).catch(err=>{
+		throw err;
+	})
+}

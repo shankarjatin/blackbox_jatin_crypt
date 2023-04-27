@@ -72,6 +72,7 @@ router.post("/delete_hint",
 
 router.post("/update-question",game_controller.updateQuestion);
 
+router.get("/final-leaderBoard",game_controller.finalLeaderBoard);
 
 router.get("/test", function (req, res) {
 	res.send(req.isAuthenticated())

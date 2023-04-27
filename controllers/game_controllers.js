@@ -147,6 +147,11 @@ exports.check = (req, res) => {
 							}
 							if (attempted_answer == result[0].answer) {
 								result2.attempts.push(attempt);
+								User.findOneAndUpdate({_id:result2._id},{$inc:{score:result[0].credit}}).then(update=>{
+									console.log(update);
+								}).catch(err=>{
+									throw err;
+								})
 								result2.level += 1;
 								result2.save(function () {
 									res.redirect("/game");

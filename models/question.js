@@ -5,6 +5,10 @@ const question_schema = new mongoose.Schema({
 	level :Number,
 	img : String,
 	answer :String,
+	credit:{
+		type:Number,
+		default:1
+	}
 });
 
 const Question = new mongoose.model("Question", question_schema);

@@ -88,3 +88,11 @@ exports.add_question=(req,res,next)=>{
         throw err;
     });
 }
+
+
+exports.leaderboard = async (req,res,next)=>{
+    const result = await User.find().sort({blackbox:-1});
+    res.send(result.name);
+
+
+}

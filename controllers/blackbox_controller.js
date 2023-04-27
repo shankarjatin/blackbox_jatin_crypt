@@ -90,9 +90,37 @@ exports.add_question=(req,res,next)=>{
 }
 
 
-exports.leaderboard = async (req,res,next)=>{
-    const result = await User.find().sort({blackbox:-1});
-    res.send(result.name);
+exports.leaderboard = (req, res) => {
+	console.log("req at leaderboard");
+	User.find({}).lean().sort({
+		blackbox_level: -1
+	}).exec(function (err, result) {
+		if (err) {
+			res.send("Some error occured in fetching leaderboard");
+		} else {
+			/*
+			 * Below code is for calculating rank from sorted
+			 * players data fetched from database
+			 *  --> Players on equal level will have equal ranks.
+			 */
+			var rank = 0
+			var current_rank = 0
+			var blackbox_level = 100;
+			result.forEach((person, index) => {
+				rank += 1;
+				if (person.blackbox_level != blackbox_level) {
+					result[index].rank = rank;
+					current_rank = rank;
+				} else {
+					result[index].rank = current_rank;
+				}
+				blackbox_level = person.blackbox_level;
+			})
 
-
+			res.render("blackbox_leaderboard", {
+				user: req.user,
+				leaderboard: result
+			})
+		}
+	});
 }

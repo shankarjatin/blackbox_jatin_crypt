@@ -18,6 +18,6 @@ router.post("/black_ques",blackbox_controller.black_ques);
 
 router.post("/submit_blackbox",blackbox_controller.submit_blackbox);
 
-router.get("blackbox_leaderboard" , blackbox_controller.leaderboard);
+router.get("/blackbox_leaderboard" , blackbox_controller.leaderboard);
 
 module.exports = router;

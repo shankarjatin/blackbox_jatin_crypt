@@ -1,7 +1,9 @@
 const Ques_BlackBox=require("../models/question_blackbox");
 const User = require("./../models/user.js");
-exports.FirstPage = (req,res)=>{
-    res.render("blackbox_index")
+exports.FirstPage =async (req,res)=>{
+    let gamer = await User.findOne({email:req.user.email} );
+    var level1 = gamer.blackbox_level;
+    res.render("blackbox_index",{level1})
 }
 
 exports.black_ques = async (req,res)=>{
@@ -51,10 +53,13 @@ await User.updateOne({email:req.user.email},{ $inc: { blackbox_level: 1 } })
             //     let gamer1 = await  User.findOne({email:req.user.email} );
             //    var level12= gamer1.blackbox_level + 1;
                
-            
-            res.render("blackbox_index")  
+            let gamer = await User.findOne({email:req.user.email} );
+            var level1 = gamer.blackbox_level; 
+            res.render("blackbox_index",{level1})
         }
-                     
+          else{
+            res.render("failed_testcase",{testcase});
+          }           
 
 
 }

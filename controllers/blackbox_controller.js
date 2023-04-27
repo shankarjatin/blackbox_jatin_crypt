@@ -25,6 +25,7 @@ exports.submit_blackbox = async(req,res)=>{
     var level1 = gamer.blackbox_level;
     let ques_game = await Ques_BlackBox.findOne({level:level1})
     var expression_black = ques_game.answer_expression;
+    let credit=ques_game.credit;
     
   
                 let a=Math.floor(Math.random() * 101);
@@ -48,7 +49,7 @@ exports.submit_blackbox = async(req,res)=>{
                 if(testcase===3)
                 {console.log("logic coreect")
 
-await User.updateOne({email:req.user.email},{ $inc: { blackbox_level: 1 } })
+                await User.updateOne({email:req.user.email},{ $inc: { blackbox_level: 1,black_points:credit,score:credit}})
 
             //     let gamer1 = await  User.findOne({email:req.user.email} );
             //    var level12= gamer1.blackbox_level + 1;
@@ -72,11 +73,12 @@ exports.add_question=(req,res,next)=>{
     const question_no=req.body.question_no;
     const level=req.body.level;
     const answer_expression=req.body.answer_expression;
-
+    const credit=req.body.credit;
     const addQuestion=new Ques_BlackBox({
         question_no:question_no,
         level:level,
         answer_expression:answer_expression,
+        credit:credit
     })
 
     addQuestion.save().then((result) => {

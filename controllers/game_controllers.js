@@ -226,3 +226,15 @@ exports.delete_hint = (req, res) => {
 		}
 	})
 }
+
+exports.updateQuestion=(req,res,next)=>{
+	const {level,credit}=req.body;
+	Question.findOneAndUpdate({level:level},{credit:credit}).then(updated=>{
+		res.status(204).json({
+			message:"updated Successfully",
+			question:updated,
+		})
+	}).catch(err=>{
+		throw err;
+	})
+}

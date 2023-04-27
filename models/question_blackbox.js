@@ -11,6 +11,10 @@ const questionSchema=new mongoose.Schema({
     answer_expression:{
         type:String,
     },
+    credit:{
+        type:Number,
+        default:1
+    },
     isSubmitted:{
         type:Boolean,
         default:false,

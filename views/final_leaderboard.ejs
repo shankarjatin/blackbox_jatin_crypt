@@ -1,9 +1,10 @@
 <%- include("./partials/header.ejs"); %>
 <div class="leaderboard_heading">
-  <h1 id="leaderboard_rulesheading">BLACKBOX LEADERBOARD</h1>
+  <h1 id="leaderboard_rulesheading">OVERALL LEADERBOARD</h1>
   <a href="/blackbox"><button type="button" id="lbutton3" class="original_leaderboard">Blackbox</button></a>
   <a href="/game"><button type="button" id="lbutton3" class="original_leaderboard">Crypthunt</button></a>
-  <a href="/final-leaderboard"><button type="button" id="lbutton3" class="original_leaderboard">Overall Leaderboard</button></a>
+  <a href="/leaderboard"><button type="button" id="lbutton3" class="original_leaderboard">Crypthunt Leaderboard</button></a>
+  <a href="/blackbox_leaderboard"><button type="button" id="lbutton3" class="original_leaderboard">Blackbox Leaderboard</button></a>
 </div>  
   <div id="louter">
     <div id="linner">
@@ -11,13 +12,13 @@
         <tr style="background-color: #ee3fa2;">
           <th class="rl font rl-left rl-top">Rank</th>
           <th class="name font rl-top">Name</th>
-          <th class="rl font rl-right rl-top">Level</th>
+          <th class="rl font rl-right rl-top">score</th>
         </tr>
         <% leaderboard.forEach((element, rank) => { %>
           <tr>
             <td class="rl rl-left"><%-element.rank%></td>
             <td class="name"><%-element.name%> <%-element.blocked_message%> </td>
-            <td class="rl rl-right"><%-element.blackbox_level%></td>
+            <td class="rl rl-right"><%-element.score%></td>
           </tr>
         <% }) %>
         <tr>

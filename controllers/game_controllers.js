@@ -244,14 +244,47 @@ exports.updateQuestion=(req,res,next)=>{
 	})
 }
 
-exports.finalLeaderBoard=(req,res,next)=>{
-	User.find({}).lean().sort({score:-1}).select("name score -_id").then(result=>{
-		console.log(result);
-		res.status(200).json({
-			message:"fetched Succeddfully",
-			result:result,
-		})
-	}).catch(err=>{
-		throw err;
-	})
+// exports.finalLeaderBoard=(req,res,next)=>{
+// 	User.find({}).lean().sort({score:-1}).select("name score -_id").then(result=>{
+// 		console.log(result);
+// 		res.status(200).json({
+// 			message:"fetched Succeddfully",
+// 			result:result,
+// 		})
+// 	}).catch(err=>{
+// 		throw err;
+// 	})
+// }
+
+exports.finalLeaderBoard = (req, res) => {
+	console.log("req at leaderboard");
+	User.find({}).lean().sort({score:-1}).select("name score -_id").exec(function (err, result) {
+		if (err) {
+			res.send("Some error occured in fetching leaderboard");
+		} else {
+			/*
+			 * Below code is for calculating rank from sorted
+			 * players data fetched from database
+			 *  --> Players on equal level will have equal ranks.
+			 */
+			var rank = 0
+			var current_rank = 0
+			var score = 100;
+			result.forEach((person, index) => {
+				rank += 1;
+				if (person.score != score) {
+					result[index].rank = rank;
+					current_rank = rank;
+				} else {
+					result[index].rank = current_rank;
+				}
+				score = person.score;
+			})
+
+			res.render("final_leaderboard", {
+				user: req.user,
+				leaderboard: result
+			})
+		}
+	});
 }

@@ -11,7 +11,15 @@
     <li> <a href="/final-leaderboard">Overall Leaderboard</a></li>
     <h1>You are on Level <%= level1 %>!</h1>
     <h1>Enter Values</h1>
-
+    <div id="gamediv">
+      <div id="outercountdown">
+          <div>
+              <div class="count">TIME LEFT</div>
+              <div class="count countdown">3 : 0 : 0</div>
+          </div>
+      </div>
+      
+      
     <form action="/black_ques" method="POST">
       <label for="num1">Number 1:</label>
       <input type="number" name="num1" id="num1"><br><br>
@@ -19,9 +27,39 @@
       <input type="number" name="num2" id="num2"><br><br>
       <label for="num3">Number 3:</label>
       <input type="number" name="num3" id="num3"><br><br>
-      <button type="submit">check combination</button>
-    
-     
+      <button type="submit">check combination</button>     
     </form>
+
+    <% if (message != "None") { %>
+      <script>alert("<%-message%>")</script>
+  <% } else { %>
+  <% } %>
+  
+  <% if (remaining_time != "None") { %>
+      <script>
+          let timer=document.getElementsByClassName("countdown");
+          for(let i=0;i<=timer.length-1;i++)
+          {
+              let time= Math.floor( Number("<%-remaining_time%>")/1000);
+              setInterval(updatecountdown,1000);
+              function updatecountdown(){
+              let hours=Math.floor(time/3600);
+              let minutes=Math.floor((time%3600)/60);
+              let seconds=Math.floor(time-3600*hours-60*minutes);
+              if(time<0){
+                  timer[i].innerHTML = `00 : 00 : 00`;
+                  window.location = "/submit";
+              } else {
+                  timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
+              }
+              time--;
+              }
+          }
+      </script>
+  <% } else { %>
+  <% } %> 
+
+
+
   </body>
 </html>

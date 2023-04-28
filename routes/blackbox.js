@@ -8,7 +8,7 @@ const controller = require("./../controllers/controller.js");
 
 
 const blackbox_controller = require("./../controllers/blackbox_controller.js");
-router.get("/blackbox",
+router.get("/blackbox",game_middleware.check_game_timing,auth_middleware.check_login,
 blackbox_controller.FirstPage
 )
 

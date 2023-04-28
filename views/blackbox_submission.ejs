@@ -17,6 +17,20 @@
         window.history.back();
       }
     </script>
+
+    <div id="gamediv">
+      <div id="outercountdown">
+          <div>
+              <div class="count">TIME LEFT</div>
+              <div class="count countdown">3 : 0 : 0</div>
+          </div>
+      </div>
+  
+
+
+
+
+
     <h1>Enter Values</h1>
     <!-- <form action="/ques" method="POST">
       <label for="num1">Number 1:</label>
@@ -39,5 +53,38 @@
         <button type="submit">submit expression</button>
         <p> instruction :<br> exaple input : a+b+c , (a*b)+c .<br> use a,b,c as variable !</p>
     </form>
+
+    <% if (message != "None") { %>
+      <script>alert("<%-message%>")</script>
+  <% } else { %>
+  <% } %>
+  
+  <% if (remaining_time != "None") { %>
+      <script>
+          let timer=document.getElementsByClassName("countdown");
+          for(let i=0;i<=timer.length-1;i++)
+          {
+              let time= Math.floor( Number("<%-remaining_time%>")/1000);
+              setInterval(updatecountdown,1000);
+              function updatecountdown(){
+              let hours=Math.floor(time/3600);
+              let minutes=Math.floor((time%3600)/60);
+              let seconds=Math.floor(time-3600*hours-60*minutes);
+              if(time<0){
+                  timer[i].innerHTML = `00 : 00 : 00`;
+                  window.location = "/submit";
+              } else {
+                  timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
+              }
+              time--;
+              }
+          }
+      </script>
+  <% } else { %>
+  <% } %> 
+
+
+
+
   </body>
 </html>

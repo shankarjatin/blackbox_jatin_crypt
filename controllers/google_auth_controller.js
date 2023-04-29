@@ -6,5 +6,5 @@ exports.passport_google_authenticate = passport.authenticate("google", {
 
 exports.passport_google_callback = passport.authenticate("google", {
     failureRedirect: "/login",
-    successRedirect: "/home",
+    successRedirect: "/game",
 });

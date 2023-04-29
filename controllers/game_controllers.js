@@ -73,7 +73,7 @@ exports.original_leaderboard = (req, res) => {
 exports.submit = (req, res) => {
 	req.user.submitted = true;
 	req.user.save(function () {
-		res.redirect("/leaderboard");
+		res.redirect("/final-leaderboard");
 	})
 }
 

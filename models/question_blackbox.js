@@ -19,6 +19,10 @@ const questionSchema=new mongoose.Schema({
         type:Boolean,
         default:false,
     }
+    // isSubmitted:{
+    //     type:Boolean,
+    //     default:false,
+    // }
 })
 
 const BlackBox_questions=new mongoose.model("BlackBox_question",questionSchema);

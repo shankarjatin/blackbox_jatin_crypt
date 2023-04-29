@@ -104,7 +104,7 @@ exports.submit_blackbox = async(req,res)=>{
                 let b=Math.floor(Math.random() * 101);
                 let c=Math.floor(Math.random() * 101);;
                 let testcase=0;
-                const expression =  req.body.user_expression;
+                const expression =  req.body.user_expression.toLowerCase();
                 var expression_real = eval(expression_black);
                 let result_user = eval(expression);
                 

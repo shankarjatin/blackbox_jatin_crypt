@@ -13,7 +13,18 @@ exports.FirstPage =async (req,res)=>{
 
         if (err) {
 			res.send("Error in fetching game");
-		}else{
+		}
+
+        
+        else{
+         if(level1 == parseInt(process.env.BLACK_LEVEL)){
+                message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+                    var time_to_start = result.startTime - time;
+                    console.log(time_to_start);
+                    // res.redirect('/final-leaderBoard');
+                    res.render("max_level");
+            }
+else{
             if (req.user.submitted == true) {
 				message = "You have already submitted. Please check your rank in the leaderboard";
 				req.logout();
@@ -22,18 +33,9 @@ exports.FirstPage =async (req,res)=>{
 					message: message,
 					time_to_start: time_to_start
 				});
-        }else if(req.user.
-                blackbox_level == process.env.Black_Max_level){
-                console.log("inside max level");
-                message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                    var time_to_start = result.startTime - time;
-                    console.log(time_to_start);
-                    res.render("home", {
-                        message: message,
-                        time_to_start: time_to_start
-                });
-
-        }else{
+        }
+       
+        else{
             message = "None";
 				var remaining_time = result.endTime - time;
 				res.render("blackbox_index", {
@@ -44,7 +46,7 @@ exports.FirstPage =async (req,res)=>{
                     result:"None"
 				});
         }
-    }
+    }}
 })
 }
 
@@ -83,15 +85,15 @@ exports.black_ques = async (req,res,next)=>{
                     message: message,
                     time_to_start: time_to_start
                 });
-            }else if(req.user.blackbox_level == process.env.Black_Max_level){
-            message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                var time_to_start = result.startTime - time;
-                console.log(time_to_start);
-                res.render("blackbox_index", {
-                    message: message,
-                    time_to_start: time_to_start
-                });
-            }else{
+            }
+            // else if(level1 === (process.env.BLACK_LEVEL)){
+            // message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+            //     var time_to_start = result.startTime - time;
+            //     console.log(time_to_start);
+            //     // res.redirect('/final-leaderBoard');
+            //     res.render("max_level");
+            // }
+            else{
                  message = "None";
                         var remaining_time = result.endTime - time;
                         res.render("blackbox_index", {
@@ -136,15 +138,18 @@ exports.submit_blackbox = async(req,res)=>{
                         message: message,
                         time_to_start: time_to_start
                     });
-                }else if(req.user.level == process.env.MAX_LEVEL){
-                message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                    var time_to_start = result.startTime - time;
-                    console.log(time_to_start);
-                    res.render("blackbox_index", {
-                        message: message,
-                        time_to_start: time_to_start
-                    });
-                }else{
+                }
+                // else if(level1 == (process.env.BLACK_LEVEL)){
+                // message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+                //     var time_to_start = result.startTime - time;
+                //     console.log(time_to_start);
+                //     res.redirect('/final-leaderBoard');
+                //     // res.render("blackbox_index", {
+                //     //     message: message,
+                //     //     time_to_start: time_to_start
+                //     // });
+                // }
+                else{
                        message = "None";
                         var remaining_time = result.endTime - time;
                         for (i=0;i<3;i++){
@@ -156,23 +161,25 @@ exports.submit_blackbox = async(req,res)=>{
                             a=a=20;b=b-10;c=c+10;
                             }
                             if(testcase===3)
-                            {console.log("logic coreect")
+                            {
+                                console.log("logic coreect")
             
-                            await User.updateOne({email:req.user.email},{ $inc: { blackbox_level: 1,black_points:credit,score:credit}})
-            
-                        //     let gamer1 = await  User.findOne({email:req.user.email} );
-                        //    var level12= gamer1.blackbox_level + 1;
-                           
+                            await User.updateOne({email:req.user.email},{ $inc: { blackbox_level: 1,black_points:credit,score:credit}}) 
                         let gamer = await User.findOne({email:req.user.email} );
                         var level1 = gamer.blackbox_level; 
-                        res.render("blackbox_index",{
-                            level1,
-                            user: req.user,
-                            message: message,
-                            remaining_time: remaining_time,
-                            result:"None"
+                        console.log("here is"+level1+"is")
+                        res.redirect("/blackbox");
+                        // if(level1 === (process.env.BLACK_LEVEL)){
+                        //     res.render("max_level")
+                        // }
+                        //  res.render("blackbox_index",{
+                        //     level1,
+                        //     user: req.user,
+                        //     message: message,
+                        //     remaining_time: remaining_time,
+                        //     result:"None"
 
-                        })
+                        // })
                       }
                       else{
                         res.render("failed_testcase",{testcase});

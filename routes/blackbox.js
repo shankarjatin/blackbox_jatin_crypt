@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const {check,body}=require("express-validator");
 const game_controller = require("./../controllers/game_controllers.js");
 const auth_middleware = require("./../middlewares/auth_middleware.js");
 const game_middleware = require("./../middlewares/game_middleware.js");
@@ -14,7 +15,7 @@ blackbox_controller.FirstPage
 
 router.post("/add-question",blackbox_controller.add_question);
 
-router.post("/black_ques",blackbox_controller.black_ques);
+router.post("/black_ques",[body(`num1`).isInt({min:1}).notEmpty(),body(`num2`).isInt({min:1}).notEmpty(),body(`num3`).isInt({min:1}).notEmpty()],blackbox_controller.black_ques);
 
 router.post("/submit_blackbox",blackbox_controller.submit_blackbox);
 

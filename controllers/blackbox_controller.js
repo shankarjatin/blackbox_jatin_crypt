@@ -1,6 +1,8 @@
 const Ques_BlackBox=require("../models/question_blackbox");
 const User = require("./../models/user.js");
 const Game = require("./../models/game");
+const {validationResult}=require("express-validator");
+
 
 exports.FirstPage =async (req,res)=>{
     let gamer = await User.findOne({email:req.user.email} );
@@ -20,14 +22,16 @@ exports.FirstPage =async (req,res)=>{
 					message: message,
 					time_to_start: time_to_start
 				});
-        }else if(req.user.level == process.env.MAX_LEVEL){
-            message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-				var time_to_start = result.startTime - time;
-				console.log(time_to_start);
-				res.render("blackbox_index", {
-					message: message,
-					time_to_start: time_to_start
-				});
+        }else if(req.user.
+                blackbox_level == process.env.Black_Max_level){
+                console.log("inside max level");
+                message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+                    var time_to_start = result.startTime - time;
+                    console.log(time_to_start);
+                    res.render("home", {
+                        message: message,
+                        time_to_start: time_to_start
+                });
 
         }else{
             message = "None";
@@ -36,14 +40,16 @@ exports.FirstPage =async (req,res)=>{
 					user: req.user,
 					message: message,
 					remaining_time: remaining_time,
-                    level1
+                    level1,
+                    result:"None"
 				});
         }
     }
 })
 }
 
-exports.black_ques = async (req,res)=>{
+exports.black_ques = async (req,res,next)=>{
+    const errors=validationResult(req);   
     var time = new Date();
     let a = parseInt(req.body.num1);
     let b = parseInt(req.body.num2);
@@ -60,7 +66,16 @@ exports.black_ques = async (req,res)=>{
         if (err) {
             res.send("Error in fetching game");
         }else{
-            if (req.user.submitted == true) {
+            if(!errors.isEmpty()){
+                var remaining_time = result.endTime - time;
+                res.render("blackbox_index",{
+                    user: req.user,
+                    message: "Invalid Input, Enter Integers ",
+                    remaining_time:remaining_time ,
+                    level1,
+                })
+            }
+            else if (req.user.submitted == true) {
                 message = "You have already submitted. Please check your rank in the leaderboard";
                 req.logout();
                 var time_to_start = result.startTime - time;
@@ -68,7 +83,7 @@ exports.black_ques = async (req,res)=>{
                     message: message,
                     time_to_start: time_to_start
                 });
-        }else if(req.user.level == process.env.MAX_LEVEL){
+            }else if(req.user.blackbox_level == process.env.Black_Max_level){
             message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
                 var time_to_start = result.startTime - time;
                 console.log(time_to_start);
@@ -76,17 +91,17 @@ exports.black_ques = async (req,res)=>{
                     message: message,
                     time_to_start: time_to_start
                 });
-    
-        }else{
-            message = "None";
-                var remaining_time = result.endTime - time;
-                res.render("blackbox_submission", {
-                    user: req.user,
-                    message: message,
-                    remaining_time: remaining_time,
-                    x:a,y:b,z:c,result:expression_real
-                });
-        }
+            }else{
+                 message = "None";
+                        var remaining_time = result.endTime - time;
+                        res.render("blackbox_index", {
+                            user: req.user,
+                            level1,
+                            message: message,
+                            remaining_time: remaining_time,
+                            x:a,y:b,z:c,result:expression_real
+                    });
+            }
     }
 
     })
@@ -155,6 +170,7 @@ exports.submit_blackbox = async(req,res)=>{
                             user: req.user,
                             message: message,
                             remaining_time: remaining_time,
+                            result:"None"
 
                         })
                       }

@@ -1,0 +1,5 @@
+.user-message--error{
+    border: 1px solid red;
+    background-color: rgb(255, 117, 117);
+    color: red;
+  }

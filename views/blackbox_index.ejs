@@ -30,12 +30,10 @@
       <input type="number" name="num2" id="num2"><br><br>
       <label for="num3">Number 3:</label>
       <input type="number" name="num3" id="num3"><br><br>
-      <button type="submit">check combination</button>     
+      <button  type="submit">check combination</button>     
     </form>
 
-
-
-
+   
     <% if (result!="None") {%>
       <P> the combination of <%= x %> ,<%= y %> and <%= z %> </p>
       <p> is: <%= result %></p>
@@ -47,7 +45,23 @@
     </form>
     <% } %>
        
-    
+
+
+
+    <% if (Array !== "None") { %>
+        <% if (Array.length > 0) { %>
+          <ul>
+            <% Array.forEach(element => { %>
+              <li><%= element %></li>
+            <% }); %>
+          </ul>
+        <% } else { %>
+          <p>No array elements found.</p>
+        <% } %>
+      <% } else { %>
+      <% } %>
+
+        
 
     <% if (message != "None") { %>
       <script>alert("<%-message%>")</script>

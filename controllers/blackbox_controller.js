@@ -17,7 +17,7 @@ exports.FirstPage =async (req,res)=>{
 
         
         else{
-         if(level1 == parseInt(process.env.BLACK_LEVEL)){
+         if(level1 == process.env.BLACK_LEVEL){
                 message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
                     var time_to_start = result.startTime - time;
                     console.log(time_to_start);
@@ -43,6 +43,7 @@ else{
 					message: message,
 					remaining_time: remaining_time,
                     level1,
+                    Array:"None",
                     result:"None"
 				});
         }
@@ -63,8 +64,79 @@ exports.black_ques = async (req,res,next)=>{
     var expression_real = eval(expression_black);
     console.log(level1)
     console.log(expression_real);
+//     var userInput = `Result of ${a} ${b} ${c} is ${expression_real}`
+//     console.log(userInput)
+//     var Array = gamer.Array
+//     Array.push(userInput);
+//     const addArray = new User({
+//         Array:Array
+//     })
+// addArray.save()
+var userInput = `Result of ${a} ${b} ${c} is ${expression_real}`
+console.log(userInput)
+User.findOneAndUpdate(
+    { email: req.user.email }, // Define the parameter and its value to identify the document
+    { $push: { Array: userInput } }, // Push the new element into the array
+    { new: true } // Set the "new" option to return the updated document
+  )
+    .then(updatedDocument => {
+      console.log('Updated document:', updatedDocument);
+    })
+    .catch(error => {
+      console.error('Failed to update document:', error);
+    });
+  
 
-    Game.findOne({ title: process.env.GAME_TITLE }, function (err, result){
+
+// var Array = gamer.Array
+// var Array1 = userInput.push(Array);
+// const addArray = new User({
+//     Array:Array1
+// })
+// addArray.save()
+
+    // User.findOne().then(document => {
+    //     // Fetch the array from the document
+       
+    //     const myArray = document.myArray;
+  
+    //     // Push a new value into the array
+    //     myArray.push(userInput);
+  
+    //     // Save the updated document with the modified array
+    //     document.save()})
+    //     .then(updatedDocument => {
+    //         console.log('Updated document:', updatedDocument);
+    //       })
+    //       .catch(error => {
+    //         console.error('Failed to fetch or update document:', error);
+    //       });
+
+    // var userInput = `Result of ${a} ${b} ${c} is ${expression_real}`
+    //     userInputArray.push(userInput);
+
+
+    // function addUserInput() {
+    //     var userInput = `Result of ${a} ${b} ${c} is ${expression_real}`
+    //     userInputArray.push(userInput);
+    //     displayUserInputs();
+    //   }
+    //   function displayUserInputs() {
+    //     const displayList = document.getElementById('displayList');
+    //     displayList.innerHTML = '';
+      
+    //     userInputArray.forEach(userInput => {
+    //       const listItem = document.createElement('li');
+    //       listItem.textContent = userInput;
+    //       displayList.appendChild(listItem);
+    //     });
+    //   }
+      
+
+
+
+
+    Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result){
         if (err) {
             res.send("Error in fetching game");
         }else{
@@ -93,7 +165,10 @@ exports.black_ques = async (req,res,next)=>{
             //     // res.redirect('/final-leaderBoard');
             //     res.render("max_level");
             // }
-            else{
+            
+            else{let gamer = await User.findOne({email:req.user.email} );
+          var Array = gamer.Array
+        
                  message = "None";
                         var remaining_time = result.endTime - time;
                         res.render("blackbox_index", {
@@ -101,6 +176,7 @@ exports.black_ques = async (req,res,next)=>{
                             level1,
                             message: message,
                             remaining_time: remaining_time,
+                            Array:Array,
                             x:a,y:b,z:c,result:expression_real
                     });
             }
@@ -111,7 +187,7 @@ exports.black_ques = async (req,res,next)=>{
 
 exports.submit_blackbox = async(req,res)=>{
     let gamer = await User.findOne({email:req.user.email} );
-    var level1 = gamer.blackbox_level;
+    var level1 = gamer.blackbox_level
     let ques_game = await Ques_BlackBox.findOne({level:level1})
     var expression_black = ques_game.answer_expression;
     let credit=ques_game.credit;
@@ -164,22 +240,39 @@ exports.submit_blackbox = async(req,res)=>{
                             {
                                 console.log("logic coreect")
             
-                            await User.updateOne({email:req.user.email},{ $inc: { blackbox_level: 1,black_points:credit,score:credit}}) 
+                            await User.updateOne({email:req.user.email},{ $inc: { 
+                                blackbox_level:1,
+                                
+                                black_points:credit,score:credit}}) 
                         let gamer = await User.findOne({email:req.user.email} );
-                        var level1 = gamer.blackbox_level; 
+                        var level1 = gamer.blackbox_level 
+                        var Array = gamer.Array
                         console.log("here is"+level1+"is")
-                        res.redirect("/blackbox");
+                        User.updateOne(
+                            { email: req.user.email }, // Specify the document ID or any other parameter to identify the document
+                            { $unset: { Array: 1 } } // Use $unset operator to delete the field
+                          )
+                            .then(result => {
+                              console.log('Field data deleted successfully');
+                            })
+                            .catch(error => {
+                              console.error('Failed to delete field data:', error);
+                            });
+
+
+                        // res.redirect("/blackbox");
                         // if(level1 === (process.env.BLACK_LEVEL)){
                         //     res.render("max_level")
                         // }
-                        //  res.render("blackbox_index",{
-                        //     level1,
-                        //     user: req.user,
-                        //     message: message,
-                        //     remaining_time: remaining_time,
-                        //     result:"None"
+                         res.render("blackbox_index",{
+                            level1,
+                            user: req.user,
+                            message: message,
+                            remaining_time: remaining_time,
+                            result:"None",
+                            Array:"None"
 
-                        // })
+                        })
                       }
                       else{
                         res.render("failed_testcase",{testcase});

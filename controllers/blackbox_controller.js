@@ -26,6 +26,7 @@ exports.FirstPage =async (req,res)=>{
             if (req.user.submitted == true) {
 				message = "You have already submitted. Please check your rank in the leaderboard";
 				req.logout();
+                message="congracts you passed all test"
 				var time_to_start = result.startTime - time;
                 res.redirect("/final-leaderBoard")
 				// res.render("blackbox_index", {
@@ -153,12 +154,12 @@ User.findOneAndUpdate(
                 message = "You have already submitted. Please check your rank in the leaderboard";
                 req.logout();
                 var time_to_start = result.startTime - time;
-                res.redirect("/final-leaderBoard");
+                // res.redirect("/final-leaderBoard");
 
-                // res.render("blackbox_index", {
-                //     message: message,
-                //     time_to_start: time_to_start
-                // });
+                res.render("blackbox_index", {
+                    message: message,
+                    time_to_start: time_to_start
+                });
             }
             else if(level1 === (process.env.BLACK_LEVEL)){
             message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
@@ -235,6 +236,7 @@ exports.submit_blackbox = async(req,res)=>{
                 message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
                     var time_to_start = result.startTime - time;
                     console.log(time_to_start);
+                    message="congracts you passed all level blackbox"
                     res.redirect('/blackbox_leaderboard');
                     // res.render("blackbox_index", {
                     //     message: message,
@@ -277,7 +279,15 @@ exports.submit_blackbox = async(req,res)=>{
                                     
                                     res.redirect("/blackbox");
                         // if(level1 === (process.env.BLACK_LEVEL)){
-                        //     res.render("max_level")
+                        //     // res.render("max_level")
+                        //     message="congracts you passed all level blackbox"
+                        //     res.redirect('/blackbox_leaderboard');
+                        //     // res.render("blackbox_index", {
+                        //     //     message: message,
+                        //     //     time_to_start: time_to_start
+                        //     // });
+
+
                         // }
                         //  res.render("blackbox_index",{
                         //     level1,
@@ -291,6 +301,8 @@ exports.submit_blackbox = async(req,res)=>{
     
                       }
                       else{
+                        let gamer = await User.findOne({email:req.user.email} );
+                        var level1 = gamer.blackbox_level 
                         // res.render("failed_testcase",{testcase});
                         message="Sorry!!!! You Made a Wrong Answer"
                         res.render("blackbox_index", {

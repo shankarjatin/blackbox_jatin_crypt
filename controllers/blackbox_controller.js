@@ -56,6 +56,7 @@ exports.black_ques = async (req,res,next)=>{
     let a = parseInt(req.body.num1);
     let b = parseInt(req.body.num2);
     let c = parseInt(req.body.num3);
+    let d = parseInt(req.body.num4);
     let gamer = await User.findOne({email:req.user.email} );
     var level1 = gamer.blackbox_level;
     let ques_game = await Ques_BlackBox.findOne({level:level1})
@@ -71,7 +72,7 @@ exports.black_ques = async (req,res,next)=>{
 //         Array:Array
 //     })
 // addArray.save()
-var userInput = `Result of ${a} ${b} ${c} is ${expression_real}`
+var userInput = `Combination of ${a} ,${b}, ${c} and ${d} is ${expression_real}`
 console.log(userInput)
 User.findOneAndUpdate(
     { email: req.user.email }, // Define the parameter and its value to identify the document
@@ -199,7 +200,8 @@ exports.submit_blackbox = async(req,res)=>{
     
                 let a=Math.floor(Math.random() * 101);
                 let b=Math.floor(Math.random() * 101);
-                let c=Math.floor(Math.random() * 101);;
+                let c=Math.floor(Math.random() * 101);
+                let d=Math.floor(Math.random() * 101);
                 let testcase=0;
                 const expression =  req.body.user_expression.toLowerCase();
                 var expression_real = eval(expression_black);

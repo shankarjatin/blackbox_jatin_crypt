@@ -17,7 +17,7 @@ router.post("/add-question",blackbox_controller.add_question);
 
 router.post("/black_ques",[body(`num1`).isInt({min:1}).notEmpty(),body(`num2`).isInt({min:1}).notEmpty(),body(`num3`).isInt({min:1}).notEmpty()],blackbox_controller.black_ques);
 
-router.post("/submit_blackbox",blackbox_controller.submit_blackbox);
+router.post("/submit_blackbox",[body(`user_expression`).isString().notEmpty().trim()],blackbox_controller.submit_blackbox);
 
 router.get("/blackbox_leaderboard" , blackbox_controller.leaderboard);
 

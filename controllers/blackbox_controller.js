@@ -14,27 +14,25 @@ exports.FirstPage =async (req,res)=>{
         if (err) {
 			res.send("Error in fetching game");
 		}
-
-        
         else{
          if(level1 == process.env.BLACK_LEVEL){
                 message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
                     var time_to_start = result.startTime - time;
                     console.log(time_to_start);
-                    // res.redirect('/final-leaderBoard');
-                    res.render("max_level");
+                    res.redirect('/blackbox_leaderboard');
+                    // res.render("max_level");
             }
-else{
+            else{
             if (req.user.submitted == true) {
 				message = "You have already submitted. Please check your rank in the leaderboard";
 				req.logout();
 				var time_to_start = result.startTime - time;
-				res.render("blackbox_index", {
-					message: message,
-					time_to_start: time_to_start
-				});
+                res.redirect("/final-leaderBoard")
+				// res.render("blackbox_index", {
+				// 	message: message,
+				// 	time_to_start: time_to_start
+				// });
         }
-       
         else{
             message = "None";
 				var remaining_time = result.endTime - time;
@@ -144,32 +142,36 @@ User.findOneAndUpdate(
                 var remaining_time = result.endTime - time;
                 res.render("blackbox_index",{
                     user: req.user,
-                    message: "Invalid Input, Enter Integers ",
+                    message: "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0",
                     remaining_time:remaining_time ,
                     level1,
+                    result:"None",
+                    Array:"None"
                 })
             }
             else if (req.user.submitted == true) {
                 message = "You have already submitted. Please check your rank in the leaderboard";
                 req.logout();
                 var time_to_start = result.startTime - time;
-                res.render("blackbox_index", {
-                    message: message,
-                    time_to_start: time_to_start
-                });
+                res.redirect("/final-leaderBoard");
+
+                // res.render("blackbox_index", {
+                //     message: message,
+                //     time_to_start: time_to_start
+                // });
             }
-            // else if(level1 === (process.env.BLACK_LEVEL)){
-            // message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-            //     var time_to_start = result.startTime - time;
-            //     console.log(time_to_start);
-            //     // res.redirect('/final-leaderBoard');
-            //     res.render("max_level");
-            // }
+            else if(level1 === (process.env.BLACK_LEVEL)){
+            message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+                var time_to_start = result.startTime - time;
+                console.log(time_to_start);
+                res.redirect('/blackbox_leaderboard');
+                // res.render("max_level");
+            }
             
-            else{let gamer = await User.findOne({email:req.user.email} );
-          var Array = gamer.Array
-        
-                 message = "None";
+            else{
+                let gamer = await User.findOne({email:req.user.email} );
+                var Array = gamer.Array
+                message = "None";
                         var remaining_time = result.endTime - time;
                         res.render("blackbox_index", {
                             user: req.user,
@@ -186,6 +188,7 @@ User.findOneAndUpdate(
 }
 
 exports.submit_blackbox = async(req,res)=>{
+    const errors=validationResult(req);
     let gamer = await User.findOne({email:req.user.email} );
     var level1 = gamer.blackbox_level
     let ques_game = await Ques_BlackBox.findOne({level:level1})
@@ -206,89 +209,101 @@ exports.submit_blackbox = async(req,res)=>{
             if (err) {
                 res.send("Error in fetching game");
             }else{
-                if (req.user.submitted == true) {
+                if(!errors.isEmpty()){
+                    console.log(errors);
+                    var remaining_time = result.endTime - time;
+                    res.render("blackbox_index",{
+                        user: req.user,
+                        message: "Invalid Input or Empty Field, Kindly Enter a String of non-numeric values as per the instructions ",
+                        remaining_time:remaining_time ,
+                        level1,
+                        result:"None",
+                        Array:"None"
+                    })
+                }
+                else if(req.user.submitted == true) {
                     message = "You have already submitted. Please check your rank in the leaderboard";
                     req.logout();
                     var time_to_start = result.startTime - time;
-                    res.render("blackbox_index", {
-                        message: message,
-                        time_to_start: time_to_start
-                    });
+                    res.redirect("/final-leaderBoard");
+                    // res.render("blackbox_index", {
+                    //     message: message,
+                    //     time_to_start: time_to_start
+                    // });
                 }
-                // else if(level1 == (process.env.BLACK_LEVEL)){
-                // message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                //     var time_to_start = result.startTime - time;
-                //     console.log(time_to_start);
-                //     res.redirect('/final-leaderBoard');
-                //     // res.render("blackbox_index", {
-                //     //     message: message,
-                //     //     time_to_start: time_to_start
-                //     // });
-                // }
+                else if(level1 == (process.env.BLACK_LEVEL)){
+                message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+                    var time_to_start = result.startTime - time;
+                    console.log(time_to_start);
+                    res.redirect('/blackbox_leaderboard');
+                    // res.render("blackbox_index", {
+                    //     message: message,
+                    //     time_to_start: time_to_start
+                    // });
+                }
                 else{
                        message = "None";
                         var remaining_time = result.endTime - time;
                         for (i=0;i<3;i++){
                             if(result_user===expression_real){
                                 testcase++
-                                        console.log("total "+ testcase+ " passed");
-                                }
-                            else{console.log("test case failed")}
+                                console.log("total "+ testcase+ " passed");
+                            }
+                            else{
+                                console.log("test case failed")
+                            }
                             a=a=20;b=b-10;c=c+10;
                             }
-                            if(testcase===3)
-                            {
+                            if(testcase===3){
                                 console.log("logic coreect")
-            
-                            await User.updateOne({email:req.user.email},{ $inc: { 
-                                blackbox_level:1,
-                                
-                                black_points:credit,score:credit}}) 
-                        let gamer = await User.findOne({email:req.user.email} );
-                        var level1 = gamer.blackbox_level 
-                        var Array = gamer.Array
-                        console.log("here is"+level1+"is")
-                        User.updateOne(
-                            { email: req.user.email }, // Specify the document ID or any other parameter to identify the document
-                            { $unset: { Array: 1 } } // Use $unset operator to delete the field
-                          )
-                            .then(result => {
-                              console.log('Field data deleted successfully');
-                            })
-                            .catch(error => {
-                              console.error('Failed to delete field data:', error);
-                            });
-
-
-                        // res.redirect("/blackbox");
+                                await User.updateOne({email:req.user.email},{ $inc: { 
+                                    blackbox_level:1,
+                                    black_points:credit,score:credit
+                                }}) ;
+                                let gamer = await User.findOne({email:req.user.email} );
+                                var level1 = gamer.blackbox_level 
+                                var Array = gamer.Array
+                                console.log("here is"+level1+"is")
+                                User.updateOne(
+                                    { email: req.user.email }, // Specify the document ID or any other parameter to identify the document
+                                    { $unset: { Array: 1 } } // Use $unset operator to delete the field
+                                )
+                                    .then(result => {
+                                    console.log('Field data deleted successfully');
+                                    })
+                                    .catch(error => {
+                                    console.error('Failed to delete field data:', error);
+                                    });
+                                    
+                                    res.redirect("/blackbox");
                         // if(level1 === (process.env.BLACK_LEVEL)){
                         //     res.render("max_level")
                         // }
-                         res.render("blackbox_index",{
-                            level1,
-                            user: req.user,
-                            message: message,
-                            remaining_time: remaining_time,
-                            result:"None",
-                            Array:"None"
-
-                        })
-                      }
-                      else{
-                        res.render("failed_testcase",{testcase});
-                      } }
-                              
-
-
-
-
-
-                        // res.render("blackbox_submission", {
+                        //  res.render("blackbox_index",{
+                        //     level1,
                         //     user: req.user,
                         //     message: message,
                         //     remaining_time: remaining_time,
-                        //     x:a,y:b,z:c,result:expression_real
-                        // }); 
+                        //     result:"None",
+                        //     Array:"None"
+
+                        // })
+    
+                      }
+                      else{
+                        // res.render("failed_testcase",{testcase});
+                        message="Sorry!!!! You Made a Wrong Answer"
+                        res.render("blackbox_index", {
+                            user: req.user,
+                            level1,
+                            message: message,
+                            remaining_time: remaining_time,
+                            x:a,y:b,z:c,
+                            result:"None",
+                            Array:"None"
+                        });
+                      } }
+                            
                     }
                     }
                 )

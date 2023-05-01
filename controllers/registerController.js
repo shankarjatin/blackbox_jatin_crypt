@@ -1,7 +1,6 @@
 const Team = require("../models/teams");
 
 const register = async (req, res) => {
-    console.log(req.body);
     await Team.create({
         team_name: req.body.team_name,
         password: req.body.password,
@@ -21,7 +20,7 @@ const register = async (req, res) => {
         member_year: req.body.member_year,
         leaderIsVerified: req.body.leaderIsVerified,
         memberIsVerified: req.body.memberIsVerified,
-    }).then((data) => { console.log(data) }).catch((err) => { console.log(err) })
+    })
 }
 
 module.exports = register;

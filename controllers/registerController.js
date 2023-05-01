@@ -20,7 +20,7 @@ const register = async (req, res) => {
         member_year: req.body.member_year,
         leaderIsVerified: req.body.leaderIsVerified,
         memberIsVerified: req.body.memberIsVerified,
-    })
+    }).then(() => { res.status(200).json({ success: true }) }).catch((err) => { res.status(500).json({ success: false }) })
 }
 
 module.exports = register;

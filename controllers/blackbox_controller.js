@@ -131,11 +131,6 @@ User.findOneAndUpdate(
     //       displayList.appendChild(listItem);
     //     });
     //   }
-      
-
-
-
-
     Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result){
         if (err) {
             res.send("Error in fetching game");
@@ -203,7 +198,7 @@ exports.submit_blackbox = async(req,res)=>{
                 let c=Math.floor(Math.random() * 101);
                 let d=Math.floor(Math.random() * 101);
                 let testcase=0;
-                const expression =  req.body.user_expression.toLowerCase();
+                const expression =  req.body.user_expression.toString().toLowerCase();
                 var expression_real = eval(expression_black);
                 let result_user = eval(expression);
                 
@@ -215,6 +210,8 @@ exports.submit_blackbox = async(req,res)=>{
                 if(!errors.isEmpty()){
                     console.log(errors);
                     var remaining_time = result.endTime - time;
+                    let gamer = await User.findOne({email:req.user.email} );
+                    var level1 = gamer.blackbox_level 
                     res.render("blackbox_index",{
                         user: req.user,
                         message: "Invalid Input or Empty Field, Kindly Enter a String of non-numeric values as per the instructions ",

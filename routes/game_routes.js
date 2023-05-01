@@ -9,7 +9,7 @@ router.get("/",
 );
 
 router.get("/home",
-controller.homeRoute
+	controller.homeRoute
 )
 
 
@@ -28,6 +28,7 @@ router.get("/original_leaderboard",
 
 router.get("/game",
 	auth_middleware.check_login,
+	// auth_middleware.check_registration,
 	game_middleware.check_game_timing,
 	game_controller.game
 );
@@ -70,9 +71,9 @@ router.post("/delete_hint",
 	game_controller.delete_hint
 )
 
-router.post("/update-question",game_controller.updateQuestion);
+router.post("/update-question", game_controller.updateQuestion);
 
-router.get("/final-leaderBoard",game_controller.finalLeaderBoard);
+router.get("/final-leaderBoard", game_controller.finalLeaderBoard);
 
 router.get("/test", function (req, res) {
 	res.send(req.isAuthenticated())

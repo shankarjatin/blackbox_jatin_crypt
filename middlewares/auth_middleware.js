@@ -1,6 +1,8 @@
 const User = require("./../models/user");
+const Team = require("../models/teams");
 
 exports.check_login = (req, res, next) => {
+	console.log(req.user);
 	if (req.isAuthenticated()) {
 		next();
 	} else {
@@ -17,6 +19,12 @@ exports.check_admin = (req, res, next) => {
 	}
 }
 
-exports.check_registration = (req, res, next) => {
-
+exports.check_registration = async (req, res, next) => {
+	const user = await Team.findOne({ "$or": [{ leader_email: req.user.email }, { member_email: req.user.email }] });
+	if (user) {
+		next();
+	}
+	else {
+		res.redirect("/");
+	}
 }

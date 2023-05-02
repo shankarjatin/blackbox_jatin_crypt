@@ -6,10 +6,6 @@ const teamSchema = new schema({
         type: String,
         unique: true,
     },
-    password: {
-        type: String,
-        required: true,
-    },
     leader_name: {
         type: String,
         required: true,
@@ -25,31 +21,7 @@ const teamSchema = new schema({
                 `${props.value} is not a valid email address from @akgec.ac.in`,
         },
     },
-    leader_hosteler: {
-        type: Boolean,
-        default: false,
-    },
-    leader_year: {
-        type: Number,
-    },
-    leader_branch: {
-        type: String,
-    },
-    leader_rollNo: {
-        type: Number,
-    },
-    leader_phoneNo: {
-        type: Number,
-    },
     member_name: {
-        type: String,
-        default: null
-    },
-    member_phoneNo: {
-        type: Number,
-        default: null
-    },
-    member_branch: {
         type: String,
         default: null
     },
@@ -69,26 +41,6 @@ const teamSchema = new schema({
                 `${props.value} is not a valid email address from @akgec.ac.in`,
         },
     },
-    member_rollNo: {
-        type: Number,
-        default: null
-    },
-    member_hosteler: {
-        type: Boolean,
-        default: false,
-    },
-    member_year: {
-        type: Number,
-        default: null
-    },
-    leaderIsVerified: {
-        type: Boolean,
-        default: false
-    },
-    memberIsVerified: {
-        type: Boolean,
-        default: false
-    }
 }, { timestamps: true });
 
 const Teams = new mongoose.model("Teams", teamSchema);

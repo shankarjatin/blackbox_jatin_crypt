@@ -10,7 +10,7 @@
     <li><a href="/blackbox_leaderboard">Blackbox Leaderboard</a></li>
     <li><a href="/leaderboard">Cryphunt Leaderboard</a></li>
     <li> <a href="/final-leaderboard">Overall Leaderboard</a></li>
-    <h1>You are on Level <%= level1 %>!</h1>
+    <h1>You are on Level <%= level %>!</h1>
     <h1>Enter Values</h1>
 
   
@@ -22,17 +22,12 @@
           </div>
       </div>
       
-      
     <form action="/black_ques" method="POST">
-      <label for="num1">Number 1:</label>
-      <input type="number" name="num1" id="num1"><br><br>
-      <label for="num2">Number 2:</label>
-      <input type="number" name="num2" id="num2"><br><br>
-      <label for="num3">Number 3:</label>
-      <input type="number" name="num3" id="num3"><br><br>
-      <label for="num4">Number 4:</label>
-      <input type="number" name="num4" id="num4"><br><br>
-      <button  type="submit">check combination</button>     
+      <% for(let i = 1; i<= question.no_of_variables ; i++){ %>
+      <label for="num<%- i %>">Number <%- i %>:</label>
+      <input type="number" name="num<%- i %>" id="num<%- i %>"><br><br>
+    <% } %>
+    <button  type="submit">check combination</button>     
     </form>
 
    

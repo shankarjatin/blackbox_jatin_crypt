@@ -215,7 +215,11 @@ exports.submit_blackbox = async (req, res) => {
                             { email: req.user.email },
                             {
                                 $unset: { Array: 1 }, // Use $unset operator to delete the field
-                                $inc: { blackbox_level: 1 } // Use $inc operator to increment the 'level' field by 1
+                                $inc: {
+                                    blackbox_level: 1,
+                                    black_points: credit,
+                                    score: credit
+                                }
                             }
                         ).then(result => {
                             // console.log('Field data deleted successfully');

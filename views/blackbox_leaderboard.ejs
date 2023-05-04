@@ -29,4 +29,8 @@
     </div>
   </div> 
 
+  <% if (message != "None") { %>
+      <script>alert("<%-message%>")</script>
+  <% } %>
+
 <%- include("./partials/footer.ejs"); %>

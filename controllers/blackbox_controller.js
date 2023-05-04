@@ -3,23 +3,24 @@ const User = require("./../models/user.js");
 const Game = require("./../models/game");
 const { validationResult } = require("express-validator");
 
-
 exports.FirstPage = async (req, res) => {
     console.log(req.user);
     let message = req.query.message || "None";
-    const email = req.user.email || req.query.email;
-    let gamer = await User.findOne({ email: email });
-    var level = gamer.blackbox_level;
+    const email = req.user.email;
+    let result = "None";
     var time = new Date();
-    console.log("level:", level);
+
+    let gamer = await User.findOne({ email: email });
+    var level1 = gamer.blackbox_level;
+    if (gamer.Array.length > 0) result = "";
 
     Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
-        const question = await Ques_BlackBox.findOne({ level: level });
+        const question = await Ques_BlackBox.findOne({ level: level1 });
         if (err) {
             res.send("Error in fetching game");
         }
         else {
-            if (level == process.env.BLACK_LEVEL) {
+            if (level1 == process.env.BLACK_LEVEL) {
                 // message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
                 var time_to_start = result.startTime - time;
                 res.redirect('/blackbox_leaderboard');
@@ -34,14 +35,15 @@ exports.FirstPage = async (req, res) => {
                 }
                 else {
                     var remaining_time = result.endTime - time;
+                    console.log(Array, result)
                     res.render("blackbox_index", {
                         user: gamer,
                         question: question,
                         message: message,
                         remaining_time: remaining_time,
-                        level,
-                        Array: "None",
-                        result: "None"
+                        level1,
+                        Array: gamer.Array,
+                        result: result
                     });
                 }
             }
@@ -50,117 +52,224 @@ exports.FirstPage = async (req, res) => {
 }
 
 exports.black_ques = async (req, res, next) => {
-    console.log(req.body);
-    const errors = validationResult(req);
-    console.log(errors, req.body);
-    var time = new Date();
-    let a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0;
-    var userInput = `Combination of`;
-    console.log(userInput);
-    if (req.body.num1) {
-        a = parseInt(req.body.num1);
-        userInput = userInput + ` ${a}`;
-    }
-    if (req.body.num2) {
-        b = parseInt(req.body.num2);
-        userInput = userInput + `, ${b}`;
-    }
-    if (req.body.num3) {
-        c = parseInt(req.body.num3);
-        userInput = userInput + `, ${c}`;
-    }
-    if (req.body.num4) {
-        d = parseInt(req.body.num4);
-        userInput = userInput + `, ${d}`;
-    }
-    if (req.body.num5) {
-        e = parseInt(req.body.num5);
-        userInput = userInput + `, ${e}`;
-    }
-    if (req.body.num6) {
-        f = parseInt(req.body.num6);
-        userInput = userInput + `, ${f}`;
-    }
-    if (req.body.num7) {
-        g = parseInt(req.body.num7);
-        userInput = userInput + `, ${g}`;
-    }
+    try {
+        var time = new Date();
+        let a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0;
+        let variables = [], i = 0;
 
-
-    let gamer = await User.findOne({ email: req.user.email });
-    var level = gamer.blackbox_level;
-    let ques_game = await Ques_BlackBox.findOne({ level: level });
-    var expression_real = eval(ques_game.answer_expression);
-    userInput = userInput + ` is ${expression_real}`;
-
-    User.findOneAndUpdate(
-        { email: req.user.email }, // Define the parameter and its value to identify the document
-        { $push: { Array: userInput } }, // Push the new element into the array
-        { new: true } // Set the "new" option to return the updated document
-    )
-        .then(updatedDocument => {
-            // console.log('Updated document:', updatedDocument);
-        })
-        .catch(error => {
-            console.error('Failed to update document:', error);
-        });
-    Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
-        if (err) {
-            res.send("Error in fetching game");
-        } else {
-            if (!errors.isEmpty()) {
-                var remaining_time = result.endTime - time;
-                const message = "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0"
-                res.redirect(`/blackbox?message=${message}&email=${req.user.email}`);
-                // res.render("blackbox_index", {
-                //     user: req.user,
-                //     message: "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0",
-                //     question: ques_game,
-                //     remaining_time: remaining_time,
-                //     level,
-                //     result: "None",
-                //     Array: "None"
-                // })
-            }
-            else if (req.user.submitted == true) {
-                message = "You have already submitted. Please check your rank in the leaderboard";
-                req.logout();
-                var time_to_start = result.startTime - time;
-                // res.redirect("/final-leaderBoard");
-
-                res.render("blackbox_index", {
-                    message: message,
-                    question: ques_game,
-                    time_to_start: time_to_start
-                });
-            }
-            else if (level === (process.env.BLACK_LEVEL)) {
-                message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                var time_to_start = result.startTime - time;
-                console.log(time_to_start);
-                res.redirect('/blackbox_leaderboard');
-                // res.render("max_level");
-            }
-
-            else {
-                let gamer = await User.findOne({ email: req.user.email });
-                var Array = gamer.Array
-                message = "None";
-                var remaining_time = result.endTime - time;
-                res.render("blackbox_index", {
-                    user: req.user,
-                    level,
-                    message: message,
-                    question: ques_game,
-                    remaining_time: remaining_time,
-                    Array: Array,
-                    x: a, y: b, z: c, result: expression_real
-                });
-            }
+        //initializing variables and storing in variables array
+        var userInput = `Combination of`;
+        if (req.body.num1) {
+            a = parseInt(req.body.num1);
+            userInput = userInput + ` ${a}`;
+            variables[i++] = 'a';
+        }
+        if (req.body.num2) {
+            b = parseInt(req.body.num2);
+            userInput = userInput + `, ${b}`;
+            variables[i++] = 'b';
+        }
+        if (req.body.num3) {
+            c = parseInt(req.body.num3);
+            userInput = userInput + `, ${c}`;
+            variables[i++] = 'c';
+        }
+        if (req.body.num4) {
+            d = parseInt(req.body.num4);
+            userInput = userInput + `, ${d}`;
+            variables[i++] = 'd';
+        }
+        if (req.body.num5) {
+            e = parseInt(req.body.num5);
+            userInput = userInput + `, ${e}`;
+            variables[i++] = 'e';
+        }
+        if (req.body.num6) {
+            f = parseInt(req.body.num6);
+            userInput = userInput + `, ${f}`;
+            variables[i++] = 'f';
+        }
+        if (req.body.num7) {
+            g = parseInt(req.body.num7);
+            userInput = userInput + `, ${g}`;
+            variables[i++] = 'g';
         }
 
-    })
+        let gamer = await User.findOne({ email: req.user.email });
+        var level1 = gamer.blackbox_level;
+        let ques_game = await Ques_BlackBox.findOne({ level: level1 });
+        var expression_real = eval(ques_game.answer_expression);
+        userInput = userInput + ` is ${expression_real}`;
+
+        Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
+            if (err) {
+                res.send("Error in fetching game");
+            } else {
+                if (variables.length != ques_game.no_of_variables) {
+                    const message = "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0"
+                    res.redirect(`/blackbox?message=${message}&email=${req.user.email}`);
+                }
+                else if (req.user.submitted == true) {
+                    message = "You have already submitted. Please check your rank in the leaderboard";
+                    req.logout();
+                    res.redirect("/final-leaderBoard");
+                }
+                else if (level1 === (process.env.BLACK_LEVEL)) {
+                    message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+                    res.redirect('/blackbox_leaderboard');
+                }
+                else {
+
+                    User.findOneAndUpdate(
+                        { email: req.user.email }, // Define the parameter and its value to identify the document
+                        { $push: { Array: userInput } }, // Push the new element into the array
+                        { new: true } // Set the "new" option to return the updated document
+                    )
+                        .then(data => {
+                            res.redirect("/blackbox");
+                        })
+                        .catch(error => {
+                            console.error('Failed to update document:', error);
+                        });
+                }
+            }
+
+        })
+    }
+    catch (err) {
+        req.send("Unexpected Error Occured");
+    }
 }
+
+// exports.black_ques = async (req, res, next) => {
+//     console.log(req.body);
+//     const errors = validationResult(req);
+//     console.log(errors, req.body);
+//     var time = new Date();
+//     let a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0;
+//     let variables = [];
+//     let i = 0;
+//     var userInput = `Combination of`;
+//     console.log(userInput);
+//     if (req.body.num1) {
+//         a = parseInt(req.body.num1);
+//         userInput = userInput + ` ${a}`;
+//         variables[i++] = 'a';
+//     }
+//     if (req.body.num2) {
+//         b = parseInt(req.body.num2);
+//         userInput = userInput + `, ${b}`;
+//         variables[i++] = 'b';
+//     }
+//     if (req.body.num3) {
+//         c = parseInt(req.body.num3);
+//         userInput = userInput + `, ${c}`;
+//         variables[i++] = 'c';
+//     }
+//     if (req.body.num4) {
+//         d = parseInt(req.body.num4);
+//         userInput = userInput + `, ${d}`;
+//         variables[i++] = 'd';
+//     }
+//     if (req.body.num5) {
+//         e = parseInt(req.body.num5);
+//         userInput = userInput + `, ${e}`;
+//         variables[i++] = 'e';
+//     }
+//     if (req.body.num6) {
+//         f = parseInt(req.body.num6);
+//         userInput = userInput + `, ${f}`;
+//         variables[i++] = 'f';
+//     }
+//     if (req.body.num7) {
+//         g = parseInt(req.body.num7);
+//         userInput = userInput + `, ${g}`;
+//         variables[i++] = 'g';
+//     }
+//     console.log(variables);
+//     console.log(userInput);
+
+
+//     let gamer = await User.findOne({ email: req.user.email });
+//     var level1 = gamer.blackbox_level;
+//     let ques_game = await Ques_BlackBox.findOne({ level: level1 });
+//     var expression_real = eval(ques_game.answer_expression);
+//     userInput = userInput + ` is ${expression_real}`;
+
+//     User.findOneAndUpdate(
+//         { email: req.user.email }, // Define the parameter and its value to identify the document
+//         { $push: { Array: userInput } }, // Push the new element into the array
+//         { new: true } // Set the "new" option to return the updated document
+//     )
+//         .then(updatedDocument => {
+//             // console.log('Updated document:', updatedDocument);
+//         })
+//         .catch(error => {
+//             console.error('Failed to update document:', error);
+//         });
+//     Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
+//         if (err) {
+//             res.send("Error in fetching game");
+//         } else {
+//             console.log("variables.length ", variables.length);
+//             if (variables.length != ques_game.no_of_variables) {
+//                 console.log("error");
+//                 const message = "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0"
+//                 res.redirect(`/blackbox?message=${message}&email=${req.user.email}`);
+//             }
+//             // if (!errors.isEmpty()) {
+//             //     var remaining_time = result.endTime - time;
+//             //     const message = "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0"
+//             //     res.redirect(`/blackbox?message=${message}&email=${req.user.email}`);
+//             //     // res.render("blackbox_index", {
+//             //     //     user: req.user,
+//             //     //     message: "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0",
+//             //     //     question: ques_game,
+//             //     //     remaining_time: remaining_time,
+//             //     //     level,
+//             //     //     result: "None",
+//             //     //     Array: "None"
+//             //     // })
+//             // }
+//             else if (req.user.submitted == true) {
+//                 message = "You have already submitted. Please check your rank in the leaderboard";
+//                 req.logout();
+//                 var time_to_start = result.startTime - time;
+//                 // res.redirect("/final-leaderBoard");
+
+//                 res.render("blackbox_index", {
+//                     message: message,
+//                     question: ques_game,
+//                     time_to_start: time_to_start
+//                 });
+//             }
+//             else if (level1 === (process.env.BLACK_LEVEL)) {
+//                 message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+//                 var time_to_start = result.startTime - time;
+//                 console.log(time_to_start);
+//                 res.redirect('/blackbox_leaderboard');
+//                 // res.render("max_level");
+//             }
+
+//             else {
+//                 let gamer = await User.findOne({ email: req.user.email });
+//                 var Array = gamer.Array;
+//                 message = "None";
+//                 var remaining_time = result.endTime - time;
+//                 res.render("blackbox_index", {
+//                     user: req.user,
+//                     level1,
+//                     message: message,
+//                     question: ques_game,
+//                     remaining_time: remaining_time,
+//                     Array: Array,
+//                     x: a, y: b, z: c, result: expression_real
+//                 });
+//             }
+//         }
+
+//     })
+// }
 
 exports.submit_blackbox = async (req, res) => {
     const errors = validationResult(req);

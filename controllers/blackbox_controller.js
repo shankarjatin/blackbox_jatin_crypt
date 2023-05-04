@@ -22,7 +22,6 @@ exports.FirstPage = async (req, res) => {
         else {
             if (level1 == process.env.BLACK_LEVEL) {
                 // message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                var time_to_start = result.startTime - time;
                 res.redirect('/blackbox_leaderboard');
             }
             else {
@@ -30,20 +29,16 @@ exports.FirstPage = async (req, res) => {
                     // message = "You have already submitted. Please check your rank in the leaderboard";
                     req.logout();
                     // message = "congracts you passed all test"
-                    var time_to_start = result.startTime - time;
                     res.redirect("/final-leaderBoard")
                 }
                 else {
                     var remaining_time = result.endTime - time;
-                    console.log(Array, result)
+                    console.log(question)
                     res.render("blackbox_index", {
                         user: gamer,
                         question: question,
                         message: message,
-                        remaining_time: remaining_time,
-                        level1,
-                        Array: gamer.Array,
-                        result: result
+                        remaining_time: remaining_time
                     });
                 }
             }
@@ -53,7 +48,6 @@ exports.FirstPage = async (req, res) => {
 
 exports.black_ques = async (req, res, next) => {
     try {
-        var time = new Date();
         let a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0;
         let variables = [], i = 0;
 

@@ -51,7 +51,8 @@ exports.FirstPage =async (req,res)=>{
 }
 
 exports.black_ques = async (req,res,next)=>{
-    const errors=validationResult(req);   
+   
+   const errors=validationResult(req);   
     var time = new Date();
     let a = parseInt(req.body.num1);
     let b = parseInt(req.body.num2);
@@ -87,50 +88,6 @@ User.findOneAndUpdate(
     });
   
 
-
-// var Array = gamer.Array
-// var Array1 = userInput.push(Array);
-// const addArray = new User({
-//     Array:Array1
-// })
-// addArray.save()
-
-    // User.findOne().then(document => {
-    //     // Fetch the array from the document
-       
-    //     const myArray = document.myArray;
-  
-    //     // Push a new value into the array
-    //     myArray.push(userInput);
-  
-    //     // Save the updated document with the modified array
-    //     document.save()})
-    //     .then(updatedDocument => {
-    //         console.log('Updated document:', updatedDocument);
-    //       })
-    //       .catch(error => {
-    //         console.error('Failed to fetch or update document:', error);
-    //       });
-
-    // var userInput = `Result of ${a} ${b} ${c} is ${expression_real}`
-    //     userInputArray.push(userInput);
-
-
-    // function addUserInput() {
-    //     var userInput = `Result of ${a} ${b} ${c} is ${expression_real}`
-    //     userInputArray.push(userInput);
-    //     displayUserInputs();
-    //   }
-    //   function displayUserInputs() {
-    //     const displayList = document.getElementById('displayList');
-    //     displayList.innerHTML = '';
-      
-    //     userInputArray.forEach(userInput => {
-    //       const listItem = document.createElement('li');
-    //       listItem.textContent = userInput;
-    //       displayList.appendChild(listItem);
-    //     });
-    //   }
     Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result){
         if (err) {
             res.send("Error in fetching game");
@@ -184,7 +141,8 @@ User.findOneAndUpdate(
     })
 }
 
-exports.submit_blackbox = async(req,res)=>{
+ exports.submit_blackbox =  async(req,res)=>{
+    try{
     const errors=validationResult(req);
     let gamer = await User.findOne({email:req.user.email} );
     var level1 = gamer.blackbox_level
@@ -201,7 +159,7 @@ exports.submit_blackbox = async(req,res)=>{
                 const expression =  req.body.user_expression.toString().toLowerCase();
                 var expression_real = eval(expression_black);
                 let result_user = eval(expression);
-                
+               
         //      
         Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result){
             if (err) {
@@ -277,26 +235,7 @@ exports.submit_blackbox = async(req,res)=>{
                                     });
                                     
                                     res.redirect("/blackbox");
-                        // if(level1 === (process.env.BLACK_LEVEL)){
-                        //     // res.render("max_level")
-                        //     message="congracts you passed all level blackbox"
-                        //     res.redirect('/blackbox_leaderboard');
-                        //     // res.render("blackbox_index", {
-                        //     //     message: message,
-                        //     //     time_to_start: time_to_start
-                        //     // });
-
-
-                        // }
-                        //  res.render("blackbox_index",{
-                        //     level1,
-                        //     user: req.user,
-                        //     message: message,
-                        //     remaining_time: remaining_time,
-                        //     result:"None",
-                        //     Array:"None"
-
-                        // })
+                   
     
                       }
                       else{
@@ -320,7 +259,9 @@ exports.submit_blackbox = async(req,res)=>{
                 )
         
 
-
+                }catch(e){
+                    res.redirect("/blackbox")
+                 }
 }
 
 

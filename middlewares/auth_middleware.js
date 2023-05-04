@@ -2,7 +2,6 @@ const User = require("./../models/user");
 const Team = require("../models/teams");
 
 exports.check_login = (req, res, next) => {
-	console.log(req.user);
 	if (req.isAuthenticated()) {
 		next();
 	} else {

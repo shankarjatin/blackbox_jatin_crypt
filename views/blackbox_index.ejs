@@ -10,7 +10,7 @@
     <li><a href="/blackbox_leaderboard">Blackbox Leaderboard</a></li>
     <li><a href="/leaderboard">Cryphunt Leaderboard</a></li>
     <li> <a href="/final-leaderboard">Overall Leaderboard</a></li>
-    <h1>You are on Level <%= level %>!</h1>
+    <h1>You are on Level <%= question.level %>!</h1>
     <h1>Enter Values</h1>
 
   
@@ -31,32 +31,23 @@
     </form>
 
    
-    <% if (result!="None") {%>
-      <!-- <P> the combination of <%= x %> ,<%= y %> and <%= z %> </p>
-      <p> is: <%= result %></p> -->
       <form action="/submit_blackbox" method="post">
         <label for="text">enter your expression</label>
         <input type="text" name="user_expression" id="text"><br><br>
         <button type="submit">submit expression</button>
-        <p> instruction :<br> exaple input : a+b+c+d , (a*b)+c+d .<br> use a,b,c and d as variable !</p>
+        <p> instruction :<br> example input : a+b+c+d , (a*b)+c+d .<br> use a,b,c and d as variable !</p>
     </form>
-    <% } %>
        
 
 
 
-    <% if (Array !== "None") { %>
-        <% if (Array.length > 0) { %>
+        <% if (user.Array.length > 0) { %>
           <ul>
-            <% Array.forEach(element => { %>
+            <% user.Array.forEach(element => { %>
               <li><%= element %></li>
             <% }); %>
           </ul>
-        <% } else { %>
-          <p>No array elements found.</p>
         <% } %>
-      <% } else { %>
-      <% } %>
 
         
 

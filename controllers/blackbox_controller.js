@@ -5,9 +5,13 @@ const { validationResult } = require("express-validator");
 
 
 exports.FirstPage = async (req, res) => {
-    let gamer = await User.findOne({ email: req.user.email });
+    console.log(req.user);
+    let message = req.query.message || "None";
+    const email = req.user.email || req.query.email;
+    let gamer = await User.findOne({ email: email });
     var level = gamer.blackbox_level;
     var time = new Date();
+    console.log("level:", level);
 
     Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
         const question = await Ques_BlackBox.findOne({ level: level });
@@ -29,10 +33,9 @@ exports.FirstPage = async (req, res) => {
                     res.redirect("/final-leaderBoard")
                 }
                 else {
-                    message = "None";
                     var remaining_time = result.endTime - time;
                     res.render("blackbox_index", {
-                        user: req.user,
+                        user: gamer,
                         question: question,
                         message: message,
                         remaining_time: remaining_time,
@@ -47,48 +50,56 @@ exports.FirstPage = async (req, res) => {
 }
 
 exports.black_ques = async (req, res, next) => {
+    console.log(req.body);
     const errors = validationResult(req);
     console.log(errors, req.body);
     var time = new Date();
     let a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0;
+    var userInput = `Combination of`;
+    console.log(userInput);
     if (req.body.num1) {
         a = parseInt(req.body.num1);
+        userInput = userInput + ` ${a}`;
     }
     if (req.body.num2) {
         b = parseInt(req.body.num2);
+        userInput = userInput + `, ${b}`;
     }
     if (req.body.num3) {
         c = parseInt(req.body.num3);
+        userInput = userInput + `, ${c}`;
     }
     if (req.body.num4) {
         d = parseInt(req.body.num4);
+        userInput = userInput + `, ${d}`;
     }
     if (req.body.num5) {
         e = parseInt(req.body.num5);
+        userInput = userInput + `, ${e}`;
     }
     if (req.body.num6) {
         f = parseInt(req.body.num6);
+        userInput = userInput + `, ${f}`;
     }
     if (req.body.num7) {
         g = parseInt(req.body.num7);
+        userInput = userInput + `, ${g}`;
     }
+
 
     let gamer = await User.findOne({ email: req.user.email });
     var level = gamer.blackbox_level;
     let ques_game = await Ques_BlackBox.findOne({ level: level });
     var expression_real = eval(ques_game.answer_expression);
-    console.log(level)
-    console.log(expression_real);
+    userInput = userInput + ` is ${expression_real}`;
 
-    var userInput = `Combination of ${a} ,${b}, ${c} and ${d} is ${expression_real}`
-    console.log(userInput)
     User.findOneAndUpdate(
         { email: req.user.email }, // Define the parameter and its value to identify the document
         { $push: { Array: userInput } }, // Push the new element into the array
         { new: true } // Set the "new" option to return the updated document
     )
         .then(updatedDocument => {
-            console.log('Updated document:', updatedDocument);
+            // console.log('Updated document:', updatedDocument);
         })
         .catch(error => {
             console.error('Failed to update document:', error);
@@ -99,15 +110,17 @@ exports.black_ques = async (req, res, next) => {
         } else {
             if (!errors.isEmpty()) {
                 var remaining_time = result.endTime - time;
-                res.render("blackbox_index", {
-                    user: req.user,
-                    message: "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0",
-                    question: ques_game,
-                    remaining_time: remaining_time,
-                    level,
-                    result: "None",
-                    Array: "None"
-                })
+                const message = "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0"
+                res.redirect(`/blackbox?message=${message}&email=${req.user.email}`);
+                // res.render("blackbox_index", {
+                //     user: req.user,
+                //     message: "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0",
+                //     question: ques_game,
+                //     remaining_time: remaining_time,
+                //     level,
+                //     result: "None",
+                //     Array: "None"
+                // })
             }
             else if (req.user.submitted == true) {
                 message = "You have already submitted. Please check your rank in the leaderboard";

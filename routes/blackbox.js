@@ -15,8 +15,8 @@ router.get("/blackbox", game_middleware.check_game_timing, auth_middleware.check
 
 router.post("/add-question", blackbox_controller.add_question);
 
-router.post("/black_ques",
-    blackbox_controller.black_ques);
+//input evaluation
+router.post("/black_ques", blackbox_controller.black_ques);
 
 router.post("/submit_blackbox", [body(`user_expression`).notEmpty().trim()], blackbox_controller.submit_blackbox);
 

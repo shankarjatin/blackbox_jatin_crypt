@@ -3,48 +3,90 @@
   <head>
     <meta charset="UTF-8">
     <title>Input Example</title>
-    <link rel="stylesheet" href="public/css/forms.css">
+    <link rel="stylesheet" href="public/css/blackbox.css">
   </head>
   <body>
     <%- include("./partials/header.ejs"); %>
-    <h1>You are on Level <%= question.level %>!</h1>
-    <h1>Enter Values</h1>
+    <!-- <div class="check1">
+      
+      <h1>Enter Values</h1>
+    </div> -->
 
   
-    <div id="gamediv">
+    <!-- <div id="gamediv">
       <div id="outercountdown">
           <div>
               <div class="count">TIME LEFT</div>
               <div class="count countdown">3 : 0 : 0</div>
           </div>
-      </div>
+      </div> -->
+        <!-- <span class="count countdown">3 : 0 : 0</span> -->
+        <section class="secondNav">
+          <div class="timer">
+            <h1>Time Left</h1>
+            <div class="time-items">
+              <div class="time-box" id="hour">00</div>
+              <div class="time-box" id="min">00</div>
+              <div class="time-box" id="sec">00</div>
+            </div>
+          </div>
+          <div id="levelHead">
+            <h1>Level #<%= question.level %></h1>
+          </div>
+          <div class="crypthunt">
+            <a href="/" style="text-decoration: none;">
+              Crypthunt
+            </a>
+            <div>
+
+            </div>
+          </div>
+        </section>
       
-    <form action="/black_ques" method="POST">
-      <% for(let i = 1; i<= question.no_of_variables ; i++){ %>
-      <label for="num<%- i %>">Number <%- i %>:</label>
-      <input type="number" name="num<%- i %>" id="num<%- i %>"><br><br>
-    <% } %>
-    <button  type="submit">check combination</button>     
-    </form>
+        <section class="question">
+          <article>
+            <form action="/black_ques" method="POST" class="form">
+              <div class="inputField" >
+                <% for(let i = 1; i<= question.no_of_variables ; i++){ %>
+                  <div class="ansBox">
+                    <label style="font-size: 1rem;" for="num<%- i %>">Number <%- i %> :</label>
+                    <input type="number" name="num<%- i %>" id="num<%- i %>">
+                  </div>
+                <% } %>
+              </div>
+              <button class="pinkBtn" type="submit">Check Combination</button>     
+            </form>
+          </article>
+  
+     
+          <article class="formWrapper">
+            <form action="/submit_blackbox" method="post" class="form">
+              <div class="inputField" id="expressionBox">
+                <label for="text" style="font-size: 1.2rem;">Enter your expression here!!</label>
+                <input id="inputRound" placeholder="Enter your expression" type="text" name="user_expression" id="text"><br><br>
+              </div>
+              <button class="pinkBtn" type="submit">Submit Expression</button>
+              <!-- <p> instruction :<br> example input : a+b+c+d , (a*b)+c+d .<br> use a,b,c and d as variable !</p> -->
+            </form>
+          </article>
+        </section>
+      
 
-   
-      <form action="/submit_blackbox" method="post">
-        <label for="text">enter your expression</label>
-        <input type="text" name="user_expression" id="text"><br><br>
-        <button type="submit">submit expression</button>
-        <p> instruction :<br> example input : a+b+c+d , (a*b)+c+d .<br> use a,b,c and d as variable !</p>
-    </form>
-       
-
-
-
+        <!-- <% if (user.Array.length > 0) { %>
+          <ul class="blackboxHint">
+            <% user.Array.forEach(element => { %>
+              <li><%= element %></li>
+            <% }); %>
+          </ul>
+        <% } %> -->
         <% if (user.Array.length > 0) { %>
-          <ul>
+          <ul class="blackboxHint" style="max-height: 100px; overflow-y: scroll;">
             <% user.Array.forEach(element => { %>
               <li><%= element %></li>
             <% }); %>
           </ul>
         <% } %>
+        
 
         
 
@@ -54,23 +96,46 @@
   
   <% if (remaining_time != "None") { %>
       <script>
-          let timer=document.getElementsByClassName("countdown");
-          for(let i=0;i<=timer.length-1;i++)
-          {
-              let time= Math.floor( Number("<%-remaining_time%>")/1000);
-              setInterval(updatecountdown,1000);
-              function updatecountdown(){
-              let hours=Math.floor(time/3600);
-              let minutes=Math.floor((time%3600)/60);
-              let seconds=Math.floor(time-3600*hours-60*minutes);
-              if(time<0){
-                  timer[i].innerHTML = `00 : 00 : 00`;
-                  window.location = "/submit";
-              } else {
-                  timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
-              }
-              time--;
-              }
+          // let timer=document.getElementsByClassName("countdown");
+          // for(let i=0;i<=timer.length-1;i++)
+          // {
+          //     let time= Math.floor( Number("<%-remaining_time%>")/1000);
+          //     setInterval(updatecountdown,1000);
+          //     function updatecountdown(){
+          //     let hours=Math.floor(time/3600);
+          //     let minutes=Math.floor((time%3600)/60);
+          //     let seconds=Math.floor(time-3600*hours-60*minutes);
+          //     if(time<0){
+          //         timer[i].innerHTML = `00 : 00 : 00`;
+          //         window.location = "/submit";
+          //     } else {
+          //         timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
+          //     }
+          //     time--;
+          //     }
+          // }
+          let hour = document.getElementById("hour");
+          let min = document.getElementById("min");
+          let sec = document.getElementById("sec");
+          let remaining_time = Number("<%-remaining_time%>");
+
+          setInterval(updateCountdown, 1000);
+
+          function updateCountdown() {
+            let hours = Math.floor(remaining_time / 3600);
+            let minutes = Math.floor((remaining_time % 3600) / 60);
+            let seconds = Math.floor(remaining_time - 3600 * hours - 60 * minutes);
+            if (remaining_time < 0) {
+              hour.innerHTML = `00`;
+              min.innerHTML = `00`;
+              sec.innerHTML = `00`;
+              window.location = "/submit";
+            } else {
+              hour.innerHTML = `${hours.toString().padStart(2, '0')}`;
+              min.innerHTML = `${minutes.toString().padStart(2, '0')}`;
+              sec.innerHTML = `${seconds.toString().padStart(2, '0')}`;
+            }
+            remaining_time--;
           }
       </script>
   <% } else { %>

@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@500&family=IBM+Plex+Sans:wght@500&family=Inter:wght@500&family=Montserrat:wght@500&family=Open+Sans:wght@500&family=Orbitron:wght@500&family=Roboto+Flex:opsz,wght@8..144,500&family=Work+Sans:wght@500&display=swap');
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.blackboxHint::-webkit-scrollbar {
+    width: 5px;
+  }
+  .blackboxHint::-webkit-scrollbar-thumb {
+    /* background-color: #555; */
+    border-radius: 20px;
+    border: 2px solid #555;
+    background: rgba(217, 217, 217, 0.2);
+  }
+  .blackboxHint::-webkit-scrollbar-track {
+    background-color: #eee;
+    border-radius: 20px;
+  }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: 'Orbitron', sans-serif;
+}
+body {
+  background-image: url('../blackbox_bg.png');
+  background-size: cover;
+  color: white;
+}
+
+/* Section below NavBar */
+.time-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1rem 0.5rem;
+}
+
+/* Timer */
+.timer {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.time-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+.time-box {
+  /* outline: 1px solid red; */
+  padding: 0.6rem;
+  border: 5px solid #EE3FA2;
+  background-color: white;
+  color: black;
+}
+
+
+
+.secondNav {
+    padding-top: 5.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#levelHead h1 {
+    font-size: 2.2rem;
+}
+
+.inputField {
+    background: linear-gradient(120.21deg, rgba(99, 101, 148, 0.4) 18.15%, rgba(55, 57, 92, 0.1) 82.15%);
+    box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(12.5px);
+    border-radius: 55px;
+    /* padding: 2rem 4rem; */
+    width: 29.18rem;
+    height: 15.12rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.inputField input {
+    height: 1.81rem;
+    width: 6.5rem;
+    background: #D9D9D9;
+    border-radius: 6px;
+    text-align: center;
+}
+.ansBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 0;
+}
+.pinkBtn {
+    background: #EE3FA2;
+    border: 1px solid #FFFFFF;
+    border-radius: 35px;
+    /* padding: 2; */
+    width: 20.18rem;
+    height: 3.02rem;
+    font-weight: bold;
+    color: white;
+    font-size: 1.2rem;
+    margin: auto;
+    position: relative;
+    top: 1rem;
+}
+.question {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+}
+#inputRound {
+    background: linear-gradient(120.21deg, rgba(99, 101, 148, 0.4) 18.15%, rgba(55, 57, 92, 0.1) 82.15%);
+    box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 73px;
+    width: 18.25rem;
+    height: 3.02rem;
+    text-align: center;
+    color: white;
+    position: relative;
+    top: 2rem;
+}
+.inputRound::placeholder {
+    color: white;
+}
+#expressionBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 2rem; */
+}
+.blackboxHint {
+    width: fit-content;
+    margin: auto;
+    background: linear-gradient(120.21deg, rgba(99, 101, 148, 0.4) 18.15%, rgba(55, 57, 92, 0.1) 82.15%);
+    box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 28px;
+    width: 29.25rem;
+    padding: 1rem 0;
+    text-align: center;
+    margin-top: 5rem;
+}
+.blackboxHint li {
+    list-style: none;
+    font-weight: 600;
+    padding: 0.2rem 0;
+}
+
+.crypthunt {
+    width: 8.43rem;
+    height: 3.62rem;
+    background: linear-gradient(120.21deg, rgba(99, 101, 148, 0.4) 18.15%, rgba(55, 57, 92, 0.1) 82.15%);
+    box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(12.5px);
+    border-radius: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.crypthunt a {
+    text-align: center;
+}

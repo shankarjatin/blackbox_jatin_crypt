@@ -133,6 +133,7 @@ exports.black_ques = async (req, res, next) => {
 
 exports.submit_blackbox = async (req, res) => {
     try {
+        console.log(req.body);
         const errors = validationResult(req);
         let gamer = await User.findOne({ email: req.user.email });
         let ques_game = await Ques_BlackBox.findOne({ level: gamer.blackbox_level });
@@ -193,8 +194,13 @@ exports.submit_blackbox = async (req, res) => {
                 res.send("Error in fetching game");
             } else {
                 if (!errors.isEmpty()) {
-                    const message = "Invalid Input or Empty Field, Kindly Enter a String of non-numeric values as per the instructions ";
-                    res.redirect(`/blackbox?message=${message}`);
+                    const message = "Invalid Input or Empty Field, Kindly Enter a String of non-numeric values as per the instructions";
+                    res.json({
+                        success: false,
+                        redirect: false,
+                        message: message
+                    })
+                    // res.redirect(`/blackbox?message=${message}`);
                 }
                 else if (req.user.submitted == true) {
                     message = "You have already submitted. Please check your rank in the leaderboard";
@@ -208,7 +214,12 @@ exports.submit_blackbox = async (req, res) => {
                 else {
                     if (success == false) {
                         message = "Sorry!!! You guessed it wrong"
-                        res.redirect(`/blackbox?message=${message}`);
+                        res.json({
+                            success: false,
+                            redirect: false,
+                            message: message
+                        })
+                        // res.redirect(`/blackbox?message=${message}`);
                     }
                     else {
                         User.updateOne(
@@ -224,12 +235,22 @@ exports.submit_blackbox = async (req, res) => {
                         ).then(result => {
                             // console.log('Field data deleted successfully');
                             message = "Well Done! You guessed it correct";
-                            res.redirect(`/blackbox?message=${message}`);
+                            res.json({
+                                success: true,
+                                redirect: false,
+                                message: message
+                            })
+                            // res.redirect(`/blackbox?message=${message}`);
                         })
                             .catch(error => {
                                 // console.error('Failed to delete field data:', error);
                                 message = "Please try again"
-                                res.redirect(`/blackbox?message=${message}`);
+                                res.json({
+                                    success: false,
+                                    redirect: false,
+                                    message: message
+                                })
+                                // res.redirect(`/blackbox?message=${message}`);
                             });
                     }
                 }

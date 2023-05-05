@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Input Example</title>
     <link rel="stylesheet" href="public/css/forms.css">
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
   </head>
   <body>
     <li><a href="/game">crypthunt</a></li>
@@ -31,12 +32,25 @@
     </form>
 
    
-      <form action="/submit_blackbox" method="post">
-        <label for="text">enter your expression</label>
-        <input type="text" name="user_expression" id="text"><br><br>
-        <button type="submit">submit expression</button>
+      <!-- <form action="/submit_blackbox" method="post"> -->
+        <label for="submit_expression">enter your expression</label>
+        <input type="text" name="user_expression" id="submit_expression"><br><br>
+        <button onclick="submit()">submit expression</button>
         <p> instruction :<br> example input : a+b+c+d , (a*b)+c+d .<br> use a,b,c and d as variable !</p>
-    </form>
+    <!-- </form> -->
+    <script>
+      async function submit(){
+        url = "http://localhost:8000/submit_blackbox";
+        const expression = document.getElementById("submit_expression").value;
+        payload  = {"user_expression": `${expression}`};
+        const res = await axios.post(url, payload);
+        console.log(res);
+        if(res.data.redirect == false){
+          alert(res.data.message);
+          window.location.reload()
+        }else{}
+      }
+    </script>
        
 
 
@@ -57,6 +71,9 @@
   
   <% if (remaining_time != "None") { %>
       <script>
+
+
+
           let timer=document.getElementsByClassName("countdown");
           for(let i=0;i<=timer.length-1;i++)
           {

@@ -1,10 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { check, body } = require("express-validator");
-const game_controller = require("./../controllers/game_controllers.js");
+const { body } = require("express-validator");
 const auth_middleware = require("./../middlewares/auth_middleware.js");
 const game_middleware = require("./../middlewares/game_middleware.js");
-const controller = require("./../controllers/controller.js");
 
 
 

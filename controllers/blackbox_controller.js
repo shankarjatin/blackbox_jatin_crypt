@@ -10,7 +10,9 @@ exports.FirstPage = async (req, res) => {
 
     let gamer = await User.findOne({ email: email });
     var level1 = gamer.blackbox_level;
-
+    let ques_game = await Ques_BlackBox.findOne({ level: level1 });
+    let instruction1 = ques_game.instructions
+    // var instruction1 = gamer.instrucions;
     Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
         const question = await Ques_BlackBox.findOne({ level: level1 });
         if (err) {
@@ -34,8 +36,10 @@ exports.FirstPage = async (req, res) => {
                         user: gamer,
                         question: question,
                         message: message,
+                        instruction1: instruction1,
                         remaining_time: remaining_time
                     });
+                    
                 }
             }
         }
@@ -246,10 +250,15 @@ exports.add_question = (req, res, next) => {
     const level = req.body.level;
     const answer_expression = req.body.answer_expression;
     const credit = req.body.credit;
+    const instructions = req.body.instructions;
+    const no_of_variables =req.body.no_of_variables;
+
     const addQuestion = new Ques_BlackBox({
         question_no: question_no,
         level: level,
         answer_expression: answer_expression,
+        instructions,
+        no_of_variables,
         credit: credit
     })
 

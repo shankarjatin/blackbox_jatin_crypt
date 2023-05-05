@@ -35,7 +35,13 @@
         <label for="text">enter your expression</label>
         <input type="text" name="user_expression" id="text"><br><br>
         <button type="submit">submit expression</button>
-        <p> instruction :<br> example input : a+b+c+d , (a*b)+c+d .<br> use a,b,c and d as variable !</p>
+       
+        <h1>Instructions:</h1>
+        <ul>
+          <% instruction1.forEach(element => { %>
+            <li><%= element %></li>
+          <% }) %>
+        </ul>
     </form>
        
 

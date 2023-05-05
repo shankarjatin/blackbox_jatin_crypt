@@ -22,7 +22,10 @@ const questionSchema = new mongoose.Schema({
     no_of_variables: {
         type: Number,
         default: 1
-    }
+    },
+    instructions: {
+        type: [String]
+      }
 })
 
 const BlackBox_questions = new mongoose.model("BlackBox_question", questionSchema);

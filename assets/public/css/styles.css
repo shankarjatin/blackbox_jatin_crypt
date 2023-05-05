@@ -1,8 +1,3 @@
-/*FRONT CSS*/
-body{
-  background-color: #17132a;
-}
-
 #logdiv {
   background-color: #17132a;
   border: 4px solid white;
@@ -15,7 +10,7 @@ body{
 #logul {
   padding: 4px;
   margin: 0px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   list-style-type: none;
 }
 .logli {
@@ -23,9 +18,10 @@ body{
   text-align: center;
   font-size: 16px;
 }
-.logli:hover{
+.logli:hover {
   background-color: #ee3fa2;
 }
+
 #background {
   background-image: url("../IMG-20220410-WA0000.jpg");
   background-position: center;
@@ -44,7 +40,7 @@ body{
   width: 100%;
   font-size: 20px;
   display: flex;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 #menuul {
   width: 76%;
@@ -58,10 +54,10 @@ body{
   text-align: center;
   float: left;
 }
-#menuliwidth1{
+#menuliwidth1 {
   width: 20%;
 }
-#menuliwidth2{
+#menuliwidth2 {
   width: 20%;
 }
 .ali {
@@ -79,7 +75,7 @@ body{
   text-align: right;
 }
 
-.playbutton{
+.playbutton {
   padding-right: 2%;
   width: 20%;
   color: white;
@@ -99,7 +95,7 @@ body{
   width: 740px;
   font-size: 0px;
 }
-#imgchange3{
+#imgchange3 {
   border-radius: 60px;
 }
 #headingdiv {
@@ -113,7 +109,7 @@ body{
   color: white;
   text-align: center;
   font-size: 50px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 #buttondiv {
   height: 16vh;
@@ -127,13 +123,13 @@ body{
   border-radius: 10px;
   padding: 8px 22px;
   color: white;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-weight: bold;
   outline-color: white;
   outline-width: 1px;
   outline-style: solid;
 }
-.lbutton:hover{
+.lbutton:hover {
   background-color: #ee3fa2;
   border-color: #17132a;
 }
@@ -142,16 +138,16 @@ body{
   border: 1px solid white;
   border-radius: 10px;
   color: white;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-weight: bold;
 }
 
-.leaderboard_heading{
+.leaderboard_heading {
   display: block;
   text-align: center;
 }
 
-.original_leaderboard{
+.original_leaderboard {
   margin: 0 8px;
 }
 
@@ -169,12 +165,12 @@ body{
   margin: 0px;
   font-size: 30px;
   text-align: center;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 .qdiv {
   padding: 2vh 0vw;
   font-size: 24px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 .fpara {
   margin: 0px;
@@ -188,12 +184,9 @@ body{
 .adiv {
   padding: 2vh 0vw;
   font-size: 16px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
-hr {
-  border: 1px solid white;
-  margin: 0px;
-}
+
 #last {
   padding: 0% 2%;
   height: 20vh;
@@ -214,7 +207,7 @@ hr {
   color: #17132a;
   text-align: center;
   font-weight: bold;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 #icons {
   padding: 0% 2%;
@@ -233,7 +226,7 @@ hr {
   color: white;
   text-align: center;
   font-size: 50px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 #leaderboard_rulesheading {
@@ -242,10 +235,9 @@ hr {
   color: white;
   text-align: center;
   font-size: 50px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   display: inline-block;
 }
-
 
 #rulesdiv {
   padding-bottom: 4vh;
@@ -268,12 +260,12 @@ hr {
   padding: 10px 0px;
   color: white;
   font-size: 20px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 /*GAME CSS*/
 
 /*TIMER*/
-#outercountdown{
+#outercountdown {
   width: 180px;
   height: 80px;
   display: flex;
@@ -289,18 +281,18 @@ hr {
   top: 12vh;
   left: 10%;
 }
-.count{
+.count {
   font-weight: bold;
   text-align: center;
   color: white;
 }
-#smallcount{
+#smallcount {
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-#counter{
+#counter {
   background-color: #ee3fa2;
   padding: 2px 0px;
   width: 200px;
@@ -337,7 +329,7 @@ hr {
 #checkdiv {
   padding: 3vh 0vw;
 }
-.checkd{
+.checkd {
   display: flex;
   justify-content: center;
   padding: 6px 0px;
@@ -351,7 +343,7 @@ hr {
 #linner {
   width: 850px;
   border-radius: 30px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 #forwidth {
   border-spacing: 0px;
@@ -410,7 +402,7 @@ table tr:last-child td:last-child {
 }
 @media screen and (max-width: 1200px) {
   /*FRONT RESPONSIVE*/
-  #mainheading{
+  #mainheading {
     font-size: 46px;
   }
   #finner {
@@ -426,7 +418,7 @@ table tr:last-child td:last-child {
     width: 520px;
     font-size: 0px;
   }
-  #outercountdown{
+  #outercountdown {
     left: 8%;
   }
   /*LEADERBOARD RESPONSIVE*/
@@ -459,7 +451,7 @@ table tr:last-child td:last-child {
     width: 760px;
   }
   /*GAME RESPONSIVE*/
-  #outercountdown{
+  #outercountdown {
     font-size: 16px;
     height: 60px;
     width: 120px;
@@ -477,23 +469,23 @@ table tr:last-child td:last-child {
   #fulldiv {
     font-size: 14px;
   }
-  #menuul{
+  #menuul {
     width: 74%;
   }
-  #hidiv{
+  #hidiv {
     width: 22%;
   }
-  #fh1{
+  #fh1 {
     font-size: 24px;
   }
   #finner {
     width: 95%;
   }
-  #left{
+  #left {
     width: 560px;
     font-size: 14px;
   }
-  #imgindiv{
+  #imgindiv {
     height: 50px;
     width: 520px;
   }
@@ -513,7 +505,7 @@ table tr:last-child td:last-child {
     width: 400px;
     font-size: 0px;
   }
-  #divform{
+  #divform {
     width: 280px;
   }
   /*LEADERBOARD RESPONSIVE*/
@@ -522,10 +514,10 @@ table tr:last-child td:last-child {
   }
 }
 @media screen and (max-width: 740px) {
-  #outercountdown{
+  #outercountdown {
     display: none;
   }
-  #checkdiv{
+  #checkdiv {
     justify-content: space-evenly;
   }
 }
@@ -573,25 +565,25 @@ table tr:last-child td:last-child {
   #finner {
     width: 95%;
   }
-  .iconremove{
+  .iconremove {
     display: none;
   }
-  #left{
+  #left {
     width: 200px;
   }
-  #icons{
+  #icons {
     padding: 0% 0%;
     justify-content: space-evenly;
   }
-  #imgindiv{
+  #imgindiv {
     width: 200px;
     height: 60px;
   }
-  #imgchange3{
+  #imgchange3 {
     display: none;
   }
   /*RULES RESPONSIVE*/
-  #rulesheading{
+  #rulesheading {
     font-size: 32px;
   }
   #boxdiv {
@@ -603,13 +595,13 @@ table tr:last-child td:last-child {
     width: 360px;
     font-size: 0px;
   }
-  #counter{
+  #counter {
     width: 170px;
     font-size: 14px;
     margin-bottom: 32px;
   }
   /*LEADERBOARD responsive*/
-  .font{
+  .font {
     font-size: 20px;
   }
   #linner {
@@ -621,7 +613,7 @@ table tr:last-child td:last-child {
   #logdiv {
     width: 30%;
   }
-  #mainheading{
+  #mainheading {
     font-size: 24px;
   }
   #finner {
@@ -668,7 +660,7 @@ table tr:last-child td:last-child {
   #removemenu {
     display: none;
   }
-  #menuul{
+  #menuul {
     font-size: 12px;
   }
 }
@@ -680,20 +672,20 @@ table tr:last-child td:last-child {
   #cross {
     display: none;
   }
-  .menuli:hover{
+  .menuli:hover {
     background-color: #ee3fa2;
     border: 1px solid white;
     border-radius: 10px;
   }
-  #imgchange{
+  #imgchange {
     display: none;
   }
 }
 @media screen and (min-width: 741px) {
-  #smallcount{
+  #smallcount {
     display: none;
   }
-  #submit_btn{
+  #submit_btn {
     position: fixed;
     top: 12vh;
     right: 6%;

@@ -1,3 +1,10 @@
+body {
+  background-image: url("../main_background.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 #logdiv {
   background-color: #17132a;
   border: 4px solid white;
@@ -22,14 +29,15 @@
   background-color: #ee3fa2;
 }
 
-#background {
-  background-image: url("../IMG-20220410-WA0000.jpg");
+/* #background {
+  background-image: url("");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   min-height: 100vh;
-}
+} */
+
 #menudiv {
   background-color: #17132a;
   height: 10vh;

@@ -8,9 +8,13 @@ const game_middleware = require("./../middlewares/game_middleware.js");
 
 const blackbox_controller = require("./../controllers/blackbox_controller.js");
 router.get("/blackbox", game_middleware.check_game_timing, auth_middleware.check_login,
-    blackbox_controller.FirstPage
+    blackbox_controller.getBlackbox
+    // blackbox_controller.postBlackbox
 )
 
+router.post("/blackbox", game_middleware.check_game_timing, auth_middleware.check_login,
+    blackbox_controller.postBlackbox)
+// blackbox_controller.getBlackbox)
 router.post("/add-question", blackbox_controller.add_question);
 
 //input evaluation

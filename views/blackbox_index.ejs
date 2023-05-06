@@ -13,7 +13,7 @@
   <li><a href="/blackbox_leaderboard">Blackbox Leaderboard</a></li>
   <li><a href="/leaderboard">Cryphunt Leaderboard</a></li>
   <li> <a href="/final-leaderboard">Overall Leaderboard</a></li>
-  <h1>You are on Level <%= question.level %>!</h1>
+  <h1>You are on Level <%- level %>!</h1>
   <h1>Enter Values</h1>
 
 
@@ -25,22 +25,15 @@
       </div>
     </div>
 
-    <!-- <form action="/black_ques" method="POST"> -->
-    <% for(let i=1; i<=question.no_of_variables ; i++){ %>
+
+    <% for(let i=1; i<=variableCount ; i++){ %>
       <label for="num<%- i %>">Number <%- i %>:</label>
       <input type="number" name="num<%- i %>" class="numbers" id="num<%- i %>"><br><br>
       <% } %>
         <button onclick="checkExpression()">check combination</button>
-        <!-- </form> -->
-        <div id="list-container">
-          <!-- <% if (user.Array.length > 0) { %>
-          <ul>
-            <% user.Array.forEach(element => { %>
-              <li><%= element %></li>
-            <% }); %>
-          </ul>
-        <% } %> -->
-        </div>
+
+
+        <div id="list-container"></div>
 
         <script>
           //clearing input fields
@@ -105,15 +98,18 @@
             const expression = document.getElementById("submit_expression").value;
             payload = { "user_expression": `${expression}` };
             const res = await axios.post(url, payload);
-            console.log(res);
             if (res.data.success == false && res.data.redirect == false) {
+              console.log("here");
               alert(res.data.message);
               document.getElementById("submit_expression").value = ""
             } else if (res.data.success == true && res.data.redirect == false) {
+              console.log("here1");
               alert(res.data.message);
               window.location.reload();
             } else {
+              console.log("here2");
               alert(res.data.message);
+              console.log(res.data.url);
               window.location.replace(res.data.url);
             }
           }

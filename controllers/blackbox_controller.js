@@ -35,7 +35,6 @@ exports.postBlackbox = async (req, res) => {
     const email = req.user.email;
     let gamer = await User.findOne({ email: email });
     var level = gamer.blackbox_level;
-    
     Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
         if (err) {
             res.json({
@@ -66,7 +65,6 @@ exports.postBlackbox = async (req, res) => {
                     })
                 }
                 else {
-
                     res.json({
                         success: true,
                         redirect: true,
@@ -341,7 +339,7 @@ exports.add_question = (req, res, next) => {
     const answer_expression = req.body.answer_expression;
     const credit = req.body.credit;
     const instructions = req.body.instructions;
-    const no_of_variables =req.body.no_of_variables;
+    const no_of_variables = req.body.no_of_variables;
 
     const addQuestion = new Ques_BlackBox({
         question_no: question_no,

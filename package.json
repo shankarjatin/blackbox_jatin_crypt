@@ -1,32 +1,32 @@
 {
-	"name": "crypthunt-game",
-	"version": "1.0.0",
-	"description": "",
-	"main": "app.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node app.js",
-		"dev": "nodemon app.js"
-	},
-	"engines": {
-		"node": "17.3.0"
-	},
-	"author": "Shahbaz Ali",
-	"license": "ISC",
-	"dependencies": {
-		"body-parser": "^1.20.2",
-		"dotenv": "^16.0.0",
-		"ejs": "^3.1.6",
-		"ejs-lint": "^2.0.0",
-		"express": "^4.17.2",
-		"express-rate-limit": "^6.3.0",
-		"express-session": "^1.17.2",
-		"express-validator": "^7.0.1",
-		"mongoose": "^6.2.1",
-		"mongoose-findorcreate": "^3.0.0",
-		"morgan": "^1.10.0",
-		"nodemon": "^2.0.22",
-		"passport": "^0.5.2",
-		"passport-google-oauth20": "^2.0.0"
-	}
+  "name": "crypthunt-game",
+  "version": "1.0.0",
+  "description": "* Node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "engines": {
+    "node": "17.3.0"
+  },
+  "author": "Shahbaz Ali",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.6",
+    "ejs-lint": "^2.0.0",
+    "express": "^4.17.2",
+    "express-rate-limit": "^6.3.0",
+    "express-session": "^1.17.2",
+    "express-validator": "^7.0.1",
+    "mongoose": "^6.2.1",
+    "mongoose-findorcreate": "^3.0.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.22",
+    "passport": "^0.5.2",
+    "passport-google-oauth20": "^2.0.0"
+  }
 }

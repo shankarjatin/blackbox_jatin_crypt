@@ -102,7 +102,8 @@
 	
 <script>
 	function clickBlackbox() {
-		url = "http://localhost:8000/blackbox"
+		url = "<% process.env.DEPLOYMENT %>"
+		url = "/blackbox"
 		axios.post(url).then((res) => {
 			console.log(res.data);
 			if (res.data.success == false && res.data.redirect == false) {

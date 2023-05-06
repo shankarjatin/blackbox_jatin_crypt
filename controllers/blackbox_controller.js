@@ -36,14 +36,6 @@ exports.postBlackbox = async (req, res) => {
     let gamer = await User.findOne({ email: email });
     var level = gamer.blackbox_level;
 
-    if (level1 == process.env.BLACK_LEVEL) {
-        message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-        return res.redirect(`/blackbox_leaderboard?message=${message}`);
-    }
-
-    let ques_game = await Ques_BlackBox.findOne({ level: level1 });
-    let instruction1 = ques_game.instructions
-    // var instruction1 = gamer.instrucions;
     Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
         if (err) {
             res.json({
@@ -53,7 +45,8 @@ exports.postBlackbox = async (req, res) => {
             })
         }
         else {
-            if (level === process.env.BLACK_LEVEL) {
+            console.log(level, process.env.BLACK_LEVEL);
+            if (level == process.env.BLACK_LEVEL) {
                 message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
                 res.json({
                     success: true,
@@ -74,7 +67,6 @@ exports.postBlackbox = async (req, res) => {
                     })
                 }
                 else {
-
                     res.json({
                         success: true,
                         redirect: true,
@@ -349,7 +341,7 @@ exports.add_question = (req, res, next) => {
     const answer_expression = req.body.answer_expression;
     const credit = req.body.credit;
     const instructions = req.body.instructions;
-    const no_of_variables =req.body.no_of_variables;
+    const no_of_variables = req.body.no_of_variables;
 
     const addQuestion = new Ques_BlackBox({
         question_no: question_no,

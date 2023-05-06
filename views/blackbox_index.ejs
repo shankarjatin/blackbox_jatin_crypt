@@ -112,15 +112,12 @@
             payload = { "user_expression": `${expression}` };
             const res = await axios.post(url, payload);
             if (res.data.success == false && res.data.redirect == false) {
-              console.log("here");
               alert(res.data.message);
               document.getElementById("submit_expression").value = ""
             } else if (res.data.success == true && res.data.redirect == false) {
-              console.log("here1");
               alert(res.data.message);
               window.location.reload();
             } else {
-              console.log("here2");
               alert(res.data.message);
               console.log(res.data.url);
               window.location.replace(res.data.url);

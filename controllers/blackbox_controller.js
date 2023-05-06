@@ -14,7 +14,11 @@ exports.FirstPage = async (req, res) => {
     Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
         const question = await Ques_BlackBox.findOne({ level: level1 });
         if (err) {
-            res.send("Error in fetching game");
+            res.json({
+                success: false,
+                message: "Error in fetching game",
+                redirect: false
+            })
         }
         else {
             if (level1 == process.env.BLACK_LEVEL) {
@@ -44,6 +48,7 @@ exports.FirstPage = async (req, res) => {
 
 exports.black_ques = async (req, res, next) => {
     try {
+        console.log(req.body);
         let a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0;
         let variables = [], i = 0;
 
@@ -93,30 +98,52 @@ exports.black_ques = async (req, res, next) => {
 
         Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
             if (err) {
-                res.send("Error in fetching game");
+                res.json({
+                    success: false,
+                    message: "Error in fetching game",
+                    redirect: false
+                })
             } else {
                 if (variables.length != ques_game.no_of_variables) {
                     const message = "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0"
-                    res.redirect(`/blackbox?message=${message}&email=${req.user.email}`);
+                    res.json({
+                        success: false,
+                        message: message,
+                        redirect: false
+                    })
                 }
                 else if (req.user.submitted == true) {
                     message = "You have already submitted. Please check your rank in the leaderboard";
                     req.logout();
-                    res.redirect("/final-leaderBoard");
+                    res.json({
+                        success: true,
+                        message: message,
+                        redirect: true,
+                        url: process.env.DEPLOYEMENT + "/final-leaderBoard"
+                    })
                 }
                 else if (level1 === (process.env.BLACK_LEVEL)) {
                     message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                    res.redirect(`/blackbox_leaderboard?message=${message}`);
+                    res.json({
+                        success: true,
+                        message: message,
+                        redirect: true,
+                        url: process.env.DEPLOYEMENT + "/blackbox_leaderboard"
+                    })
                 }
                 else {
 
                     User.findOneAndUpdate(
-                        { email: req.user.email }, // Define the parameter and its value to identify the document
-                        { $push: { Array: userInput } }, // Push the new element into the array
+                        { email: req.user.email },
+                        { $push: { Array: userInput } },
                         { new: true } // Set the "new" option to return the updated document
                     )
                         .then(data => {
-                            res.redirect("/blackbox");
+                            res.json({
+                                success: true,
+                                redirect: false,
+                                attempts: data.Array
+                            });
                         })
                         .catch(error => {
                             console.error('Failed to update document:', error);
@@ -127,13 +154,13 @@ exports.black_ques = async (req, res, next) => {
         })
     }
     catch (err) {
-        req.send("Unexpected Error Occured");
+        console.log(err);
+        res.send("Unexpected Error Occured");
     }
 }
 
 exports.submit_blackbox = async (req, res) => {
     try {
-        console.log(req.body);
         const errors = validationResult(req);
         let gamer = await User.findOne({ email: req.user.email });
         let ques_game = await Ques_BlackBox.findOne({ level: gamer.blackbox_level });
@@ -191,7 +218,11 @@ exports.submit_blackbox = async (req, res) => {
 
         Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
             if (err) {
-                res.send("Error in fetching game");
+                res.json({
+                    success: false,
+                    message: "Error in fetching game",
+                    redirect: false
+                })
             } else {
                 if (!errors.isEmpty()) {
                     const message = "Invalid Input or Empty Field, Kindly Enter a String of non-numeric values as per the instructions";
@@ -205,11 +236,23 @@ exports.submit_blackbox = async (req, res) => {
                 else if (req.user.submitted == true) {
                     message = "You have already submitted. Please check your rank in the leaderboard";
                     req.logout();
-                    res.redirect("/final-leaderBoard");
+                    res.json({
+                        success: true,
+                        redirect: true,
+                        message: message,
+                        url: process.env.DEPLOYMENT + "/final-leaderBoard"
+                    })
+                    // res.redirect("/final-leaderBoard");
                 }
                 else if (gamer.level === (process.env.BLACK_LEVEL)) {
                     message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                    res.redirect(`/blackbox_leaderboard?message=${message}`);
+                    res.json({
+                        success: true,
+                        redirect: true,
+                        message: message,
+                        url: process.env.DEPLOYMENT + "/blackbox_leaderboard"
+                    })
+                    // res.redirect(`/blackbox_leaderboard?message=${message}`);
                 }
                 else {
                     if (success == false) {

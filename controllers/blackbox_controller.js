@@ -35,7 +35,6 @@ exports.postBlackbox = async (req, res) => {
     const email = req.user.email;
     let gamer = await User.findOne({ email: email });
     var level = gamer.blackbox_level;
-
     Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
         if (err) {
             res.json({
@@ -45,7 +44,6 @@ exports.postBlackbox = async (req, res) => {
             })
         }
         else {
-            console.log(level, process.env.BLACK_LEVEL);
             if (level == process.env.BLACK_LEVEL) {
                 message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
                 res.json({

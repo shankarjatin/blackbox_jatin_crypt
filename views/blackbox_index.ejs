@@ -75,7 +75,8 @@
           }
 
           async function checkExpression() {
-            url = "http://localhost:8000/black_ques";
+            uurl = "<% process.env.DEPLOYMENT %>"
+            url = "/black_ques";
             const inputFields = document.getElementsByClassName("numbers");
             payload = {};
             for (let i = 0; i < inputFields.length; i++) {
@@ -105,7 +106,8 @@
 
         <script>
           async function submit() {
-            url = "http://localhost:8000/submit_blackbox";
+            url = "<% process.env.DEPLOYMENT %>"
+            url = "/submit_blackbox";
             const expression = document.getElementById("submit_expression").value;
             payload = { "user_expression": `${expression}` };
             const res = await axios.post(url, payload);

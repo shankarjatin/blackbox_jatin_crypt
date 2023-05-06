@@ -1,32 +1,36 @@
-<%- include("./partials/header.ejs"); %>
+<%- include("./partials/header.ejs",{name:'triyon'}); %>
 
 <div id="gamediv">
     <div id="outercountdown">
-        <div>
-            <div class="count">TIME LEFT</div>
-            <div class="count countdown">3 : 0 : 0</div>
-        </div>
+        
+           
+            <div class="countdown-timer countdown">00:00:00</div>
+        
     </div>
-    <h1 id="rulesheading" style="text-decoration: underline; text-decoration-color: #ee3fa2;">Level # <%-user.level%></h1>
-    <div id="smallcount">
-        <div id="counter">TIME LEFT <br> <b class="countdown">0 : 0 : 0</b></div>
-    </div>
+
+    <h1 id="rulesheading">Level # <%-user.level%></h1>
+    <!-- <div id="smallcount">
+        <div id="counter">TIMS LEFT  
+            </div>
+            <div
+            class="countdown">0 : 0 : 0</div>
+
+    </div> -->
     <div id="gameoutdiv">
-        <div id="gameindiv">
-            <img style="" src="private/r<%-user.level%>.png" height="100%" width="100%" />
+        <div id="" class="ch-game-box">
+            
+            <img src="private/r<%-user.level%>.png"/>
         </div>
     </div>
     <form method="POST" id="formdiv">
         <div id="divform">
             <input class="form-control" type="text" name="answer" placeholder="Answer" id="gameanswer">
-            <div id="checkdiv">
-                <div class="checkd">
-                    <button class="btn btn-dark lbutton" type="submit" formaction="/game" >Check</button>
+            
+                <div class="">
+                    <button class="ch-check-btn" type="submit" formaction="/game" >Check</button>
                 </div>
-                <div class="checkd">
-                    <button id="submit_btn" class="btn btn-success lbutton" onclick="return confirm('Do you want to FINAL SUBMIT? !!! Remember you will not be able to play this game after you FINAL SUBMIT !!! Are you sure?')" formaction="/submit" type="submit">Submit</button>
-                </div>
-            </div>
+             
+            
         </div>   
     </form>
 </div>
@@ -62,3 +66,8 @@
 <% } %> 
 
 <%- include("./partials/footer.ejs"); %>
+
+
+
+
+

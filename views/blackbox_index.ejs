@@ -75,7 +75,7 @@
           }
 
           async function checkExpression() {
-            url = "http://localhost:8000/black_ques";
+            url = "https://blackbox-crypthunt-portal.onrender.com//black_ques";
             const inputFields = document.getElementsByClassName("numbers");
             payload = {};
             for (let i = 0; i < inputFields.length; i++) {
@@ -105,7 +105,7 @@
 
         <script>
           async function submit() {
-            url = "http://localhost:8000/submit_blackbox";
+            url = "https://blackbox-crypthunt-portal.onrender.com/submit_blackbox";
             const expression = document.getElementById("submit_expression").value;
             payload = { "user_expression": `${expression}` };
             const res = await axios.post(url, payload);

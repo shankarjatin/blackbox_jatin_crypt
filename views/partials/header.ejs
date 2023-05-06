@@ -102,7 +102,7 @@
 	
 <script>
 	function clickBlackbox() {
-		url = "http://localhost:8000/blackbox"
+		url = "https://blackbox-crypthunt-portal.onrender.com/blackbox"
 		axios.post(url).then((res) => {
 			console.log(res.data);
 			if (res.data.success == false && res.data.redirect == false) {

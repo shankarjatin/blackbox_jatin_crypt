@@ -10,6 +10,12 @@ exports.FirstPage = async (req, res) => {
 
     let gamer = await User.findOne({ email: email });
     var level1 = gamer.blackbox_level;
+
+    if (level1 == process.env.BLACK_LEVEL) {
+        message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+        return res.redirect(`/blackbox_leaderboard?message=${message}`);
+    }
+
     let ques_game = await Ques_BlackBox.findOne({ level: level1 });
     let instruction1 = ques_game.instructions
     // var instruction1 = gamer.instrucions;

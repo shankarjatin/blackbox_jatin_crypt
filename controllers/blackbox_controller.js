@@ -3,39 +3,73 @@ const User = require("./../models/user.js");
 const Game = require("./../models/game");
 const { validationResult } = require("express-validator");
 
-exports.FirstPage = async (req, res) => {
-    let message = req.query.message || "None";
+exports.getBlackbox = async (req, res) => {
     const email = req.user.email;
     var time = new Date();
-
     let gamer = await User.findOne({ email: email });
-    var level1 = gamer.blackbox_level;
-
     Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
-        const question = await Ques_BlackBox.findOne({ level: level1 });
-        if (err) {
-            res.send("Error in fetching game");
+        var question;
+        if (process.env.BLACK_LEVEL > gamer.blackbox_level) {
+            question = await Ques_BlackBox.findOne({ level: gamer.blackbox_level });
+            var remaining_time = result.endTime - time;
+            res.render("blackbox_index", {
+                user: gamer,
+                level: gamer.blackbox_level + 1,
+                variableCount: question.no_of_variables,
+                remaining_time: remaining_time
+            });
         }
         else {
-            if (level1 == process.env.BLACK_LEVEL) {
+            message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+            res.json({
+                success: true,
+                message: message,
+                redirect: true,
+                url: "/blackbox_leaderboard"
+            })
+        }
+    })
+}
+
+exports.postBlackbox = async (req, res) => {
+    const email = req.user.email;
+    let gamer = await User.findOne({ email: email });
+    var level = gamer.blackbox_level;
+    Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
+        if (err) {
+            res.json({
+                success: false,
+                message: "Error in fetching game",
+                redirect: false
+            })
+        }
+        else {
+            if (level == process.env.BLACK_LEVEL) {
                 message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                res.redirect(`/blackbox_leaderboard?message=${message}`);
+                res.json({
+                    success: true,
+                    message: message,
+                    redirect: true,
+                    url: "/blackbox_leaderboard"
+                })
             }
             else {
                 if (req.user.submitted == true) {
                     message = "You have already submitted. Please check your rank in the leaderboard";
                     req.logout();
-                    // message = "congracts you passed all test"
-                    res.redirect("/final-leaderBoard")
+                    res.json({
+                        success: true,
+                        message: message,
+                        redirect: true,
+                        url: "/final-leaderBoard"
+                    })
                 }
                 else {
-                    var remaining_time = result.endTime - time;
-                    res.render("blackbox_index", {
-                        user: gamer,
-                        question: question,
-                        message: message,
-                        remaining_time: remaining_time
-                    });
+                    res.json({
+                        success: true,
+                        redirect: true,
+                        url: "/blackbox"
+                    })
                 }
             }
         }
@@ -46,8 +80,6 @@ exports.black_ques = async (req, res, next) => {
     try {
         let a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0;
         let variables = [], i = 0;
-
-        //initializing variables and storing in variables array
         var userInput = `Combination of`;
         if (req.body.num1) {
             a = parseInt(req.body.num1);
@@ -93,30 +125,52 @@ exports.black_ques = async (req, res, next) => {
 
         Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
             if (err) {
-                res.send("Error in fetching game");
+                res.json({
+                    success: false,
+                    message: "Error in fetching game",
+                    redirect: false
+                })
             } else {
                 if (variables.length != ques_game.no_of_variables) {
                     const message = "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0"
-                    res.redirect(`/blackbox?message=${message}&email=${req.user.email}`);
+                    res.json({
+                        success: false,
+                        message: message,
+                        redirect: false
+                    })
                 }
                 else if (req.user.submitted == true) {
                     message = "You have already submitted. Please check your rank in the leaderboard";
                     req.logout();
-                    res.redirect("/final-leaderBoard");
+                    res.json({
+                        success: true,
+                        message: message,
+                        redirect: true,
+                        url: "/final-leaderBoard"
+                    })
                 }
-                else if (level1 === (process.env.BLACK_LEVEL)) {
+                else if (level1 == (process.env.BLACK_LEVEL)) {
                     message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                    res.redirect(`/blackbox_leaderboard?message=${message}`);
+                    res.json({
+                        success: true,
+                        message: message,
+                        redirect: true,
+                        url: "/blackbox_leaderboard"
+                    })
                 }
                 else {
 
                     User.findOneAndUpdate(
-                        { email: req.user.email }, // Define the parameter and its value to identify the document
-                        { $push: { Array: userInput } }, // Push the new element into the array
+                        { email: req.user.email },
+                        { $push: { Array: userInput } },
                         { new: true } // Set the "new" option to return the updated document
                     )
                         .then(data => {
-                            res.redirect("/blackbox");
+                            res.json({
+                                success: true,
+                                redirect: false,
+                                attempts: data.Array
+                            });
                         })
                         .catch(error => {
                             console.error('Failed to update document:', error);
@@ -127,7 +181,8 @@ exports.black_ques = async (req, res, next) => {
         })
     }
     catch (err) {
-        req.send("Unexpected Error Occured");
+        console.log(err);
+        res.send("Unexpected Error Occured");
     }
 }
 
@@ -190,28 +245,50 @@ exports.submit_blackbox = async (req, res) => {
 
         Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
             if (err) {
-                res.send("Error in fetching game");
+                res.json({
+                    success: false,
+                    message: "Error in fetching game",
+                    redirect: false
+                })
             } else {
                 if (!errors.isEmpty()) {
-                    const message = "Invalid Input or Empty Field, Kindly Enter a String of non-numeric values as per the instructions ";
-                    res.redirect(`/blackbox?message=${message}`);
+                    const message = "Invalid Input or Empty Field, Kindly Enter a String of non-numeric values as per the instructions";
+                    res.json({
+                        success: false,
+                        redirect: false,
+                        message: message
+                    })
                 }
                 else if (req.user.submitted == true) {
                     message = "You have already submitted. Please check your rank in the leaderboard";
                     req.logout();
-                    res.redirect("/final-leaderBoard");
+                    res.json({
+                        success: true,
+                        redirect: true,
+                        message: message,
+                        url: "/final-leaderBoard"
+                    })
                 }
-                else if (gamer.level === (process.env.BLACK_LEVEL)) {
+                else if (gamer.level == (process.env.BLACK_LEVEL)) {
                     message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                    res.redirect(`/blackbox_leaderboard?message=${message}`);
+                    res.json({
+                        success: true,
+                        redirect: true,
+                        message: message,
+                        url: "/blackbox_leaderboard"
+                    })
                 }
                 else {
                     if (success == false) {
                         message = "Sorry!!! You guessed it wrong"
-                        res.redirect(`/blackbox?message=${message}`);
+                        res.json({
+                            success: false,
+                            redirect: false,
+                            message: message
+                        })
                     }
                     else {
-                        User.updateOne(
+                        User.findOneAndUpdate(
                             { email: req.user.email },
                             {
                                 $unset: { Array: 1 }, // Use $unset operator to delete the field
@@ -220,16 +297,31 @@ exports.submit_blackbox = async (req, res) => {
                                     black_points: credit,
                                     score: credit
                                 }
-                            }
+                            }, { new: true }
                         ).then(result => {
-                            // console.log('Field data deleted successfully');
+                            if (result.blackbox_level == process.env.BLACK_LEVEL) {
+                                message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+                                return res.json({
+                                    success: true,
+                                    redirect: true,
+                                    message: message,
+                                    url: "/blackbox_leaderboard"
+                                })
+                            }
                             message = "Well Done! You guessed it correct";
-                            res.redirect(`/blackbox?message=${message}`);
+                            res.json({
+                                success: true,
+                                redirect: false,
+                                message: message
+                            })
                         })
                             .catch(error => {
-                                // console.error('Failed to delete field data:', error);
                                 message = "Please try again"
-                                res.redirect(`/blackbox?message=${message}`);
+                                res.json({
+                                    success: false,
+                                    redirect: false,
+                                    message: message
+                                })
                             });
                     }
                 }
@@ -246,10 +338,15 @@ exports.add_question = (req, res, next) => {
     const level = req.body.level;
     const answer_expression = req.body.answer_expression;
     const credit = req.body.credit;
+    const instructions = req.body.instructions;
+    const no_of_variables = req.body.no_of_variables;
+
     const addQuestion = new Ques_BlackBox({
         question_no: question_no,
         level: level,
         answer_expression: answer_expression,
+        instructions,
+        no_of_variables,
         credit: credit
     })
 

@@ -25,7 +25,7 @@ exports.getBlackbox = async (req, res) => {
                 success: true,
                 message: message,
                 redirect: true,
-                url: process.env.DEPLOYMENT + "/blackbox_leaderboard"
+                url: "/blackbox_leaderboard"
             })
         }
     })
@@ -50,7 +50,7 @@ exports.postBlackbox = async (req, res) => {
                     success: true,
                     message: message,
                     redirect: true,
-                    url: process.env.DEPLOYMENT + "/blackbox_leaderboard"
+                    url: "/blackbox_leaderboard"
                 })
             }
             else {
@@ -61,14 +61,14 @@ exports.postBlackbox = async (req, res) => {
                         success: true,
                         message: message,
                         redirect: true,
-                        url: process.env.DEPLOYMENT + "/final-leaderBoard"
+                        url: "/final-leaderBoard"
                     })
                 }
                 else {
                     res.json({
                         success: true,
                         redirect: true,
-                        url: process.env.DEPLOYMENT + "/blackbox"
+                        url: "/blackbox"
                     })
                 }
             }
@@ -146,7 +146,7 @@ exports.black_ques = async (req, res, next) => {
                         success: true,
                         message: message,
                         redirect: true,
-                        url: process.env.DEPLOYEMENT + "/final-leaderBoard"
+                        url: "/final-leaderBoard"
                     })
                 }
                 else if (level1 == (process.env.BLACK_LEVEL)) {
@@ -155,7 +155,7 @@ exports.black_ques = async (req, res, next) => {
                         success: true,
                         message: message,
                         redirect: true,
-                        url: process.env.DEPLOYEMENT + "/blackbox_leaderboard"
+                        url: "/blackbox_leaderboard"
                     })
                 }
                 else {
@@ -266,7 +266,7 @@ exports.submit_blackbox = async (req, res) => {
                         success: true,
                         redirect: true,
                         message: message,
-                        url: process.env.DEPLOYMENT + "/final-leaderBoard"
+                        url: "/final-leaderBoard"
                     })
                 }
                 else if (gamer.level == (process.env.BLACK_LEVEL)) {
@@ -275,7 +275,7 @@ exports.submit_blackbox = async (req, res) => {
                         success: true,
                         redirect: true,
                         message: message,
-                        url: process.env.DEPLOYMENT + "/blackbox_leaderboard"
+                        url: "/blackbox_leaderboard"
                     })
                 }
                 else {
@@ -305,7 +305,7 @@ exports.submit_blackbox = async (req, res) => {
                                     success: true,
                                     redirect: true,
                                     message: message,
-                                    url: process.env.DEPLOYMENT + "/blackbox_leaderboard"
+                                    url: "/blackbox_leaderboard"
                                 })
                             }
                             message = "Well Done! You guessed it correct";

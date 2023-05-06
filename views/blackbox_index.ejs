@@ -10,143 +10,143 @@
 
 <body>
   <%- include("./partials/header.ejs"); %>
-  <h1 id="levelHead">You are on Level <%- level %>!</h1>
-  <h1>Enter Values</h1>
+    <h1 id="levelHead">You are on Level <%- level %>!</h1>
+    <h1>Enter Values</h1>
 
 
-  <div id="gamediv">
-    <div id="outercountdown">
-      <div>
-        <div class="count">TIME LEFT</div>
-        <div class="count countdown">3 : 0 : 0</div>
-      </div>
-    </div>
-
-
-    <% for(let i=1; i<=variableCount ; i++){ %>
-      <label for="num<%- i %>">Number <%- i %>:</label>
-      <input type="number" name="num<%- i %>" class="numbers" id="num<%- i %>"><br><br>
-      <% } %>
-        <button onclick="checkExpression()">check combination</button>
-
-
-        <div id="list-container">
-          <% if (user.Array.length> 0) { %>
-            <ul>
-              <% for(let i=(user.Array.length)-1 ; i>=0 ; i--){ %>
-                <li>
-                  <%= user.Array[i] %>
-                </li>
-                <% } %>
-            </ul>
-            <% } %>
-
+    <div id="gamediv">
+      <div id="outercountdown">
+        <div>
+          <div class="count">TIME LEFT</div>
+          <div class="count countdown">3 : 0 : 0</div>
         </div>
+      </div>
 
-        <script>
-          //clearing input fields
-          function clear() {
-            var allInputs = document.getElementsByClassName('numbers');
-            for (let i = 0; i < allInputs.length; i++) {
-              allInputs[i].value = '';
-            }
-          }
-          //rendering list item
-          function renderList(array) {
-            const listContainer = document.getElementById('list-container');
-            const ul = document.createElement('ul');
-            for (let i = array.length - 1; i >= 0; i--) {
-              const li = document.createElement('li');
-              li.textContent = array[i];
-              ul.appendChild(li);
-              clear();
-            }
-            //clearing listContainer before appending
-            listContainer.innerHTML = '';
-            listContainer.appendChild(ul);
-          }
-          //update new items
-          function updateList(newArray) {
-            renderList(newArray);
-          }
 
-          async function checkExpression() {
-            url = "<% process.env.DEPLOYMENT %>"
-            url = "/black_ques";
-            const inputFields = document.getElementsByClassName("numbers");
-            payload = {};
-            for (let i = 0; i < inputFields.length; i++) {
-              payload[inputFields[i].name] = inputFields[i].value;
-            }
-            await axios.post(url, payload).then((res) => {
-              if (res.data.success == true && res.data.redirect == false) {
-                const data = res.data.attempts;
-                updateList(data);
+      <% for(let i=1; i<=variableCount ; i++){ %>
+        <label for="num<%- i %>">Number <%- i %>:</label>
+        <input type="number" name="num<%- i %>" class="numbers" id="num<%- i %>"><br><br>
+        <% } %>
+          <button onclick="checkExpression()">check combination</button>
+
+
+          <div id="list-container">
+            <% if (user.Array.length> 0) { %>
+              <ul>
+                <% for(let i=(user.Array.length)-1 ; i>=0 ; i--){ %>
+                  <li>
+                    <%= user.Array[i] %>
+                  </li>
+                  <% } %>
+              </ul>
+              <% } %>
+
+          </div>
+
+          <script>
+            //clearing input fields
+            function clear() {
+              var allInputs = document.getElementsByClassName('numbers');
+              for (let i = 0; i < allInputs.length; i++) {
+                allInputs[i].value = '';
               }
-              else if (res.data.success == false && res.data.redirect == false) {
-                alert(res.data.message);
+            }
+            //rendering list item
+            function renderList(array) {
+              const listContainer = document.getElementById('list-container');
+              const ul = document.createElement('ul');
+              for (let i = array.length - 1; i >= 0; i--) {
+                const li = document.createElement('li');
+                li.textContent = array[i];
+                ul.appendChild(li);
                 clear();
               }
-              else {
-                alert(res.data.message);
-                window.location.replace(res.data.url);
-              }
-            })
-          }
-        </script>
-
-        <label for="submit_expression">enter your expression</label>
-        <input type="text" name="user_expression" id="submit_expression"><br><br>
-        <button onclick="submit()">submit expression</button>
-        <p> instruction :<br> example input : a+b+c+d , (a*b)+c+d .<br> use a,b,c and d as variable !</p>
-
-        <script>
-          async function submit() {
-            url = "<% process.env.DEPLOYMENT %>"
-            url = "/submit_blackbox";
-            const expression = document.getElementById("submit_expression").value;
-            payload = { "user_expression": `${expression}` };
-            const res = await axios.post(url, payload);
-            if (res.data.success == false && res.data.redirect == false) {
-              alert(res.data.message);
-              document.getElementById("submit_expression").value = ""
-            } else if (res.data.success == true && res.data.redirect == false) {
-              alert(res.data.message);
-              window.location.reload();
-            } else {
-              alert(res.data.message);
-              console.log(res.data.url);
-              window.location.replace(res.data.url);
+              //clearing listContainer before appending
+              listContainer.innerHTML = '';
+              listContainer.appendChild(ul);
             }
-          }
-        </script>
+            //update new items
+            function updateList(newArray) {
+              renderList(newArray);
+            }
 
-        <% if (remaining_time !="None" ) { %>
-          <script>
-
-
-
-            let timer = document.getElementsByClassName("countdown");
-            for (let i = 0; i <= timer.length - 1; i++) {
-              let time = Math.floor(Number("<%-remaining_time%>") / 1000);
-              setInterval(updatecountdown, 1000);
-              function updatecountdown() {
-                let hours = Math.floor(time / 3600);
-                let minutes = Math.floor((time % 3600) / 60);
-                let seconds = Math.floor(time - 3600 * hours - 60 * minutes);
-                if (time < 0) {
-
-                  timer[i].innerHTML = `00 : 00 : 00`;
-                  window.location = "/submit";
-                } else {
-                  timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
+            async function checkExpression() {
+              url = "<% process.env.DEPLOYMENT %>"
+              url = "/black_ques";
+              const inputFields = document.getElementsByClassName("numbers");
+              payload = {};
+              for (let i = 0; i < inputFields.length; i++) {
+                payload[inputFields[i].name] = inputFields[i].value;
+              }
+              await axios.post(url, payload).then((res) => {
+                if (res.data.success == true && res.data.redirect == false) {
+                  const data = res.data.attempts;
+                  updateList(data);
                 }
-                time--;
+                else if (res.data.success == false && res.data.redirect == false) {
+                  alert(res.data.message);
+                  clear();
+                }
+                else {
+                  alert(res.data.message);
+                  window.location.replace(res.data.url);
+                }
+              })
+            }
+          </script>
+
+          <label for="submit_expression">enter your expression</label>
+          <input type="text" name="user_expression" id="submit_expression"><br><br>
+          <button onclick="submit()">submit expression</button>
+          <p> instruction :<br> example input : a+b+c+d , (a*b)+c+d .<br> use a,b,c and d as variable !</p>
+
+          <script>
+            async function submit() {
+              url = "<% process.env.DEPLOYMENT %>"
+              url = "/submit_blackbox";
+              const expression = document.getElementById("submit_expression").value;
+              payload = { "user_expression": `${expression}` };
+              const res = await axios.post(url, payload);
+              if (res.data.success == false && res.data.redirect == false) {
+                alert(res.data.message);
+                document.getElementById("submit_expression").value = ""
+              } else if (res.data.success == true && res.data.redirect == false) {
+                alert(res.data.message);
+                window.location.reload();
+              } else {
+                alert(res.data.message);
+                console.log(res.data.url);
+                window.location.replace(res.data.url);
               }
             }
           </script>
-          <% } else { %>
-            <% } %>
+
+          <% if (remaining_time !="None" ) { %>
+            <script>
+
+
+
+              let timer = document.getElementsByClassName("countdown");
+              for (let i = 0; i <= timer.length - 1; i++) {
+                let time = Math.floor(Number("<%-remaining_time%>") / 1000);
+                setInterval(updatecountdown, 1000);
+                function updatecountdown() {
+                  let hours = Math.floor(time / 3600);
+                  let minutes = Math.floor((time % 3600) / 60);
+                  let seconds = Math.floor(time - 3600 * hours - 60 * minutes);
+                  if (time < 0) {
+
+                    timer[i].innerHTML = `00 : 00 : 00`;
+                    window.location = "/submit";
+                  } else {
+                    timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
+                  }
+                  time--;
+                }
+              }
+            </script>
+            <% } else { %>
+              <% } %>
 
 
 

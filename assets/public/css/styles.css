@@ -305,12 +305,13 @@ body {
   /* Note: backdrop-filter has minimal browser support */
 
   border-radius: 97px;
-  position: fixed;
+  position: absolute;
   top: 12vh;
   left: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: -5;
 }
 
 .count {
@@ -346,12 +347,13 @@ body {
 }
 #gameindiv {
   display: flex;
-
+  z-index: -3;
   align-items: center;
   justify-content: center;
 }
 #gameindiv img {
   max-width: 50vw;
+  z-index: -3;
 }
 
 #formdiv input {
@@ -377,6 +379,7 @@ body {
 }
 #divform {
   width: 360px;
+  z-index: -3;
 }
 ::placeholder {
   color: rgba(255, 255, 255, 0.697);
@@ -504,6 +507,7 @@ table tr:last-child td:last-child {
   align-items: center;
   justify-content: center;
   max-width: 96vw;
+  z-index: -3;
 }
 .ch-game-box img {
   max-width: 80vw;
@@ -537,6 +541,12 @@ table tr:last-child td:last-child {
     width: 850px;
   }
 }
+@media screen and (max-width: 1100px) {
+  #gameoutdiv {
+    margin-top: 86px;
+  }
+}
+
 @media screen and (max-width: 928px) {
   /*FRONT responsive*/
   #fulldiv {
@@ -571,6 +581,16 @@ table tr:last-child td:last-child {
   #linner {
     width: 760px;
   }
+  /* .countdown-timer {
+    font-family: "Orbitron";
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    /* line-height: 30px; */
+
+  /* color: white; */
+  /* }  */
 }
 @media screen and (max-width: 838px) {
   /*FRONT RESPONSIVE*/
@@ -718,7 +738,13 @@ table tr:last-child td:last-child {
   #linner {
     width: 95%;
   }
+  #outercountdown {
+    top: 80px;
+    left: 4px;
+    transform: scale(0.8);
+  }
 }
+
 @media screen and (max-width: 460px) {
   /*FRONT RESPONSIVE*/
   #logdiv {

@@ -37,12 +37,27 @@
 
         <div class="menu__box">
           <li class="menu__item" id="">
-            <a href="/rules" class="ali">Hints</a>
+            <a href="/rules" class="ali">HintS</a>
           </li>
           <hr class="ham_menu_hr" />
           <li class="menu__item" id="">
             <a href="/leaderboard" class="">Leaderboard</a>
+            
           </li>
+          <hr class="ham_menu_hr" />
+          <li class="menu__item user-greet" id="">
+            
+            <i class="fa-regular fa-user-circle"></i>
+          <p>&nbsp;
+            <% var full_name = user.name%>
+            <% var first_name = full_name.split(' ')[0]; %>  
+            Hi <%-first_name%>!&nbsp;&nbsp;</p>
+
+            
+        </li>
+        
+            <li class="logout-menu-li"><button class="ham-menu-logout" href="/logout" class="">Logout</button></li>
+         
         </div>
       </div>
       <ul class="index_page_ul">

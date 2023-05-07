@@ -124,10 +124,12 @@
   let heading = document.getElementsByClassName("heading");
   console.log(heading);
   if (window.location.pathname == "/game") {
-    heading[0].innerHTML = "Crypthunt"
+    heading[0].innerHTML = "Crypthunt";
+    heading[0].href = "/game";
   }
   else if (window.location.pathname == "/blackbox") {
-    heading[0].innerHTML = "Blackbox"
+    heading[0].innerHTML = "Blackbox";
+    heading[0].href = "/blackbox";
   } 
 </script>
 

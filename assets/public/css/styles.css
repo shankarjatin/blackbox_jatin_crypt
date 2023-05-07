@@ -347,7 +347,7 @@ body {
 }
 #gameindiv {
   display: flex;
-  z-index: -3;
+  /* z-index: -3; */
   align-items: center;
   justify-content: center;
 }
@@ -379,7 +379,8 @@ body {
 }
 #divform {
   width: 360px;
-  z-index: -3;
+
+  /* z-index: -3; */
 }
 ::placeholder {
   color: rgba(255, 255, 255, 0.697);
@@ -507,7 +508,7 @@ table tr:last-child td:last-child {
   align-items: center;
   justify-content: center;
   max-width: 96vw;
-  z-index: -3;
+  /* z-index: -3; */
 }
 .ch-game-box img {
   max-width: 80vw;

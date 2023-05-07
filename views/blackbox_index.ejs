@@ -20,7 +20,7 @@
     <% } %>
 
       <!-- Below script is for redirecting if any redirect if present -->
-      <% if (redirect !="None" ) { %>
+      <% if (redirect !=false ) { %>
         <script defer>
           window.location.replace("<%- redirectUrl %>");
         </script>

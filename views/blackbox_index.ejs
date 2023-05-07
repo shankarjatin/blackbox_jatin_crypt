@@ -44,6 +44,20 @@
 
           </div>
 
+          <!-- Below script is for displaying any message if present -->
+          <% if (message != "None") { %>
+            <script defer>
+              alert("<%- message %>");
+            </script>
+          <% } %>
+
+          <!-- Below script is for redirecting if any redirect if present -->
+          <% if (redirect != "None") { %>
+            <script defer>
+              window.location.replace("<%- redirectUrl %>");
+            </script>
+          <% } %>
+
           <script>
             //clearing input fields
             function clear() {

@@ -1,8 +1,18 @@
-/*FRONT CSS*/
-body{
-  background-color: #17132a;
+body {
+  /* background-image: url("../main_background.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; */
+  /* margin-top: 2rem; */
+  background-image: url("../blackbox_bg.png");
+  width: 100%;
+  height: 250vh;
+  object-fit: cover;
+  /* overflow-x: hidden; */
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  background-size: cover;
 }
-
 #logdiv {
   background-color: #17132a;
   border: 4px solid white;
@@ -15,7 +25,7 @@ body{
 #logul {
   padding: 4px;
   margin: 0px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   list-style-type: none;
 }
 .logli {
@@ -23,16 +33,8 @@ body{
   text-align: center;
   font-size: 16px;
 }
-.logli:hover{
+.logli:hover {
   background-color: #ee3fa2;
-}
-#background {
-  background-image: url("../IMG-20220410-WA0000.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  min-height: 100vh;
 }
 #menudiv {
   background-color: #17132a;
@@ -44,7 +46,7 @@ body{
   width: 100%;
   font-size: 20px;
   display: flex;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 #menuul {
   width: 76%;
@@ -58,10 +60,10 @@ body{
   text-align: center;
   float: left;
 }
-#menuliwidth1{
+#menuliwidth1 {
   width: 20%;
 }
-#menuliwidth2{
+#menuliwidth2 {
   width: 20%;
 }
 .ali {
@@ -79,7 +81,7 @@ body{
   text-align: right;
 }
 
-.playbutton{
+.playbutton {
   padding-right: 2%;
   width: 20%;
   color: white;
@@ -90,19 +92,23 @@ body{
   padding: 10vh 0vw;
 }
 #imgoutdiv {
+  margin-top: 3rem;
   padding: 6vh 0vw;
   display: flex;
   justify-content: center;
 }
 #imgindiv {
-  height: 80px;
-  width: 740px;
+  margin-top: 3rem;
+  height: 55px;
+  width: 508;
   font-size: 0px;
 }
-#imgchange3{
+#imgchange3 {
   border-radius: 60px;
 }
 #headingdiv {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
   height: 28vh;
   display: flex;
   align-items: center;
@@ -112,28 +118,35 @@ body{
   margin: 0px;
   color: white;
   text-align: center;
-  font-size: 50px;
-  font-family: 'Orbitron', sans-serif;
+  font-size: 44px;
+  font-family: "Orbitron";
+  font-weight: lighter;
 }
 #buttondiv {
+  /* height: 16vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; */
+
   height: 16vh;
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
 .lbutton {
   background-color: #ee3fa2;
-  border: 6px solid #17132a;
+  /* border: 6px solid #17132a;  */
+  border: 1px solid white;
   border-radius: 10px;
   padding: 8px 22px;
+  width: 11rem;
+  height: 3.5rem;
   color: white;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-weight: bold;
-  outline-color: white;
-  outline-width: 1px;
-  outline-style: solid;
 }
-.lbutton:hover{
+.lbutton:hover {
   background-color: #ee3fa2;
   border-color: #17132a;
 }
@@ -142,16 +155,16 @@ body{
   border: 1px solid white;
   border-radius: 10px;
   color: white;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-weight: bold;
 }
 
-.leaderboard_heading{
+.leaderboard_heading {
   display: block;
   text-align: center;
 }
 
-.original_leaderboard{
+.original_leaderboard {
   margin: 0 8px;
 }
 
@@ -169,12 +182,12 @@ body{
   margin: 0px;
   font-size: 30px;
   text-align: center;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 .qdiv {
   padding: 2vh 0vw;
   font-size: 24px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 .fpara {
   margin: 0px;
@@ -188,12 +201,9 @@ body{
 .adiv {
   padding: 2vh 0vw;
   font-size: 16px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
-hr {
-  border: 1px solid white;
-  margin: 0px;
-}
+
 #last {
   padding: 0% 2%;
   height: 20vh;
@@ -214,7 +224,7 @@ hr {
   color: #17132a;
   text-align: center;
   font-weight: bold;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 #icons {
   padding: 0% 2%;
@@ -228,12 +238,12 @@ hr {
 }
 /*RULES CSS*/
 #rulesheading {
-  padding: 14vh 0vw 4vh 0vw;
-  margin: 0px;
+  padding-top: 100px;
   color: white;
   text-align: center;
-  font-size: 50px;
-  font-family: 'Orbitron', sans-serif;
+  font-size: 35px;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
 }
 
 #leaderboard_rulesheading {
@@ -242,10 +252,9 @@ hr {
   color: white;
   text-align: center;
   font-size: 50px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   display: inline-block;
 }
-
 
 #rulesdiv {
   padding-bottom: 4vh;
@@ -268,39 +277,54 @@ hr {
   padding: 10px 0px;
   color: white;
   font-size: 20px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 /*GAME CSS*/
 
+.countdown-timer {
+  font-family: "Orbitron";
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  /* line-height: 30px; */
+
+  color: white;
+}
 /*TIMER*/
-#outercountdown{
-  width: 180px;
-  height: 80px;
-  display: flex;
-  font-size: 20px;
-  align-items: center;
-  justify-content: center;
-  background-color: #ee3fa2;
-  border: 4px solid #17132a;
-  outline-color: white;
-  outline-width: 4px;
-  outline-style: solid;
+#outercountdown {
+  background: linear-gradient(
+    120.21deg,
+    rgba(99, 101, 148, 0.4) 18.15%,
+    rgba(55, 57, 92, 0.1) 82.15%
+  );
+  width: 125px;
+  height: 125px;
+  box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 97px;
   position: fixed;
   top: 12vh;
   left: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.count{
+
+.count {
   font-weight: bold;
   text-align: center;
-  color: white;
+  /* color: white; */
 }
-#smallcount{
+#smallcount {
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-#counter{
+#counter {
   background-color: #ee3fa2;
   padding: 2px 0px;
   width: 200px;
@@ -315,29 +339,86 @@ hr {
 }
 
 #gameoutdiv {
+  margin-top: 20px;
+
   display: flex;
   justify-content: center;
 }
 #gameindiv {
-  width: 520px;
-  font-size: 0px;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
 }
+#gameindiv img {
+  max-width: 50vw;
+}
+
+#formdiv input {
+  margin-bottom: 56px;
+  color: white;
+  align-items: center;
+  font-family: "Orbitron";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.201);
+}
+
 #formdiv {
-  height: 40vh;
+  /* height: 40vh; */
+  margin-top: 50px;
+  margin-bottom: 56px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  text-align: center;
 }
 #divform {
   width: 360px;
 }
+::placeholder {
+  color: rgba(255, 255, 255, 0.697);
+  opacity: 1;
+}
+::ms-input-placeholder {
+  color: white;
+}
 #gameanswer {
-  width: 100%;
+  width: 292px;
+  text-align: center;
+  height: 50px;
+  left: 574px;
+  top: 550px;
+  background: linear-gradient(
+    120.21deg,
+    rgba(99, 101, 148, 0.4) 18.15%,
+    rgba(55, 57, 92, 0.1) 82.15%
+  );
+  box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 73px;
+}
+.ch-check-btn:hover {
+  cursor: pointer;
+}
+.ch-check-btn {
+  background: #ee3fa2;
+  border: 1px solid #ffffff;
+  border-radius: 35px;
+  padding: 12px 62px;
+  font-size: 21px;
+  color: white;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 400;
 }
 #checkdiv {
   padding: 3vh 0vw;
 }
-.checkd{
+.checkd {
   display: flex;
   justify-content: center;
   padding: 6px 0px;
@@ -351,7 +432,7 @@ hr {
 #linner {
   width: 850px;
   border-radius: 30px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 #forwidth {
   border-spacing: 0px;
@@ -408,9 +489,31 @@ table tr:last-child td:last-child {
   font-size: 26px;
   padding: 2vh 0vw;
 }
+.ch-game-box {
+  padding: 30px 100px;
+  background: linear-gradient(
+    120.21deg,
+    rgba(99, 101, 148, 0.4) 18.15%,
+    rgba(55, 57, 92, 0.1) 82.15%
+  );
+  box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+
+  border-radius: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 96vw;
+}
+.ch-game-box img {
+  max-width: 80vw;
+  /* width: 80px; */
+  /* max-width: 300px; */
+  aspect-ratio: 1;
+}
 @media screen and (max-width: 1200px) {
   /*FRONT RESPONSIVE*/
-  #mainheading{
+  #mainheading {
     font-size: 46px;
   }
   #finner {
@@ -422,11 +525,11 @@ table tr:last-child td:last-child {
   }
   /*GAME RESPONSIVE*/
   #gameindiv {
-    height: 520px;
+    /* height: 520px;
     width: 520px;
-    font-size: 0px;
+    font-size: 0px; */
   }
-  #outercountdown{
+  #outercountdown {
     left: 8%;
   }
   /*LEADERBOARD RESPONSIVE*/
@@ -459,10 +562,10 @@ table tr:last-child td:last-child {
     width: 760px;
   }
   /*GAME RESPONSIVE*/
-  #outercountdown{
-    font-size: 16px;
+  #outercountdown {
+    /* font-size: 16px;
     height: 60px;
-    width: 120px;
+    width: 120px; */
   }
   /*LEADERBOARD RESPONSIVE*/
   #linner {
@@ -477,29 +580,29 @@ table tr:last-child td:last-child {
   #fulldiv {
     font-size: 14px;
   }
-  #menuul{
+  #menuul {
     width: 74%;
   }
-  #hidiv{
+  #hidiv {
     width: 22%;
   }
-  #fh1{
+  #fh1 {
     font-size: 24px;
   }
   #finner {
     width: 95%;
   }
-  #left{
+  #left {
     width: 560px;
     font-size: 14px;
   }
-  #imgindiv{
-    height: 50px;
-    width: 520px;
+  #imgindiv {
+    /* height: 50px; */
+    /* width: 520px; */
   }
   /*RULES RESPONSIVE*/
   #rulesheading {
-    font-size: 42px;
+    font-size: 33px;
   }
   #boxdiv {
     width: 95%;
@@ -513,7 +616,7 @@ table tr:last-child td:last-child {
     width: 400px;
     font-size: 0px;
   }
-  #divform{
+  #divform {
     width: 280px;
   }
   /*LEADERBOARD RESPONSIVE*/
@@ -522,10 +625,10 @@ table tr:last-child td:last-child {
   }
 }
 @media screen and (max-width: 740px) {
-  #outercountdown{
-    display: none;
+  #outercountdown {
+    /* display: none; */
   }
-  #checkdiv{
+  #checkdiv {
     justify-content: space-evenly;
   }
 }
@@ -573,26 +676,26 @@ table tr:last-child td:last-child {
   #finner {
     width: 95%;
   }
-  .iconremove{
+  .iconremove {
     display: none;
   }
-  #left{
+  #left {
     width: 200px;
   }
-  #icons{
+  #icons {
     padding: 0% 0%;
     justify-content: space-evenly;
   }
-  #imgindiv{
-    width: 200px;
-    height: 60px;
+  #imgindiv {
+    /* width: 200px; */
+    /* height: 60px; */
   }
-  #imgchange3{
+  #imgchange3 {
     display: none;
   }
   /*RULES RESPONSIVE*/
-  #rulesheading{
-    font-size: 32px;
+  #rulesheading {
+    font-size: 31px;
   }
   #boxdiv {
     width: 95%;
@@ -603,13 +706,13 @@ table tr:last-child td:last-child {
     width: 360px;
     font-size: 0px;
   }
-  #counter{
+  #counter {
     width: 170px;
     font-size: 14px;
     margin-bottom: 32px;
   }
   /*LEADERBOARD responsive*/
-  .font{
+  .font {
     font-size: 20px;
   }
   #linner {
@@ -621,7 +724,7 @@ table tr:last-child td:last-child {
   #logdiv {
     width: 30%;
   }
-  #mainheading{
+  #mainheading {
     font-size: 24px;
   }
   #finner {
@@ -651,9 +754,9 @@ table tr:last-child td:last-child {
   }
   /*GAME RESPONSIVE*/
   #gameindiv {
-    height: 280px;
-    width: 280px;
-    font-size: 0px;
+    /* height: 280px; */
+    /* width: 280px; */
+    /* font-size: 0px; */
   }
   /*LEADERBOARD RESPONSIVE*/
   .font {
@@ -668,7 +771,7 @@ table tr:last-child td:last-child {
   #removemenu {
     display: none;
   }
-  #menuul{
+  #menuul {
     font-size: 12px;
   }
 }
@@ -680,20 +783,20 @@ table tr:last-child td:last-child {
   #cross {
     display: none;
   }
-  .menuli:hover{
+  .menuli:hover {
     background-color: #ee3fa2;
     border: 1px solid white;
     border-radius: 10px;
   }
-  #imgchange{
+  #imgchange {
     display: none;
   }
 }
 @media screen and (min-width: 741px) {
-  #smallcount{
+  #smallcount {
     display: none;
   }
-  #submit_btn{
+  #submit_btn {
     position: fixed;
     top: 12vh;
     right: 6%;

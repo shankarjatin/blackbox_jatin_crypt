@@ -63,7 +63,7 @@
 
       <div class="history-list-container" id="list-container">
         <% if (user.Array.length> 0) { %>
-          <ul class="history-list blackboxHint">
+          <ul class="history-list blackboxHistory">
             <% for(let i=(user.Array.length)-1 ; i>=0 ; i--){ %>
               <li class="history-list-item">
                 <%= user.Array[i] %>
@@ -88,8 +88,8 @@
           
           const ul = document.createElement('ul');// Adding classlist so that the css apply to the updated hints 
           
-          ul.classList.add('hitsory-list')
-          ul.classList.add('blackboxHint')
+          ul.classList.add('history-list')
+          ul.classList.add('blackboxHistory')
           for (let i = array.length - 1; i >= 0; i--) {
             const li = document.createElement('li');
             li.textContent = array[i];

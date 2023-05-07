@@ -39,27 +39,12 @@
           <hr class="ham_menu_hr" />
           <li class="menu__item" id="">
             <a href="/leaderboard" class="">Leaderboard</a>
-            
           </li>
-          <hr class="ham_menu_hr" />
-          <li class="menu__item user-greet" id="">
-            
-            <i class="fa-regular fa-user-circle"></i>
-          <p>&nbsp;
-            <% var full_name = user.name%>
-            <% var first_name = full_name.split(' ')[0]; %>  
-            Hi <%-first_name%>!&nbsp;&nbsp;</p>
-
-            
-        </li>
-        
-            <li class="logout-menu-li"><button class="ham-menu-logout" href="/logout" class="">Logout</button></li>
-         
         </div>
       </div>
       <ul class="index_page_ul">
         <li class="header_title_font">
-          <a href="/" class="">Blockverse'23</a>
+          <a href="/" class="heading">Blockverse'23</a>
         </li>
         <div class="header_routes">
           <li class="header_li" id="">
@@ -108,7 +93,7 @@
         </div>
         <ul class="index_page_ul">
           <li class="header_title_font">
-            <a href="/" class="">Blockverse' 23</a>
+            <a href="/" class="" class="heading">Blockverse' 23</a>
           </li>
           <div class="header_routes">
             <li class="header_li" id="">
@@ -132,5 +117,15 @@
       </div>
       </div>
 </body>
+<script>
+  let heading = document.getElementsByClassName("heading");
+  console.log(heading);
+  if (window.location.pathname == "/game") {
+    heading[0].innerHTML = "Crypthunt"
+  }
+  else if (window.location.pathname == "/blackbox") {
+    heading[0].innerHTML = "Blackbox"
+  } 
+</script>
 
 </html>

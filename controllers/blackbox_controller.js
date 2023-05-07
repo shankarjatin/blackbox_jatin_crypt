@@ -8,25 +8,34 @@ exports.getBlackbox = async (req, res) => {
     var time = new Date();
     let gamer = await User.findOne({ email: email });
     Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
-        var question;
+        const remaining_time = result.endTime - time;
+
         if (process.env.BLACK_LEVEL > gamer.blackbox_level) {
-            question = await Ques_BlackBox.findOne({ level: gamer.blackbox_level });
-            var remaining_time = result.endTime - time;
+            const question = await Ques_BlackBox.findOne({ level: gamer.blackbox_level });
+
             res.render("blackbox_index", {
                 user: gamer,
                 level: gamer.blackbox_level + 1,
                 variableCount: question.no_of_variables,
-                remaining_time: remaining_time
+                remaining_time: remaining_time,
+                message: "None",
+                redirect: false,
+                redirectUrl : ""
             });
         }
         else {
+            const question = await Ques_BlackBox.findOne({ level: gamer.blackbox_level-1 });
             message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-            res.json({
-                success: true,
+            res.render("blackbox_index", {
+                user: gamer,
+                level: gamer.blackbox_level + 1,
+                variableCount: question.no_of_variables,
+                remaining_time: remaining_time,
                 message: message,
                 redirect: true,
-                url: "/blackbox_leaderboard"
-            })
+                redirectUrl: "/blackbox_leaderboard"
+            });
+            
         }
     })
 }

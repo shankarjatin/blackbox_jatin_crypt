@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#wrapper{
+    background-image: url("../main_background.png");
+    width: 100%;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+}
+.nav{
+    height: 60px;
+    width: 100vw;
+    color: white;
+}
+.outl{
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#leaderboardMenu{
+    width: 70%;
+    color: white;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 2rem;
+    backdrop-filter:blur(15px);
+    background-color: rgba(99, 101, 148, 0.4);
+
+}
+#crypthuntleaderboard{
+    Font-family: Rubik;
+    Font-style: Medium;
+    width: 100vw;
+    height: 90vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#leaderboardMenu h2:hover{
+  color: #EE3FA2;
+}
+#div1 h1{
+    color: #EE3FA2;
+}
+#div1{
+    width: 70%;
+    height: 90%;
+    border-radius: 2rem;
+    backdrop-filter:blur(15px);
+    background-color: rgba(99, 101, 148, 0.4);
+
+
+}
+.cryptlrow{
+    line-height: 300%;
+}
+#crypt-table{
+    width:100%;
+}
+.cryplColumn{
+    text-align: center;
+}
+

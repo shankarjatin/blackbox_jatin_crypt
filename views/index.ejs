@@ -1,6 +1,6 @@
 <%- include("./partials/header.ejs"); %>
-
 <div id="maindiv">
+    <!-- <div id="farzi" style="width: 400px; height: 400px; background-color: aqua;"></div> -->
     <div id="imgoutdiv">
         <div id="imgindiv">
             <img src="public/IMG_20220410_204801.png" id="imgchange3" height="100%" width="100%">
@@ -8,7 +8,8 @@
         </div>
     </div>	
     <div id="headingdiv">
-        <h1 id="mainheading">Welcome to the CryptHunt!<br>Analyze, Decode and Win</h1>
+        <h1 id="mainheading">Welcome to the CryptHunt!wow........<br>Analyze, Decode and Win</h1>
+
     </div>	
     <div id="buttondiv">
         <a href="/auth/google"><button type="button" class="lbutton startbutton">Start</button></a>
@@ -133,6 +134,7 @@
     </div>
 </div>
 </div>
+
 
 <% if (message != "None") { %>
     <script>alert("<%-message%>")</script>

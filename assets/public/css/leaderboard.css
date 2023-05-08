@@ -30,7 +30,7 @@
     justify-content: space-around;
     align-items: center;
     border-radius: 2rem;
-    backdrop-filter:blur(25px);
+    backdrop-filter:blur(15px);
     background-color: rgba(99, 101, 148, 0.4);
 
 }
@@ -54,7 +54,7 @@
     width: 70%;
     height: 90%;
     border-radius: 2rem;
-    backdrop-filter:blur(25px);
+    backdrop-filter:blur(15px);
     background-color: rgba(99, 101, 148, 0.4);
 
 

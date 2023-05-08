@@ -71,7 +71,7 @@ router.post("/delete_hint",
 	game_controller.delete_hint
 )
 
-router.post("/update-question",auth_middleware.check_login,auth_middleware.check_admin,game_controller.updateQuestion);
+router.post("/update-question", auth_middleware.check_login,auth_middleware.check_admin,game_controller.updateQuestion);
 
 router.get("/final-leaderBoard",game_controller.finalLeaderBoard);
 

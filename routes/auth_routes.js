@@ -13,13 +13,15 @@ router.get(
   "/auth/google/cb", google_auth_controllers.passport_google_callback
 );
 
-router.get("/login", (req, res)=>{
-	res.render("login");
+router.get("/login", (req, res) => {
+  res.render("login");
 })
 
-router.get("/logout", (req,res)=>{
-	req.logout();
-	res.redirect("/");
+router.get("/logout", (req, res) => {
+  req.logout(function (err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
 })
 
 module.exports = router;

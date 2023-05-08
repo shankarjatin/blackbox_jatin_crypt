@@ -1,6 +1,5 @@
 const Team = require("../models/teams");
 
-
 //storing team name and details of leader and member
 const register = async (req, res) => {
     await Team.create({

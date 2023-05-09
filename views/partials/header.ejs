@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="public/css/styles.css" />
   <link rel="stylesheet" type="text/css" href="public/css/header.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/leaderboard.css" />
 </head>
 
 <body>
@@ -40,7 +41,7 @@
           </li>
           <hr class="ham_menu_hr" />
           <li class="menu__item" id="">
-            <a href="/leaderboard" class="">Leaderboard</a>
+            <a href="#" class="">Leaderboard</a>
           </li>
         </div>
       </div>
@@ -50,9 +51,8 @@
         </li>
         <div class="header_routes">
           <li class="header_li" id="">
-            <a href="/leaderboard" class="">Leaderboard</a>
+            <a href="#" class="">Leaderboard</a>
           </li>
-
           <li class="header_li" id="">
             <a href="/hints" class="">Hints</a>
             <div class="hints-dropdown"></div>
@@ -89,7 +89,7 @@
             </li>
             <hr class="ham_menu_hr" />
             <li class="menu__item" id="">
-              <a href="/leaderboard" class="">Leaderboard</a>
+              <a href=""  class="">Leaderboard</a>
             </li>
             
           </div>
@@ -100,10 +100,10 @@
           </li>
           <div class="header_routes">
             <li class="header_li" id="">
-              <a href="/leaderboard" class="">Leaderboard</a>
+              <a href="" class="">Leaderboard</a>
             </li>
 
-            <li class="header_li" id="">
+            <li class=" header_li" id="">
               <a href="/rules" class="">Rules</a>
             </li>
 
@@ -117,8 +117,8 @@
     <!-- -->
 
     <% } %>
-      </div>
-      </div>
+      <%- include("./leaderboard2.ejs"); %>
+
 </body>
 <script>
   let heading = document.getElementsByClassName("heading");
@@ -130,7 +130,18 @@
   else if (window.location.pathname == "/blackbox") {
     heading[0].innerHTML = "Blackbox";
     heading[0].href = "/blackbox";
-  } 
+  }
+
+  document.getElementById("wrapper").addEventListener("click", function (event) {
+    // Prevent the default behavior of the anchor tag
+    event.preventDefault();
+
+    // Select the element to be hidden
+    var element = document.getElementById("wrapper");
+
+    // Hide the element by setting its display property to "none"
+    element.style.display = "none";
+  })
 </script>
 
 </html>

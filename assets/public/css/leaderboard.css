@@ -4,16 +4,15 @@
     box-sizing: border-box;
 }
 #wrapper{
-    background-image: url("../main_background.png");
+    /* background-image: url("../main_background.png"); */
+    display: block;
+    position: absolute;
+    z-index: 100;
+    top: 5rem;
     width: 100%;
     object-fit: cover;
     background-position: center;
     background-size: cover;
-}
-.nav{
-    height: 60px;
-    width: 100vw;
-    color: white;
 }
 .outl{
     width: 100vw;
@@ -23,7 +22,7 @@
     align-items: center;
 }
 #leaderboardMenu{
-    width: 70%;
+    width: 90%;
     color: white;
     height: 100%;
     display: flex;
@@ -51,13 +50,19 @@
     color: #EE3FA2;
 }
 #div1{
-    width: 70%;
+    width: 50%;
     height: 90%;
     border-radius: 2rem;
     backdrop-filter:blur(15px);
     background-color: rgba(99, 101, 148, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 
+}
+#linner{
+    width: 100%;
 }
 .cryptlrow{
     line-height: 300%;

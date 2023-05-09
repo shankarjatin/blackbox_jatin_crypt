@@ -1,64 +1,31 @@
-<%- include("./partials/header.ejs"); %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>leaderboard</title>
-    <link rel="stylesheet" href="/public/css/leaderboard.css">
-</head>
-<body>
-    <div id="wrapper">
-        <div class="nav"><h1>navbar</h1></div>
-        <div class="outl">
-            <div id="leaderboardMenu">
-                <h2 id="crptH">Crypthunt Leaderboard</h2>
-                <h2 id="BbH">Black Box Leaderboard</h2>
-                <h2 id="overallH">Overall Leaderboard</h2>
-            </div>
-        </div>
-        <div id="crypthuntleaderboard">
-            <div id="louter">
-                <center><h1>Crypthunt Leaderboard</h1></center>
-                <div id="linner">
-                  <table id="crypt-table">
-                    <tr class="cryptlrow" >
-                      <th >POSITION</th>
-                      <th class="">TEAM NAME</th>
-                      <th class="">RANK</th>
-                <% leaderboard.forEach((element, rank) => { %>
-                    </tr>
-                      <tr class="cryptlrow">
-                        <td class="cryplColumn"><%-element.rank%></td>
-                        <td class="cryplColumn"><%-element.name%> <%-element.blocked_message%></td>
-                        <td class="cryplColumn"><%-element.level%></td>
-                      </tr>
-                <% }) %>
-                    <tr class="cryptlrow">
-                      <td class="cryplColumn"></td>
-                      <td class="cryplColumn"></td>
-                      <td class="cryplColumn"></td>
-                    </tr>
-                    <tr class="cryptlrow">
-                      <td class="cryplColumn"></td>
-                      <td class="cryplColumn"></td>
-                      <td class="cryplColumn"></td>
-                    </tr>
-                    <tr class="cryptlrow">
-                      <td class="cryplColumn"></td>
-                      <td class="cryplColumn"></td>
-                      <td class="cryplColumn"></td>
-                    </tr>
-                    <tr class="cryptlrow">
-                      <td class="cryplColumn"></td>
-                      <td class="cryplColumn"></td>
-                      <td class="cryplColumn"></td>
-                    </tr>
-                  </table>
-                </div>
-              </div> 
-        </div>
+<div id="wrapper">
+  <div class="outl">
+    <div id="leaderboardMenu">
+      <h2 id="crptH">Crypthunt Leaderboard</h2>
+      <h2 id="BbH">Black Box Leaderboard</h2>
+      <h2 id="overallH">Overall Leaderboard</h2>
     </div>
-</body>
-</html>
+  </div>
+  <div id="crypthuntleaderboard">
+    <div id="div1">
+      <center>
+        <h1>Crypthunt Leaderboard</h1>
+      </center>
+      <div id="linner">
+        <table id="crypt-table">
+          <tr class="cryptlrow">
+            <th>POSITION</th>
+            <th class="">TEAM NAME</th>
+            <th class="">RANK</th>
+
+          </tr>
+          <tr class="cryptlrow">
+            <td class="cryplColumn">1</td>
+            <td class="cryplColumn">ABC</td>
+            <td class="cryplColumn">4</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -16,6 +16,7 @@
   <link rel="stylesheet" type="text/css" href="public/css/styles.css" />
   <link rel="stylesheet" type="text/css" href="public/css/header.css" />
   <link rel="stylesheet" type="text/css" href="public/css/leaderboard.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
 </head>
 
 <body>
@@ -140,6 +141,41 @@
     let wrapper = document.getElementById("wrapper");
     if (wrapper.style.display == "none") {
       wrapper.style.display = "block";
+      axios.post("/leaderboard8", { "leaderboard": "blackbox" }).then((res) => {
+        console.log(res);
+        var table = document.getElementById("crypt-table");
+        Array = res.data.result;
+        count = 1;
+
+        for (let i = 0; i < Array.length; i++) {
+          // Create a new table row element
+          var row = document.createElement("tr");
+          row.classList.add("cryptlrow");
+          // Create new table cells
+          var pos = document.createElement("td");
+          var team = document.createElement("td");
+          var rank = document.createElement("td");
+          pos.classList.add("cryplColumn")
+          team.classList.add("cryplColumn")
+          rank.classList.add("cryplColumn")
+
+          // Set the content of each cell
+          pos.textContent = i + 1;
+          team.textContent = Array[i].team;
+          rank.textContent = Array[i].rank;
+
+          // Append the new cells to the new row
+          row.appendChild(pos);
+          row.appendChild(team);
+          row.appendChild(rank);
+
+          // Append the new row to the table
+          table.appendChild(row);
+        }
+
+
+      });
+
     } else {
       wrapper.style.display = "none";
     }

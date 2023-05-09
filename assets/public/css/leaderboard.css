@@ -66,6 +66,9 @@
 .cryptlrow{
     line-height: 300%;
 }
+.cryptrow{
+    line-height: 300%;
+}
 #crypt-table{
     width:100%;
 }

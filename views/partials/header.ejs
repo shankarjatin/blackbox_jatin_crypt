@@ -41,7 +41,7 @@
           </li>
           <hr class="ham_menu_hr" />
           <li class="menu__item" id="">
-            <a href="#" class="">Leaderboard</a>
+            <div onclick="leaderClick()" class="">Leaderboard</div>
           </li>
         </div>
       </div>
@@ -51,7 +51,8 @@
         </li>
         <div class="header_routes">
           <li class="header_li" id="">
-            <a href="#" class="">Leaderboard</a>
+            <!-- <a href="" onclick="leaderClick()" class="">Leaderboard</a> -->
+            <div onclick="leaderClick()" class="">Leaderboard</div>
           </li>
           <li class="header_li" id="">
             <a href="/hints" class="">Hints</a>
@@ -89,7 +90,8 @@
             </li>
             <hr class="ham_menu_hr" />
             <li class="menu__item" id="">
-              <a href=""  class="">Leaderboard</a>
+              <!-- <a href="" onclick="leaderClick()" class="">Leaderboard</a> -->
+              <div onclick="leaderClick()" class="">Leaderboard</div>
             </li>
             
           </div>
@@ -100,10 +102,12 @@
           </li>
           <div class="header_routes">
             <li class="header_li" id="">
-              <a href="" class="">Leaderboard</a>
+              <!-- <a href="/leaderboard" class="">Leaderboard</a>
+               -->
+              <div onclick="leaderClick()" class="">Leaderboard</div>
             </li>
 
-            <li class=" header_li" id="">
+            <li class="header_li" id="">
               <a href="/rules" class="">Rules</a>
             </li>
 
@@ -132,16 +136,14 @@
     heading[0].href = "/blackbox";
   }
 
-  document.getElementById("wrapper").addEventListener("click", function (event) {
-    // Prevent the default behavior of the anchor tag
-    event.preventDefault();
-
-    // Select the element to be hidden
-    var element = document.getElementById("wrapper");
-
-    // Hide the element by setting its display property to "none"
-    element.style.display = "none";
-  })
+  function leaderClick() {
+    let wrapper = document.getElementById("wrapper");
+    if (wrapper.style.display == "none") {
+      wrapper.style.display = "block";
+    } else {
+      wrapper.style.display = "none";
+    }
+  }
 </script>
 
 </html>

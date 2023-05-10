@@ -14,6 +14,11 @@ body {
   /* background-repeat: no-repeat; */
   background-size: cover;
 }
+.testingdiv{
+  background-color: aqua;
+  margin-top:1rem;
+  color: #fff;
+}
 #logdiv {
   background-color: #17132a;
   border: 4px solid white;

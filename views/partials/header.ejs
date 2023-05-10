@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>BRL Crypthunt</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awsome -->
+    <link
+      rel="stylesheet"
+      href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="public/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/header.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/leaderboard.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <title>BRL Crypthunt</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Google Font-->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
-  <!-- Font Awsome -->
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" type="text/css" href="public/css/styles.css" />
-  <link rel="stylesheet" type="text/css" href="public/css/header.css" />
-</head>
-
-<body>
-  <!-- if logged in  -->
-  <% if (typeof user !='undefined' ) { %>
+  <body>
+    <!-- if logged in  -->
+    <% if (typeof user !='undefined' ) { %>
     <div id="logdiv">
       <ul id="logul">
-        <li class="logli"><a href="/logout" class="ali">Logout</a></li>
+        <a href="/logout" class="ali">
+          <li class="logli">Logout</li>
+        </a>
       </ul>
     </div>
     <div class="index_page_header">
@@ -38,7 +50,7 @@
           </li>
           <hr class="ham_menu_hr" />
           <li class="menu__item" id="">
-            <a href="/leaderboard" class="">Leaderboard</a>
+            <div onclick="leaderClick()" class="">Leaderboard</div>
           </li>
         </div>
       </div>
@@ -48,86 +60,181 @@
         </li>
         <div class="header_routes">
           <li class="header_li" id="">
-            <a href="/leaderboard" class="">Leaderboard</a>
+            <!-- <a href="" onclick="leaderClick()" class="">Leaderboard</a> -->
+            <div onclick="leaderClick()" class="">Leaderboard</div>
           </li>
-          <li class="header_li navbar-hints-section" onmousedown="chbg()"    id="">
+          <li class="header_li navbar-hints-section" onmousedown="chbg()" id="">
             <p href="/" class="navbar-hints-label">Hints</p>
-            <div id="hint_id" class="crypthunt-hints-dropdown">
-                Hint
-            </div>
+            <div id="hint_id" class="crypthunt-hints-dropdown">Hint</div>
           </li>
 
           <li class="header_li user-greet" id="">
             <i class="fa-regular fa-user-circle"></i>
-            <p>&nbsp;
-              <% var full_name=user.name%>
-                <% var first_name=full_name.split(' ')[0]; %>  
-              Hi <%-first_name%>!&nbsp;&nbsp;</p>
+            <p>
+              &nbsp; <% var full_name=user.name%> <% var
+              first_name=full_name.split(' ')[0]; %> Hi
+              <%-first_name%>!&nbsp;&nbsp;
+            </p>
 
-              <svg onclick="logmenu()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="cursor: pointer;" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-              </svg>
+            <svg
+              onclick="logmenu()"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              style="cursor: pointer"
+              fill="currentColor"
+              class="bi bi-caret-down-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+              />
+            </svg>
           </li>
         </div>
       </ul>
     </div>
     <!--  -->
     <!-- -->
-      <!-- else -->
-      <% } else { %>
-      <div class="index_page_header">
-        <div class="hamburger-menu">
-          <input id="menu__toggle" type="checkbox" />
-          <label class="menu__btn" for="menu__toggle">
-            <span></span>
-          </label>
+    <!-- else -->
+    <% } else { %>
+    <div class="index_page_header">
+      <div class="hamburger-menu">
+        <input id="menu__toggle" type="checkbox" />
+        <label class="menu__btn" for="menu__toggle">
+          <span></span>
+        </label>
 
-          <div class="menu__box">
-            <li class="menu__item" id="">
-              <a href="/rules" class="ali">Rules</a>
-            </li>
-            <hr class="ham_menu_hr" />
-            <li class="menu__item" id="">
-              <a href="/leaderboard" class="">Leaderboard</a>
-            </li>
-            
-          </div>
-        </div>
-        <ul class="index_page_ul">
-          <li class="header_title_font">
-            <a href="/" class="" class="heading">Blockverse' 23</a>
+        <div class="menu__box">
+          <li class="menu__item" id="">
+            <a href="/rules" class="ali">Rules</a>
           </li>
-          <div class="header_routes">
-            <li class="header_li" id="">
-              <a href="/leaderboard" class="">Leaderboard</a>
-            </li>
+          <hr class="ham_menu_hr" />
+          <li class="menu__item" id="">
+            <!-- <a href="" onclick="leaderClick()" class="">Leaderboard</a> -->
+            <div onclick="leaderClick()" class="">Leaderboard</div>
+          </li>
+        </div>
+      </div>
+      <ul class="index_page_ul">
+        <li class="header_title_font">
+          <a href="/" class="" class="heading">Blockverse' 23</a>
+        </li>
+        <div class="header_routes">
+          <li class="header_li" id="">
+            <!-- <a href="/leaderboard" class="">Leaderboard</a>
+               -->
+            <div onclick="leaderClick()" class="">Leaderboard</div>
+          </li>
 
-            <li class="header_li" id="">
-              <a href="/rules" class="">Rules</a>
-            </li>
+          <li class="header_li" id="">
+            <a href="/rules" class="">Rules</a>
+          </li>
 
-            <li class="" id="">
-              <a href="/auth/google"><button type="button" class="login_btn" id="">Login</button></a>&nbsp;
-            </li>
-          </div>
+          <li class="" id="">
+            <a href="/auth/google"
+              ><button type="button" class="login_btn" id="">Login</button></a
+            >&nbsp;
+          </li>
+        </div>
       </ul>
     </div>
     <!--  -->
     <!-- -->
 
-    <% } %>
-      </div>
-      </div>
-</body>
-<script>
-  let heading = document.getElementsByClassName("heading");
-  console.log(heading);
-  if (window.location.pathname == "/game") {
-    heading[0].innerHTML = "Crypthunt"
-  }
-  else if (window.location.pathname == "/blackbox") {
-    heading[0].innerHTML = "Blackbox"
-  } 
-</script>
+    <% } %> <%- include("./leaderboard2.ejs"); %>
+  </body>
+  <script>
+    let heading = document.getElementsByClassName("heading");
+    console.log(heading);
+    if (window.location.pathname == "/game") {
+      heading[0].innerHTML = "Crypthunt";
+      heading[0].href = "/game";
+    } else if (window.location.pathname == "/blackbox") {
+      heading[0].innerHTML = "Blackbox";
+      heading[0].href = "/blackbox";
+    }
 
+    function addTableRow(Array) {
+      var table = document.getElementById("crypt-table");
+
+      //remove previously existing table rows
+      var elements = document.getElementsByClassName("cryptrow");
+      for (var i = elements.length - 1; i >= 0; i--) {
+        var element = elements[i];
+        if (element.tagName == "TR") {
+          element.parentNode.removeChild(element);
+        }
+      }
+
+      //add new rows
+      for (let i = 0; i < Array.length; i++) {
+        // Create a new table row element
+        var row = document.createElement("tr");
+        row.classList.add("cryptrow");
+        // Create new table cells
+        var rank = document.createElement("td");
+        var team = document.createElement("td");
+        var level = document.createElement("td");
+        rank.classList.add("cryplColumn");
+        team.classList.add("cryplColumn");
+        level.classList.add("cryplColumn");
+
+        // Set the content of each cell
+        rank.textContent = i + 1;
+        team.textContent = Array[i].team;
+        level.textContent = Array[i].rank;
+
+        // Append the new cells to the new row
+        row.appendChild(rank);
+        row.appendChild(team);
+        row.appendChild(level);
+
+        // Append the new row to the table
+        table.appendChild(row);
+      }
+    }
+
+    function leaderClick() {
+      let wrapper = document.getElementById("wrapper");
+      if (wrapper.style.display == "none") {
+        wrapper.style.display = "block";
+        overallClick();
+      } else {
+        wrapper.style.display = "none";
+      }
+    }
+
+    function overallClick() {
+      let heading = document.getElementById("leaderboard_heading");
+      axios.get("/original_leaderboard").then((res) => {
+        result = res.data.result;
+        addTableRow(result);
+      });
+    }
+
+    function crypthuntClick() {
+      let level = document.getElementById("score");
+      level.innerHTML = "LEVEL";
+      let heading = document.getElementById("leaderboard_heading");
+      heading.innerHTML = "Crypthunt";
+      let wrapper = document.getElementById("wrapper");
+      axios.get("/crypthunt_leaderboard").then((res) => {
+        result = res.data.result;
+        addTableRow(result);
+      });
+    }
+
+    function blackboxClick() {
+      let level = document.getElementById("score");
+      level.innerHTML = "LEVEL";
+      let heading = document.getElementById("leaderboard_heading");
+      heading.innerHTML = "Blackbox";
+      let wrapper = document.getElementById("wrapper");
+      axios.get("/blackbox_leaderboard").then((res) => {
+        result = res.data.result;
+        addTableRow(result);
+      });
+    }
+  </script>
 </html>

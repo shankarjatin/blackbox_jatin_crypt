@@ -4,6 +4,7 @@ const game_controller = require("./../controllers/game_controllers.js");
 const auth_middleware = require("./../middlewares/auth_middleware.js");
 const game_middleware = require("./../middlewares/game_middleware.js");
 const controller = require("./../controllers/controller.js");
+const leaderBoard = require("../controllers/leaderboard.js")
 router.get("/",
 	game_controller.index
 );
@@ -18,13 +19,18 @@ router.get("/rules",
 	game_controller.rules
 );
 
-router.get("/leaderboard",
-	game_controller.leaderboard
-);
+// router.get("/leaderboard",
+// 	game_controller.leaderboard
+// );
+
+router.get("/blackbox_leaderboard", leaderBoard.blackbox)
 
 router.get("/original_leaderboard",
-	game_controller.original_leaderboard
+	leaderBoard.original
+	// game_controller.original_leaderboard
 );
+
+router.get("/crypthunt_leaderboard", leaderBoard.crypthunt);
 
 router.get("/game",
 	auth_middleware.check_login,
@@ -71,7 +77,7 @@ router.post("/delete_hint",
 	game_controller.delete_hint
 )
 
-router.post("/update-question", auth_middleware.check_login,auth_middleware.check_admin,game_controller.updateQuestion);
+router.post("/update-question", auth_middleware.check_login, auth_middleware.check_admin, game_controller.updateQuestion);
 
 router.get("/final-leaderBoard", game_controller.finalLeaderBoard);
 

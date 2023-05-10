@@ -219,6 +219,7 @@ body {
   margin-top: 72px;
 }
 .check-part-inner input {
+  color:white;
   background: linear-gradient(
     120.21deg,
     rgba(99, 101, 148, 0.4) 18.15%,

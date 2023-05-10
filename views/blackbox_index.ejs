@@ -26,17 +26,11 @@
         </script>
         <% } %>
 
-          <div id="logdiv">
-            <ul id="logul">
-              <li class="logli"><a href="/logout" class="ali">Logout</a></li>
-            </ul>
-          </div>
           <%- include("./partials/header.ejs"); %>
             <div id="level-head">
 
               <h1 id="">Level #<%- level %>!</h1>
             </div>
-            <script>console.log("<%- level %>")</script>
 
             <div id="gamediv">
               <div id="outercountdown">
@@ -76,16 +70,16 @@
               </div>
 
 
-      <div class="history-list-container" id="list-container">
-        <% if (user.Array.length> 0) { %>
-          <ul class="history-list blackboxHistory">
-            <% for(let i=(user.Array.length)-1 ; i>=0 ; i--){ %>
-              <li class="history-list-item">
-                <%= user.Array[i] %>
-              </li>
-              <% } %>
-          </ul>
-          <% } %>
+              <div class="history-list-container" id="list-container">
+                <% if (user.Array.length> 0) { %>
+                  <ul class="history-list blackboxHistory">
+                    <% for(let i=(user.Array.length)-1 ; i>=0 ; i--){ %>
+                      <li class="history-list-item">
+                        <%= user.Array[i] %>
+                      </li>
+                      <% } %>
+                  </ul>
+                  <% } %>
 
               </div>
 

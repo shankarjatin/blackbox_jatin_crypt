@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#wrapper{
+    display: none;
+    position: absolute;
+    position: fixed;
+    z-index: 100;
+    top: 3.7rem;
+    width: 100%;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+}
+.outl{
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#leaderboardMenu{
+    width: 90%;
+    color: white;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 2rem;
+    backdrop-filter:blur(15px);
+    background-color: rgba(99, 101, 148, 0.4);
+
+}
+#crypthuntleaderboard{
+    Font-family: Rubik;
+    Font-style: Medium;
+    width: 100vw;
+    height: 80vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#leaderboardMenu h2:hover{
+  color: #EE3FA2;
+}
+#div1 h1{
+    color: #EE3FA2;
+}
+#div1{
+    width: 50%;
+    height: 90%;
+    border-radius: 2rem;
+    backdrop-filter:blur(15px);
+    background-color: rgba(99, 101, 148, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+#linner{
+    width: 100%;
+    overflow-y: scroll;
+}
+#linner::-webkit-scrollbar {
+    display: none;
+  }
+.cryptlrow{
+    line-height: 300%;
+}
+.cryptrow{
+    line-height: 300%;
+}
+#crypt-table{
+    width:100%;
+}
+.cryplColumn{
+    text-align: center;
+}
+

@@ -58,8 +58,12 @@
         <li class="header_title_font">
           <a href="/" class="heading">Blockverse'23</a>
         </li>
+        <li class="header_title_font_2">
+          <a href="/" class="heading-side"></a>
+        </li>
+
         <div class="header_routes">
-          <li class="header_li" id="">
+          <li class="header_li navbar-hints-section" id="">
             <!-- <a href="" onclick="leaderClick()" class="">Leaderboard</a> -->
             <div onclick="leaderClick()" class="">Leaderboard</div>
           </li>
@@ -146,15 +150,21 @@
   </body>
   <script>
     let heading = document.getElementsByClassName("heading");
+    let heading2 = document.getElementsByClassName("heading-side");
     console.log(heading);
     if (window.location.pathname == "/game") {
       heading[0].innerHTML = "Crypthunt";
-      heading[0].href = "/game";
+      heading[0].classList.add("font_primary");
+      heading2[0].classList.add("font_secondary");
+      heading2[0].innerHTML = "Blackbox";
+      heading2[0].href = "/blackbox";
     } else if (window.location.pathname == "/blackbox") {
       heading[0].innerHTML = "Blackbox";
+      heading2[0].classList.add("font_primary");
+      heading2[0].innerHTML = "Crypthunt";
+      heading[0].classList.add("font_secondary");
       heading[0].href = "/blackbox";
     }
-
     function addTableRow(Array) {
       var table = document.getElementById("crypt-table");
 
@@ -231,6 +241,7 @@
       let heading = document.getElementById("leaderboard_heading");
       heading.innerHTML = "Blackbox";
       let wrapper = document.getElementById("wrapper");
+
       axios.get("/blackbox_leaderboard").then((res) => {
         result = res.data.result;
         addTableRow(result);

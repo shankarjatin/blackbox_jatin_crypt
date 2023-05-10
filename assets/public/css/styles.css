@@ -14,9 +14,9 @@ body {
   /* background-repeat: no-repeat; */
   background-size: cover;
 }
-.testingdiv{
+.testingdiv {
   background-color: aqua;
-  margin-top:1rem;
+  margin-top: 1rem;
   color: #fff;
 }
 #logdiv {
@@ -28,6 +28,7 @@ body {
   top: -200px;
   z-index: 2;
 }
+
 #logul {
   padding: 4px;
   margin: 0px;

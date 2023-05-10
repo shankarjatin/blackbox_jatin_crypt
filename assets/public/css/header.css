@@ -44,11 +44,27 @@ a,
   font-size: 28px;
 
   color: #ffffff;
-
+}
+.font_primary {
   text-shadow: 0px 1.2px #ee3fa2, 1.2px 0px #ee3fa2, 0px 0px #ee3fa2,
     1.2px 1.2px #ee3fa2, -1.2px -1.2px #ee3fa2, -1.2px 0px #ee3fa2,
     0px -1.2px #ee3fa2, -1.2px 1.2px #ee3fa2, 1.2px -1.2px #ee3fa2,
     0px 0px 7px #ee3fa2;
+}
+.header_title_font_2 {
+  font-family: "Orbitron";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 28px;
+
+  color: #ffffff;
+}
+.font_secondary {
+  font-size: 30px;
+  text-shadow: 0px 1.8px #2f2f2f, 1.8px 0px #2f2f2f, 0px 0px #2f2f2f,
+    1.8px 1.8px #2f2f2f, -1.8px -1.8px #2f2f2f, -1.8px 0px #2f2f2f,
+    0px -1.8px #2f2f2f, -1.8px 1.8px #2f2f2f, 1.8px -1.8px #2f2f2f,
+    0px 0px 7px #f0d9d9;
 }
 
 .header_li {
@@ -239,6 +255,7 @@ a,
   /* .index_page_header {
     height: 70px;
   } */
+
   .index_page_header {
     display: flex;
 
@@ -255,6 +272,10 @@ a,
   .header_title_font {
     padding-left: 40px;
     font-size: 28px;
+  }
+  .header_title_font_2 {
+    padding-left: 40px;
+    /* font-size: 28px; */
   }
   .login_btn {
     font-size: 20px;

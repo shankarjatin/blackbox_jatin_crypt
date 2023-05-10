@@ -50,13 +50,14 @@
           <li class="header_li" id="">
             <a href="/leaderboard" class="">Leaderboard</a>
           </li>
-
-          <li class="header_li" id="">
-            <a href="/hints" class="">Hints</a>
-            <div class="hints-dropdown"></div>
+          <li class="header_li navbar-hints-section" onmousedown="chbg()"    id="">
+            <p href="/" class="navbar-hints-label">Hints</p>
+            <div id="hint_id" class="crypthunt-hints-dropdown">
+                Hint
+            </div>
           </li>
-          <li class="header_li user-greet" id="">
 
+          <li class="header_li user-greet" id="">
             <i class="fa-regular fa-user-circle"></i>
             <p>&nbsp;
               <% var full_name=user.name%>

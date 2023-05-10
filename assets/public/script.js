@@ -10,7 +10,7 @@ function logmenu() {
   c++;
   if (c % 2 != 0) {
     document.getElementById("logdiv").style.cssText =
-      "position: fixed; top: 10vh; right: 2%;";
+      "position: fixed; top: 60px; right: 2%;";
   } else {
     document.getElementById("logdiv").style.cssText =
       "position: absolute; top: -200px;";
@@ -28,4 +28,9 @@ for (let i = 0; i <= question.length - 1; i++) {
       c.style.display = "none";
     }
   });
+}
+let kk = 0;
+function chbg() {
+  document.getElementById("hint_id").style.display = kk == 0 ? "block" : "none";
+  kk = kk == 0 ? 1 : 0;
 }

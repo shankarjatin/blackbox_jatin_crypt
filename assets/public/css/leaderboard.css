@@ -6,8 +6,9 @@
 #wrapper{
     display: none;
     position: absolute;
+    position: fixed;
     z-index: 100;
-    top: 5rem;
+    top: 3.7rem;
     width: 100%;
     object-fit: cover;
     background-position: center;
@@ -36,7 +37,7 @@
     Font-family: Rubik;
     Font-style: Medium;
     width: 100vw;
-    height: 90vh;
+    height: 80vh;
     color: white;
     display: flex;
     justify-content: center;
@@ -62,7 +63,11 @@
 }
 #linner{
     width: 100%;
+    overflow-y: scroll;
 }
+#linner::-webkit-scrollbar {
+    display: none;
+  }
 .cryptlrow{
     line-height: 300%;
 }

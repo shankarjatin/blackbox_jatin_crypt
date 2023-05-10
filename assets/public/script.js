@@ -6,16 +6,6 @@ function menuclose() {
   document.getElementById("menuul").style.cssText = "left: -70%;";
 }
 
-function logmenu() {
-  c++;
-  if (c % 2 != 0) {
-    document.getElementById("logdiv").style.cssText =
-      "position: fixed; top: 60px; right: 2%;";
-  } else {
-    document.getElementById("logdiv").style.cssText =
-      "position: absolute; top: -200px;";
-  }
-}
 let question = document.getElementsByClassName("fpara");
 for (let i = 0; i <= question.length - 1; i++) {
   question[i].addEventListener("click", function () {
@@ -30,7 +20,13 @@ for (let i = 0; i <= question.length - 1; i++) {
   });
 }
 let kk = 0;
-function chbg() {
-  document.getElementById("hint_id").style.display = kk == 0 ? "block" : "none";
-  kk = kk == 0 ? 1 : 0;
+function chbg(k) {
+  if (k == 1) {
+    document.getElementById("hint_id").style.display = "none";
+    kk = 0;
+  } else {
+    document.getElementById("hint_id").style.display =
+      kk == 0 ? "block" : "none";
+    kk = kk == 0 ? 1 : 0;
+  }
 }

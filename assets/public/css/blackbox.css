@@ -30,7 +30,7 @@ input[type="number"] {
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  font-family: "Orbitron", sans-serif;
+  /* font-family: "Orbitron", sans-serif; */
   list-style-type: none;
 }
 body {
@@ -219,7 +219,7 @@ body {
   margin-top: 72px;
 }
 .check-part-inner input {
-  color:white;
+  color: white;
   background: linear-gradient(
     120.21deg,
     rgba(99, 101, 148, 0.4) 18.15%,

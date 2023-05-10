@@ -67,7 +67,12 @@
             <!-- <a href="" onclick="leaderClick()" class="">Leaderboard</a> -->
             <div onclick="leaderClick()" class="">Leaderboard</div>
           </li>
-          <li class="header_li navbar-hints-section" onmousedown="chbg()" id="">
+          <li
+            class="header_li navbar-hints-section"
+            onclick="leaderClick(1)"
+            onmousedown="chbg()"
+            id=""
+          >
             <p href="/" class="navbar-hints-label">Hints</p>
             <div id="hint_id" class="crypthunt-hints-dropdown">Hint</div>
           </li>
@@ -204,17 +209,24 @@
         table.appendChild(row);
       }
     }
-
-    function leaderClick() {
-      let wrapper = document.getElementById("wrapper");
-      if (wrapper.style.display == "none") {
-        wrapper.style.display = "block";
-        overallClick();
+    let ct = 0;
+    function leaderClick(chk_close) {
+      if (chk_close == 1) {
+        document.getElementById("wrapper").style.display = "none";
+        ct = 0;
       } else {
-        wrapper.style.display = "none";
+        let wrapper = document.getElementById("wrapper");
+        chbg(1); //close the hints tab if open
+        if (ct == 1) {
+          wrapper.style.display = "none";
+          ct = 0;
+        } else {
+          wrapper.style.display = ct == 0 ? "block" : "none";
+          ct = ct == 0 ? 1 : 0;
+        }
+        overallClick();
       }
     }
-
     function overallClick() {
       let heading = document.getElementById("leaderboard_heading");
       axios.get("/original_leaderboard").then((res) => {
@@ -246,6 +258,16 @@
         result = res.data.result;
         addTableRow(result);
       });
+    }
+    function logmenu() {
+      c++;
+      if (c % 2 != 0) {
+        document.getElementById("logdiv").style.cssText =
+          "position: fixed; top: 60px; right: 2%;";
+      } else {
+        document.getElementById("logdiv").style.cssText =
+          "position: absolute; top: -200px;";
+      }
     }
   </script>
 </html>

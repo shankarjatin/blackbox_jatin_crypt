@@ -12,6 +12,10 @@
 
 <body>
 
+  <!-- Below component to blur background while leaderboard is open -->
+  <div id="background-blur-outer">
+
+  </div>
   <!-- Below script is for displaying any message if present -->
   <% if (message !="None" ) { %>
     <script defer>
@@ -84,6 +88,14 @@
               </div>
 
               <script>
+                // 
+                console.log("HI");
+                document.getElementById("background-blur-outer").addEventListener("click", ()=>
+                {
+                  leaderClick(1)
+                  console.log("CLose");
+
+                })
                 //clearing input fields
                 function clear() {
                   var allInputs = document.getElementsByClassName('numbers');

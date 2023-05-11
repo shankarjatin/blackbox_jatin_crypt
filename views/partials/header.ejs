@@ -229,6 +229,11 @@
     }
     function overallClick() {
       let heading = document.getElementById("leaderboard_heading");
+      heading.innerHTML = "Overall";
+      let crypmenu=document.getElementById("crptH").style.color="#ffff";
+      let blackmenu=document.getElementById("BbH").style.color="#ffff";
+      let overallmenu=document.getElementById("overallH").style.color="#EE3FA2";
+
       axios.get("/original_leaderboard").then((res) => {
         result = res.data.result;
         addTableRow(result);
@@ -236,8 +241,15 @@
     }
 
     function crypthuntClick() {
+
       let level = document.getElementById("score");
       level.innerHTML = "LEVEL";
+
+      let crypmenu=document.getElementById("crptH").style.color="#EE3FA2";
+      let blackmenu=document.getElementById("BbH").style.color="#ffff";
+      let overallmenu=document.getElementById("overallH").style.color="#ffff";
+
+
       let heading = document.getElementById("leaderboard_heading");
       heading.innerHTML = "Crypthunt";
       let wrapper = document.getElementById("wrapper");
@@ -248,6 +260,11 @@
     }
 
     function blackboxClick() {
+
+      let crypmenu=document.getElementById("crptH").style.color="#ffff";
+      let blackmenu=document.getElementById("BbH").style.color="#EE3FA2";
+      let overallmenu=document.getElementById("overallH").style.color="#ffff";
+
       let level = document.getElementById("score");
       level.innerHTML = "LEVEL";
       let heading = document.getElementById("leaderboard_heading");

@@ -1,11 +1,15 @@
 const mongoose = require("mongoose");
 
 const hint_schema = new mongoose.Schema({
-    level : {
+    level: {
         type: Number,
         required: true
     },
-    hint : {
+    hint: {
+        type: String,
+        required: true
+    },
+    game: {
         type: String,
         required: true
     }

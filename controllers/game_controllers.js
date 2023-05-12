@@ -219,11 +219,13 @@ exports.hint_manager = (req, res) => {
 
 
 exports.submit_hint = (req, res) => {
-	const { level, hint } = req.body;
+	console.log(req.body);
+	const { game, level, hint } = req.body;
 
 	const new_hint = new Hint({
 		level: level,
-		hint: hint
+		hint: hint,
+		game: game
 	})
 
 	new_hint.save(function (err) {

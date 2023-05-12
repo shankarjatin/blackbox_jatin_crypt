@@ -32,11 +32,31 @@
 
           <%- include("./partials/header.ejs"); %>
             <script>
+              function createUL(Array) {
+                div = document.getElementById("hint_id")
+                div.innerHTML = "";
+                const ul = document.createElement("ul");
+
+                if (Array.length == 0) {
+                  const li = document.createElement("li");
+                  const text = document.createTextNode("No Hints to Show");
+                  li.appendChild(text);
+                  ul.appendChild(li);
+                }
+                else {
+                  for (let i = 0; i < Array.length; i++) {
+                    const li = document.createElement("li");
+                    const text = document.createTextNode(Array[i].hint);
+                    li.appendChild(text);
+                    ul.appendChild(li);
+                  }
+                }
+                div.appendChild(ul);
+              }
               function hintClick() {
                 payload = { game: "Blackbox", level: "<%- level %>" }
-                console.log(payload)
                 axios.post("/get_hints", payload).then(res => {
-                  console.log(res.data);
+                  createUL(res.data.result);
                 })
               }
             </script>

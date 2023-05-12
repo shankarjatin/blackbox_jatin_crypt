@@ -1,39 +1,41 @@
 <%- include("./partials/header.ejs",{name:'triyon'}); %>
+<div id="blur_crpthuntdiv">
 
-<div id="gamediv">
-    <div id="outercountdown">
-        
-           
-            <div class="countdown-timer countdown">00:00:00</div>
-        
-    </div>
-
-    <h1 id="rulesheading">Level # <%-user.level%></h1>
-    <!-- <div id="smallcount">
-        <div id="counter">TIMS LEFT  
-            </div>
-            <div
-            class="countdown">0 : 0 : 0</div>
-
-    </div> -->
-    <div id="gameoutdiv">
-        <div id="" class="ch-game-box">
+    <div id="gamediv">
+        <div id="outercountdown">
             
-            <img src="private/r<%-user.level%>.png"/>
+               
+                <div class="countdown-timer countdown">00:00:00</div>
+            
         </div>
-    </div>
-    <form method="POST" id="formdiv">
-        <div id="divform">
-            <input class="form-control" type="text" name="answer" placeholder="Answer" id="gameanswer">
-            
-                <div class="">
-                    <button class="ch-check-btn" type="submit" formaction="/game" >Check</button>
+    
+        <h1 id="rulesheading">Level # <%-user.level%></h1>
+        <!-- <div id="smallcount">
+            <div id="counter">TIMS LEFT  
                 </div>
-             
-            
-        </div>   
-    </form>
-</div>
+                <div
+                class="countdown">0 : 0 : 0</div>
+    
+        </div> -->
+        <div id="gameoutdiv">
+            <div id="" class="ch-game-box">
+                
+                <img src="private/r<%-user.level%>.png"/>
+            </div>
+        </div>
+        <form method="POST" id="formdiv">
+            <div id="divform">
+                <input class="form-control" type="text" name="answer" placeholder="Answer" id="gameanswer">
+                
+                    <div class="">
+                        <button class="ch-check-btn" type="submit" formaction="/game" >Check</button>
+                    </div>
+                 
+                
+            </div>   
+        </form>
+    </div>
+    </div>
 </div>
 
 <% if (message != "None") { %>

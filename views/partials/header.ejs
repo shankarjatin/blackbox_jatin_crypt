@@ -1,35 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <title>BRL Crypthunt</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Google Font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Font Awsome -->
-    <link
-      rel="stylesheet"
-      href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" type="text/css" href="public/css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="public/css/header.css" />
-    <link rel="stylesheet" type="text/css" href="public/css/leaderboard.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
-  </head>
 
-  <body>
-    <!-- if logged in  -->
-    <% if (typeof user !='undefined' ) { %>
+<head>
+  <meta charset="utf-8" />
+  <title>BRL Crypthunt</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Font Awsome -->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/styles.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/header.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/leaderboard.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
+</head>
+
+<body>
+  <!-- if logged in  -->
+  <% if (typeof user !='undefined' ) { %>
     <div id="logdiv">
       <ul id="logul">
         <a href="/logout" class="ali">
@@ -46,7 +38,7 @@
 
         <div class="menu__box">
           <li class="menu__item" id="">
-            <a href="/hints" class="ali">Hints</a>
+            <div onclick="hintClick()" class="ali">Hints</div>
           </li>
           <hr class="ham_menu_hr" />
           <li class="menu__item" id="">
@@ -67,21 +59,16 @@
             <!-- <a href="" onclick="leaderClick()" class="">Leaderboard</a> -->
             <div onclick="leaderClick()" class="">Leaderboard</div>
           </li>
-          <li
-            class="header_li navbar-hints-section"
-            onclick="leaderClick(1)"
-            onmousedown="chbg()"
-            id=""
-          >
-            <p href="/" class="navbar-hints-label">Hints</p>
-            <div id="hint_id" class="crypthunt-hints-dropdown">Hint</div>
+          <li class="header_li navbar-hints-section" onclick="leaderClick(1)" onmousedown="chbg()" id="">
+            <p onclick="hintClick()" class="navbar-hints-label">Hints</p>
+            <div id="hint_id" onclick="hintClick()" class="crypthunt-hints-dropdown">Hint</div>
           </li>
 
           <li class="header_li user-greet" id="">
             <i class="fa-regular fa-user-circle"></i>
             <p>
-              &nbsp; <% var full_name=user.name%> <% var
-              first_name=full_name.split(' ')[0]; %> Hi
+              &nbsp; <% var full_name=user.name%>
+                <% var first_name=full_name.split(' ')[0]; %> Hi
               <%-first_name%>!&nbsp;&nbsp;
             </p>
 
@@ -128,170 +115,169 @@
       <ul class="index_page_ul">
         <li class="header_title_font">
           <a href="/" class="" class="heading">Blockverse' 23</a>
-        </li>
-        <div class="header_routes">
-          <li class="header_li" id="">
-            <div onclick="leaderClick()" class="">Leaderboard</div>
           </li>
+          <div class="header_routes">
+            <li class="header_li" id="">
+              <div onclick="leaderClick()" class="">Leaderboard</div>
+            </li>
 
-          <li class="header_li" id="">
-            <a href="/rules" class="">Rules</a>
-          </li>
+            <li class="header_li" id="">
+              <a href="/rules" class="">Rules</a>
+            </li>
 
-          <li class="" id="">
-            <a href="/auth/google"
-              ><button type="button" class="login_btn" id="">Login</button></a
-            >&nbsp;
-          </li>
-        </div>
+            <li class="" id="">
+              <a href="/auth/google"><button type="button" class="login_btn" id="">Login</button></a>&nbsp;
+            </li>
+          </div>
       </ul>
     </div>
     <!--  -->
     <!-- -->
 
     <% } %> <%- include("./leaderboard2.ejs"); %>
-  </body>
-  <script>
-    let heading = document.getElementsByClassName("heading");
-    let heading2 = document.getElementsByClassName("heading-side");
-    console.log(heading);
-    if (window.location.pathname == "/game") {
-      heading[0].innerHTML = "Crypthunt";
-      heading[0].classList.add("font_primary");
-      heading2[0].classList.add("font_secondary");
-      heading2[0].innerHTML = "Blackbox";
-      heading2[0].href = "/blackbox";
-    } else if (window.location.pathname == "/blackbox") {
-      heading[0].innerHTML = "Blackbox";
-      heading2[0].classList.add("font_primary");
-      heading2[0].innerHTML = "Crypthunt";
-      heading[0].classList.add("font_secondary");
-      heading[0].href = "/blackbox";
-    }
-    function addTableRow(Array) {
-      var table = document.getElementById("crypt-table");
+</body>
+<script>
+  let heading = document.getElementsByClassName("heading");
+  let heading2 = document.getElementsByClassName("heading-side");
+  console.log(heading);
+  if (window.location.pathname == "/game") {
+    heading[0].innerHTML = "Crypthunt";
+    heading[0].classList.add("font_primary");
+    heading2[0].classList.add("font_secondary");
+    heading2[0].innerHTML = "Blackbox";
+    heading2[0].href = "/blackbox";
+  } else if (window.location.pathname == "/blackbox") {
+    heading[0].innerHTML = "Blackbox";
+    heading2[0].classList.add("font_primary");
+    heading2[0].innerHTML = "Crypthunt";
+    heading[0].classList.add("font_secondary");
+    heading[0].href = "/blackbox";
+  }
+  function addTableRow(Array) {
+    var table = document.getElementById("crypt-table");
 
-      //remove previously existing table rows
-      var elements = document.getElementsByClassName("cryptrow");
-      for (var i = elements.length - 1; i >= 0; i--) {
-        var element = elements[i];
-        if (element.tagName == "TR") {
-          element.parentNode.removeChild(element);
-        }
-      }
-
-      //add new rows
-      for (let i = 0; i < Array.length; i++) {
-        // Create a new table row element
-        var row = document.createElement("tr");
-        row.classList.add("cryptrow");
-        // Create new table cells
-        var rank = document.createElement("td");
-        var team = document.createElement("td");
-        var level = document.createElement("td");
-        rank.classList.add("cryplColumn");
-        team.classList.add("cryplColumn");
-        level.classList.add("cryplColumn");
-
-        // Set the content of each cell
-        rank.textContent = i + 1;
-        team.textContent = Array[i].team;
-        level.textContent = Array[i].rank;
-
-        // Append the new cells to the new row
-        row.appendChild(rank);
-        row.appendChild(team);
-        row.appendChild(level);
-
-        // Append the new row to the table
-        table.appendChild(row);
-        chbg(1); //close the hints tab if open
+    //remove previously existing table rows
+    var elements = document.getElementsByClassName("cryptrow");
+    for (var i = elements.length - 1; i >= 0; i--) {
+      var element = elements[i];
+      if (element.tagName == "TR") {
+        element.parentNode.removeChild(element);
       }
     }
-    let ct = 0;
-    function leaderClick(chk_close) {
-      // below condition to force close in any case
-      if (chk_close == 1) {
-        document.getElementById("wrapper").style.display = "none";
-        document.getElementById("background-blur-outer").style.display = "none";
+
+    //add new rows
+    for (let i = 0; i < Array.length; i++) {
+      // Create a new table row element
+      var row = document.createElement("tr");
+      row.classList.add("cryptrow");
+      // Create new table cells
+      var rank = document.createElement("td");
+      var team = document.createElement("td");
+      var level = document.createElement("td");
+      rank.classList.add("cryplColumn");
+      team.classList.add("cryplColumn");
+      level.classList.add("cryplColumn");
+
+      // Set the content of each cell
+      rank.textContent = i + 1;
+      team.textContent = Array[i].team;
+      level.textContent = Array[i].rank;
+
+      // Append the new cells to the new row
+      row.appendChild(rank);
+      row.appendChild(team);
+      row.appendChild(level);
+
+      // Append the new row to the table
+      table.appendChild(row);
+      chbg(1); //close the hints tab if open
+    }
+  }
+  let ct = 0;
+  function leaderClick(chk_close) {
+    // below condition to force close in any case
+    if (chk_close == 1) {
+      document.getElementById("wrapper").style.display = "none";
+      document.getElementById("background-blur-outer").style.display = "none";
+      ct = 0;
+    } else {
+      let wrapper = document.getElementById("wrapper");
+      chbg(1); //close the hints tab if open
+      if (ct == 1) {
+        wrapper.style.display = "none";
+        document.getElementById("background-blur-outer").style.display =
+          "none";
+
         ct = 0;
       } else {
-        let wrapper = document.getElementById("wrapper");
-        chbg(1); //close the hints tab if open
-        if (ct == 1) {
-          wrapper.style.display = "none";
-          document.getElementById("background-blur-outer").style.display =
-            "none";
+        document.getElementById("background-blur-outer").style.display =
+          ct == 0 ? "block" : "none";
 
-          ct = 0;
-        } else {
-          document.getElementById("background-blur-outer").style.display =
-            ct == 0 ? "block" : "none";
-
-          wrapper.style.display = ct == 0 ? "block" : "none";
-          ct = ct == 0 ? 1 : 0;
-        }
-        overallClick();
+        wrapper.style.display = ct == 0 ? "block" : "none";
+        ct = ct == 0 ? 1 : 0;
       }
+      overallClick();
     }
-    function overallClick() {
-      let heading = document.getElementById("leaderboard_heading");
-      heading.innerHTML = "Overall";
-      let crypmenu=document.getElementById("crptH").style.color="#ffff";
-      let blackmenu=document.getElementById("BbH").style.color="#ffff";
-      let overallmenu=document.getElementById("overallH").style.color="#EE3FA2";
+  }
+  function overallClick() {
+    let heading = document.getElementById("leaderboard_heading");
+    heading.innerHTML = "Overall";
+    let crypmenu = document.getElementById("crptH").style.color = "#ffff";
+    let blackmenu = document.getElementById("BbH").style.color = "#ffff";
+    let overallmenu = document.getElementById("overallH").style.color = "#EE3FA2";
 
-      axios.get("/original_leaderboard").then((res) => {
-        result = res.data.result;
-        addTableRow(result);
-      });
+    axios.get("/original_leaderboard").then((res) => {
+      result = res.data.result;
+      addTableRow(result);
+    });
+  }
+
+  function crypthuntClick() {
+
+    let level = document.getElementById("score");
+    level.innerHTML = "LEVEL";
+
+    let crypmenu = document.getElementById("crptH").style.color = "#EE3FA2";
+    let blackmenu = document.getElementById("BbH").style.color = "#ffff";
+    let overallmenu = document.getElementById("overallH").style.color = "#ffff";
+
+
+    let heading = document.getElementById("leaderboard_heading");
+    heading.innerHTML = "Crypthunt";
+    let wrapper = document.getElementById("wrapper");
+    axios.get("/crypthunt_leaderboard").then((res) => {
+      result = res.data.result;
+      addTableRow(result);
+    });
+  }
+
+  function blackboxClick() {
+
+    let crypmenu = document.getElementById("crptH").style.color = "#ffff";
+    let blackmenu = document.getElementById("BbH").style.color = "#EE3FA2";
+    let overallmenu = document.getElementById("overallH").style.color = "#ffff";
+
+    let level = document.getElementById("score");
+    level.innerHTML = "LEVEL";
+    let heading = document.getElementById("leaderboard_heading");
+    heading.innerHTML = "Blackbox";
+    let wrapper = document.getElementById("wrapper");
+
+    axios.get("/blackbox_leaderboard").then((res) => {
+      result = res.data.result;
+      addTableRow(result);
+    });
+  }
+  function logmenu() {
+    c++;
+    if (c % 2 != 0) {
+      document.getElementById("logdiv").style.cssText =
+        "position: fixed; top: 60px; right: 2%;";
+    } else {
+      document.getElementById("logdiv").style.cssText =
+        "position: absolute; top: -200px;";
     }
+  }
+</script>
 
-    function crypthuntClick() {
-
-      let level = document.getElementById("score");
-      level.innerHTML = "LEVEL";
-
-      let crypmenu=document.getElementById("crptH").style.color="#EE3FA2";
-      let blackmenu=document.getElementById("BbH").style.color="#ffff";
-      let overallmenu=document.getElementById("overallH").style.color="#ffff";
-
-
-      let heading = document.getElementById("leaderboard_heading");
-      heading.innerHTML = "Crypthunt";
-      let wrapper = document.getElementById("wrapper");
-      axios.get("/crypthunt_leaderboard").then((res) => {
-        result = res.data.result;
-        addTableRow(result);
-      });
-    }
-
-    function blackboxClick() {
-
-      let crypmenu=document.getElementById("crptH").style.color="#ffff";
-      let blackmenu=document.getElementById("BbH").style.color="#EE3FA2";
-      let overallmenu=document.getElementById("overallH").style.color="#ffff";
-
-      let level = document.getElementById("score");
-      level.innerHTML = "LEVEL";
-      let heading = document.getElementById("leaderboard_heading");
-      heading.innerHTML = "Blackbox";
-      let wrapper = document.getElementById("wrapper");
-
-      axios.get("/blackbox_leaderboard").then((res) => {
-        result = res.data.result;
-        addTableRow(result);
-      });
-    }
-    function logmenu() {
-      c++;
-      if (c % 2 != 0) {
-        document.getElementById("logdiv").style.cssText =
-          "position: fixed; top: 60px; right: 2%;";
-      } else {
-        document.getElementById("logdiv").style.cssText =
-          "position: absolute; top: -200px;";
-      }
-    }
-  </script>
 </html>

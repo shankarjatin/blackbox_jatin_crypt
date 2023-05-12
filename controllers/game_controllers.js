@@ -147,9 +147,9 @@ exports.check = (req, res) => {
 							}
 							if (attempted_answer == result[0].answer) {
 								result2.attempts.push(attempt);
-								User.findOneAndUpdate({_id:result2._id},{$inc:{score:result[0].credit}}).then(update=>{
+								User.findOneAndUpdate({ _id: result2._id }, { $inc: { score: result[0].credit } }).then(update => {
 									console.log(update);
-								}).catch(err=>{
+								}).catch(err => {
 									throw err;
 								})
 								result2.level += 1;
@@ -176,18 +176,33 @@ exports.check = (req, res) => {
 	})
 }
 
-exports.get_hints = (req, res) => {
-	Hint.find({}, function (err, result) {
-		if (err) {
-			res.send("Error in fetching hints");
-		} else {
-			res.render("hints", {
-				user: req.user,
-				hints: result
-			})
-		}
+// exports.get_hints = (req, res) => {
+// 	Hint.find({}, function (err, result) {
+// 		if (err) {
+// 			res.send("Error in fetching hints");
+// 		} else {
+// 			res.render("hints", {
+// 				user: req.user,
+// 				hints: result
+// 			})
+// 		}
+// 	})
+// }
+
+exports.get_hints = async (req, res) => {
+	console.log(req.body);
+	await Hint.find({ level: req.body.level, game: req.body.game }
+	).then((data) => {
+		res.json({ result: data });
+	}).catch((err) => {
+		console.log(err);
+		res.json({
+			error: err
+		})
 	})
 }
+
+
 
 exports.hint_manager = (req, res) => {
 	Hint.find({}, function (err, result) {
@@ -222,7 +237,7 @@ exports.submit_hint = (req, res) => {
 }
 
 exports.delete_hint = (req, res) => {
-	const {id} = req.body ;
+	const { id } = req.body;
 	Hint.findByIdAndDelete(id, function (err) {
 		if (err) {
 			res.send("Error in deleting hint");
@@ -232,14 +247,14 @@ exports.delete_hint = (req, res) => {
 	})
 }
 
-exports.updateQuestion=(req,res,next)=>{
-	const {level,credit}=req.body;
-	Question.findOneAndUpdate({level:level},{credit:credit}).then(updated=>{
+exports.updateQuestion = (req, res, next) => {
+	const { level, credit } = req.body;
+	Question.findOneAndUpdate({ level: level }, { credit: credit }).then(updated => {
 		res.status(204).json({
-			message:"updated Successfully",
-			question:updated,
+			message: "updated Successfully",
+			question: updated,
 		})
-	}).catch(err=>{
+	}).catch(err => {
 		throw err;
 	})
 }
@@ -256,35 +271,35 @@ exports.updateQuestion=(req,res,next)=>{
 // 	})
 // }
 
-exports.finalLeaderBoard = (req, res) => {
-	console.log("req at leaderboard");
-	User.find({}).lean().sort({score:-1}).select("name score -_id").exec(function (err, result) {
-		if (err) {
-			res.send("Some error occured in fetching leaderboard");
-		} else {
-			/*
-			 * Below code is for calculating rank from sorted
-			 * players data fetched from database
-			 *  --> Players on equal level will have equal ranks.
-			 */
-			var rank = 0
-			var current_rank = 0
-			var score = 100;
-			result.forEach((person, index) => {
-				rank += 1;
-				if (person.score != score) {
-					result[index].rank = rank;
-					current_rank = rank;
-				} else {
-					result[index].rank = current_rank;
-				}
-				score = person.score;
-			})
+// exports.finalLeaderBoard = (req, res) => {
+// 	console.log("req at leaderboard");
+// 	User.find({}).lean().sort({score:-1}).select("name score -_id").exec(function (err, result) {
+// 		if (err) {
+// 			res.send("Some error occured in fetching leaderboard");
+// 		} else {
+// 			/*
+// 			 * Below code is for calculating rank from sorted
+// 			 * players data fetched from database
+// 			 *  --> Players on equal level will have equal ranks.
+// 			 */
+// 			var rank = 0
+// 			var current_rank = 0
+// 			var score = 100;
+// 			result.forEach((person, index) => {
+// 				rank += 1;
+// 				if (person.score != score) {
+// 					result[index].rank = rank;
+// 					current_rank = rank;
+// 				} else {
+// 					result[index].rank = current_rank;
+// 				}
+// 				score = person.score;
+// 			})
 
-			res.render("final_leaderboard", {
-				user: req.user,
-				leaderboard: result
-			})
-		}
-	});
-}
+// 			res.render("final_leaderboard", {
+// 				user: req.user,
+// 				leaderboard: result
+// 			})
+// 		}
+// 	});
+// }

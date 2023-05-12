@@ -1,27 +1,29 @@
 <%- include("./partials/header.ejs"); %>
 
-<h1 id="rulesheading">Hint Manager</h1>
-<div id="rulesdiv">
-	<div id="boxdiv">
-		<ul id="rulesul">
-            <% hints.forEach(element => { %>
-                <form action="/delete_hint" method="post">
-                    <input type="hidden" name="id" value="<%- element.id %>">
-                    <li class="rulesli"> <input type="submit" value="X"> | Level # <%- element.level %>  | <%- element.hint %> </li>                    
-                </form>
-                <hr>
-            <% }) %>
-			
-            <li class="rulesli">
-                <form action="/hints" method="post">
-                    <input type="Number" name="level" placeholder="Level">
-                    <input type="text" name="hint" placeholder="Hint">
-                    <input type="submit" value="Post Hint">
-                </form>
-            </li>
-        </ul>
-	</div>
-</div>
-</div>
+    <h1 id="rulesheading">Hint Manager</h1>
+    <div id="rulesdiv">
+        <div id="boxdiv">
+            <ul id="rulesul">
+                <% hints.forEach(element=> { %>
+                    <form action="/delete_hint" method="post">
+                        <input type="hidden" name="id" value="<%- element.id %>">
+                        <li class="rulesli"> <input type="submit" value="X"> | Level # <%- element.level %> | <%-
+                                    element.hint %> </li>
+                    </form>
+                    <hr>
+                    <% }) %>
 
-<%- include("./partials/footer.ejs"); %>
+                        <li class="rulesli">
+                            <form action="/hints" method="post">
+                                <input type="text" name="game" placeholder="Game">
+                                <input type="Number" name="level" placeholder="Level">
+                                <input type="text" name="hint" placeholder="Hint">
+                                <input type="submit" value="Post Hint">
+                            </form>
+                        </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+
+    <%- include("./partials/footer.ejs"); %>

@@ -51,7 +51,8 @@
                 <div class="check-part-inner">
 
                   <label for="submit_expression">Enter your expression here!</label>
-                  <input type="text" placeholder="Enter your expression" name="user_expression" id="submit_expression">
+                  <input type="text" placeholder="Enter your expression" name="user_expression" id="submit_expression"
+                    onkeypress="return /[a-e+\-*/]/i.test(event.key)">
                 </div>
 
                 <button class="blackbox-btn" onclick="submit()">Submit Expression</button>
@@ -210,6 +211,24 @@
                       })
                     }
 
+                  </script>
+                  <script>
+                    // input validation for submit expression
+                    const inputField = document.getElementById("submit_expression");
+
+                    inputField.addEventListener("paste", (event) => {
+                      // Get the pasted data as plain text
+                      const pastedData = event.clipboardData.getData("text/plain");
+
+                      // Remove all characters that are not a through e, +, -, *, or /
+                      const filteredData = pastedData.replace(/[^a-e+\-*/]/gi, "");
+
+                      // Set the input field value to the filtered data
+                      inputField.value = filteredData;
+
+                      // Prevent the default paste action
+                      event.preventDefault();
+                    });
                   </script>
 
 

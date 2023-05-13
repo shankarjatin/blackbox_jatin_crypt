@@ -7,15 +7,16 @@ body {
   background-image: url("../blackbox_bg.png");
   width: 100%;
   height: 250vh;
+
   object-fit: cover;
   /* overflow-x: hidden; */
   background-position: center;
   /* background-repeat: no-repeat; */
   background-size: cover;
 }
-.testingdiv{
+.testingdiv {
   background-color: aqua;
-  margin-top:1rem;
+  margin-top: 1rem;
   color: #fff;
 }
 #logdiv {
@@ -27,6 +28,7 @@ body {
   top: -200px;
   z-index: 2;
 }
+
 #logul {
   padding: 4px;
   margin: 0px;
@@ -37,6 +39,9 @@ body {
   padding: 10px 0px;
   text-align: center;
   font-size: 16px;
+  /* position: absolute; */
+  /* z-index: 1000; */
+  /* background-color: red; */
 }
 .logli:hover {
   background-color: #ee3fa2;
@@ -241,6 +246,7 @@ body {
 .inline {
   display: inline-block;
 }
+
 /*RULES CSS*/
 #rulesheading {
   padding-top: 100px;
@@ -250,6 +256,10 @@ body {
   font-family: "Orbitron", sans-serif;
   font-weight: 700;
 }
+
+/* #{
+
+} */
 
 #leaderboard_rulesheading {
   padding: 14vh 0vw 4vh 0vw;

@@ -55,7 +55,9 @@ function addTableRow(Array) {
 
         // Append the new row to the table
         table.appendChild(row);
-        chbg(1); //close the hints tab if open
+        if (window.location.pathname == "/game" || window.location.pathname == "/blackbox") {
+            chbg(1); //close the hints tab if open
+        }
     }
 }
 
@@ -63,13 +65,17 @@ function addTableRow(Array) {
 let ct = 0;
 function leaderClick(chk_close) {
     // below condition to force close in any case
+    // console.log(document.getElementById("wrapper"));
+    // console.log(document.getElementById("background-blur-outer"))
     if (chk_close == 1) {
         document.getElementById("wrapper").style.display = "none";
         document.getElementById("background-blur-outer").style.display = "none";
         ct = 0;
     } else {
         let wrapper = document.getElementById("wrapper");
-        chbg(1); //close the hints tab if open
+        if (window.location.pathname == "/game" || window.location.pathname == "/blackbox") {
+            chbg(1); //close the hints tab if open
+        }
         if (ct == 1) {
             wrapper.style.display = "none";
             document.getElementById("background-blur-outer").style.display =

@@ -30,7 +30,7 @@ input[type="number"] {
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  font-family: "Orbitron", sans-serif;
+  /* font-family: "Orbitron", sans-serif; */
   list-style-type: none;
 }
 body {
@@ -219,7 +219,7 @@ body {
   margin-top: 72px;
 }
 .check-part-inner input {
-  color:white;
+  color: white;
   background: linear-gradient(
     120.21deg,
     rgba(99, 101, 148, 0.4) 18.15%,
@@ -278,4 +278,19 @@ body {
   #level-head {
     padding-top: 120px;
   }
+}
+#background-blur-outer {
+  /* content: ""; */
+  display: none;
+  z-index: 3;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    120.21deg,
+    rgba(99, 101, 148, 0.4) 18.15%,
+    rgba(55, 57, 92, 0.1) 82.15%
+  );
+  box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
 }

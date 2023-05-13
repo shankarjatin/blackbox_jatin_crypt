@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#wrapper {
+  display: none;
+  position: absolute;
+  position: fixed;
+  z-index: 100;
+  top: 60px;
+  width: 100%;
+  object-fit: cover;
+  background-position: center;
+  background-size: cover;
+}
+.outl {
+  width: 100vw;
+  height: 99px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+#leaderboardMenu {
+  width: 90%;
+  color: white;
+  height: 90%;
+  max-width: 1313px;
+  font-family: "Rubik";
+  font-weight: 900;
+  /* font-size: 22px; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 55px;
+
+  background: linear-gradient(
+    120.21deg,
+    rgba(99, 101, 148, 0.4) 18.15%,
+    rgba(55, 57, 92, 0.1) 82.15%
+  );
+  box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 55px;
+}
+#crypthuntleaderboard {
+  font-family: "Rubik";
+  font-style: Medium;
+  width: 100vw;
+  height: 80vh;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+#leaderboardMenu h2:hover {
+  color: #ee3fa2;
+}
+#div1 h1 {
+  color: #ee3fa2;
+}
+#leaderboard_heading {
+  margin-top: 26px;
+}
+#div1 {
+  width: 50%;
+  height: 90%;
+  border-radius: 2rem;
+  backdrop-filter: blur(15px);
+  background: linear-gradient(
+    120.21deg,
+    rgba(99, 101, 148, 0.4) 18.15%,
+    rgba(55, 57, 92, 0.1) 82.15%
+  );
+  box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(20px);
+
+  border-radius: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#linner {
+  width: 100%;
+  overflow-y: scroll;
+}
+#linner::-webkit-scrollbar {
+  display: none;
+}
+.cryptlrow {
+  line-height: 300%;
+}
+.cryptrow {
+  line-height: 300%;
+}
+#crypt-table {
+  width: 100%;
+}
+.cryplColumn {
+  text-align: center;
+}
+
+.leaderboard_option_nav:hover {
+  cursor: pointer;
+}
+.leaderboard_close_btn {
+  position: absolute;
+  right: 35px;
+  top: 35px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: rgb(227, 227, 227);
+}

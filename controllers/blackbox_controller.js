@@ -38,7 +38,7 @@ exports.getBlackbox = async (req, res) => {
     }
 }
 
-exports.postBlackbox = async (req, res) => {
+exports.postBlackbox = async (req, res) => {  // suspected to be unused
     const email = req.user.email;
     let gamer = await User.findOne({ email: email });
     var level = gamer.blackbox_level;

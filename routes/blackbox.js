@@ -12,6 +12,7 @@ router.get("/blackbox",
     blackbox_controller.getBlackbox
 )
 
+// Suspected to be unused
 router.post("/blackbox", 
     game_middleware.check_game_timing, 
     auth_middleware.check_login,

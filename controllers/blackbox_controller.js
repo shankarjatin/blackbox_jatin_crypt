@@ -1,6 +1,7 @@
 const Ques_BlackBox = require("../models/question_blackbox");
 const User = require("./../models/user.js");
 const Game = require("./../models/game");
+const Team = require("./../models/teams");
 const { validationResult } = require("express-validator");
 
 exports.getBlackbox = async (req, res) => {
@@ -83,8 +84,9 @@ exports.postBlackbox = async (req, res) => {  // suspected to be unused
     })
 }
 
-exports.black_ques = async (req, res, next) => {
+exports.black_ques = async (req, res) => {
     try {
+        // To-do : DRY this code
         let a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0;
         let variables = [], i = 0;
         var userInput = `Combination of`;
@@ -124,68 +126,56 @@ exports.black_ques = async (req, res, next) => {
             variables[i++] = 'g';
         }
 
-        let gamer = await User.findOne({ email: req.user.email });
-        var level1 = gamer.blackbox_level;
+        let team = req.team;
+        var level1 = team.blackbox_level;
         let ques_game = await Ques_BlackBox.findOne({ level: level1 });
         var expression_real = eval(ques_game.answer_expression);
         userInput = userInput + ` is ${expression_real}`;
-
-        Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
-            if (err) {
+        
+        if (variables.length != ques_game.no_of_variables) {
+            const message = "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0"
+            res.json({
+                success: false,
+                message: message,
+                redirect: false
+            })
+        }
+        else if (req.user.submitted == true) {
+            message = "You have already submitted. Please check your rank in the leaderboard";
+            req.logout();
+            res.json({
+                success: true,
+                message: message,
+                redirect: true,
+                url: "/final-leaderBoard"
+            })
+        }
+        else if (level1 == (process.env.BLACK_LEVEL)) {
+            message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+            res.json({
+                success: true,
+                message: message,
+                redirect: true,
+                url: "/blackbox_leaderboard"
+            })
+        }
+        else {
+            Team.findOneAndUpdate(
+                { _id: req.team._id },
+                { $push: { Array: userInput } },
+                { new: true } // Set the "new" option to return the updated document
+            )
+            .then(data => {
                 res.json({
-                    success: false,
-                    message: "Error in fetching game",
-                    redirect: false
-                })
-            } else {
-                if (variables.length != ques_game.no_of_variables) {
-                    const message = "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0"
-                    res.json({
-                        success: false,
-                        message: message,
-                        redirect: false
-                    })
-                }
-                else if (req.user.submitted == true) {
-                    message = "You have already submitted. Please check your rank in the leaderboard";
-                    req.logout();
-                    res.json({
-                        success: true,
-                        message: message,
-                        redirect: true,
-                        url: "/final-leaderBoard"
-                    })
-                }
-                else if (level1 == (process.env.BLACK_LEVEL)) {
-                    message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                    res.json({
-                        success: true,
-                        message: message,
-                        redirect: true,
-                        url: "/blackbox_leaderboard"
-                    })
-                }
-                else {
-
-                    User.findOneAndUpdate(
-                        { email: req.user.email },
-                        { $push: { Array: userInput } },
-                        { new: true } // Set the "new" option to return the updated document
-                    )
-                        .then(data => {
-                            res.json({
-                                success: true,
-                                redirect: false,
-                                attempts: data.Array
-                            });
-                        })
-                        .catch(error => {
-                            console.error('Failed to update document:', error);
-                        });
-                }
-            }
-
-        })
+                    success: true,
+                    redirect: false,
+                    attempts: data.Array
+                });
+            })
+            .catch(error => {
+                console.error('Failed to update document:', error);
+            });
+        }   
     }
     catch (err) {
         console.log(err);

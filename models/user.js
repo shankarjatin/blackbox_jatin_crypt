@@ -9,35 +9,6 @@ const userSchema = new mongoose.Schema({
 	alias: String,
 	email: String,
 	googleId: String,
-	level: {
-		type: Number,
-		default: 1
-	},
-	score: {
-		type: Number,
-		default: 0
-	},
-	blocked_message: {
-		type: String,
-		default: ""
-	},
-	attempts: [],
-	submitted: {
-		type: Boolean,
-		default: false
-	},
-	Array: {
-		type: [String], // Define the field as an array of strings
-		default: [] // Optional: Set a default value for the array (empty array in this case)
-	},
-	blackbox_level: {
-		type: Number,
-		default: 1
-	},
-	black_points: {
-		type: Number,
-		default: 0
-	},
 },
 	{ timestamps: true }
 );

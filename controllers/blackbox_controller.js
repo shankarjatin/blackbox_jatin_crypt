@@ -186,12 +186,12 @@ exports.black_ques = async (req, res) => {
 exports.submit_blackbox = async (req, res) => {
     try {
         const errors = validationResult(req);
-        let gamer = await User.findOne({ email: req.user.email });
-        let ques_game = await Ques_BlackBox.findOne({ level: gamer.blackbox_level });
+        let team = req.team;
+        let ques_game = await Ques_BlackBox.findOne({ level: team.blackbox_level });
         const expression = req.body.user_expression.toString().toLowerCase();
         var expression_black = ques_game.answer_expression;
         let credit = ques_game.credit;
-        let time = Date.now();
+        let time = Date.now(); // to remove
 
         //declaring variables as per requirement and running testcases
         let a, b, c, d, e, f, g;
@@ -229,7 +229,7 @@ exports.submit_blackbox = async (req, res) => {
                 }
             }
             var expression_real = eval(expression_black);
-            let result_user = eval(expression);
+            let result_user = eval(expression); // needs to be put in try catch
             if (expression_real === result_user) {
                 testcase++;
             }
@@ -237,93 +237,82 @@ exports.submit_blackbox = async (req, res) => {
                 success = false;
                 break;
             }
-
         }
 
-        Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
-            if (err) {
+        if (!errors.isEmpty()) {
+            const message = "Invalid Input or Empty Field, Kindly Enter a String of non-numeric values as per the instructions";
+            res.json({
+                success: false,
+                redirect: false,
+                message: message
+            })
+        }
+        else if (req.user.submitted == true) {
+            message = "You have already submitted. Please check your rank in the leaderboard";
+            req.logout();
+            res.json({
+                success: true,
+                redirect: true,
+                message: message,
+                url: "/final-leaderBoard"
+            })
+        }
+        else if (team.level == (process.env.BLACK_LEVEL)) {
+            message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+            res.json({
+                success: true,
+                redirect: true,
+                message: message,
+                url: "/blackbox_leaderboard"
+            })
+        }
+        else {
+            if (success == false) {
+                message = "Sorry!!! You guessed it wrong"
                 res.json({
                     success: false,
-                    message: "Error in fetching game",
-                    redirect: false
+                    redirect: false,
+                    message: message
                 })
-            } else {
-                if (!errors.isEmpty()) {
-                    const message = "Invalid Input or Empty Field, Kindly Enter a String of non-numeric values as per the instructions";
+            }
+            else {
+                Team.findOneAndUpdate(
+                    { _id: req.team._id },
+                    {
+                        $unset: { Array: 1 }, // Use $unset operator to delete the field
+                        $inc: {
+                            blackbox_level: 1,
+                            black_points: credit,
+                            score: credit
+                        }
+                    }, { new: true }
+                ).then(result => {
+                    if (result.blackbox_level == process.env.BLACK_LEVEL) {
+                        message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+                        return res.json({
+                            success: true,
+                            redirect: true,
+                            message: message,
+                            url: "/blackbox_leaderboard"
+                        })
+                    }
+                    message = "Well Done! You guessed it correct";
+                    res.json({
+                        success: true,
+                        redirect: false,
+                        message: message
+                    })
+                })
+                .catch(error => {
+                    message = "Please try again"
                     res.json({
                         success: false,
                         redirect: false,
                         message: message
                     })
-                }
-                else if (req.user.submitted == true) {
-                    message = "You have already submitted. Please check your rank in the leaderboard";
-                    req.logout();
-                    res.json({
-                        success: true,
-                        redirect: true,
-                        message: message,
-                        url: "/final-leaderBoard"
-                    })
-                }
-                else if (gamer.level == (process.env.BLACK_LEVEL)) {
-                    message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                    res.json({
-                        success: true,
-                        redirect: true,
-                        message: message,
-                        url: "/blackbox_leaderboard"
-                    })
-                }
-                else {
-                    if (success == false) {
-                        message = "Sorry!!! You guessed it wrong"
-                        res.json({
-                            success: false,
-                            redirect: false,
-                            message: message
-                        })
-                    }
-                    else {
-                        User.findOneAndUpdate(
-                            { email: req.user.email },
-                            {
-                                $unset: { Array: 1 }, // Use $unset operator to delete the field
-                                $inc: {
-                                    blackbox_level: 1,
-                                    black_points: credit,
-                                    score: credit
-                                }
-                            }, { new: true }
-                        ).then(result => {
-                            if (result.blackbox_level == process.env.BLACK_LEVEL) {
-                                message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                                return res.json({
-                                    success: true,
-                                    redirect: true,
-                                    message: message,
-                                    url: "/blackbox_leaderboard"
-                                })
-                            }
-                            message = "Well Done! You guessed it correct";
-                            res.json({
-                                success: true,
-                                redirect: false,
-                                message: message
-                            })
-                        })
-                            .catch(error => {
-                                message = "Please try again"
-                                res.json({
-                                    success: false,
-                                    redirect: false,
-                                    message: message
-                                })
-                            });
-                    }
-                }
+                });
             }
-        })
+        }
     } catch (err) {
         console.log(err);
         res.send("Unexpected Error Occured");

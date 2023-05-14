@@ -61,11 +61,11 @@
 
 
             <div class="history-list-container" id="list-container">
-              <% if (user.Array.length> 0) { %>
+              <% if (team.Array.length> 0) { %>
                 <ul class="history-list blackboxHistory">
-                  <% for(let i=(user.Array.length)-1 ; i>=0 ; i--){ %>
+                  <% for(let i=(team.Array.length)-1 ; i>=0 ; i--){ %>
                     <li class="history-list-item">
-                      <%= user.Array[i] %>
+                      <%= team.Array[i] %>
                     </li>
                     <% } %>
                 </ul>

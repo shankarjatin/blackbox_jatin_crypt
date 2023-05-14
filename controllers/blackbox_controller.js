@@ -5,39 +5,37 @@ const { validationResult } = require("express-validator");
 
 exports.getBlackbox = async (req, res) => {
     const email = req.user.email;
-    var time = new Date();
-    let gamer = await User.findOne({ email: email });
-    Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
-        const remaining_time = result.endTime - time;
+    let team = req.team;
+    console.log(team);
+    const remaining_time = req.remainingTime;
+    if (process.env.BLACK_LEVEL > team.blackbox_level) {
+        const question = await Ques_BlackBox.findOne({ level: team.blackbox_level });
 
-        if (process.env.BLACK_LEVEL > gamer.blackbox_level) {
-            const question = await Ques_BlackBox.findOne({ level: gamer.blackbox_level });
-
-            res.render("blackbox_index", {
-                user: gamer,
-                level: gamer.blackbox_level + 1,
-                variableCount: question.no_of_variables,
-                remaining_time: remaining_time,
-                message: "None",
-                redirect: false,
-                redirectUrl : ""
-            });
-        }
-        else {
-            const question = await Ques_BlackBox.findOne({ level: gamer.blackbox_level-1 });
-            message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-            res.render("blackbox_index", {
-                user: gamer,
-                level: gamer.blackbox_level + 1,
-                variableCount: question.no_of_variables,
-                remaining_time: remaining_time,
-                message: message,
-                redirect: true,
-                redirectUrl: "/blackbox_leaderboard"
-            });
-            
-        }
-    })
+        res.render("blackbox_index", {
+            user: req.user,
+            team: team,
+            level: team.blackbox_level + 1,
+            variableCount: question.no_of_variables,
+            remaining_time: remaining_time,
+            message: "None",
+            redirect: false,
+            redirectUrl : ""
+        });
+    }
+    else {
+        const question = await Ques_BlackBox.findOne({ level: team.blackbox_level-1 });
+        message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+        res.render("blackbox_index", {
+            user: req.user,
+            level: gamer.blackbox_level + 1,
+            variableCount: question.no_of_variables,
+            remaining_time: remaining_time,
+            message: message,
+            redirect: true,
+            redirectUrl: "/blackbox_leaderboard"
+        });
+        
+    }
 }
 
 exports.postBlackbox = async (req, res) => {

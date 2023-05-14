@@ -19,11 +19,17 @@ exports.check_admin = (req, res, next) => {
 }
 
 exports.check_registration = async (req, res, next) => {
-	const user = await Team.findOne({ "$or": [{ leader_email: req.user.email }, { member_email: req.user.email }] });
-	if (user) {
+	// Checking if user email is in a registered team
+	const team = await Team.findOne({ "$or": [{ leader_email: req.user.email }, { member_email: req.user.email }] });
+	
+	if (team) {
+		// attaching team to req
+		req.team = team;
+		// req.user is already attached by passport
 		next();
 	}
 	else {
+		// To-d0 : Display message that team is not registered.
 		res.redirect("/");
 	}
 }

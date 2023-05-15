@@ -32,7 +32,6 @@ exports.blackbox = async (req, res) => {
 }
 
 exports.crypthunt = async (req, res) => {
-    console.log("req at leaderboard");
     Team.find({}).lean().sort({
         level: -1
     }).select("team_name level -_id").exec(function (err, result) {

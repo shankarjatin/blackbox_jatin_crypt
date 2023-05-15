@@ -34,7 +34,7 @@ exports.getBlackbox = async (req, res) => {
             remaining_time: remaining_time,
             message: message,
             redirect: true,
-            redirectUrl: "/game"
+            redirectUrl: "/home"
         });
 
     }
@@ -59,7 +59,7 @@ exports.postBlackbox = async (req, res) => {  // suspected to be unused
                     success: true,
                     message: message,
                     redirect: true,
-                    url: "/game"
+                    url: "/home"
                 })
             }
             else {
@@ -157,7 +157,7 @@ exports.black_ques = async (req, res) => {
                 success: true,
                 message: message,
                 redirect: true,
-                url: "/game"
+                url: "/home"
             })
         }
         else {
@@ -264,7 +264,7 @@ exports.submit_blackbox = async (req, res) => {
                 success: true,
                 redirect: true,
                 message: message,
-                url: "/game"
+                url: "/home"
             })
         }
         else {
@@ -294,7 +294,7 @@ exports.submit_blackbox = async (req, res) => {
                             success: true,
                             redirect: true,
                             message: message,
-                            url: "/game"
+                            url: "/home"
                         })
                     }
                     message = "Well Done! You guessed it correct";

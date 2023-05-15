@@ -12,6 +12,12 @@ exports.check_game_timing = (req, res, next) => {
 		else {
 			if (time > result.startTime) {
 				if (time < result.endTime) {
+					/* attaching remaining time to req 
+					so that it can be used in the blackbox_controller and game_controller 
+					reducing the number of queries */
+					req.remainingTime = result.endTime - time; 
+					req.startTime = result.startTime;
+					req.endTime = result.endTime;
 					next();
 				}
 				else {

@@ -41,6 +41,37 @@ const teamSchema = new schema({
                 `${props.value} is not a valid email address from @akgec.ac.in`,
         },
     },
+    
+    // below fields are for storing the team's score and game details
+    level: {
+		type: Number,
+		default: 1
+	},
+	score: {
+		type: Number,
+		default: 0
+	},
+	blocked_message: {
+		type: String,
+		default: ""
+	},
+	attempts: [],
+	submitted: {
+		type: Boolean,
+		default: false
+	},
+	Array: {
+		type: [String], // Define the field as an array of strings
+		default: [] // Optional: Set a default value for the array (empty array in this case)
+	},
+	blackbox_level: {
+		type: Number,
+		default: 1
+	},
+	black_points: {
+		type: Number,
+		default: 0
+	},
 }, { timestamps: true });
 
 const Teams = new mongoose.model("Teams", teamSchema);

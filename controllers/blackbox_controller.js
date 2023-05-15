@@ -1,46 +1,46 @@
 const Ques_BlackBox = require("../models/question_blackbox");
 const User = require("./../models/user.js");
 const Game = require("./../models/game");
+const Team = require("./../models/teams");
 const { validationResult } = require("express-validator");
 
 exports.getBlackbox = async (req, res) => {
     const email = req.user.email;
-    var time = new Date();
-    let gamer = await User.findOne({ email: email });
-    Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
-        const remaining_time = result.endTime - time;
+    let team = req.team;
+    console.log(team);
+    const remaining_time = req.remainingTime;
+    if (process.env.BLACK_LEVEL > team.blackbox_level) {
+        const question = await Ques_BlackBox.findOne({ level: team.blackbox_level });
 
-        if (process.env.BLACK_LEVEL > gamer.blackbox_level) {
-            const question = await Ques_BlackBox.findOne({ level: gamer.blackbox_level });
-
-            res.render("blackbox_index", {
-                user: gamer,
-                level: gamer.blackbox_level + 1,
-                variableCount: question.no_of_variables,
-                remaining_time: remaining_time,
-                message: "None",
-                redirect: false,
-                redirectUrl : ""
-            });
-        }
-        else {
-            const question = await Ques_BlackBox.findOne({ level: gamer.blackbox_level-1 });
-            message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-            res.render("blackbox_index", {
-                user: gamer,
-                level: gamer.blackbox_level + 1,
-                variableCount: question.no_of_variables,
-                remaining_time: remaining_time,
-                message: message,
-                redirect: true,
-                redirectUrl: "/blackbox_leaderboard"
-            });
-            
-        }
-    })
+        res.render("blackbox_index", {
+            user: req.user,
+            team: team,
+            level: team.blackbox_level + 1,
+            variableCount: question.no_of_variables,
+            remaining_time: remaining_time,
+            message: "None",
+            redirect: false,
+            redirectUrl : ""
+        });
+    }
+    else {
+        const question = await Ques_BlackBox.findOne({ level: team.blackbox_level-1 });
+        message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+        res.render("blackbox_index", {
+            user: req.user,
+            team: team,
+            level: team.blackbox_level + 1,
+            variableCount: question.no_of_variables,
+            remaining_time: remaining_time,
+            message: message,
+            redirect: true,
+            redirectUrl: "/blackbox_leaderboard"
+        });
+        
+    }
 }
 
-exports.postBlackbox = async (req, res) => {
+exports.postBlackbox = async (req, res) => {  // suspected to be unused
     const email = req.user.email;
     let gamer = await User.findOne({ email: email });
     var level = gamer.blackbox_level;
@@ -85,8 +85,9 @@ exports.postBlackbox = async (req, res) => {
     })
 }
 
-exports.black_ques = async (req, res, next) => {
+exports.black_ques = async (req, res) => {
     try {
+        // To-do : DRY this code
         let a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0;
         let variables = [], i = 0;
         var userInput = `Combination of`;
@@ -126,68 +127,56 @@ exports.black_ques = async (req, res, next) => {
             variables[i++] = 'g';
         }
 
-        let gamer = await User.findOne({ email: req.user.email });
-        var level1 = gamer.blackbox_level;
+        let team = req.team;
+        var level1 = team.blackbox_level;
         let ques_game = await Ques_BlackBox.findOne({ level: level1 });
         var expression_real = eval(ques_game.answer_expression);
         userInput = userInput + ` is ${expression_real}`;
-
-        Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
-            if (err) {
+        
+        if (variables.length != ques_game.no_of_variables) {
+            const message = "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0"
+            res.json({
+                success: false,
+                message: message,
+                redirect: false
+            })
+        }
+        else if (req.user.submitted == true) {
+            message = "You have already submitted. Please check your rank in the leaderboard";
+            req.logout();
+            res.json({
+                success: true,
+                message: message,
+                redirect: true,
+                url: "/final-leaderBoard"
+            })
+        }
+        else if (level1 == (process.env.BLACK_LEVEL)) {
+            message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+            res.json({
+                success: true,
+                message: message,
+                redirect: true,
+                url: "/blackbox_leaderboard"
+            })
+        }
+        else {
+            Team.findOneAndUpdate(
+                { _id: req.team._id },
+                { $push: { Array: userInput } },
+                { new: true } // Set the "new" option to return the updated document
+            )
+            .then(data => {
                 res.json({
-                    success: false,
-                    message: "Error in fetching game",
-                    redirect: false
-                })
-            } else {
-                if (variables.length != ques_game.no_of_variables) {
-                    const message = "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0"
-                    res.json({
-                        success: false,
-                        message: message,
-                        redirect: false
-                    })
-                }
-                else if (req.user.submitted == true) {
-                    message = "You have already submitted. Please check your rank in the leaderboard";
-                    req.logout();
-                    res.json({
-                        success: true,
-                        message: message,
-                        redirect: true,
-                        url: "/final-leaderBoard"
-                    })
-                }
-                else if (level1 == (process.env.BLACK_LEVEL)) {
-                    message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                    res.json({
-                        success: true,
-                        message: message,
-                        redirect: true,
-                        url: "/blackbox_leaderboard"
-                    })
-                }
-                else {
-
-                    User.findOneAndUpdate(
-                        { email: req.user.email },
-                        { $push: { Array: userInput } },
-                        { new: true } // Set the "new" option to return the updated document
-                    )
-                        .then(data => {
-                            res.json({
-                                success: true,
-                                redirect: false,
-                                attempts: data.Array
-                            });
-                        })
-                        .catch(error => {
-                            console.error('Failed to update document:', error);
-                        });
-                }
-            }
-
-        })
+                    success: true,
+                    redirect: false,
+                    attempts: data.Array
+                });
+            })
+            .catch(error => {
+                console.error('Failed to update document:', error);
+            });
+        }   
     }
     catch (err) {
         console.log(err);
@@ -198,12 +187,12 @@ exports.black_ques = async (req, res, next) => {
 exports.submit_blackbox = async (req, res) => {
     try {
         const errors = validationResult(req);
-        let gamer = await User.findOne({ email: req.user.email });
-        let ques_game = await Ques_BlackBox.findOne({ level: gamer.blackbox_level });
+        let team = req.team;
+        let ques_game = await Ques_BlackBox.findOne({ level: team.blackbox_level });
         const expression = req.body.user_expression.toString().toLowerCase();
         var expression_black = ques_game.answer_expression;
         let credit = ques_game.credit;
-        let time = Date.now();
+        let time = Date.now(); // to remove
 
         //declaring variables as per requirement and running testcases
         let a, b, c, d, e, f, g;
@@ -241,7 +230,7 @@ exports.submit_blackbox = async (req, res) => {
                 }
             }
             var expression_real = eval(expression_black);
-            let result_user = eval(expression);
+            let result_user = eval(expression); // needs to be put in try catch
             if (expression_real === result_user) {
                 testcase++;
             }
@@ -249,93 +238,82 @@ exports.submit_blackbox = async (req, res) => {
                 success = false;
                 break;
             }
-
         }
 
-        Game.findOne({ title: process.env.GAME_TITLE }, async function (err, result) {
-            if (err) {
+        if (!errors.isEmpty()) {
+            const message = "Invalid Input or Empty Field, Kindly Enter a String of non-numeric values as per the instructions";
+            res.json({
+                success: false,
+                redirect: false,
+                message: message
+            })
+        }
+        else if (req.user.submitted == true) {
+            message = "You have already submitted. Please check your rank in the leaderboard";
+            req.logout();
+            res.json({
+                success: true,
+                redirect: true,
+                message: message,
+                url: "/final-leaderBoard"
+            })
+        }
+        else if (team.level == (process.env.BLACK_LEVEL)) {
+            message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+            res.json({
+                success: true,
+                redirect: true,
+                message: message,
+                url: "/blackbox_leaderboard"
+            })
+        }
+        else {
+            if (success == false) {
+                message = "Sorry!!! You guessed it wrong"
                 res.json({
                     success: false,
-                    message: "Error in fetching game",
-                    redirect: false
+                    redirect: false,
+                    message: message
                 })
-            } else {
-                if (!errors.isEmpty()) {
-                    const message = "Invalid Input or Empty Field, Kindly Enter a String of non-numeric values as per the instructions";
+            }
+            else {
+                Team.findOneAndUpdate(
+                    { _id: req.team._id },
+                    {
+                        $unset: { Array: 1 }, // Use $unset operator to delete the field
+                        $inc: {
+                            blackbox_level: 1,
+                            black_points: credit,
+                            score: credit
+                        }
+                    }, { new: true }
+                ).then(result => {
+                    if (result.blackbox_level == process.env.BLACK_LEVEL) {
+                        message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+                        return res.json({
+                            success: true,
+                            redirect: true,
+                            message: message,
+                            url: "/blackbox_leaderboard"
+                        })
+                    }
+                    message = "Well Done! You guessed it correct";
+                    res.json({
+                        success: true,
+                        redirect: false,
+                        message: message
+                    })
+                })
+                .catch(error => {
+                    message = "Please try again"
                     res.json({
                         success: false,
                         redirect: false,
                         message: message
                     })
-                }
-                else if (req.user.submitted == true) {
-                    message = "You have already submitted. Please check your rank in the leaderboard";
-                    req.logout();
-                    res.json({
-                        success: true,
-                        redirect: true,
-                        message: message,
-                        url: "/final-leaderBoard"
-                    })
-                }
-                else if (gamer.level == (process.env.BLACK_LEVEL)) {
-                    message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                    res.json({
-                        success: true,
-                        redirect: true,
-                        message: message,
-                        url: "/blackbox_leaderboard"
-                    })
-                }
-                else {
-                    if (success == false) {
-                        message = "Sorry!!! You guessed it wrong"
-                        res.json({
-                            success: false,
-                            redirect: false,
-                            message: message
-                        })
-                    }
-                    else {
-                        User.findOneAndUpdate(
-                            { email: req.user.email },
-                            {
-                                $unset: { Array: 1 }, // Use $unset operator to delete the field
-                                $inc: {
-                                    blackbox_level: 1,
-                                    black_points: credit,
-                                    score: credit
-                                }
-                            }, { new: true }
-                        ).then(result => {
-                            if (result.blackbox_level == process.env.BLACK_LEVEL) {
-                                message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-                                return res.json({
-                                    success: true,
-                                    redirect: true,
-                                    message: message,
-                                    url: "/blackbox_leaderboard"
-                                })
-                            }
-                            message = "Well Done! You guessed it correct";
-                            res.json({
-                                success: true,
-                                redirect: false,
-                                message: message
-                            })
-                        })
-                            .catch(error => {
-                                message = "Please try again"
-                                res.json({
-                                    success: false,
-                                    redirect: false,
-                                    message: message
-                                })
-                            });
-                    }
-                }
+                });
             }
-        })
+        }
     } catch (err) {
         console.log(err);
         res.send("Unexpected Error Occured");

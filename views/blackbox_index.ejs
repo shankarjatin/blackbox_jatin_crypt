@@ -134,11 +134,11 @@
                   <script>
                     async function submit() {
                       console.log("inside submit()");
-                      url = "<% process.env.DEPLOYMENT %>"
                       url = "/submit_blackbox";
                       const expression = document.getElementById("submit_expression").value;
                       payload = { "user_expression": `${expression}` };
                       const res = await axios.post(url, payload);
+                      console.log(res.data)
                       if (res.data.success == false && res.data.redirect == false) {
                         alert(res.data.message);
                         document.getElementById("submit_expression").value = ""

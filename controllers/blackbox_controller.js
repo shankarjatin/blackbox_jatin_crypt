@@ -15,7 +15,7 @@ exports.getBlackbox = async (req, res) => {
         res.render("blackbox_index", {
             user: req.user,
             team: team,
-            level: team.blackbox_level + 1,
+            level: team.blackbox_level,
             variableCount: question.no_of_variables,
             remaining_time: remaining_time,
             message: "None",
@@ -29,7 +29,7 @@ exports.getBlackbox = async (req, res) => {
         res.render("blackbox_index", {
             user: req.user,
             team: team,
-            level: team.blackbox_level + 1,
+            level: team.blackbox_level,
             variableCount: question.no_of_variables,
             remaining_time: remaining_time,
             message: message,

@@ -16,6 +16,8 @@ exports.check_game_timing = (req, res, next) => {
 					so that it can be used in the blackbox_controller and game_controller 
 					reducing the number of queries */
 					req.remainingTime = result.endTime - time; 
+					req.startTime = result.startTime;
+					req.endTime = result.endTime;
 					next();
 				}
 				else {

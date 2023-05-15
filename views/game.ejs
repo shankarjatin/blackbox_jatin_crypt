@@ -89,6 +89,7 @@
                                             }
                                             else {
                                                 for (let i = 0; i < Array.length; i++) {
+                                                    console.log(Array);
                                                     const li = document.createElement("li");
                                                     const text = document.createTextNode(Array[i].hint);
                                                     li.appendChild(text);
@@ -98,7 +99,7 @@
                                             div.appendChild(ul);
                                         }
                                         function hintClick() {
-                                            payload = { game: "Crypthunt", level: "<%-user.level%>" }
+                                            payload = { game: "Crypthunt", level: "<%-level%>" }
                                             console.log(payload)
                                             axios.post("/get_hints", payload).then(res => {
                                                 console.log(res.data.result);

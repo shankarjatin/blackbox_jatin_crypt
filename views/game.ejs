@@ -47,56 +47,63 @@
         <% } else { %>
             <% } %>
 
-                <% if (remaining_time !="None" ) { %>
-                    <script>
-                        let timer = document.getElementsByClassName("countdown");
-                        for (let i = 0; i <= timer.length - 1; i++) {
-                            let time = Math.floor(Number("<%-remaining_time%>") / 1000);
-                            setInterval(updatecountdown, 1000);
-                            function updatecountdown() {
-                                let hours = Math.floor(time / 3600);
-                                let minutes = Math.floor((time % 3600) / 60);
-                                let seconds = Math.floor(time - 3600 * hours - 60 * minutes);
-                                if (time < 0) {
-                                    timer[i].innerHTML = `00 : 00 : 00`;
-                                    window.location = "/submit";
-                                } else {
-                                    timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
-                                }
-                                time--;
-                            }
-                        }
+                <!-- Below script is for redirecting if any redirect if present -->
+                <% if (redirectUrl !="" ) { %>
+                    <script defer>
+                        window.location.replace("<%- redirectUrl %>");
                     </script>
-                    <% } else { %>
-                        <% } %>
+                    <% } %>
+
+                        <% if (remaining_time !="None" ) { %>
                             <script>
-                                function createUL(Array) {
-                                    div = document.getElementById("hint_id")
-                                    div.innerHTML = "";
-                                    const ul = document.createElement("ul");
-                                    if (Array.length == 0) {
-                                        const li = document.createElement("li");
-                                        const text = document.createTextNode("No Hints to Show");
-                                        li.appendChild(text);
-                                        ul.appendChild(li);
-                                    }
-                                    else {
-                                        for (let i = 0; i < Array.length; i++) {
-                                            const li = document.createElement("li");
-                                            const text = document.createTextNode(Array[i].hint);
-                                            li.appendChild(text);
-                                            ul.appendChild(li);
+                                let timer = document.getElementsByClassName("countdown");
+                                for (let i = 0; i <= timer.length - 1; i++) {
+                                    let time = Math.floor(Number("<%-remaining_time%>") / 1000);
+                                    setInterval(updatecountdown, 1000);
+                                    function updatecountdown() {
+                                        let hours = Math.floor(time / 3600);
+                                        let minutes = Math.floor((time % 3600) / 60);
+                                        let seconds = Math.floor(time - 3600 * hours - 60 * minutes);
+                                        if (time < 0) {
+                                            timer[i].innerHTML = `00 : 00 : 00`;
+                                            window.location = "/submit";
+                                        } else {
+                                            timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
                                         }
+                                        time--;
                                     }
-                                    div.appendChild(ul);
-                                }
-                                function hintClick() {
-                                    payload = { game: "Crypthunt", level: "<%-user.level%>" }
-                                    console.log(payload)
-                                    axios.post("/get_hints", payload).then(res => {
-                                        console.log(res.data.result);
-                                        createUL(res.data.result)
-                                    })
                                 }
                             </script>
-                            <%- include("./partials/footer.ejs"); %>
+                            <% } else { %>
+                                <% } %>
+                                    <script>
+                                        function createUL(Array) {
+                                            div = document.getElementById("hint_id")
+                                            div.innerHTML = "";
+                                            const ul = document.createElement("ul");
+                                            if (Array.length == 0) {
+                                                const li = document.createElement("li");
+                                                const text = document.createTextNode("No Hints to Show");
+                                                li.appendChild(text);
+                                                ul.appendChild(li);
+                                            }
+                                            else {
+                                                for (let i = 0; i < Array.length; i++) {
+                                                    const li = document.createElement("li");
+                                                    const text = document.createTextNode(Array[i].hint);
+                                                    li.appendChild(text);
+                                                    ul.appendChild(li);
+                                                }
+                                            }
+                                            div.appendChild(ul);
+                                        }
+                                        function hintClick() {
+                                            payload = { game: "Crypthunt", level: "<%-user.level%>" }
+                                            console.log(payload)
+                                            axios.post("/get_hints", payload).then(res => {
+                                                console.log(res.data.result);
+                                                createUL(res.data.result)
+                                            })
+                                        }
+                                    </script>
+                                    <%- include("./partials/footer.ejs"); %>

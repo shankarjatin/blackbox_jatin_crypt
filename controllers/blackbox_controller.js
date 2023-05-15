@@ -15,7 +15,7 @@ exports.getBlackbox = async (req, res) => {
         res.render("blackbox_index", {
             user: req.user,
             team: team,
-            level: team.blackbox_level + 1,
+            level: team.blackbox_level,
             variableCount: question.no_of_variables,
             remaining_time: remaining_time,
             message: "None",
@@ -29,12 +29,12 @@ exports.getBlackbox = async (req, res) => {
         res.render("blackbox_index", {
             user: req.user,
             team: team,
-            level: team.blackbox_level + 1,
+            level: team.blackbox_level,
             variableCount: question.no_of_variables,
             remaining_time: remaining_time,
             message: message,
             redirect: true,
-            redirectUrl: "/blackbox_leaderboard"
+            redirectUrl: "/home"
         });
 
     }
@@ -59,7 +59,7 @@ exports.postBlackbox = async (req, res) => {  // suspected to be unused
                     success: true,
                     message: message,
                     redirect: true,
-                    url: "/blackbox_leaderboard"
+                    url: "/home"
                 })
             }
             else {
@@ -70,7 +70,7 @@ exports.postBlackbox = async (req, res) => {  // suspected to be unused
                         success: true,
                         message: message,
                         redirect: true,
-                        url: "/final-leaderBoard"
+                        url: "/"
                     })
                 }
                 else {
@@ -148,7 +148,7 @@ exports.black_ques = async (req, res) => {
                 success: true,
                 message: message,
                 redirect: true,
-                url: "/final-leaderBoard"
+                url: "/"
             })
         }
         else if (level1 == (process.env.BLACK_LEVEL)) {
@@ -157,7 +157,7 @@ exports.black_ques = async (req, res) => {
                 success: true,
                 message: message,
                 redirect: true,
-                url: "/blackbox_leaderboard"
+                url: "/home"
             })
         }
         else {
@@ -255,7 +255,7 @@ exports.submit_blackbox = async (req, res) => {
                 success: true,
                 redirect: true,
                 message: message,
-                url: "/final-leaderBoard"
+                url: "/"
             })
         }
         else if (team.level == (process.env.BLACK_LEVEL)) {
@@ -264,7 +264,7 @@ exports.submit_blackbox = async (req, res) => {
                 success: true,
                 redirect: true,
                 message: message,
-                url: "/blackbox_leaderboard"
+                url: "/home"
             })
         }
         else {
@@ -294,7 +294,7 @@ exports.submit_blackbox = async (req, res) => {
                             success: true,
                             redirect: true,
                             message: message,
-                            url: "/blackbox_leaderboard"
+                            url: "/home"
                         })
                     }
                     message = "Well Done! You guessed it correct";

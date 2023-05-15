@@ -1,15 +1,15 @@
-<!-- views/index.ejs -->
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Redirect Example</title>
-  </head>
-  <body>
-    <h1>Redirect Example</h1>
-    <p>Click one of the links below to redirect to a different route:</p>
-    <ul>
-      <li><a href="/game">crypthunt</a></li>
-      <li><a href="/blackbox">blackbox</a></li>
-    </ul>
-  </body>
-</html>
+<%- include("./partials/header.ejs",{name:'triyon'}); %>
+  <div id="background-blur-outer"></div> <!-- for leaderboard -->
+
+  <h1>Redirect Example</h1>
+  <p>Click one of the links below to redirect to a different route:</p>
+  <ul>
+    <li><a href="/game">crypthunt</a></li>
+    <li><a href="/blackbox">blackbox</a></li>
+  </ul>
+  <!-- 
+  <% if ( message !='None' ) { %>
+    <script>alert("<%-message%>")</script>
+    <% } %> -->
+
+  <%- include("./partials/footer.ejs"); %>

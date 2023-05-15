@@ -35,14 +35,14 @@ exports.rules = (req, res) => {
 exports.submit = (req, res) => {
 	req.user.submitted = true;
 	req.user.save(function () {
-		res.redirect("/final-leaderboard");
+		res.redirect("/");
 	})
 }
 
 exports.game = (req, res) => {
 	var time = new Date();
 
-	if (req.user.submitted == true) {
+	if (req.user.team.submitted == true) {
 		message = "You have already submitted. Please check your rank in the leaderboard";
 		req.logout();
 		var time_to_start = req.startTime - time;
@@ -51,17 +51,21 @@ exports.game = (req, res) => {
 			time_to_start: time_to_start
 		});
 	}
-	else if (req.user.level == process.env.MAX_LEVEL) {
+	else if (req.user.team.level >= process.env.MAX_LEVEL) {
 		message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
 		var time_to_start = req.startTime - time;
-		res.render("index", {
+		res.render("game", {
+			redirectUrl: "/home",
+			user: req.user,
+			level: req.team.level,
 			message: message,
-			time_to_start: time_to_start
-		});
+			remaining_time: remaining_time
+		})
 	} else {
 		message = "None";
 		var remaining_time = req.endTime - time;
 		res.render("game", {
+			redirectUrl: "",
 			user: req.user,
 			level: req.team.level,
 			message: message,
@@ -78,7 +82,7 @@ exports.check = async (req, res) => {
 	const endTime = req.endTime;
 	const team = req.team;
 
-	if (req.user.submitted == true) {
+	if (req.user.team.submitted == true) {
 		message = "You have already submitted. Please check your rank in the leaderboard";
 		req.logout();
 		var time_to_start = startTime - time;
@@ -110,6 +114,7 @@ exports.check = async (req, res) => {
 		await team.save();
 		var remaining_time = endTime - time;
 		res.render("game", {
+			redirectUrl: "",
 			user: req.user,
 			level: req.team.level,
 			message: "Wrong Answer",

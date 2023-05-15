@@ -4,7 +4,7 @@ const Team = require("./../models/teams.js");
 exports.blackbox = async (req, res) => {
     Team.find({}).lean().sort({
         blackbox_level: -1
-    }).exec(function (err, result) {
+    }).select("team_name blackbox_level -_id").exec(function (err, result) {
         if (err) {
             res.json({ message: "Some error occured in fetching leaderboard" });
         } else {
@@ -35,7 +35,7 @@ exports.crypthunt = async (req, res) => {
     console.log("req at leaderboard");
     Team.find({}).lean().sort({
         level: -1
-    }).exec(function (err, result) {
+    }).select("team_name level -_id").exec(function (err, result) {
         if (err) {
             res.json({ message: "Some error occured in fetching leaderboard" });
         } else {
@@ -63,7 +63,7 @@ exports.crypthunt = async (req, res) => {
 }
 
 exports.original = async (req, res) => {
-    Team.find({}).lean().sort({ score: -1 }).select("name team_name score -_id").exec(function (err, result) {
+    Team.find({}).lean().sort({ score: -1 }).select("team_name score -_id").exec(function (err, result) {
         if (err) {
             res.json({ message: "Some error occured in fetching leaderboard" });
         } else {

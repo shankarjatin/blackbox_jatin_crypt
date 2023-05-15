@@ -130,7 +130,7 @@ exports.black_ques = async (req, res) => {
         let team = req.team;
         var level1 = team.blackbox_level;
         let ques_game = await Ques_BlackBox.findOne({ level: level1 });
-        var expression_real = eval(ques_game.answer_expression);
+        var expression_real = eval(ques_game.answer_expression); // assuming that the expression answer is valid
         userInput = userInput + ` is ${expression_real}`;
 
         if (variables.length != ques_game.no_of_variables) {
@@ -229,8 +229,14 @@ exports.submit_blackbox = async (req, res) => {
                     variables[i - 1] = 'g';
                 }
             }
-            var expression_real = eval(expression_black);
-            let result_user = eval(expression); // needs to be put in try catch
+            try{
+                var expression_real = eval(expression_black);
+                let result_user = eval(expression); // needs to be put in try catch
+            } catch(err) {
+                success = false;
+                break;
+            }
+
             if (expression_real === result_user) {
                 testcase++;
             }

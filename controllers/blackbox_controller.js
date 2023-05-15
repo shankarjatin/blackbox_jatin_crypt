@@ -198,6 +198,7 @@ exports.submit_blackbox = async (req, res) => {
         let a, b, c, d, e, f, g;
         let variables = [];
         let testcase = 0, success = true;
+        let result_user, expression_real;
         while (testcase < 3) {
             for (let i = 1; i <= ques_game.no_of_variables; i++) {
                 if (i == 1) {
@@ -229,10 +230,10 @@ exports.submit_blackbox = async (req, res) => {
                     variables[i - 1] = 'g';
                 }
             }
-            try{
-                var expression_real = eval(expression_black);
-                let result_user = eval(expression); // needs to be put in try catch
-            } catch(err) {
+            try {
+                expression_real = eval(expression_black);
+                result_user = eval(expression); // needs to be put in try catch
+            } catch (err) {
                 success = false;
                 break;
             }
@@ -322,7 +323,10 @@ exports.submit_blackbox = async (req, res) => {
         }
     } catch (err) {
         console.log(err);
-        res.send("Unexpected Error Occured");
+        res.json({
+            success: false,
+            redirect: true,
+        })
     }
 }
 

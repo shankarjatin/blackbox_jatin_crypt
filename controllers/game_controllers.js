@@ -42,7 +42,7 @@ exports.submit = (req, res) => {
 exports.game = (req, res) => {
 	var time = new Date();
 
-	if (req.user.submitted == true) {
+	if (req.user.team.submitted == true) {
 		message = "You have already submitted. Please check your rank in the leaderboard";
 		req.logout();
 		var time_to_start = req.startTime - time;
@@ -51,7 +51,7 @@ exports.game = (req, res) => {
 			time_to_start: time_to_start
 		});
 	}
-	else if (req.user.level == process.env.MAX_LEVEL) {
+	else if (req.user.team.level >= process.env.MAX_LEVEL) {
 		message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
 		var time_to_start = req.startTime - time;
 		res.render("index", {
@@ -78,7 +78,7 @@ exports.check = async (req, res) => {
 	const endTime = req.endTime;
 	const team = req.team;
 
-	if (req.user.submitted == true) {
+	if (req.user.team.submitted == true) {
 		message = "You have already submitted. Please check your rank in the leaderboard";
 		req.logout();
 		var time_to_start = startTime - time;

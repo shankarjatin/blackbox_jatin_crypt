@@ -34,7 +34,6 @@ router.get("/crypthunt_leaderboard", leaderBoard.crypthunt);
 
 router.get("/game",
 	auth_middleware.check_login,
-	// auth_middleware.check_registration,
 	game_middleware.check_game_timing,
 	game_controller.game
 );

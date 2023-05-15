@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Question = require("./../models/question");
 const User = require("./../models/user.js");
+const Team = require("./../models/teams.js");
 const Game = require("./../models/game");
 const Hint = require("./../models/hint");
 
@@ -79,101 +80,81 @@ exports.submit = (req, res) => {
 
 exports.game = (req, res) => {
 	var time = new Date();
-	Game.findOne({ title: process.env.GAME_TITLE }, function (err, result) {
-		if (err) {
-			res.send("Error in fetching game");
-		} else {
-			if (req.user.submitted == true) {
-				message = "You have already submitted. Please check your rank in the leaderboard";
-				req.logout();
-				var time_to_start = result.startTime - time;
-				res.render("index", {
-					message: message,
-					time_to_start: time_to_start
-				});
-			}
-			else if (req.user.level == process.env.MAX_LEVEL) {
-				message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
-				var time_to_start = result.startTime - time;
-				console.log(time_to_start);
-				res.render("index", {
-					message: message,
-					time_to_start: time_to_start
-				});
-			} else {
-				message = "None";
-				var remaining_time = result.endTime - time;
-				res.render("game", {
-					user: req.user,
-					message: message,
-					remaining_time: remaining_time
-				});
-			}
-		}
-	})
+	
+	if (req.user.submitted == true) {
+		message = "You have already submitted. Please check your rank in the leaderboard";
+		req.logout();
+		var time_to_start = req.startTime - time;
+		res.render("index", {
+			message: message,
+			time_to_start: time_to_start
+		});
+	}
+	else if (req.user.level == process.env.MAX_LEVEL) {
+		message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
+		var time_to_start = req.startTime - time;
+		res.render("index", {
+			message: message,
+			time_to_start: time_to_start
+		});
+	} else {
+		message = "None";
+		var remaining_time = req.endTime - time;
+		res.render("game", {
+			user: req.user,
+			level: req.team.level,
+			message: message,
+			remaining_time: remaining_time
+		});
+	}
+		
 }
 
-exports.check = (req, res) => {
+exports.check = async (req, res) => {
 	var time = new Date();
-	var attempted_answer = req.body.answer;
-	attempted_answer = attempted_answer.replace(/\s/g, "").toLowerCase();
-	console.log(attempted_answer);
-	const userLevel = req.user.level;
+	var attempted_answer = req.body.answer.replace(/\s/g, "").toLowerCase();
+	const startTime = req.startTime;
+	const endTime = req.endTime;
+	const team = req.team;
+		
+	if (req.user.submitted == true) {
+		message = "You have already submitted. Please check your rank in the leaderboard";
+		req.logout();
+		var time_to_start = startTime - time;
+		return res.render("index", {
+			message: message,
+			time_to_start: time_to_start
+		});
+	}
+	
+	const question = await Question.find({ level: req.team.level });
 
-	Game.findOne({ title: process.env.GAME_TITLE }, function (err, game_result) {
-		if (err) {
-			res.send("Error in fetching game");
-		} else {
-			if (req.user.submitted == true) {
-				message = "You have already submitted. Please check your rank in the leaderboard";
-				req.logout();
-				var time_to_start = game_result.startTime - time;
-				res.render("index", {
-					message: message,
-					time_to_start: time_to_start
-				});
-			} else {
-				Question.find({
-					level: userLevel
-				}, function (err, result) {
-					if (err) {
-						console.log("Error in fetching answer");
-						res.send("Some error occured");
-					} else {
-						User.findById(req.user._id, function (err, result2) {
-							const attempt = {
-								level: result2.level,
-								answer: attempted_answer,
-							}
-							if (attempted_answer == result[0].answer) {
-								result2.attempts.push(attempt);
-								User.findOneAndUpdate({ _id: result2._id }, { $inc: { score: result[0].credit } }).then(update => {
-									console.log(update);
-								}).catch(err => {
-									throw err;
-								})
-								result2.level += 1;
-								result2.save(function () {
-									res.redirect("/game");
-								});
-							} else {
-								result2.attempts.push(attempt);
-								result2.save(function () {
-									message = "Wrong Answer";
-									var remaining_time = game_result.endTime - time;
-									res.render("game", {
-										user: req.user,
-										message: message,
-										remaining_time: remaining_time
-									});
-								});
-							}
-						})
-					}
-				})
-			}
-		}
-	})
+	if ( !question ){
+		return res.send("Some Error occurred") //Todo : Implement error page.
+	}
+
+	const attempt = {
+		level: team.level,
+		answer: attempted_answer
+	}
+
+	if( attempted_answer == question[0].answer){
+		team.attempts.push(attempt);
+		team.level += 1;  //increment crypthunt level
+		team.score += 1;  //increment team score
+		await team.save();
+		res.redirect("/game"); // redirect will load the next level automatically.
+	} else {
+		team.attempts.push(attempt);
+		await team.save();
+		var remaining_time = endTime - time;
+		res.render("game", {
+			user: req.user,
+			level: req.team.level,
+			message: "Wrong Answer",
+			remaining_time: remaining_time
+		});
+	}
 }
 
 // exports.get_hints = (req, res) => {

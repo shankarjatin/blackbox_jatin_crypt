@@ -27,7 +27,6 @@ router.get("/blackbox_leaderboard", leaderBoard.blackbox)
 
 router.get("/original_leaderboard",
 	leaderBoard.original
-	// game_controller.original_leaderboard
 );
 
 router.get("/crypthunt_leaderboard", leaderBoard.crypthunt);

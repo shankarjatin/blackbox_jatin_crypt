@@ -31,9 +31,9 @@ router.post("/black_ques",
     blackbox_controller.black_ques
 );
 
-router.post("/submit_blackbox", 
+router.post("/submit_blackbox",
+    game_middleware.check_game_timing, 
     auth_middleware.check_login,
-    game_middleware.check_game_timing,
     [
         body(`user_expression`).notEmpty().trim()
     ], 

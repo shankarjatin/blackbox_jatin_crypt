@@ -33,23 +33,25 @@ router.get("/original_leaderboard",
 router.get("/crypthunt_leaderboard", leaderBoard.crypthunt);
 
 router.get("/game",
-	auth_middleware.check_login,
 	game_middleware.check_game_timing,
+	auth_middleware.check_login,
 	game_controller.game
 );
 
 router.post("/game",
-	auth_middleware.check_login,
 	game_middleware.check_game_timing,
+	auth_middleware.check_login,
 	game_controller.check
 );
 
 router.post("/submit",
+	game_middleware.check_game_timing,
 	auth_middleware.check_login,
 	game_controller.submit
 );
 
 router.get("/submit",
+	game_middleware.check_game_timing,
 	auth_middleware.check_login,
 	game_controller.submit
 );

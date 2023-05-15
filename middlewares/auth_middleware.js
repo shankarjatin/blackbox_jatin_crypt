@@ -2,10 +2,11 @@ const User = require("./../models/user");
 const Team = require("../models/teams");
 
 exports.check_login = async (req, res, next) => {
+	const time = new Date();
 	if (!req.isAuthenticated()) {
 		return res.render("index", {
 			message: "You need to log in first.",
-			time_to_start: req.remainingTime
+			time_to_start: req.startTime - time // change if countdown timer doesn't work
 		});
 	}
 	
@@ -18,7 +19,7 @@ exports.check_login = async (req, res, next) => {
 	} else {
 		res.render("index", {
 			message: "You are not registered for the game.",
-			time_to_start: req.remainingTime
+			time_to_start: req.startTime - time
 		});
 	}
 }

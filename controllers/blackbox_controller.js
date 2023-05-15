@@ -28,7 +28,8 @@ exports.getBlackbox = async (req, res) => {
         message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
         res.render("blackbox_index", {
             user: req.user,
-            level: gamer.blackbox_level + 1,
+            team: team,
+            level: team.blackbox_level + 1,
             variableCount: question.no_of_variables,
             remaining_time: remaining_time,
             message: message,

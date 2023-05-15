@@ -1,4 +1,5 @@
 const User = require("./../models/user.js");
+const Team = require("./../models/teams.js");
 
 exports.blackbox = async (req, res) => {
     await User.aggregate([{
@@ -63,65 +64,34 @@ exports.blackbox = async (req, res) => {
 }
 
 exports.crypthunt = async (req, res) => {
-    await User.aggregate([{
-        $sort: { level: -1 }
-    }, {
-        $project: {
-            _id: 0,
-            email: 1,
-            blackbox_level: 1,
-            score: 1,
-            level: 1,
+    console.log("req at leaderboard");
+    Team.find({}).lean().sort({
+        level: -1
+    }).exec(function (err, result) {
+        if (err) {
+            res.json({ message: "Some error occured in fetching leaderboard" });
+        } else {
+            /*
+             * Below code is for calculating rank from sorted
+             * players data fetched from database
+             *  --> Players on equal level will have equal ranks.
+             */
+            var rank = 0
+            var current_rank = 0
+            var level = 100;
+            result.forEach((person, index) => {
+                rank += 1;
+                if (person.level != level) {
+                    result[index].rank = rank;
+                    current_rank = rank;
+                } else {
+                    result[index].rank = current_rank;
+                }
+                level = person.level;
+            })
+            res.json({ result })
         }
-    },
-    {
-        $lookup: {
-            from: "teams",
-            localField: "email",
-            foreignField: "leader_email",
-            as: "team_name"
-        }
-    },
-    {
-        $unwind: "$team_name"
-    }, {
-        $addFields: {
-            team: "$team_name.team_name"
-        }
-    }, {
-        $project: {
-            _id: 0,
-            email: 1,
-            blackbox_level: 1,
-            score: 1,
-            level: 1,
-            team: 1
-        }
-    }]).then((result) => {
-        /*
-         * Below code is for calculating rank from sorted
-         * players data fetched from database
-         *  --> Players on equal level will have equal ranks.
-         */
-        var rank = 0
-        var current_rank = 0
-        var level = 100;
-        result.forEach((person, index) => {
-            rank += 1;
-            if (person.level != level) {
-                result[index].rank = rank;
-                current_rank = rank;
-            } else {
-                result[index].rank = current_rank;
-            }
-            level = person.level;
-        })
-        res.json({ result })
-    }
-    ).catch(err => {
-        res.json({ message: "Some error occured in fetching leaderboard" });
-    })
-
+    });
 }
 
 exports.original = async (req, res) => {

@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
+const Team = require("./teams");
 
 const userSchema = new mongoose.Schema({
 	name: String,
@@ -42,9 +43,20 @@ passport.serializeUser(function (user, done) {
 	done(null, user.id);
 });
 
-passport.deserializeUser(function (
-	id, done) {
-	User.findById(id, function (err, user) {
+passport.deserializeUser( async function (id, done) {
+	User.findById(id, async function (err, user) {
+		const team = await Team.findOne({ "$or": [{ leader_email: user.email }, { member_email: user.email }] });
+		if (team) {
+			user.team = team; // attaching team to req
+		} else {
+			/*
+				if team is not found i.e user is not registered for the game
+				then we set req.user.team as null
+				check_login middleware will check if req.user.team is null or not
+				if it is null then it will render the index page with message "You are not registered for the game."
+			*/
+			user.team = null; 
+		}
 		done(err, user);
 	});
 });

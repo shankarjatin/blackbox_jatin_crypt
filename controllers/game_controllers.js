@@ -32,45 +32,6 @@ exports.rules = (req, res) => {
 	});
 }
 
-exports.leaderboard = (req, res) => {
-	console.log("req at leaderboard");
-	User.find({}).lean().sort({
-		level: -1
-	}).exec(function (err, result) {
-		if (err) {
-			res.send("Some error occured in fetching leaderboard");
-		} else {
-			/*
-			 * Below code is for calculating rank from sorted
-			 * players data fetched from database
-			 *  --> Players on equal level will have equal ranks.
-			 */
-			var rank = 0
-			var current_rank = 0
-			var level = 100;
-			result.forEach((person, index) => {
-				rank += 1;
-				if (person.level != level) {
-					result[index].rank = rank;
-					current_rank = rank;
-				} else {
-					result[index].rank = current_rank;
-				}
-				level = person.level;
-			})
-
-			res.render("leaderboard", {
-				user: req.user,
-				leaderboard: result
-			})
-		}
-	});
-}
-
-exports.original_leaderboard = (req, res) => {
-	res.render("original_leaderboard");
-}
-
 exports.submit = (req, res) => {
 	req.user.submitted = true;
 	req.user.save(function () {
@@ -80,7 +41,7 @@ exports.submit = (req, res) => {
 
 exports.game = (req, res) => {
 	var time = new Date();
-	
+
 	if (req.user.submitted == true) {
 		message = "You have already submitted. Please check your rank in the leaderboard";
 		req.logout();
@@ -107,7 +68,7 @@ exports.game = (req, res) => {
 			remaining_time: remaining_time
 		});
 	}
-		
+
 }
 
 exports.check = async (req, res) => {
@@ -116,7 +77,7 @@ exports.check = async (req, res) => {
 	const startTime = req.startTime;
 	const endTime = req.endTime;
 	const team = req.team;
-		
+
 	if (req.user.submitted == true) {
 		message = "You have already submitted. Please check your rank in the leaderboard";
 		req.logout();
@@ -126,10 +87,10 @@ exports.check = async (req, res) => {
 			time_to_start: time_to_start
 		});
 	}
-	
+
 	const question = await Question.find({ level: req.team.level });
 
-	if ( !question ){
+	if (!question) {
 		return res.send("Some Error occurred") //Todo : Implement error page.
 	}
 
@@ -138,7 +99,7 @@ exports.check = async (req, res) => {
 		answer: attempted_answer
 	}
 
-	if( attempted_answer == question[0].answer){
+	if (attempted_answer == question[0].answer) {
 		team.attempts.push(attempt);
 		team.level += 1;  //increment crypthunt level
 		team.score += 1;  //increment team score
@@ -156,19 +117,6 @@ exports.check = async (req, res) => {
 		});
 	}
 }
-
-// exports.get_hints = (req, res) => {
-// 	Hint.find({}, function (err, result) {
-// 		if (err) {
-// 			res.send("Error in fetching hints");
-// 		} else {
-// 			res.render("hints", {
-// 				user: req.user,
-// 				hints: result
-// 			})
-// 		}
-// 	})
-// }
 
 exports.get_hints = async (req, res) => {
 	console.log(req.body);
@@ -241,48 +189,3 @@ exports.updateQuestion = (req, res, next) => {
 		throw err;
 	})
 }
-
-// exports.finalLeaderBoard=(req,res,next)=>{
-// 	User.find({}).lean().sort({score:-1}).select("name score -_id").then(result=>{
-// 		console.log(result);
-// 		res.status(200).json({
-// 			message:"fetched Succeddfully",
-// 			result:result,
-// 		})
-// 	}).catch(err=>{
-// 		throw err;
-// 	})
-// }
-
-// exports.finalLeaderBoard = (req, res) => {
-// 	console.log("req at leaderboard");
-// 	User.find({}).lean().sort({score:-1}).select("name score -_id").exec(function (err, result) {
-// 		if (err) {
-// 			res.send("Some error occured in fetching leaderboard");
-// 		} else {
-// 			/*
-// 			 * Below code is for calculating rank from sorted
-// 			 * players data fetched from database
-// 			 *  --> Players on equal level will have equal ranks.
-// 			 */
-// 			var rank = 0
-// 			var current_rank = 0
-// 			var score = 100;
-// 			result.forEach((person, index) => {
-// 				rank += 1;
-// 				if (person.score != score) {
-// 					result[index].rank = rank;
-// 					current_rank = rank;
-// 				} else {
-// 					result[index].rank = current_rank;
-// 				}
-// 				score = person.score;
-// 			})
-
-// 			res.render("final_leaderboard", {
-// 				user: req.user,
-// 				leaderboard: result
-// 			})
-// 		}
-// 	});
-// }

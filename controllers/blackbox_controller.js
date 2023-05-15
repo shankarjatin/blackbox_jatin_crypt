@@ -326,6 +326,8 @@ exports.submit_blackbox = async (req, res) => {
         res.json({
             success: false,
             redirect: true,
+            message: "None",
+            url: "/blackbox"
         })
     }
 }

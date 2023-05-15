@@ -9,9 +9,11 @@ exports.check_login = async (req, res, next) => {
 		});
 	}
 	
-	const team = await Team.findOne({ "$or": [{ leader_email: req.user.email }, { member_email: req.user.email }] });
+	const team = req.user.team;
 	if (team) {
-		req.team = team; // attaching team to req
+		// Todo : remove this redundancy. It is already present in req.user
+		// didn't do because it requires updating code in many places
+		req.team = team;
 		next();
 	} else {
 		res.render("index", {

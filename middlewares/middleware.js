@@ -27,7 +27,7 @@ exports.assets = (req, res, next) => {
 		}
 		if (fileInfo.isFile() && public_asset) {
 			res.sendFile(filePath);
-		} else if (fileInfo.isFile() && private_asset && typeof req.user !== 'undefined' && req.url.substring(10, 11) <= req.user.level) {
+		} else if (fileInfo.isFile() && private_asset && typeof req.user !== 'undefined' && req.url.substring(10, 11) <= req.user.team.level) {
 			res.sendFile(filePath);
 		} else {
 			next();

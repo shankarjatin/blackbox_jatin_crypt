@@ -1,4 +1,8 @@
 <%- include("./partials/header.ejs"); %>
+    <!-- Below component to blur background while leaderboard is open -->
+    <div id="background-blur-outer">
+
+    </div>
 
     <h1 id="rulesheading">Hint Manager</h1>
     <div id="rulesdiv">
@@ -7,8 +11,8 @@
                 <% hints.forEach(element=> { %>
                     <form action="/delete_hint" method="post">
                         <input type="hidden" name="id" value="<%- element.id %>">
-                        <li class="rulesli"> <input type="submit" value="X"> | Level # <%- element.level %> | <%-
-                                    element.hint %> </li>
+                        <li class="rulesli"> <input type="submit" value="X"> | <%- element.game %> | Level # <%-
+                                    element.level %> | <%- element.hint %> </li>
                     </form>
                     <hr>
                     <% }) %>

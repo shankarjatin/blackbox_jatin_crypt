@@ -102,7 +102,7 @@ exports.check = async (req, res) => {
 	if (attempted_answer == question[0].answer) {
 		team.attempts.push(attempt);
 		team.level += 1;  //increment crypthunt level
-		team.score += 1;  //increment team score
+		team.score += question[0].credit;  //increment team score
 		await team.save();
 		res.redirect("/game"); // redirect will load the next level automatically.
 	} else {

@@ -19,15 +19,10 @@ router.get("/rules",
 	game_controller.rules
 );
 
-// router.get("/leaderboard",
-// 	game_controller.leaderboard
-// );
-
 router.get("/blackbox_leaderboard", leaderBoard.blackbox)
 
 router.get("/original_leaderboard",
 	leaderBoard.original
-	// game_controller.original_leaderboard
 );
 
 router.get("/crypthunt_leaderboard", leaderBoard.crypthunt);
@@ -56,10 +51,6 @@ router.get("/submit",
 	game_controller.submit
 );
 
-// router.get("/hints",
-// 	game_controller.get_hints
-// )
-
 router.post("/get_hints",
 	auth_middleware.check_login,
 	game_controller.get_hints
@@ -84,8 +75,6 @@ router.post("/delete_hint",
 )
 
 router.post("/update-question", auth_middleware.check_login, auth_middleware.check_admin, game_controller.updateQuestion);
-
-// router.get("/final-leaderBoard", game_controller.finalLeaderBoard);
 
 router.get("/test", function (req, res) {
 	res.send(req.isAuthenticated())

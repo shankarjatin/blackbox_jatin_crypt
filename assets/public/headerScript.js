@@ -18,9 +18,7 @@ function headingHandler() {
 }
 headingHandler()
 
-function addTableRow(Array) {
-    var table = document.getElementById("crypt-table");
-
+function removeTableRows() {
     //remove previously existing table rows
     var elements = document.getElementsByClassName("cryptrow");
     for (var i = elements.length - 1; i >= 0; i--) {
@@ -29,6 +27,11 @@ function addTableRow(Array) {
             element.parentNode.removeChild(element);
         }
     }
+}
+
+function addTableRowCrypthunt(Array) {
+    var table = document.getElementById("crypt-table");
+    removeTableRows();
 
     //add new rows
     for (let i = 0; i < Array.length; i++) {
@@ -44,9 +47,9 @@ function addTableRow(Array) {
         level.classList.add("cryplColumn");
 
         // Set the content of each cell
-        rank.textContent = i + 1;
-        team.textContent = Array[i].team;
-        level.textContent = Array[i].rank;
+        rank.textContent = Array[i].rank;
+        team.textContent = Array[i].team_name;
+        level.textContent = Array[i].level;
 
         // Append the new cells to the new row
         row.appendChild(rank);
@@ -55,6 +58,80 @@ function addTableRow(Array) {
 
         // Append the new row to the table
         table.appendChild(row);
+
+        if (window.location.pathname == "/game" || window.location.pathname == "/blackbox") {
+            chbg(1); //close the hints tab if open
+        }
+    }
+}
+
+function addTableRowBlackbox(Array) {
+    var table = document.getElementById("crypt-table");
+    removeTableRows();
+
+    //add new rows
+    for (let i = 0; i < Array.length; i++) {
+        // Create a new table row element
+        var row = document.createElement("tr");
+        row.classList.add("cryptrow");
+        // Create new table cells
+        var rank = document.createElement("td");
+        var team = document.createElement("td");
+        var level = document.createElement("td");
+        rank.classList.add("cryplColumn");
+        team.classList.add("cryplColumn");
+        level.classList.add("cryplColumn");
+
+        // Set the content of each cell
+        rank.textContent = Array[i].rank;
+        team.textContent = Array[i].team_name;
+        level.textContent = Array[i].blackbox_level;
+
+        // Append the new cells to the new row
+        row.appendChild(rank);
+        row.appendChild(team);
+        row.appendChild(level);
+
+        // Append the new row to the table
+        table.appendChild(row);
+
+        if (window.location.pathname == "/game" || window.location.pathname == "/blackbox") {
+            chbg(1); //close the hints tab if open
+        }
+    }
+}
+
+function addTableRowOriginal(Array) {
+    document.getElementById("score").innerHTML = "Score";
+    var table = document.getElementById("crypt-table");
+    removeTableRows();
+
+    //add new rows
+    for (let i = 0; i < Array.length; i++) {
+        // Create a new table row element
+        var row = document.createElement("tr");
+        row.classList.add("cryptrow");
+        // Create new table cells
+        var rank = document.createElement("td");
+        var team = document.createElement("td");
+        var score = document.createElement("td");
+        rank.classList.add("cryplColumn");
+        team.classList.add("cryplColumn");
+        score.classList.add("cryplColumn");
+
+        // Set the content of each cell
+        rank.textContent = Array[i].rank;
+        team.textContent = Array[i].team_name;
+        score.textContent = Array[i].score;
+
+        // Append the new cells to the new row
+        row.appendChild(rank);
+        row.appendChild(team);
+        row.appendChild(score);
+
+        // Append the new row to the table
+        table.appendChild(row);
+
         if (window.location.pathname == "/game" || window.location.pathname == "/blackbox") {
             chbg(1); //close the hints tab if open
         }
@@ -102,7 +179,7 @@ function overallClick() {
 
     axios.get("/original_leaderboard").then((res) => {
         result = res.data.result;
-        addTableRow(result);
+        addTableRowOriginal(result);
     });
 }
 
@@ -121,7 +198,7 @@ function crypthuntClick() {
     let wrapper = document.getElementById("wrapper");
     axios.get("/crypthunt_leaderboard").then((res) => {
         result = res.data.result;
-        addTableRow(result);
+        addTableRowCrypthunt(result);
     });
 }
 
@@ -139,7 +216,7 @@ function blackboxClick() {
 
     axios.get("/blackbox_leaderboard").then((res) => {
         result = res.data.result;
-        addTableRow(result);
+        addTableRowBlackbox(result);
     });
 }
 function logmenu() {

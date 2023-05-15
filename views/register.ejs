@@ -1,0 +1,22 @@
+<%- include("./partials/header.ejs"); %>
+    <!-- Below component to blur background while leaderboard is open -->
+    <div id="background-blur-outer">
+
+    </div>
+    <div style="padding-top: 60px;">
+        <h2>Team Registration</h2>
+        <form action="/register" method="post">
+            <label for="team_name">Team_Name</label>
+            <input type="text" name="team_name" id="" placeholder="team_name"><br>
+            <label for="leader_name">Leader_Name</label>
+            <input type="text" name="leader_name" placeholder="leader_name"><br>
+            <label for="leader_email">Leader_Email</label>
+            <input type="text" name="leader_email" placeholder="leader_email"><br>
+            <label for="member_name">Member_Name</label>
+            <input type="text" name="member_name" placeholder="member_name"><br>
+            <label for="member_email">Member_Email</label>
+            <input type="text" name="member_email" placeholder="member_email"><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <%- include("./partials/footer.ejs"); %>

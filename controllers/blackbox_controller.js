@@ -20,11 +20,11 @@ exports.getBlackbox = async (req, res) => {
             remaining_time: remaining_time,
             message: "None",
             redirect: false,
-            redirectUrl : ""
+            redirectUrl: ""
         });
     }
     else {
-        const question = await Ques_BlackBox.findOne({ level: team.blackbox_level-1 });
+        const question = await Ques_BlackBox.findOne({ level: team.blackbox_level - 1 });
         message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
         res.render("blackbox_index", {
             user: req.user,
@@ -36,7 +36,7 @@ exports.getBlackbox = async (req, res) => {
             redirect: true,
             redirectUrl: "/blackbox_leaderboard"
         });
-        
+
     }
 }
 
@@ -132,7 +132,7 @@ exports.black_ques = async (req, res) => {
         let ques_game = await Ques_BlackBox.findOne({ level: level1 });
         var expression_real = eval(ques_game.answer_expression);
         userInput = userInput + ` is ${expression_real}`;
-        
+
         if (variables.length != ques_game.no_of_variables) {
             const message = "Invalid Input or Empty Fields, kindly Enter Positive Integers excluding 0"
             res.json({
@@ -166,17 +166,17 @@ exports.black_ques = async (req, res) => {
                 { $push: { Array: userInput } },
                 { new: true } // Set the "new" option to return the updated document
             )
-            .then(data => {
-                res.json({
-                    success: true,
-                    redirect: false,
-                    attempts: data.Array
+                .then(data => {
+                    res.json({
+                        success: true,
+                        redirect: false,
+                        attempts: data.Array
+                    });
+                })
+                .catch(error => {
+                    console.error('Failed to update document:', error);
                 });
-            })
-            .catch(error => {
-                console.error('Failed to update document:', error);
-            });
-        }   
+        }
     }
     catch (err) {
         console.log(err);
@@ -304,14 +304,14 @@ exports.submit_blackbox = async (req, res) => {
                         message: message
                     })
                 })
-                .catch(error => {
-                    message = "Please try again"
-                    res.json({
-                        success: false,
-                        redirect: false,
-                        message: message
-                    })
-                });
+                    .catch(error => {
+                        message = "Please try again"
+                        res.json({
+                            success: false,
+                            redirect: false,
+                            message: message
+                        })
+                    });
             }
         }
     } catch (err) {
@@ -347,39 +347,3 @@ exports.add_question = (req, res, next) => {
     });
 }
 
-
-exports.leaderboard = (req, res) => {
-    const message = req.query.message || "None";
-    User.find({}).lean().sort({
-        blackbox_level: -1
-    }).exec(function (err, result) {
-        if (err) {
-            res.send("Some error occured in fetching leaderboard");
-        } else {
-            /*
-             * Below code is for calculating rank from sorted
-             * players data fetched from database
-             *  --> Players on equal level will have equal ranks.
-             */
-            var rank = 0
-            var current_rank = 0
-            var blackbox_level = 100;
-            result.forEach((person, index) => {
-                rank += 1;
-                if (person.blackbox_level != blackbox_level) {
-                    result[index].rank = rank;
-                    current_rank = rank;
-                } else {
-                    result[index].rank = current_rank;
-                }
-                blackbox_level = person.blackbox_level;
-            })
-
-            res.render("blackbox_leaderboard", {
-                user: req.user,
-                leaderboard: result,
-                message: message
-            })
-        }
-    });
-}

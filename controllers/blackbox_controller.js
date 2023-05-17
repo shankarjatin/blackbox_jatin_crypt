@@ -63,7 +63,7 @@ exports.postBlackbox = async (req, res) => {  // suspected to be unused
                 })
             }
             else {
-                if (req.user.submitted == true) {
+                if (req.user.team.submitted == true) {
                     message = "You have already submitted. Please check your rank in the leaderboard";
                     req.logout();
                     res.json({
@@ -141,7 +141,7 @@ exports.black_ques = async (req, res) => {
                 redirect: false
             })
         }
-        else if (req.user.submitted == true) {
+        else if (req.user.team.submitted == true) {
             message = "You have already submitted. Please check your rank in the leaderboard";
             req.logout();
             res.json({
@@ -255,7 +255,7 @@ exports.submit_blackbox = async (req, res) => {
                 message: message
             })
         }
-        else if (req.user.submitted == true) {
+        else if (req.user.team.submitted == true) {
             message = "You have already submitted. Please check your rank in the leaderboard";
             req.logout();
             res.json({

@@ -14,6 +14,12 @@ const userSchema = new mongoose.Schema({
 	{ timestamps: true }
 );
 
+userSchema.pre('save', function (next) {
+	// Convert the email to lowercase
+	this.email = this.email.toLowerCase();
+	next();
+});
+
 userSchema.plugin(findOrCreate);
 
 const User = new mongoose.model("User", userSchema);
@@ -43,7 +49,7 @@ passport.serializeUser(function (user, done) {
 	done(null, user.id);
 });
 
-passport.deserializeUser( async function (id, done) {
+passport.deserializeUser(async function (id, done) {
 	User.findById(id, async function (err, user) {
 		const team = await Team.findOne({ "$or": [{ leader_email: user.email }, { member_email: user.email }] });
 		if (team) {
@@ -55,7 +61,7 @@ passport.deserializeUser( async function (id, done) {
 				check_login middleware will check if req.user.team is null or not
 				if it is null then it will render the index page with message "You are not registered for the game."
 			*/
-			user.team = null; 
+			user.team = null;
 		}
 		done(err, user);
 	});

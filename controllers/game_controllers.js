@@ -33,8 +33,8 @@ exports.rules = (req, res) => {
 }
 
 exports.submit = (req, res) => {
-	req.user.submitted = true;
-	req.user.save(function () {
+	req.user.team.submitted = true;
+	req.user.team.save(function (err) {
 		res.redirect("/");
 	})
 }

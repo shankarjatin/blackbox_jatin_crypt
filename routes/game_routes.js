@@ -40,13 +40,11 @@ router.post("/game",
 );
 
 router.post("/submit",
-	game_middleware.check_game_timing,
 	auth_middleware.check_login,
 	game_controller.submit
 );
 
 router.get("/submit",
-	game_middleware.check_game_timing,
 	auth_middleware.check_login,
 	game_controller.submit
 );

@@ -265,7 +265,7 @@ exports.submit_blackbox = async (req, res) => {
                 url: "/"
             })
         }
-        else if (team.level == (process.env.BLACK_LEVEL)) {
+        else if (team.blackbox_level >= (process.env.BLACK_LEVEL)) {
             message = "Well Done! You have solved all levels. Please check your rank in the leaderboard";
             res.json({
                 success: true,

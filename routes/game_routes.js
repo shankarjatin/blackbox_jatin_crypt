@@ -13,8 +13,6 @@ router.get("/home",
 	controller.homeRoute
 )
 
-
-
 router.get("/rules",
 	game_controller.rules
 );

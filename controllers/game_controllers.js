@@ -31,6 +31,11 @@ exports.rules = (req, res) => {
 		user: req.user
 	});
 }
+exports.home = (req, res) => {
+	res.render("home", {
+		user: req.user
+	});
+}
 
 exports.submit = (req, res) => {
 	req.user.team.submitted = true;

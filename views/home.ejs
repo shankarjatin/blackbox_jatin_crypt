@@ -1,15 +1,21 @@
 <%- include("./partials/header.ejs",{name:'triyon'}); %>
-  <div id="background-blur-outer"></div> <!-- for leaderboard -->
-
-  <h1>Redirect Example</h1>
-  <p>Click one of the links below to redirect to a different route:</p>
-  <ul>
-    <li><a href="/game">crypthunt</a></li>
-    <li><a href="/blackbox">blackbox</a></li>
-  </ul>
-  <!-- 
-  <% if ( message !='None' ) { %>
-    <script>alert("<%-message%>")</script>
-    <% } %> -->
+  <div id="wraperhome">
+    <div id="homeheadingdiv">
+      <h1 style="font-family: 
+      Orbitron; font-size:2.875rem; color: white; text-align: center; padding-top: 10rem;">Welcome to the CryptHunt! <br>
+        Analyze, Decode and Win</h1>
+    </div>
+    <div id="homeboxdiv">
+      <div id="crypthuntdiv" class="homebox">
+        <p class="fonthomediv">Crypthunt</p>
+      </div>
+      <div id="blackboxdiv" class="homebox">
+        <p class="fonthomediv">Blackbox</p>
+      </div>
+    </div>
+    <div id="homebutdiv">
+      <a href=""> <button id="homestartBUt">Start</button></a>
+    </div>
+  </div>
 
   <%- include("./partials/footer.ejs"); %>

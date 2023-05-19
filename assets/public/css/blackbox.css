@@ -5,7 +5,6 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
@@ -139,21 +138,20 @@ body {
 }
 .blackbox-input-part,
 .blackbox-check-part {
-  margin-top: 60px;
+  /* margin-top: 60px; */
   display: flex;
   /* z-index: -3; */
   align-items: center;
   flex-direction: column;
   max-width: 90vw;
-  justify-content: center;
+  /* justify-content: center; */
 }
-.input-part-inner,
-.check-part-inner {
-  width: 467.52px;
-  min-height: 248px;
-  left: 172px;
-  top: 245px;
 
+.input-part-inner {
+  border-radius: 28px;
+  max-width: 468px;
+  width: 468px;
+  height: 270px;
   background: linear-gradient(
     120.21deg,
     rgba(99, 101, 148, 0.4) 18.15%,
@@ -161,23 +159,27 @@ body {
   );
   box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(12.5px);
-  /* Note: backdrop-filter has minimal browser support */
-
   border-radius: 55px;
-}
-.input-part-inner {
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
 }
 .input-part-inner h1 {
-  padding: 26px 0;
+  font-family: "Orbitron";
+  font-style: normal;
   font-weight: 700;
+  font-size: 20px;
+  margin: 26px 0;
 }
 .input-label {
-  font-size: 16px;
+  /* font-size: 16px;
+  font-weight: 500; */
+  font-family: "Orbitron";
+  font-style: normal;
   font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
 }
 .blackbox-btn {
   width: 323px;
@@ -191,16 +193,24 @@ body {
   color: white;
   font-size: 19px;
 }
+.blackbox-btn:hover {
+  cursor: pointer;
+  border: 2px solid white;
+}
 .blackbox-user-interface {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  gap: 110px;
+  justify-content: center;
+  margin-top: 29px;
 }
 .input-input {
   background: #d9d9d9;
   border-radius: 6px;
   width: 104px;
   height: 29px;
+  text-align: center;
 }
 .inputs-list {
   display: grid;
@@ -213,10 +223,17 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.no_combinations_tried {
+  font-family: "Orbitron";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 15px;
+  line-height: 30px;
+}
 .check-part-inner label {
   font-size: 20px;
   font-weight: 700;
-  margin-top: 72px;
+  /* margin-top: 72px; */
 }
 .check-part-inner input {
   color: white;
@@ -232,12 +249,14 @@ body {
   border-radius: 55px;
   width: 290px;
   height: 50px;
-  margin-top: 45px;
+  color: white !important;
+  /* margin-top: 45px; */
   text-align: center;
 }
 
 .history-list-container {
-  z-index: -3;
+  /* z-index: -3; */
+  user-select: none;
   background: linear-gradient(
     120.21deg,
     rgba(99, 101, 148, 0.4) 18.15%,
@@ -250,28 +269,37 @@ body {
   border-radius: 28px;
   max-width: 468px;
   width: 90vw;
-  height: 133px;
-  margin: auto;
-  margin-top: 30px;
+  height: 175px;
+  /* margin: auto; */
+  margin-top: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .history-list {
-  z-index: -3;
+  /* z-index: 13; */
   /* padding-top: 21px; */
   list-style-type: none;
   overflow-y: scroll;
-  max-height: 80px;
-  max-width: 350px;
+  height: 100%;
+  padding: 0 41px;
+  max-height: 93px;
+  padding-left: 71px;
+  margin-right: 25px;
+  /* max-width: 350px; */
 }
 .history-list-item {
   margin: 6px 0;
+  font-family: "Orbitron";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 15px;
+  line-height: 30px;
 }
 @media screen and (max-width: 950px) {
-  .blackbox-user-interface {
-    flex-direction: column;
-  }
+  /* .blackbox-user-interface { */
+  /* flex-direction: column; */
+  /* } */
   #level-head h1 {
     font-size: 24px;
   }
@@ -282,15 +310,111 @@ body {
 #background-blur-outer {
   /* content: ""; */
   display: none;
-  z-index: 3;
+  /* z-index: 3;  */
+  /* overflow-y: scroll; */
   position: fixed;
   width: 100vw;
   height: 100vh;
+  background: linear-gradient(
+    120.21deg,
+    rgba(44, 45, 77, 0.7) 18.15%,
+    rgba(36, 37, 61, 0.6) 82.15%
+  );
+  box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
+}
+.instruction-head {
+  font-family: "Orbitron";
+  font-style: normal;
+  font-weight: 800;
+  margin-top: 26px;
+  margin-bottom: 9px;
+  font-size: 20px;
+  line-height: 30px;
+  line-height: 30px;
+}
+.instruction-li {
+  font-family: "Orbitron";
+  font-style: normal;
+  margin: 14px 0;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 30px;
+}
+.instruction-part {
+  border-radius: 28px;
+  max-width: 468px;
+  width: 468px;
+  height: 270px;
   background: linear-gradient(
     120.21deg,
     rgba(99, 101, 148, 0.4) 18.15%,
     rgba(55, 57, 92, 0.1) 82.15%
   );
   box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(12.5px);
+  border-radius: 55px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.history-list-container label {
+  font-family: "Orbitron";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 40px;
+  line-height: 24px;
+}
+.submit-answer-part {
+  background: linear-gradient(
+    120.21deg,
+    rgba(99, 101, 148, 0.4) 18.15%,
+    rgba(55, 57, 92, 0.1) 82.15%
+  );
+  box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 28px;
+  max-width: 468px;
+  width: 90vw;
+  height: 175px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+}
+.submit-answer-part label {
+  font-family: "Orbitron";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 36px;
+  line-height: 24px;
+}
+.submit-answer-part input {
+  background: linear-gradient(
+    120.21deg,
+    rgba(65, 67, 100, 0.041) 82.15%,
+    rgba(99, 101, 148, 0.04) 18.15%
+  );
+  box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  /* Note: backdrop-filter has minimal browser support */
+  border: none;
+  width: 292px;
+  height: 58.2px;
+  margin-top: 30px;
+  border-radius: 73px;
+  text-align: center;
+  font-family: "Orbitron";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 24px;
+}
+.submit-answer-part input:focus {
+  color: #ffffff;
 }

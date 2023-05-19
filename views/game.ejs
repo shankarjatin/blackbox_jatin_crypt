@@ -82,6 +82,7 @@
                                             div = document.getElementById("hint_id")
                                             div.innerHTML = "";
                                             const ul = document.createElement("ul");
+                                            ul.classList.add("hint-list-ul")
                                             if (Array.length == 0) {
                                                 const li = document.createElement("li");
                                                 const text = document.createTextNode("No Hints to Show");
@@ -91,7 +92,9 @@
                                             else {
                                                 for (let i = 0; i < Array.length; i++) {
                                                     console.log(Array);
+                                                    Array[i].hint="Hint "+(i+1)+" : "+Array[i].hint;
                                                     const li = document.createElement("li");
+                                                    li.classList.add("hints-item-li")
                                                     const text = document.createTextNode(Array[i].hint);
                                                     li.appendChild(text);
                                                     ul.appendChild(li);
@@ -99,6 +102,7 @@
                                             }
                                             div.appendChild(ul);
                                         }
+
                                         function hintClick() {
                                             payload = { game: "Crypthunt", level: "<%-level%>" }
                                             console.log(payload)

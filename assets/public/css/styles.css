@@ -14,7 +14,7 @@ body {
   /* background-repeat: no-repeat; */
   /* background-size: cover; */
 }
-#navbarmainwrapper{
+#navbarmainwrapper {
   /* position: fixed; */
 }
 .testingdiv {
@@ -29,7 +29,7 @@ body {
   color: white;
   position: absolute;
   top: -200px;
-  z-index: 2;
+  z-index: 1800;
 }
 
 #logul {
@@ -326,7 +326,7 @@ body {
   border-radius: 97px;
   position: absolute;
   top: 12vh;
-  left: 10%;
+  right: 10%;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -66,6 +66,7 @@
                                         let minutes = Math.floor((time % 3600) / 60);
                                         let seconds = Math.floor(time - 3600 * hours - 60 * minutes);
                                         if (time < 0) {
+                                            alert("Thank you for participating in Blockverse'23! Your active engagement is greatly appreciated")
                                             timer[i].innerHTML = `00 : 00 : 00`;
                                             window.location = "/submit";
                                         } else {
@@ -92,7 +93,7 @@
                                             else {
                                                 for (let i = 0; i < Array.length; i++) {
                                                     console.log(Array);
-                                                    Array[i].hint="Hint "+(i+1)+" : "+Array[i].hint;
+                                                    Array[i].hint = "Hint " + (i + 1) + " : " + Array[i].hint;
                                                     const li = document.createElement("li");
                                                     li.classList.add("hints-item-li")
                                                     const text = document.createTextNode(Array[i].hint);

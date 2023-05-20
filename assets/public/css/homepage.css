@@ -27,9 +27,23 @@
     font-weight: 500;
 }
 #homebutdiv{
-    align-items: center;
-    5.953
+    /* align-items: center; */
+    text-align: center;
+    margin-top: 5.063rem;
+    
 }
 #homebutdiv button{
-    width:5.953rem;
+    width:15.438rem;
+    height: 3.935rem;
+    border-radius: 0.688rem;
+    border: 0.125rem solid white;
+    background-color: #EE3FA2;
+    font-family: Orbitron;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: white;
+}
+.homebox:hover{
+    backdrop-filter: blur(10px);
+    background-color: rgba(238, 63, 162, 0.46);
 }

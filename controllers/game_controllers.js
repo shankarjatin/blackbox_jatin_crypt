@@ -31,11 +31,24 @@ exports.rules = (req, res) => {
 		user: req.user
 	});
 }
+exports.home = (req, res) => {
+	const remaining_time = req.remainingTime;
+	res.render("home", {
+		user: req.user,
+		remaining_time: remaining_time
+	});
+}
+exports.about_us = (req, res) => {
+	res.render("about_page")
+}
+
+
 
 exports.submit = (req, res) => {
 	req.user.team.submitted = true;
 	req.user.team.save(function (err) {
-		res.redirect("/");
+		req.logout();
+		res.redirect("/about_us");
 	})
 }
 

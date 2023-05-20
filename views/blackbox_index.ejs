@@ -1,9 +1,7 @@
 <%- include("./partials/header.ejs"); %>
 
   <!-- Below component to blur background while leaderboard is open -->
-  <div id="background-blur-outer">
-
-  </div>
+  <div id="background-blur-outer"></div>
   <!-- Below script is for displaying any message if present -->
   <% if (message !="None" ) { %>
     <script defer>
@@ -18,68 +16,70 @@
         </script>
         <% } %>
           <div id="level-head">
-
             <h1 id="">Level #<%- level %>!</h1>
           </div>
 
           <div id="gamediv">
             <div id="outercountdown">
               <div>
-
                 <div class="count countdown">3 : 0 : 0</div>
               </div>
             </div>
             <div class="blackbox-user-interface">
-
               <div class="blackbox-input-part">
                 <div class="input-part-inner">
-
-
                   <h1>Enter Values</h1>
                   <div class="inputs-list">
-
                     <% for(let i=1; i<=variableCount ; i++){ %>
-                      <label class="input-label" for="num<%- i %>">Number <%- i %>:</label>
-                      <input type="number" name="num<%- i %>" class="numbers input-input" id="num<%- i %>">
+                      <label class="input-label" for="num<%- i %>">Number <%- i %> :</label>
+                      <input type="number" name="num<%- i %>" class="numbers input-input" id="num<%- i %>" />
                       <% } %>
                   </div>
                 </div>
 
-                <button class="blackbox-btn" onclick="checkExpression()">Check Combination</button>
-              </div>
-              <div class="blackbox-check-part">
-                <div class="check-part-inner">
+                <div class="history-list-container" id="list-container">
+                  <% if (team.Array.length> 0) { %>
+                    <ul class="history-list blackboxHistory">
+                      <% for(let i=(team.Array.length)-1 ; i>=0 ; i--){ %>
+                        <li class="history-list-item">
+                          <%= team.Array[i] %>
+                        </li>
+                        <% } %>
+                    </ul>
+                    <% } else{%>
 
+                      <p class="no_combinations_tried">No combinations tried yet!</p>
+                      <%}%>
+                </div>
+                <button class="blackbox-btn" onclick="checkExpression()">
+                  Check Combination
+                </button>
+              </div>
+
+              <div class="blackbox-input-part">
+                <div class="instruction-part">
+                  <p></p>
+                  <div class="instruction-head">instructions</div>
+                  <% if(instructions.length===0){ %>
+                    <div class="instruction-li">use a,b,c,d and e as variables!</div>
+                    <% }else{ %>
+                      <% for(let i=0; i<instructions.length;i++){ %>
+                        <div class="instruction-li"><%- instructions[i]%></div>
+                        <%}%>
+                          <%}%>
+                </div>
+                <div class="submit-answer-part">
                   <label for="submit_expression">Enter your expression here!</label>
                   <input type="text" placeholder="Enter your expression" name="user_expression" id="submit_expression"
-                    onkeypress="return /[a-e+\-*/]/i.test(event.key)">
+                    onkeypress="return /[a-e+\-*/]/i.test(event.key)" />
                 </div>
 
                 <button class="blackbox-btn" onclick="submit()">Submit Expression</button>
               </div>
             </div>
 
-
-            <div class="history-list-container" id="list-container">
-              <% if (team.Array.length> 0) { %>
-                <ul class="history-list blackboxHistory">
-                  <% for(let i=(team.Array.length)-1 ; i>=0 ; i--){ %>
-                    <li class="history-list-item">
-                      <%= team.Array[i] %>
-                    </li>
-                    <% } %>
-                </ul>
-                <% } %>
-
-            </div>
-
-            <p> instruction :<br> example input : a+b+c+d , (a*b)+c+d .<br> use a,b,c and d as variable !</p>
-
             <% if (remaining_time !="None" ) { %>
               <script>
-
-
-
                 let timer = document.getElementsByClassName("countdown");
                 for (let i = 0; i <= timer.length - 1; i++) {
                   let time = Math.floor(Number("<%-remaining_time%>") / 1000);
@@ -89,7 +89,6 @@
                     let minutes = Math.floor((time % 3600) / 60);
                     let seconds = Math.floor(time - 3600 * hours - 60 * minutes);
                     if (time < 0) {
-
                       timer[i].innerHTML = `00 : 00 : 00`;
                       window.location = "/submit";
                     } else {
@@ -104,7 +103,7 @@
 
                   <script>
                     function createUL(Array) {
-                      div = document.getElementById("hint_id")
+                      div = document.getElementById("hint_id");
                       div.innerHTML = "";
                       const ul = document.createElement("ul");
 
@@ -113,8 +112,7 @@
                         const text = document.createTextNode("No Hints to Show");
                         li.appendChild(text);
                         ul.appendChild(li);
-                      }
-                      else {
+                      } else {
                         for (let i = 0; i < Array.length; i++) {
                           const li = document.createElement("li");
                           const text = document.createTextNode(Array[i].hint);
@@ -125,10 +123,10 @@
                       div.appendChild(ul);
                     }
                     function hintClick() {
-                      payload = { game: "Blackbox", level: "<%- level %>" }
-                      axios.post("/get_hints", payload).then(res => {
+                      payload = { game: "Blackbox", level: "<%- level %>" };
+                      axios.post("/get_hints", payload).then((res) => {
                         createUL(res.data.result);
-                      })
+                      });
                     }
                   </script>
                   <script>
@@ -136,12 +134,12 @@
                       console.log("inside submit()");
                       url = "/submit_blackbox";
                       const expression = document.getElementById("submit_expression").value;
-                      payload = { "user_expression": `${expression}` };
+                      payload = { user_expression: `${expression}` };
                       const res = await axios.post(url, payload);
-                      console.log(res.data)
+                      console.log(res.data);
                       if (res.data.success == false && res.data.redirect == false) {
                         alert(res.data.message);
-                        document.getElementById("submit_expression").value = ""
+                        document.getElementById("submit_expression").value = "";
                       } else if (res.data.success == true && res.data.redirect == false) {
                         alert(res.data.message);
                         window.location.reload();
@@ -153,33 +151,34 @@
                     }
                   </script>
                   <script>
-                    document.getElementById("background-blur-outer").addEventListener("click", () => {
-                      leaderClick(1)
-
-                    })
+                    document
+                      .getElementById("background-blur-outer")
+                      .addEventListener("click", () => {
+                        leaderClick(1);
+                      });
                     //clearing input fields
                     function clear() {
-                      var allInputs = document.getElementsByClassName('numbers');
+                      var allInputs = document.getElementsByClassName("numbers");
                       for (let i = 0; i < allInputs.length; i++) {
-                        allInputs[i].value = '';
+                        allInputs[i].value = "";
                       }
                     }
                     //rendering list item
                     function renderList(array) {
-                      const listContainer = document.getElementById('list-container');
-                      const ul = document.createElement('ul');// Adding classlist so that the css apply to the updated hints 
+                      const listContainer = document.getElementById("list-container");
+                      const ul = document.createElement("ul"); // Adding classlist so that the css apply to the updated hints
 
-                      ul.classList.add('history-list')
-                      ul.classList.add('blackboxHistory')
+                      ul.classList.add("history-list");
+                      ul.classList.add("blackboxHistory");
                       for (let i = array.length - 1; i >= 0; i--) {
-                        const li = document.createElement('li');
+                        const li = document.createElement("li");
                         li.textContent = array[i];
-                        li.classList.add('history-list-item');
+                        li.classList.add("history-list-item");
                         ul.appendChild(li);
                         clear();
                       }
                       //clearing listContainer before appending
-                      listContainer.innerHTML = '';
+                      listContainer.innerHTML = "";
                       listContainer.appendChild(ul);
                     }
                     //update new items
@@ -188,7 +187,7 @@
                     }
 
                     async function checkExpression() {
-                      url = "<% process.env.DEPLOYMENT %>"
+                      url = "<% process.env.DEPLOYMENT %>";
                       url = "/black_ques";
                       const inputFields = document.getElementsByClassName("numbers");
                       payload = {};
@@ -199,18 +198,15 @@
                         if (res.data.success == true && res.data.redirect == false) {
                           const data = res.data.attempts;
                           updateList(data);
-                        }
-                        else if (res.data.success == false && res.data.redirect == false) {
+                        } else if (res.data.success == false && res.data.redirect == false) {
                           alert(res.data.message);
                           clear();
-                        }
-                        else {
+                        } else {
                           alert(res.data.message);
                           window.location.replace(res.data.url);
                         }
-                      })
+                      });
                     }
-
                   </script>
                   <script>
                     // input validation for submit expression
@@ -231,5 +227,5 @@
                     });
                   </script>
 
-
                   <%- include("./partials/footer.ejs"); %>
+          </div>

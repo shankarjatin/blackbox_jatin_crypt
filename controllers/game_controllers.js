@@ -36,6 +36,11 @@ exports.home = (req, res) => {
 		user: req.user
 	});
 }
+exports.About = (req, res) => {
+	res.render("Aboutpage")
+}
+	
+
 
 exports.submit = (req, res) => {
 	req.user.team.submitted = true;

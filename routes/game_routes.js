@@ -19,6 +19,9 @@ router.get("/rules",
 router.get("/home",
 	game_controller.home
 );
+router.get("/About",
+	game_controller.About
+);
 
 router.get("/blackbox_leaderboard", leaderBoard.blackbox)
 

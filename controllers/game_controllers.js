@@ -36,16 +36,16 @@ exports.home = (req, res) => {
 		user: req.user
 	});
 }
-exports.About = (req, res) => {
-	res.render("Aboutpage")
+exports.about_us = (req, res) => {
+	res.render("about_page")
 }
-	
+
 
 
 exports.submit = (req, res) => {
 	req.user.team.submitted = true;
 	req.user.team.save(function (err) {
-		res.redirect("/");
+		res.redirect("/about_us");
 	})
 }
 

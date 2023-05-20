@@ -2,19 +2,19 @@ function headingHandler() {
   let heading = document.getElementsByClassName("heading");
   let heading2 = document.getElementsByClassName("heading-side");
   console.log(heading);
-  //   if (window.location.pathname == "/game") {
-  // heading[0].innerHTML = "Crypthunt";
-  // heading[0].classList.add("font_primary");
-  // heading2[0].classList.add("font_secondary");
-  // heading2[0].innerHTML = "Blackbox";
-  // heading2[0].href = "/blackbox";
-  //   } else if (window.location.pathname == "/blackbox") {
-  // heading[0].innerHTML = "Blackbox";
-  // heading2[0].classList.add("font_primary");
-  // heading2[0].innerHTML = "Crypthunt";
-  // heading[0].classList.add("font_secondary");
-  // heading[0].href = "/blackbox";
-  //   }
+  if (window.location.pathname == "/game") {
+    heading[0].innerHTML = "Crypthunt";
+    heading[0].classList.add("font_primary");
+    heading2[0].classList.add("font_secondary");
+    heading2[0].innerHTML = "Blackbox";
+    heading2[0].href = "/blackbox";
+  } else if (window.location.pathname == "/blackbox") {
+    heading[0].innerHTML = "Blackbox";
+    heading2[0].classList.add("font_primary");
+    heading2[0].innerHTML = "Crypthunt";
+    heading[0].classList.add("font_secondary");
+    heading[0].href = "/blackbox";
+  }
 }
 headingHandler();
 

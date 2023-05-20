@@ -15,7 +15,7 @@ body {
   /* background-size: cover; */
 }
 #navbarmainwrapper{
-  position: fixed;
+  /* position: fixed; */
 }
 .testingdiv {
   background-color: aqua;

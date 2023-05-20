@@ -66,8 +66,8 @@
                                         let minutes = Math.floor((time % 3600) / 60);
                                         let seconds = Math.floor(time - 3600 * hours - 60 * minutes);
                                         if (time < 0) {
-                                            alert("Thank you for participating in Blockverse'23! Your active engagement is greatly appreciated")
                                             timer[i].innerHTML = `00 : 00 : 00`;
+                                            alert("Thank you for participating in Blockverse'23! Your active engagement is greatly appreciated")
                                             window.location = "/submit";
                                         } else {
                                             timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;

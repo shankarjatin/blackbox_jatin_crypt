@@ -45,6 +45,7 @@ exports.about_us = (req, res) => {
 exports.submit = (req, res) => {
 	req.user.team.submitted = true;
 	req.user.team.save(function (err) {
+		req.logout();
 		res.redirect("/about_us");
 	})
 }

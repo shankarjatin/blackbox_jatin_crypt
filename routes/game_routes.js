@@ -9,14 +9,16 @@ router.get("/",
 	game_controller.index
 );
 
-router.get("/home",
-	controller.homeRoute
-)
+// router.get("/home",
+// 	controller.homeRoute
+// )
 
 router.get("/rules",
 	game_controller.rules
 );
 router.get("/home",
+	game_middleware.check_game_timing,
+	auth_middleware.check_login,
 	game_controller.home
 );
 router.get("/about_us",

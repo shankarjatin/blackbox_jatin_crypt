@@ -32,8 +32,10 @@ exports.rules = (req, res) => {
 	});
 }
 exports.home = (req, res) => {
+	const remaining_time = req.remainingTime;
 	res.render("home", {
-		user: req.user
+		user: req.user,
+		remaining_time: remaining_time
 	});
 }
 exports.about_us = (req, res) => {

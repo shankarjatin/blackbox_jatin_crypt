@@ -556,7 +556,9 @@ table tr:last-child td:last-child {
     font-size: 0px; */
   }
   #outercountdown {
-    left: 8%;
+    /* left: 8%; */
+    left: 84%;
+    top: 13%;
   }
   /*LEADERBOARD RESPONSIVE*/
   #linner {

@@ -345,3 +345,9 @@ a,
   align-items: center;
   flex-direction: column;
 }
+
+ #outercountdown {
+    /* left: 8%; */
+    left: 84%;
+    top: 12%;
+  }

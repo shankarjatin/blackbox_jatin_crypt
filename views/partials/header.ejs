@@ -1,64 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <title>BRL Crypthunt</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Google Font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Font Awsome -->
-    <link
-      rel="stylesheet"
-      href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="public/css/blackbox.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" type="text/css" href="public/css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="public/css/header.css" />
-    <link rel="stylesheet" type="text/css" href="public/css/leaderboard.css" />
-  </head>
 
-  <head>
-    <meta charset="utf-8" />
-    <title>BRL Crypthunt</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Google Font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Font Awsome -->
-    <link
-      rel="stylesheet"
-      href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="public/css/blackbox.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" type="text/css" href="public/css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="public/css/header.css" />
-    <link rel="stylesheet" type="text/css" href="public/css/leaderboard.css" />
-    <link rel="stylesheet" type="text/css" href="public/css/homepage.css" />
-  </head>
 
-  <body>
-    <!-- if logged in  -->
-    <div id="navbarmainwrapper">
-      <% if (typeof user !='undefined' ) { %>
+
+<head>
+  <meta charset="utf-8" />
+  <title>BRL Crypthunt</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Font Awsome -->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="public/css/blackbox.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/styles.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/header.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/leaderboard.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/homepage.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/aboutpage.css" />
+
+</head>
+
+<body>
+  <!-- if logged in  -->
+  <div id="navbarmainwrapper">
+    <% if (typeof user !='undefined' ) { %>
       <div id="logdiv">
         <ul id="logul">
           <a href="/logout" class="ali">
@@ -95,19 +64,10 @@
             <li class="header_li navbar-hints-section" id="">
               <div onclick="leaderClick()" class="">Leaderboard</div>
             </li>
-            <li
-              class="header_li navbar-hints-section"
-              onclick="leaderClick(1)"
-              onclick="hintClick()"
-              id="hints-clicker"
-            >
+            <li class="header_li navbar-hints-section" onclick="leaderClick(1)" onclick="hintClick()"
+              id="hints-clicker">
               <p onclick="hintClick()" class="navbar-hints-label">Hints</p>
-              <div
-                id="hint_id"
-                onclick="chbg(1)"
-                onclick="hintClick()"
-                class="crypthunt-hints-dropdown"
-              >
+              <div id="hint_id" onclick="chbg(1)" onclick="hintClick()" class="crypthunt-hints-dropdown">
                 <div class="hints-loader"></div>
               </div>
             </li>
@@ -115,8 +75,8 @@
             <li class="header_li user-greet" id="">
               <i class="fa-regular fa-user-circle"></i>
               <p>
-                &nbsp; <% var full_name=user.name%> <% var
-                first_name=full_name.split(' ')[0]; %> Hi
+                &nbsp; <% var full_name=user.name%>
+                  <% var first_name=full_name.split(' ')[0]; %> Hi
                 <%-first_name%>!&nbsp;&nbsp;
               </p>
 
@@ -163,27 +123,26 @@
         <ul class="index_page_ul">
           <li class="header_title_font font_primary">
             <a href="/" class="" class="heading">Blockverse' 23</a>
-          </li>
-          <!-- <div class="header_routes_main_page"> -->
-          <li class="header_li navbar-hints-section" id="">
-            <div onclick="leaderClick()" class="">Leaderboard</div>
-          </li>
+            </li>
+            <!-- <div class="header_routes_main_page"> -->
+            <li class="header_li navbar-hints-section" id="">
+              <div onclick="leaderClick()" class="">Leaderboard</div>
+            </li>
 
-          <li class="header_li navbar-hints-section" id="">
-            <a href="/rules" class="">Rules</a>
-          </li>
+            <li class="header_li navbar-hints-section" id="">
+              <a href="/rules" class="">Rules</a>
+            </li>
 
-          <li class="" id="">
-            <a href="/auth/google"
-              ><button type="button" class="login_btn" id="">Login</button></a
-            >&nbsp;
-          </li>
-          <!-- </div> -->
+            <li class="" id="">
+              <a href="/auth/google"><button type="button" class="login_btn" id="">Login</button></a>&nbsp;
+            </li>
+            <!-- </div> -->
         </ul>
       </div>
       <!--  -->
       <!-- -->
-    </div>
-    <% } %> <%- include("./leaderboard2.ejs"); %>
-  </body>
+  </div>
+  <% } %> <%- include("./leaderboard2.ejs"); %>
+</body>
+
 </html>

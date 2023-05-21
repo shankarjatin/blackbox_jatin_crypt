@@ -82,6 +82,13 @@ a,
   justify-content: space-between;
   width: 53.9vw;
 }
+.header_routes_main_page {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 70vw;
+}
 .login_btn {
   background: #ee3fa2;
   border: 2.5px solid #ffffff;

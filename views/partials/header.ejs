@@ -98,17 +98,17 @@
             <li
               class="header_li navbar-hints-section"
               onclick="leaderClick(1)"
-              onmousedown="chbg()"
               onclick="hintClick()"
               id="hints-clicker"
             >
               <p onclick="hintClick()" class="navbar-hints-label">Hints</p>
               <div
                 id="hint_id"
+                onclick="chbg(1)"
                 onclick="hintClick()"
                 class="crypthunt-hints-dropdown"
               >
-                Hint
+                <div class="hints-loader"></div>
               </div>
             </li>
 

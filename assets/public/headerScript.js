@@ -190,12 +190,12 @@ function chbg(k) {
     kk = kk == 0 ? 1 : 0;
   }
 }
-// $(document).on("click", function (event) {
-//   var $trigger = $("#hints-clicker");
-//   if ($trigger !== event.target && !$trigger.has(event.target).length) {
-//     chbg(1);
-//   }
-// });
+$(document).on("click", function (event) {
+  var $trigger = $("#hints-clicker");
+  if ($trigger !== event.target && !$trigger.has(event.target).length) {
+    chbg(1);
+  }
+});
 
 function overallClick() {
   let heading = document.getElementById("leaderboard_heading");
@@ -245,21 +245,23 @@ function blackboxClick() {
   });
 }
 function logmenu() {
-  // c++;
-  // if (c % 2 != 0) {
-  document.getElementById("logdiv").style.cssText =
-    "position: fixed; top: 60px; right: 2%;";
-  chbg(1);
-  // leaderClick(1);
-  // } else {
-  //   document.getElementById("logdiv").style.cssText =
-  //     "position: absolute; top: -200px;";
-  // }
-}
-$(document).on("click", function (event) {
-  var $trigger = $("#user-logout-div");
-  if ($trigger !== event.target && !$trigger.has(event.target).length) {
+  c++;
+  if (c % 2 != 0) {
+    document.getElementById("logdiv").style.cssText =
+      "position: fixed; top: 60px; right: 2%;";
+    // chbg(1);
+    console.log("Hi");
+    leaderClick(1);
+  } else {
     document.getElementById("logdiv").style.cssText =
       "position: absolute; top: -200px;";
   }
-});
+}
+
+// $(document).on("click", function (event) {
+//   var $trigger = $("#user-logout-div");
+//   if ($trigger !== event.target && !$trigger.has(event.target).length) {
+//     document.getElementById("logdiv").style.cssText =
+//       "position: absolute; top: -200px;";
+//   }
+// });

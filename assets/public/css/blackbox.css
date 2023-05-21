@@ -30,7 +30,7 @@ input[type="number"] {
   box-sizing: border-box;
   scroll-behavior: smooth;
   /* font-family: "Orbitron", sans-serif; */
-  list-style-type: none;
+  /* list-style-type: none; */
 }
 body {
   background-image: url("../blackbox_bg.png");
@@ -328,7 +328,7 @@ body {
   font-style: normal;
   font-weight: 800;
   margin-top: 26px;
-  margin-bottom: 9px;
+  margin-bottom: 22px;
   font-size: 20px;
   line-height: 30px;
   line-height: 30px;
@@ -336,7 +336,7 @@ body {
 .instruction-li {
   font-family: "Orbitron";
   font-style: normal;
-  margin: 14px 0;
+  margin: 2px 0;
   font-weight: 500;
   font-size: 15px;
   line-height: 30px;

@@ -1,19 +1,9 @@
 function headingHandler() {
-  let heading = document.getElementsByClassName("heading");
-  let heading2 = document.getElementsByClassName("heading-side");
-  console.log(heading);
-  if (window.location.pathname == "/game") {
-    heading[0].innerHTML = "Crypthunt";
-    heading[0].classList.add("font_primary");
-    heading2[0].classList.add("font_secondary");
-    heading2[0].innerHTML = "Blackbox";
-    heading2[0].href = "/blackbox";
-  } else if (window.location.pathname == "/blackbox") {
-    heading[0].innerHTML = "Blackbox";
-    heading2[0].classList.add("font_primary");
-    heading2[0].innerHTML = "Crypthunt";
-    heading[0].classList.add("font_secondary");
-    heading[0].href = "/blackbox";
+  let heading = document.getElementsByClassName("heading")[0];
+  let heading2 = document.getElementsByClassName("heading-side")[0];
+  if (window.location.pathname == "/home") {
+    heading.innerHTML = "Blockverse '23";
+    heading2.innerHTML = "";
   }
 }
 headingHandler();
@@ -142,13 +132,13 @@ function addTableRowOriginal(Array) {
       window.location.pathname == "/game" ||
       window.location.pathname == "/blackbox"
     ) {
-      chbg(1); //close the hints tab if open
+      // chbg(1); //close the hints tab if open
     }
   }
 }
 
-let ct = 0;
 function leaderClick(chk_close) {
+  let ct = 0;
   // below condition to force close in any case
   // console.log(document.getElementById("wrapper"));
   // console.log(document.getElementById("background-blur-outer"))
@@ -162,7 +152,7 @@ function leaderClick(chk_close) {
       window.location.pathname == "/game" ||
       window.location.pathname == "/blackbox"
     ) {
-      chbg(1); //close the hints tab if open
+      // chbg(1); //close the hints tab if open
     }
     if (ct == 1) {
       wrapper.style.display = "none";
@@ -179,6 +169,23 @@ function leaderClick(chk_close) {
     overallClick();
   }
 }
+
+function chbg(k) {
+  if (k == 1) {
+    document.getElementById("hint_id").style.display = "none";
+    kk = 0;
+  } else {
+    document.getElementById("hint_id").style.display =
+      kk == 0 ? "block" : "none";
+    kk = kk == 0 ? 1 : 0;
+  }
+}
+$(document).on("click", function (event) {
+  var $trigger = $("#hints-clicker");
+  if ($trigger !== event.target && !$trigger.has(event.target).length) {
+    chbg(1);
+  }
+});
 
 function overallClick() {
   let heading = document.getElementById("leaderboard_heading");
@@ -232,8 +239,19 @@ function logmenu() {
   if (c % 2 != 0) {
     document.getElementById("logdiv").style.cssText =
       "position: fixed; top: 60px; right: 2%;";
+    // chbg(1);
+    console.log("Hi");
+    leaderClick(1);
   } else {
     document.getElementById("logdiv").style.cssText =
       "position: absolute; top: -200px;";
   }
 }
+
+// $(document).on("click", function (event) {
+//   var $trigger = $("#user-logout-div");
+//   if ($trigger !== event.target && !$trigger.has(event.target).length) {
+//     document.getElementById("logdiv").style.cssText =
+//       "position: absolute; top: -200px;";
+//   }
+// });

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+  <title>BRL Crypthunt</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Font Awsome -->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="public/css/blackbox.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/styles.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/header.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/leaderboard.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/aboutpage.css" />
+</head>
+
+<head>
+  <meta charset="utf-8" />
+  <title>BRL Crypthunt</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Font Awsome -->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="public/css/blackbox.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/styles.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/header.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/leaderboard.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/homepage.css" />
+</head>
+
+<body>
+  <div class="index_page_header">
+    <div class="hamburger-menu">
+      <input id="menu__toggle" type="checkbox" />
+      <label class="menu__btn" for="menu__toggle">
+        <span></span>
+      </label>
+
+      <div class="menu__box">
+        <li class="menu__item" id="">
+          <a href="/rules" class="ali">Rules</a>
+        </li>
+        <hr class="ham_menu_hr" />
+        <li class="menu__item" id="">
+          <!-- <a href="" onclick="leaderClick()" class="">Leaderboard</a> -->
+          <div onclick="leaderClick()" class="">Leaderboard</div>
+        </li>
+      </div>
+    </div>
+    <ul class="index_page_ul">
+      <li class="header_title_font font_primary">
+        <a href="/" class="" class="heading">Blockverse' 23</a>
+      </li>
+      <!-- <div class="header_routes_main_page"> -->
+      <li class="header_li navbar-hints-section" id="">
+        <div onclick="leaderClick()" class="">Leaderboard</div>
+      </li>
+
+      <li class="header_li navbar-hints-section" id="">
+        <a href="/rules" class="">Rules</a>
+      </li>
+    </ul>
+  </div>
+  <% %> <%- include("./leaderboard2.ejs"); %>
+</body>
+
+</html>

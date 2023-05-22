@@ -85,7 +85,8 @@
                                             const ul = document.createElement("ul");
                                             ul.classList.add("hint-list-ul")
                                             if (Array.length == 0) {
-                                                const li = document.createElement("li");
+                                                const li = document.createElement("div");
+                                                li.style.textAlign="center"
                                                 const text = document.createTextNode("No Hints to Show");
                                                 li.appendChild(text);
                                                 ul.appendChild(li);
@@ -105,6 +106,7 @@
                                         }
 
                                         function hintClick() {
+                                            console.log("CY click");
                                             document.getElementById("hint_id").style.display = "block";
                                             document.getElementById("hint_id")
                                             payload = { game: "Crypthunt", level: "<%-level%>" }

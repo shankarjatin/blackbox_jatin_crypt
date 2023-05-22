@@ -48,8 +48,13 @@ a,
 .font_primary {
   text-shadow: 0px 1.2px #ee3fa2, 1.2px 0px #ee3fa2, 0px 0px #ee3fa2,
     1.2px 1.2px #ee3fa2, -1.2px -1.2px #ee3fa2, -1.2px 0px #ee3fa2,
+    0px -1.2px #ee3fa2, -1.2px 1.2px #ee3fa2, 1.2px -1.2px #ee3fa2;
+}
+.shadow_primary {
+  text-shadow: 0px 1.2px #ee3fa2, 1.2px 0px #ee3fa2, 0px 0px #ee3fa2,
+    1.2px 1.2px #ee3fa2, -1.2px -1.2px #ee3fa2, -1.2px 0px #ee3fa2,
     0px -1.2px #ee3fa2, -1.2px 1.2px #ee3fa2, 1.2px -1.2px #ee3fa2,
-    0px 0px 7px #ee3fa2;
+    0px 0px 7px #ed8ac2;
 }
 .header_title_font_2 {
   font-family: "Orbitron";
@@ -59,8 +64,24 @@ a,
 
   color: #ffffff;
 }
+.font_primary:hover {
+  text-shadow: 0px 1.2px #ee3fa2, 1.2px 0px #ee3fa2, 0px 0px #ee3fa2,
+    1.2px 1.2px #ee3fa2, -1.2px -1.2px #ee3fa2, -1.2px 0px #ee3fa2,
+    0px -1.2px #ee3fa2, -1.2px 1.2px #ee3fa2, 1.2px -1.2px #ee3fa2,
+    0px 0px 7px #ed8ac2;
+}
+.font_secondary:hover {
+  text-shadow: 0px 1.8px #2f2f2f, 1.8px 0px #2f2f2f, 0px 0px #2f2f2f,
+    1.8px 1.8px #2f2f2f, -1.8px -1.8px #2f2f2f, -1.8px 0px #2f2f2f,
+    0px -1.8px #2f2f2f, -1.8px 1.8px #2f2f2f, 1.8px -1.8px #2f2f2f,
+    0px 0px 7px #f0d9d9;
+}
 .font_secondary {
-  font-size: 30px;
+  text-shadow: 0px 1.8px #2f2f2f, 1.8px 0px #2f2f2f, 0px 0px #2f2f2f,
+    1.8px 1.8px #2f2f2f, -1.8px -1.8px #2f2f2f, -1.8px 0px #2f2f2f,
+    0px -1.8px #2f2f2f, -1.8px 1.8px #2f2f2f, 1.8px -1.8px #2f2f2f;
+}
+.shadow_secondary {
   text-shadow: 0px 1.8px #2f2f2f, 1.8px 0px #2f2f2f, 0px 0px #2f2f2f,
     1.8px 1.8px #2f2f2f, -1.8px -1.8px #2f2f2f, -1.8px 0px #2f2f2f,
     0px -1.8px #2f2f2f, -1.8px 1.8px #2f2f2f, 1.8px -1.8px #2f2f2f,
@@ -214,8 +235,8 @@ a,
 }
 
 /* .dropdown:hover .h-dropdown-content {
-  display: block;
-} */
+      display: block;
+    } */
 .crypthunt-hints-dropdown {
   top: 60px;
 
@@ -226,13 +247,12 @@ a,
   );
   width: 500px;
   padding: 21px 61px;
-  /* text-align: center; */
-  /* list-style-type:  !important; */
+  padding-left: 80px;
+
   position: absolute;
-  /* transform: translateX(-50%); */
+
   box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
-  /* Note: backdrop-filter has minimal browser support */
   border: 1px solid rgba(84, 67, 106, 0.41);
 
   border-radius: 30px;

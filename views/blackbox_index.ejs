@@ -29,12 +29,15 @@
               <div class="blackbox-input-part">
                 <div class="input-part-inner">
                   <h1>Enter Values</h1>
-                  <div class="inputs-list">
-                    <% for(let i=1; i<=variableCount ; i++){ %>
-                      <label class="input-label" for="num<%- i %>">Number <%- i %> :</label>
-                      <input type="number" name="num<%- i %>" class="numbers input-input" id="num<%- i %>" />
-                      <% } %>
-                  </div>
+                  <div class="flex-center">
+
+                    <div class="inputs-list">
+                      <% for(let i=1; i<=variableCount ; i++){ %>
+                        <label class="input-label" for="num<%- i %>">Number <%- i %> :</label>
+                        <input type="number" name="num<%- i %>" class="numbers input-input" id="num<%- i %>" />
+                        <% } %>
+                      </div>
+                    </div>
                 </div>
 
                 <div class="history-list-container" id="list-container">
@@ -64,7 +67,7 @@
                     <div class="instruction-li">use a,b,c,d and e as variables!</div>
                     <% }else{ %>
                       <% for(let i=0; i<instructions.length;i++){ %>
-                        <div class="instruction-li"><%- instructions[i]%></div>
+                        <li class="instruction-li"><%- instructions[i]%></li>
                         <%}%>
                           <%}%>
                 </div>
@@ -106,15 +109,17 @@
                       div = document.getElementById("hint_id");
                       div.innerHTML = "";
                       const ul = document.createElement("ul");
-
+ul.classList.add("hint-list-ul")
                       if (Array.length == 0) {
-                        const li = document.createElement("li");
+                        const li = document.createElement("div");
+                        li.style.textAlign="center";
                         const text = document.createTextNode("No Hints to Show");
                         li.appendChild(text);
                         ul.appendChild(li);
                       } else {
                         for (let i = 0; i < Array.length; i++) {
                           const li = document.createElement("li");
+                          li.classList.add("hints-item-li")
                           const text = document.createTextNode(Array[i].hint);
                           li.appendChild(text);
                           ul.appendChild(li);
@@ -123,6 +128,7 @@
                       div.appendChild(ul);
                     }
                     function hintClick() {
+                      document.getElementById("hint_id").style.display = "block";
                       payload = { game: "Blackbox", level: "<%- level %>" };
                       axios.post("/get_hints", payload).then((res) => {
                         createUL(res.data.result);

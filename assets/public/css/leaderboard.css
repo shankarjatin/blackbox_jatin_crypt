@@ -16,7 +16,7 @@
 }
 .outl {
   width: 100vw;
-  height: 99px;
+  height: 70px;
   display: flex;
 
   justify-content: center;
@@ -25,7 +25,7 @@
 #leaderboardMenu {
   width: 90%;
   color: white;
-  height: 90%;
+  height: 100%;
   max-width: 1313px;
   font-family: "Rubik";
   font-weight: 900;
@@ -86,7 +86,7 @@
   align-items: center;
 }
 #linner {
-  width: 100%;
+  width: 80%;
   overflow-y: scroll;
 }
 #linner::-webkit-scrollbar {
@@ -94,6 +94,9 @@
 }
 .cryptlrow {
   line-height: 300%;
+}
+.cryptlrow th {
+  font-size: 19px;
 }
 .cryptrow {
   line-height: 300%;

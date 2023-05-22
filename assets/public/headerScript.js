@@ -1,9 +1,11 @@
 function headingHandler() {
-  let heading = document.getElementsByClassName("heading")[0];
-  let heading2 = document.getElementsByClassName("heading-side")[0];
-  if (window.location.pathname == "/home") {
-    heading.innerHTML = "Blockverse '23";
-    heading2.innerHTML = "";
+  let headingch = document.getElementById("crypthunt_route");
+  let headingbb = document.getElementById("blackbox_route");
+
+  if (window.location.pathname == "/blackbox") {
+    headingbb.classList.add("shadow_secondary");
+  } else if (window.location.pathname == "/game") {
+    headingch.classList.add("shadow_primary");
   }
 }
 headingHandler();
@@ -204,7 +206,6 @@ function overallClick() {
 function crypthuntClick() {
   let level = document.getElementById("score");
   level.innerHTML = "LEVEL";
-
   let crypmenu = (document.getElementById("crptH").style.color = "#EE3FA2");
   let blackmenu = (document.getElementById("BbH").style.color = "#ffff");
   let overallmenu = (document.getElementById("overallH").style.color = "#ffff");

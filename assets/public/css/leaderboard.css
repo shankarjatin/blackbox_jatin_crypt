@@ -97,7 +97,18 @@
   overflow-y: scroll;
 }
 #linner::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
+  margin-left: 5px;
+  width: 6px;
+  /* border-radius: 20px; */
+}
+#linner::-webkit-scrollbar-thumb{
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.77)
+}
+#linner::-webkit-scrollbar-track{
+  background: rgba(217, 217, 217, 0.2);
+  border-radius: 20px;
 }
 .cryptlrow {
   line-height: 300%;

@@ -80,6 +80,15 @@ router.post("/delete_hint",
 
 router.post("/update-question", auth_middleware.check_login, auth_middleware.check_admin, game_controller.updateQuestion);
 
+router.get("/add-crypt-questions",auth_middleware.check_login, auth_middleware.check_admin,game_controller.getQuestions);
+
+router.post("/post-add-questions",auth_middleware.check_login, auth_middleware.check_admin,game_controller.add_crypt_questions);
+
+router.get("/team-delete",auth_middleware.check_login, auth_middleware.check_admin,game_controller.get_delete_team);
+
+router.post("/delete-team",auth_middleware.check_login, auth_middleware.check_admin,game_controller.delete_team);
+
+
 router.get("/test", function (req, res) {
 	res.send(req.isAuthenticated())
 });

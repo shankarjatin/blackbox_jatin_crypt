@@ -1,3 +1,6 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -22,6 +25,10 @@
   justify-content: center;
   align-items: center;
 }
+/* .leaderboard_option_nav {
+  font-size: 22px;
+  font-weight: 900;
+} */
 #leaderboardMenu {
   width: 90%;
   color: white;
@@ -110,7 +117,13 @@
 
 .leaderboard_option_nav:hover {
   cursor: pointer;
+  
 }
+/* .leaderboard_option_nav h2{
+  font-family: "Rubik";
+  font-weight: 900;
+  font-size: 22px;
+} */
 .leaderboard_close_btn {
   position: absolute;
   right: 35px;

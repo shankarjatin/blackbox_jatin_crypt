@@ -201,7 +201,8 @@
                         } else if (res.data.success == false && res.data.redirect == false) {
                           alert(res.data.message);
                           clear();
-                        } else {
+                        }
+                        else if (res.data.success == true && res.data.redirect == true) {
                           alert(res.data.message);
                           window.location.replace(res.data.url);
                         }

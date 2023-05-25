@@ -195,15 +195,13 @@
                         payload[inputFields[i].name] = inputFields[i].value;
                       }
                       await axios.post(url, payload).then((res) => {
-                        console.log(res.data);
                         if (res.data.success == true && res.data.redirect == false) {
                           const data = res.data.attempts;
                           updateList(data);
                         } else if (res.data.success == false && res.data.redirect == false) {
                           alert(res.data.message);
-                          console.log(here2);
                           clear();
-                        } else if (res.data.success == true && res.data.redirect == true) {
+                        } else {
                           alert(res.data.message);
                           window.location.replace(res.data.url);
                         }

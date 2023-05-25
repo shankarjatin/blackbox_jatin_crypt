@@ -86,7 +86,7 @@
   align-items: center;
 }
 #linner {
-  width: 80%;
+  width: 88%;
   overflow-y: scroll;
 }
 #linner::-webkit-scrollbar {

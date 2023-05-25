@@ -5,6 +5,12 @@
   <div id="gamediv">
     <div id="outercountdown">
       <div class="countdown-timer countdown">00:00:00</div>
+
+      <div id="line" class="window-clock"></div>
+      <div id="line2" class="window-clock2"></div>
+      <div class="piechart" id="yesme">
+        <div class="dot"></div>
+      </div>
     </div>
     <div id="homeheadingdiv">
       <h1
@@ -56,7 +62,26 @@
         } else {
           timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
         }
+
         time--;
+        let degs = 450 - (time * 3.6) / 108;
+        console.log(degs);
+        document.getElementById("yesme").style.transform =
+          "rotate(" + (degs - 45) + "deg)";
+        document.getElementById("line").style.backgroundImage =
+          "linear-gradient(" +
+          degs +
+          "deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)";
+        document.getElementById("line2").style.backgroundImage =
+          "linear-gradient(" +
+          (degs - 180) +
+          "deg, transparent 50%, #EE3FA2 50%),linear-gradient(90deg, white 50%, transparent 50%)";
+        if (time < 5400) {
+          document.getElementById("line").style.visibility = "hidden";
+          document.getElementById("line2").style.visibility = "visible";
+          document.getElementById("line").style.backgroundImage =
+            "linear-gradient(0deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)";
+        }
       }
     }
   </script>

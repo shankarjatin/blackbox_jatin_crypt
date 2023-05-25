@@ -8,19 +8,19 @@ const fs = require("fs");
 const rateLimit = require("express-rate-limit");
 const Router = require("./routes/router");
 const middleware = require("./middlewares/middleware");
-const bodyParser=require("body-parser");
+const bodyParser = require("body-parser");
 
 require("dotenv").config(); // for using env variables
 require("./models/model");
 
-const limiter = rateLimit({
-	windowMs: 2 * 60 * 1000, // 10 minutes
-	max: 400, // limit each IP to 100 requests per windowMs
-});
+// const limiter = rateLimit({
+// 	windowMs: 2 * 60 * 1000, // 10 minutes
+// 	max: 400, // limit each IP to 100 requests per windowMs
+// });
 
 const app = express();
 app.set('trust proxy', 1);
-app.use(limiter);
+// app.use(limiter);
 
 app.set("view engine", "ejs");
 
@@ -46,10 +46,10 @@ app.use("/", Router);
 ///////// delete in production
 const User = require("./models/user");
 const auth_middleware = require("./middlewares/auth_middleware.js");
-app.get("/reset", auth_middleware.check_login, function(req, res) {
-	User.findById(req.user._id, function(err, result) {
+app.get("/reset", auth_middleware.check_login, function (req, res) {
+	User.findById(req.user._id, function (err, result) {
 		result.level = 1;
-		result.save(function() {
+		result.save(function () {
 			res.redirect("/");
 		})
 	})
@@ -69,6 +69,6 @@ app.use(middleware.error404);
 
 // newGame.save();
 
-app.listen(process.env.PORT || 8000, function() {
+app.listen(process.env.PORT || 8000, function () {
 	console.log("Server started at port 8000.");
 });

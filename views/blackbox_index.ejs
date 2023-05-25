@@ -143,10 +143,13 @@
                       } else if (res.data.success == true && res.data.redirect == false) {
                         alert(res.data.message);
                         window.location.reload();
-                      } else {
+                      } else if (res.data.success == true && res.data.redirect == true) {
                         alert(res.data.message);
                         console.log(res.data.url);
                         window.location.replace(res.data.url);
+                      }
+                      else {
+                        alert(res.data);
                       }
                     }
                   </script>
@@ -205,6 +208,8 @@
                         else if (res.data.success == true && res.data.redirect == true) {
                           alert(res.data.message);
                           window.location.replace(res.data.url);
+                        } else {
+                          alert(res.data)
                         }
                       });
                     }

@@ -24,6 +24,12 @@ router.post("/add-question",
     blackbox_controller.add_question
 );
 
+router.get("/add-question",
+    auth_middleware.check_login,
+	auth_middleware.check_admin,
+	blackbox_controller.add_question_black
+)
+
 //input evaluation
 router.post("/black_ques",
     auth_middleware.check_login,

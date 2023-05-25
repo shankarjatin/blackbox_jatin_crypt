@@ -242,7 +242,6 @@ exports.get_delete_team=(req,res)=>{
 
 exports.delete_team=async (req,res)=>{
 	const {teamName,leaderEmail}=req.body;
-	console.log(teamName,leaderEmail)
 
 	const deletedTeam=await Team.findOneAndDelete({team_name:teamName,leader_email:leaderEmail});
 

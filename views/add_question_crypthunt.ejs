@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Question for Crypthunt</title>
+</head>
+<body>
+  <h1>Add Question</h1>
+
+  <form method="POST" action="/post-add-questions">
+    <label for="question">question no:</label>
+    <input type="number" name="question_no" id="question" required>
+<br>
+    <label for="option1">level:</label>
+    <input type="number" name="level" id="option1" required>
+    <br>
+    <label for="option2">Image URL</label>
+    <input type="text" name="imgURL" id="option2" required>
+    <br>
+    <label for="option4">Answer</label>
+    <input type="text" name="answer" id="option4" required>
+    <br>
+    <label for="option3">credit</label>
+    <input type="number" name="credit" id="option3" required>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

@@ -359,3 +359,6 @@ exports.add_question = (req, res, next) => {
     });
 }
 
+exports.add_question_black = (req, res) => {
+	res.render("add_question_black")
+}

@@ -207,3 +207,53 @@ exports.updateQuestion = (req, res, next) => {
 		throw err;
 	})
 }
+
+exports.getQuestions=(req,res)=>{
+	res.render("add_question_crypthunt");
+}
+
+exports.add_crypt_questions=async (req,res)=>{
+	const {question_no,level,imgURL,answer,credit}=req.body;
+
+	const addQuestion= await Question.create({
+		qn:question_no,
+		level:level,
+		img:imgURL,
+		answer:answer,
+		credit:credit
+	})
+
+	if(!addQuestion){
+		return res.status(400).json({
+			success:false,
+			message:"Adding Question failed"
+		})
+	}
+
+	res.status(201).json({
+		status:true,
+		message:"Added Successfully"
+	})
+}
+
+exports.get_delete_team=(req,res)=>{
+	res.render("delete_team");
+}
+
+exports.delete_team=async (req,res)=>{
+	const {teamName,leaderEmail}=req.body;
+
+	const deletedTeam=await Team.findOneAndDelete({team_name:teamName,leader_email:leaderEmail});
+
+	if(!deletedTeam){
+		return res.status(400).json({
+			success:false,
+			message:"Deleted Un-successFully"
+		})
+	}
+
+	res.status(201).json({
+		status:true,
+		message:"Deleted Successfully"
+	})
+}

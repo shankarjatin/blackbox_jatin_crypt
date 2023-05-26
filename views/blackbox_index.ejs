@@ -79,7 +79,7 @@
                 <div class="submit-answer-part">
                   <label for="submit_expression">Enter your expression here!</label>
                   <input type="text" placeholder="Enter your expression" name="user_expression" id="submit_expression"
-                    onkeypress="return /[a-e+\-*/]/i.test(event.key)" />
+                    onkeypress="return /[0-9a-e+\-*/]/i.test(event.key)" />
                 </div>
 
                 <button class="blackbox-btn" onclick="submit()">Submit Expression</button>
@@ -171,10 +171,13 @@
                       } else if (res.data.success == true && res.data.redirect == false) {
                         alert(res.data.message);
                         window.location.reload();
-                      } else {
+                      } else if (res.data.success == true && res.data.redirect == true) {
                         alert(res.data.message);
                         console.log(res.data.url);
                         window.location.replace(res.data.url);
+                      }
+                      else {
+                        alert(res.data);
                       }
                     }
                   </script>
@@ -229,9 +232,12 @@
                         } else if (res.data.success == false && res.data.redirect == false) {
                           alert(res.data.message);
                           clear();
-                        } else {
+                        }
+                        else if (res.data.success == true && res.data.redirect == true) {
                           alert(res.data.message);
                           window.location.replace(res.data.url);
+                        } else {
+                          alert(res.data)
                         }
                       });
                     }
@@ -245,7 +251,7 @@
                       const pastedData = event.clipboardData.getData("text/plain");
 
                       // Remove all characters that are not a through e, +, -, *, or /
-                      const filteredData = pastedData.replace(/[^a-e+\-*/]/gi, "");
+                      const filteredData = pastedData.replace(/[^0-9a-e+\-*/]/gi, "");
 
                       // Set the input field value to the filtered data
                       inputField.value = filteredData;

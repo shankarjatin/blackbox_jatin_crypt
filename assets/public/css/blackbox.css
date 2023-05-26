@@ -52,8 +52,8 @@ body {
   font-weight: 700;
   font-size: 17px;
   line-height: 24px;
-  padding-top: 100px;
-  padding-bottom: 16px;
+  padding-top: 105px;
+  padding-bottom: 25px;
 
   display: flex;
   align-items: center;
@@ -142,10 +142,12 @@ body {
   /* margin-top: 60px; */
   display: flex;
   /* z-index: -3; */
+  gap: 10px;
+  height: calc(100vh - 160px);
   align-items: center;
   flex-direction: column;
   max-width: 90vw;
-  /* justify-content: center; */
+  justify-content: space-between;
 }
 
 .input-part-inner {
@@ -162,6 +164,7 @@ body {
   box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(12.5px);
   border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.101);
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -212,7 +215,7 @@ body {
   height: 50px;
   left: 871.52px;
   /* top: 523px; */
-  margin-top: 42px;
+  /* margin-top: 42px; */
   background: #ee3fa2;
   border: 1px solid #ffffff;
   border-radius: 35px;
@@ -229,8 +232,10 @@ body {
   flex-direction: row;
   align-items: center;
   gap: 110px;
+  /* max-height: 90vh; */
+  /* height: calc(100vh - 100px); */
   justify-content: center;
-  margin-top: 29px;
+  /* margin-top: 29px; */
 }
 .input-input {
   background: #d9d9d9;
@@ -275,7 +280,6 @@ body {
   );
   box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(12.5px);
-  /* Note: backdrop-filter has minimal browser support */
   border: 1px solid rgba(48, 48, 48, 0.205);
   border-radius: 28px;
   width: 290px;
@@ -295,29 +299,27 @@ body {
   );
   box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
-  /* Note: backdrop-filter has minimal browser support */
 
   border-radius: 28px;
   max-width: 468px;
+  border: 1px solid rgba(255, 255, 255, 0.101);
   width: 90vw;
   height: 175px;
   /* margin: auto; */
-  margin-top: 40px;
+  /* margin-top: 40px; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .history-list {
-  /* z-index: 13; */
-  /* padding-top: 21px; */
   list-style-type: none;
   overflow-y: scroll;
   height: 100%;
-  padding: 0 41px;
+  padding: 0 96px;
   max-height: 93px;
   padding-left: 71px;
+  list-style-type: disc !important;
   margin-right: 25px;
-  /* max-width: 350px; */
 }
 .history-list-item {
   margin: 6px 0;
@@ -341,7 +343,7 @@ body {
 #background-blur-outer {
   /* content: ""; */
   display: none;
-  /* z-index: 3;  */
+  z-index: 9;
   /* overflow-y: scroll; */
   position: fixed;
   width: 100vw;
@@ -351,13 +353,14 @@ body {
     rgba(44, 45, 77, 0.7) 18.15%,
     rgba(36, 37, 61, 0.6) 82.15%
   );
-  box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(4px);
 }
 .instruction-head {
   font-family: "Orbitron";
   font-style: normal;
   font-weight: 800;
+
   margin-top: 26px;
   margin-bottom: 12px;
   text-align: center;
@@ -385,6 +388,7 @@ body {
   box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(12.5px);
   border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.101);
   display: flex;
   flex-direction: column;
 }
@@ -410,7 +414,8 @@ body {
   max-width: 468px;
   width: 90vw;
   height: 175px;
-  margin-top: 40px;
+  /* margin-top: 40px; */
+  border: 1px solid rgba(255, 255, 255, 0.101);
   display: flex;
   flex-direction: column;
   align-items: center;

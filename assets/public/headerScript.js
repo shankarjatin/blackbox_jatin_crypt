@@ -3,13 +3,13 @@ function headingHandler() {
   let headingbb = document.getElementById("blackbox_route");
 
   if (window.location.pathname == "/blackbox") {
-    headingbb.classList.add("shadow_secondary");
+    headingbb.classList.add("font_primary");
   } else if (window.location.pathname == "/game") {
-    headingch.classList.add("shadow_primary");
+    headingch.classList.add("font_primary");
   }
 }
-headingHandler();
 
+headingHandler();
 function removeTableRows() {
   //remove previously existing table rows
   var elements = document.getElementsByClassName("cryptrow");

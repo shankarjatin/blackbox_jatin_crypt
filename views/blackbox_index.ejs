@@ -21,10 +21,15 @@
 
           <div id="gamediv">
             <div id="outercountdown">
-              <div>
-                <div class="count countdown">3 : 0 : 0</div>
+              <div class="countdown-timer countdown">00:00:00</div>
+
+              <div id="line" class="window-clock"></div>
+              <div id="line2" class="window-clock2"></div>
+              <div class="piechart" id="yesme">
+                  <div class="dot"></div>
               </div>
-            </div>
+          </div>
+           
             <div class="blackbox-user-interface">
               <div class="blackbox-input-part">
                 <div class="input-part-inner">
@@ -36,8 +41,8 @@
                         <label class="input-label" for="num<%- i %>">Number <%- i %> :</label>
                         <input type="number" name="num<%- i %>" class="numbers input-input" id="num<%- i %>" />
                         <% } %>
-                      </div>
                     </div>
+                  </div>
                 </div>
 
                 <div class="history-list-container" id="list-container">
@@ -98,21 +103,38 @@
                       timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
                     }
                     time--;
+                    let degs = 450 - time * 3.6 / 108;
+                    console.log(degs);
+                    document.getElementById("yesme").style.transform =
+                      "rotate(" + (degs - 45) + "deg)";
+                    document.getElementById("line").style.backgroundImage =
+                      "linear-gradient(" +
+                      degs +
+                      "deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)";
+                    document.getElementById("line2").style.backgroundImage =
+                      "linear-gradient(" +
+                      (degs - 180) +
+                      "deg, transparent 50%, #EE3FA2 50%),linear-gradient(90deg, white 50%, transparent 50%)";
+                    if (time < 5400) {
+                      document.getElementById("line").style.visibility = "hidden";
+                      document.getElementById("line2").style.visibility = "visible";
+                      document.getElementById("line").style.backgroundImage =
+                        "linear-gradient(0deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)";
+                    }
                   }
                 }
               </script>
               <% } else { %>
                 <% } %>
-
                   <script>
                     function createUL(Array) {
                       div = document.getElementById("hint_id");
                       div.innerHTML = "";
                       const ul = document.createElement("ul");
-ul.classList.add("hint-list-ul")
+                      ul.classList.add("hint-list-ul")
                       if (Array.length == 0) {
                         const li = document.createElement("div");
-                        li.style.textAlign="center";
+                        li.style.textAlign = "center";
                         const text = document.createTextNode("No Hints to Show");
                         li.appendChild(text);
                         ul.appendChild(li);

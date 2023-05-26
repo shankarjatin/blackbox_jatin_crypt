@@ -101,6 +101,14 @@ body {
   text-align: right;
 }
 
+.main_game_div {
+  height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  max-height: 800px;
+}
 #maindiv {
   padding: 10vh 0vw;
 }
@@ -136,11 +144,6 @@ body {
   font-weight: lighter;
 }
 #buttondiv {
-  /* height: 16vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end; */
-
   height: 16vh;
   margin-top: 2rem;
   display: flex;
@@ -252,16 +255,19 @@ body {
 
 /*RULES CSS*/
 #rulesheading {
-  padding-top: 100px;
+  /* padding-top: 100px; */
   color: white;
   text-align: center;
-  font-size: 35px;
+  font-size: 34px;
   font-family: "Orbitron", sans-serif;
   font-weight: 700;
-  padding-bottom: 5vw;
+
+  padding-top: 96px;
+  padding-bottom: 16px;
 }
 
 /* #{
+
 
 } */
 
@@ -284,10 +290,11 @@ body {
   width: 92vw;
   max-width: 1082px;
   /* width: 850px; */
-  border: 2px solid white;
-  outline-color: #ee3fa2;
-  outline-width: 2px;
-  outline-style: solid;
+  border: 4px solid rgba(255, 255, 255, 0.319);
+  /* outline-color: #ee3fa2; */
+  /* outline-width: 2px; */
+  /* outline-style: solid; */
+  z-index: -2;
   /* border-radius: 30px; */
   padding: 20px 20px 20px 0px;
   background: linear-gradient(
@@ -335,15 +342,26 @@ body {
   font-size: 15px;
   /* line-height: 30px; */
 
+  position: absolute;
+  z-index: 6;
+  /* background: linear-gradient(
+    120.21deg,
+    rgb(49, 51, 93) 18.15%,
+    rgb(40, 43, 99) 82.15%
+  ); */
+  background-color: #14011e;
+  box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
   color: white;
+  height: 111px;
+  width: 111px;
+  border-radius: 97px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 /*TIMER*/
 #outercountdown {
-  background: linear-gradient(
-    120.21deg,
-    rgba(99, 101, 148, 0.4) 18.15%,
-    rgba(55, 57, 92, 0.1) 82.15%
-  );
   width: 125px;
   height: 125px;
   box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
@@ -352,14 +370,51 @@ body {
 
   border-radius: 97px;
   position: absolute;
-  top: 12vh;
+  top: 80px;
   right: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: -5;
+  z-index: 7;
+}
+.piechart {
+  /* background-color: green; */
+  z-index: 7;
+  width: 83.5px;
+  height: 83.5px;
+  transform: rotate(45deg);
+}
+.dot {
+  position: absolute;
+  width: 5.3px;
+  height: 5.3px;
+  border-radius: 5px;
+  background-color: #ee3fa2;
+  box-shadow: 0 0 3px 3px #ee3fa2dd;
 }
 
+.window-clock {
+  position: absolute;
+  width: 113px;
+  height: 113px;
+  border-radius: 50%;
+
+  background-color: #ee3fa2;
+  z-index: -230;
+}
+.window-clock2 {
+  position: absolute;
+  width: 113px;
+  height: 113px;
+
+  visibility: hidden;
+  border-radius: 50%;
+  /* transform: rotate(180deg); */
+  background-color: #ee3fa2;
+  z-index: -230;
+}
+
+/*  */
 .count {
   font-weight: bold;
   text-align: center;
@@ -388,7 +443,7 @@ body {
   /* overflow-y: hidden; */
 }
 #gameoutdiv {
-  margin-top: 20px;
+  /* margin-top: 20px; */
 
   display: flex;
   justify-content: center;
@@ -400,25 +455,28 @@ body {
   justify-content: center;
 }
 #gameindiv img {
-  max-width: 50vw;
+  /* max-width: 50vw; */
   z-index: -3;
 }
 
 #formdiv input {
-  margin-bottom: 56px;
+  /* margin-bottom: 56px; */
   color: white;
   align-items: center;
   font-family: "Orbitron";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
+  margin: 16px;
+
   border: 1px solid rgba(255, 255, 255, 0.201);
 }
 
 #formdiv {
   /* height: 40vh; */
-  margin-top: 50px;
-  margin-bottom: 56px;
+
+  /* margin-top: 20px; */
+  padding-bottom: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -426,7 +484,7 @@ body {
   text-align: center;
 }
 #divform {
-  width: 360px;
+  /* width: 360px; */
 
   /* z-index: -3; */
 }
@@ -441,8 +499,8 @@ body {
   width: 292px;
   text-align: center;
   height: 50px;
-  left: 574px;
-  top: 550px;
+  /* left: 574px; */
+  /* top: 550px; */
   background: linear-gradient(
     120.21deg,
     rgba(99, 101, 148, 0.4) 18.15%,
@@ -450,6 +508,7 @@ body {
   );
   box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
+
   /* Note: backdrop-filter has minimal browser support */
 
   border-radius: 73px;
@@ -542,7 +601,7 @@ table tr:last-child td:last-child {
   padding: 2vh 0vw;
 }
 .ch-game-box {
-  padding: 30px 100px;
+  padding: 30px 60px;
   background: linear-gradient(
     120.21deg,
     rgba(99, 101, 148, 0.4) 18.15%,
@@ -550,6 +609,7 @@ table tr:last-child td:last-child {
   );
   box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.101);
 
   border-radius: 55px;
   display: flex;
@@ -559,9 +619,11 @@ table tr:last-child td:last-child {
   /* z-index: -3; */
 }
 .ch-game-box img {
-  max-width: 80vw;
+  /* max-width: 80vw; */
   /* width: 80px; */
-  /* max-width: 300px; */
+  /* max-width: 400px; */
+  width: calc(100vh - 350px);
+  max-width: 400px;
   aspect-ratio: 1;
 }
 @media screen and (max-width: 1200px) {
@@ -879,4 +941,13 @@ table tr:last-child td:last-child {
     right: 6%;
     z-index: 1;
   }
+}
+/* Timer   */
+.dot {
+  position: absolute;
+  width: 5.3px;
+  height: 5.3px;
+  border-radius: 5px;
+  background-color: #ee3fa2;
+  box-shadow: 0 0 2px 2px #ee3fa2dd;
 }

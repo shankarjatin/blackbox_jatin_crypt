@@ -7,37 +7,36 @@
 
         <div id="gamediv">
             <div id="outercountdown">
-
-
                 <div class="countdown-timer countdown">00:00:00</div>
 
+                <div id="line" class="window-clock"></div>
+                <div id="line2" class="window-clock2"></div>
+                <div class="piechart" id="yesme">
+                    <div class="dot"></div>
+                </div>
             </div>
 
             <h1 id="rulesheading">Level # <%-level%></h1>
-            <!-- <div id="smallcount">
-            <div id="counter">TIMS LEFT  
-                </div>
-                <div
-                class="countdown">0 : 0 : 0</div>
-    
-        </div> -->
-            <div id="gameoutdiv">
-                <div id="" class="ch-game-box">
+            <div class="main_game_div">
 
-                    <img src="private/r<%-level%>.png" />
-                </div>
-            </div>
-            <form method="POST" id="formdiv">
-                <div id="divform">
-                    <input class="form-control" type="text" name="answer" placeholder="Answer" id="gameanswer">
+                <div id="gameoutdiv">
+                    <div id="" class="ch-game-box">
 
-                    <div class="">
-                        <button class="ch-check-btn" type="submit" formaction="/game">Check</button>
+                        <img src="private/r<%-level%>.png" />
                     </div>
-
-
                 </div>
-            </form>
+                <form method="POST" id="formdiv">
+                    <div id="divform">
+                        <input class="form-control" type="text" name="answer" placeholder="Answer" id="gameanswer">
+
+                        <div class="">
+                            <button class="ch-check-btn" type="submit" formaction="/game">Check</button>
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     </div>
@@ -57,9 +56,12 @@
 
                         <% if (remaining_time !="None" ) { %>
                             <script>
+
+
                                 let timer = document.getElementsByClassName("countdown");
                                 for (let i = 0; i <= timer.length - 1; i++) {
                                     let time = Math.floor(Number("<%-remaining_time%>") / 1000);
+
                                     setInterval(updatecountdown, 1000);
                                     function updatecountdown() {
                                         let hours = Math.floor(time / 3600);
@@ -73,6 +75,24 @@
                                             timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
                                         }
                                         time--;
+                                        let degs = 450 - time * 3.6 / 108;
+                                        console.log(degs);
+                                        document.getElementById("yesme").style.transform =
+                                            "rotate(" + (degs - 45) + "deg)";
+                                        document.getElementById("line").style.backgroundImage =
+                                            "linear-gradient(" +
+                                            degs +
+                                            "deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)";
+                                        document.getElementById("line2").style.backgroundImage =
+                                            "linear-gradient(" +
+                                            (degs - 180) +
+                                            "deg, transparent 50%, #EE3FA2 50%),linear-gradient(90deg, white 50%, transparent 50%)";
+                                        if (time < 5400) {
+                                            document.getElementById("line").style.visibility = "hidden";
+                                            document.getElementById("line2").style.visibility = "visible";
+                                            document.getElementById("line").style.backgroundImage =
+                                                "linear-gradient(0deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)";
+                                        }
                                     }
                                 }
                             </script>
@@ -86,7 +106,7 @@
                                             ul.classList.add("hint-list-ul")
                                             if (Array.length == 0) {
                                                 const li = document.createElement("div");
-                                                li.style.textAlign="center"
+                                                li.style.textAlign = "center"
                                                 const text = document.createTextNode("No Hints to Show");
                                                 li.appendChild(text);
                                                 ul.appendChild(li);
@@ -110,12 +130,12 @@
                                             document.getElementById("hint_id").style.display = "block";
                                             document.getElementById("hint_id")
                                             payload = { game: "Crypthunt", level: "<%-level%>" }
-                                        
-                                            
+
+
                                             axios.post("/get_hints", payload).then(res => {
                                                 // console.log(res.data.result);
                                                 createUL(res.data.result)
-                                        
+
                                             })
                                         }
                                     </script>

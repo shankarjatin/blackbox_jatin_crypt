@@ -25,7 +25,7 @@ router.get("/home",
 	game_controller.home
 );
 router.get("/about_us",
-	rateLimit.rateLimiter,
+	// rateLimit.rateLimiter,
 	game_controller.about_us
 );
 

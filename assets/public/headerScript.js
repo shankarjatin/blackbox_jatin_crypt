@@ -1,5 +1,5 @@
 function headingHandler() {
-  if (window.location.pathname == "/game" || window.location.pathname == "/blackbox") {
+  if (typeof user != undefined) {
     let headingch = document.getElementById("crypthunt_route");
     let headingbb = document.getElementById("blackbox_route");
 
@@ -162,7 +162,7 @@ function leaderClick(chk_close) {
 }
 
 function chbg(k) {
-  if (window.location.pathname == "/game" || window.location.pathname == "/blackbox" || window.location.pathname == "/home") {
+  if (typeof user != 'undefined') {
     if (k == 1) {
       document.getElementById("hint_id").style.display = "none";
       kk = 0;

@@ -158,12 +158,10 @@
                   </script>
                   <script>
                     async function submit() {
-                      console.log("inside submit()");
                       url = "/submit_blackbox";
                       const expression = document.getElementById("submit_expression").value;
                       payload = { user_expression: `${expression}` };
                       const res = await axios.post(url, payload);
-                      console.log(res.data);
                       if (res.data.success == false && res.data.redirect == false) {
                         alert(res.data.message);
                         document.getElementById("submit_expression").value = "";
@@ -172,7 +170,6 @@
                         window.location.reload();
                       } else if (res.data.success == true && res.data.redirect == true) {
                         alert(res.data.message);
-                        console.log(res.data.url);
                         window.location.replace(res.data.url);
                       }
                       else {

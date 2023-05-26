@@ -338,7 +338,7 @@ exports.add_question = (req, res, next) => {
     const answer_expression = req.body.answer_expression;
     const credit = req.body.credit;
     const instructions = req.body.instructions;
-    const no_of_variables = req.body.no_of_variables;
+    const no_of_variables = req.body.noofvariabes;
 
     const addQuestion = new Ques_BlackBox({
         question_no: question_no,

@@ -1,20 +1,19 @@
 <%- include("./partials/header_2.ejs",{name:'triyon'}); %>
-<!-- Below component to blur background while leaderboard is open -->
-<div id="background-blur-outer"></div>
-<div id="wraperhome">
-  <div id="gamediv">
-    <div id="outercountdown">
-      <div class="countdown-timer countdown">00:00:00</div>
+  <!-- Below component to blur background while leaderboard is open -->
+  <div id="background-blur-outer"></div>
+  <div id="wraperhome">
+    <div id="gamediv">
+      <div id="outercountdown">
+        <div class="countdown-timer countdown">00:00:00</div>
 
-      <div id="line" class="window-clock"></div>
-      <div id="line2" class="window-clock2"></div>
-      <div class="piechart" id="yesme">
-        <div class="dot"></div>
+        <div id="line" class="window-clock"></div>
+        <div id="line2" class="window-clock2"></div>
+        <div class="piechart" id="yesme">
+          <div class="dot"></div>
+        </div>
       </div>
-    </div>
-    <div id="homeheadingdiv">
-      <h1
-        style="
+      <div id="homeheadingdiv">
+        <h1 style="
           font-family: 'Orbitron';
           font-style: normal;
           font-weight: 500;
@@ -22,68 +21,67 @@
           line-height: 60px;
           text-align: center;
           padding-top: 15rem;
-        "
-      >
-        "Enter the Cryptic Realm, <br />
-        Embrace the Quest!"
-      </h1>
-    </div>
-    <div id="homeboxdiv">
-      <a href="/game">
-        <img src="public/homcy3.png" alt="" />
-      </a>
+        ">
+          "Enter the Cryptic Realm, <br />
+          Embrace the Quest!"
+        </h1>
+      </div>
+      <div id="homeboxdiv">
+        <a href="/game">
+          <img src="public/homcy3.png" alt="" />
+        </a>
 
-      <a href="/blackbox">
-        <img src="/public/homecy2.png" alt="" />
-      </a>
+        <a href="/blackbox">
+          <img src="/public/homecy2.png" alt="" />
+        </a>
+      </div>
+      <!-- <div id="homebutdiv"> -->
+      <!-- <a href=""> <button id="homestartBUt">Start</button></a> -->
+      <!-- </div> -->
     </div>
-    <!-- <div id="homebutdiv"> -->
-    <!-- <a href=""> <button id="homestartBUt">Start</button></a> -->
-    <!-- </div> -->
+
+    <!-- Below script is for redirecting if any redirect if present -->
+    <% if (remaining_time !="None" ) { %>
+      <script>
+        let timer = document.getElementsByClassName("countdown");
+        for (let i = 0; i <= timer.length - 1; i++) {
+          let time = Math.floor(Number("<%-remaining_time%>") / 1000);
+          setInterval(updatecountdown, 1000);
+          function updatecountdown() {
+            let hours = Math.floor(time / 3600);
+            let minutes = Math.floor((time % 3600) / 60);
+            let seconds = Math.floor(time - 3600 * hours - 60 * minutes);
+            if (time < 0) {
+              timer[i].innerHTML = `00 : 00 : 00`;
+              alert(
+                "Thank you for participating in Blockverse'23! Your active engagement is greatly appreciated"
+              );
+              window.location = "/submit";
+            } else {
+              timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
+            }
+
+            time--;
+            let degs = 450 - (time * 3.6) / 108;
+            document.getElementById("yesme").style.transform =
+              "rotate(" + (degs - 45) + "deg)";
+            document.getElementById("line").style.backgroundImage =
+              "linear-gradient(" +
+              degs +
+              "deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)";
+            document.getElementById("line2").style.backgroundImage =
+              "linear-gradient(" +
+              (degs - 180) +
+              "deg, transparent 50%, #EE3FA2 50%),linear-gradient(90deg, white 50%, transparent 50%)";
+            if (time < 5400) {
+              document.getElementById("line").style.visibility = "hidden";
+              document.getElementById("line2").style.visibility = "visible";
+              document.getElementById("line").style.backgroundImage =
+                "linear-gradient(0deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)";
+            }
+          }
+        }
+      </script>
+      <% } else { %>
+        <% } %> <%- include("./partials/footer.ejs"); %>
   </div>
-
-  <!-- Below script is for redirecting if any redirect if present -->
-  <% if (remaining_time !="None" ) { %>
-  <script>
-    let timer = document.getElementsByClassName("countdown");
-    for (let i = 0; i <= timer.length - 1; i++) {
-      let time = Math.floor(Number("<%-remaining_time%>") / 1000);
-      setInterval(updatecountdown, 1000);
-      function updatecountdown() {
-        let hours = Math.floor(time / 3600);
-        let minutes = Math.floor((time % 3600) / 60);
-        let seconds = Math.floor(time - 3600 * hours - 60 * minutes);
-        if (time < 0) {
-          timer[i].innerHTML = `00 : 00 : 00`;
-          alert(
-            "Thank you for participating in Blockverse'23! Your active engagement is greatly appreciated"
-          );
-          window.location = "/submit";
-        } else {
-          timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
-        }
-
-        time--;
-        let degs = 450 - (time * 3.6) / 108;
-        console.log(degs);
-        document.getElementById("yesme").style.transform =
-          "rotate(" + (degs - 45) + "deg)";
-        document.getElementById("line").style.backgroundImage =
-          "linear-gradient(" +
-          degs +
-          "deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)";
-        document.getElementById("line2").style.backgroundImage =
-          "linear-gradient(" +
-          (degs - 180) +
-          "deg, transparent 50%, #EE3FA2 50%),linear-gradient(90deg, white 50%, transparent 50%)";
-        if (time < 5400) {
-          document.getElementById("line").style.visibility = "hidden";
-          document.getElementById("line2").style.visibility = "visible";
-          document.getElementById("line").style.backgroundImage =
-            "linear-gradient(0deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)";
-        }
-      }
-    }
-  </script>
-  <% } else { %> <% } %> <%- include("./partials/footer.ejs"); %>
-</div>

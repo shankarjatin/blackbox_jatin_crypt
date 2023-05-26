@@ -26,10 +26,10 @@
               <div id="line" class="window-clock"></div>
               <div id="line2" class="window-clock2"></div>
               <div class="piechart" id="yesme">
-                  <div class="dot"></div>
+                <div class="dot"></div>
               </div>
-          </div>
-           
+            </div>
+
             <div class="blackbox-user-interface">
               <div class="blackbox-input-part">
                 <div class="input-part-inner">
@@ -104,7 +104,6 @@
                     }
                     time--;
                     let degs = 450 - time * 3.6 / 108;
-                    console.log(degs);
                     document.getElementById("yesme").style.transform =
                       "rotate(" + (degs - 45) + "deg)";
                     document.getElementById("line").style.backgroundImage =

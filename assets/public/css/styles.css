@@ -287,8 +287,8 @@ body {
   justify-content: center;
 }
 #boxdiv {
-  width: 92vw;
-  max-width: 1082px;
+  width: 88vw;
+  max-width: 950px;
   /* width: 850px; */
   border: 4px solid rgba(255, 255, 255, 0.319);
   /* outline-color: #ee3fa2; */

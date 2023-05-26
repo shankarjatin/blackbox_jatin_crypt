@@ -179,12 +179,13 @@ body {
   align-items: center;
   width: 90%;
   /* background-color: aqua; */
-  margin-top: 2rem;
+  margin-top: 1rem;
   overflow-y: scroll;
   /* padding: 1rem; */
 }
 .flex-center::-webkit-scrollbar{
   width: 7px;
+  /* height: 30%; */
 }
 .flex-center::-webkit-scrollbar-thumb{
   border-radius: 20px;
@@ -243,6 +244,7 @@ body {
   width: 104px;
   height: 29px;
   text-align: center;
+  border: none;
 }
 .inputs-list {
   padding-top: 5rem;
@@ -250,6 +252,7 @@ body {
   gap: 23px 20px;
   grid-template-columns: auto auto;
   /* margin-bottom: 12px; */
+  /* overflow-y: scroll; */
 }
 /* .inputs-list::-webkit-scrollbar{
 

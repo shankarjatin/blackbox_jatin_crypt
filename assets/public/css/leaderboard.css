@@ -102,6 +102,15 @@
   width: 6px;
   /* border-radius: 20px; */
 }
+/* #crossBUt :hover{
+  color: #ee3fa2;
+  background-color: #ee3fa2;
+} */
+#div1 i:hover
+{
+  background-color: #ee3fa2;
+  /* border-radius: 110px; */
+}
 #linner::-webkit-scrollbar-thumb{
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.77)

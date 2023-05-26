@@ -246,9 +246,9 @@ body {
   grid-template-columns: auto auto;
   /* margin-bottom: 12px; */
 }
-.inputs-list::-webkit-scrollbar{
+/* .inputs-list::-webkit-scrollbar{
 
-}
+} */
 .check-part-inner {
   display: flex;
   flex-direction: column;

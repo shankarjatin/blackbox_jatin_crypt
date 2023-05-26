@@ -175,7 +175,7 @@ body {
 .flex-center {
   display: flex;
   justify-content: center;
-  height: 90%;
+  height: 60%;
   align-items: center;
   width: 90%;
   /* background-color: aqua; */
@@ -230,6 +230,7 @@ body {
 }
 .blackbox-user-interface {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   gap: 110px;

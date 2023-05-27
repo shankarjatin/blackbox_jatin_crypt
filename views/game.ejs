@@ -52,7 +52,6 @@
                         window.location.replace("<%- redirectUrl %>");
                     </script>
                     <% } %>
-                        <script>console.log("<%-remaining_time%>")</script>
 
                         <% if (remaining_time !="None" ) { %>
                             <script>
@@ -76,7 +75,6 @@
                                         }
                                         time--;
                                         let degs = 450 - time * 3.6 / 108;
-                                        console.log(degs);
                                         document.getElementById("yesme").style.transform =
                                             "rotate(" + (degs - 45) + "deg)";
                                         document.getElementById("line").style.backgroundImage =
@@ -113,8 +111,6 @@
                                             }
                                             else {
                                                 for (let i = 0; i < Array.length; i++) {
-                                                    // console.log(Array);
-                                                    // Array[i].hint = "Hint " + (i + 1) + " : " + Array[i].hint;
                                                     const li = document.createElement("li");
                                                     li.classList.add("hints-item-li")
                                                     const text = document.createTextNode(Array[i].hint);
@@ -126,14 +122,12 @@
                                         }
 
                                         function hintClick() {
-                                            console.log("CY click");
                                             document.getElementById("hint_id").style.display = "block";
                                             document.getElementById("hint_id")
                                             payload = { game: "Crypthunt", level: "<%-level%>" }
 
 
                                             axios.post("/get_hints", payload).then(res => {
-                                                // console.log(res.data.result);
                                                 createUL(res.data.result)
 
                                             })

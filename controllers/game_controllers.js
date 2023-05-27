@@ -39,7 +39,14 @@ exports.home = (req, res) => {
 	});
 }
 exports.about_us = (req, res) => {
-	res.render("about_page")
+	console.log(req.user);
+	if (req.user) {
+		return res.render("about_page", {
+			user: req.user
+		})
+	} else {
+		return res.render("about_page")
+	}
 }
 
 
@@ -208,52 +215,52 @@ exports.updateQuestion = (req, res, next) => {
 	})
 }
 
-exports.getQuestions=(req,res)=>{
+exports.getQuestions = (req, res) => {
 	res.render("add_question_crypthunt");
 }
 
-exports.add_crypt_questions=async (req,res)=>{
-	const {question_no,level,imgURL,answer,credit}=req.body;
+exports.add_crypt_questions = async (req, res) => {
+	const { question_no, level, imgURL, answer, credit } = req.body;
 
-	const addQuestion= await Question.create({
-		qn:question_no,
-		level:level,
-		img:imgURL,
-		answer:answer,
-		credit:credit
+	const addQuestion = await Question.create({
+		qn: question_no,
+		level: level,
+		img: imgURL,
+		answer: answer,
+		credit: credit
 	})
 
-	if(!addQuestion){
+	if (!addQuestion) {
 		return res.status(400).json({
-			success:false,
-			message:"Adding Question failed"
+			success: false,
+			message: "Adding Question failed"
 		})
 	}
 
 	res.status(201).json({
-		status:true,
-		message:"Added Successfully"
+		status: true,
+		message: "Added Successfully"
 	})
 }
 
-exports.get_delete_team=(req,res)=>{
+exports.get_delete_team = (req, res) => {
 	res.render("delete_team");
 }
 
-exports.delete_team=async (req,res)=>{
-	const {teamName,leaderEmail}=req.body;
+exports.delete_team = async (req, res) => {
+	const { teamName, leaderEmail } = req.body;
 
-	const deletedTeam=await Team.findOneAndDelete({team_name:teamName,leader_email:leaderEmail});
+	const deletedTeam = await Team.findOneAndDelete({ team_name: teamName, leader_email: leaderEmail });
 
-	if(!deletedTeam){
+	if (!deletedTeam) {
 		return res.status(400).json({
-			success:false,
-			message:"Deleted Un-successFully"
+			success: false,
+			message: "Deleted Un-successFully"
 		})
 	}
 
 	res.status(201).json({
-		status:true,
-		message:"Deleted Successfully"
+		status: true,
+		message: "Deleted Successfully"
 	})
 }

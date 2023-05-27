@@ -4,7 +4,7 @@ var ipRequest_count = {};
 const rateLimitProps = { max_req: 100, refresh_time: 60 * 1000 };
 var last_reset = new Date();
 
-const ipRateLimitProps = { max_req: 60, refresh_time: 60 * 1000 };
+const ipRateLimitProps = { max_req: 225, refresh_time: 60 * 1000 };
 var last_reset_ip = new Date();
 
 exports.rateLimiter = (req, res, next) => {

@@ -9,11 +9,9 @@
   justify-content: center;
   gap: 100px;
   align-items: center;
-  margin-top: 10.875rem;
+  margin-top: 20vh;
 }
-
 .homebox {
-  /* background-color: wheat; */
   width: 12rem;
   height: 12rem;
   display: flex;
@@ -28,7 +26,6 @@
   font-weight: 500;
 }
 #homebutdiv {
-  /* align-items: center; */
   text-align: center;
   margin-top: 5.063rem;
 }

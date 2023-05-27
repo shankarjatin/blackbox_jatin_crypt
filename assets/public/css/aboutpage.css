@@ -65,7 +65,9 @@
   height: 120px;
   margin: 32px 57px 31px 57px;
 }
-
+.namediv {
+  text-align: center;
+}
 .namediv p {
   font-family: Orbitron;
   font-weight: 700;
@@ -76,6 +78,7 @@
   font-family: Orbitron;
   font-weight: 500;
   color: #ee3fa2;
+  text-align: center;
 }
 
 @media (max-width: 1168px) {

@@ -52,6 +52,10 @@
     justify-content: center;
     align-items: center;
   }
+  .imagediv img{
+    width: 7.5rem;
+    /* height: ; */
+  }
   
   .imagediv {
     width: 120px;
@@ -71,14 +75,27 @@
     color: #EE3FA2;
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 1168px) {
     #aboutboxes {
       margin-top: 1.5rem;
     }
   
     .makerdiv {
-      width: 100%;
-      margin-bottom: 1.5rem;
+      width: 50%;
+      margin: 1rem;
+      /* padding: ; */
+    }
+    #upperbox{
+      flex-wrap: wrap;
+      /* background-color: #EE3FA2; */
+      padding-bottom: 0rem;
+      margin-bottom: 0rem;
+    }
+    #lowerbox{
+      padding-top: 0;
+      margin-top: 0rem;
+      flex-wrap: wrap;
+      /* background-color: aqua; */
     }
   
     .imagediv {

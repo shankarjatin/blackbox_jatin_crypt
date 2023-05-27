@@ -110,26 +110,35 @@ body {
   max-height: 800px;
 }
 #maindiv {
-  padding: 10vh 0vw;
+  padding: 6vh 0vw;
 }
 #imgoutdiv {
-  margin-top: 3rem;
-  padding: 6vh 0vw;
+  /* margin-top: 3rem; */
+  padding: 1vh 0vw;
   display: flex;
   justify-content: center;
 }
 #imgindiv {
-  margin-top: 3rem;
-  height: 55px;
-  width: 508;
+  margin-top: 1rem;
+  height: 5.625;
+  width: 22.625rem;
   font-size: 0px;
+  padding-bottom: 0;
+  /* background-color: white; */
+  border-radius: 5.563rem;
+  text-align: center;
+}
+#imgindiv img{
+  width: 100%;
+  height: 100%;
 }
 #imgchange3 {
   border-radius: 60px;
 }
 #headingdiv {
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+  padding-top: 0;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
   height: 28vh;
   display: flex;
   align-items: center;
@@ -145,10 +154,11 @@ body {
 }
 #buttondiv {
   height: 16vh;
-  margin-top: 2rem;
+  margin-top: 0rem;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
+  /* background-color: aqua; */
 }
 .lbutton {
   background-color: #ee3fa2;
@@ -187,6 +197,8 @@ body {
 #fouter {
   display: flex;
   justify-content: center;
+  /* background-color: aqua; */
+  margin-top: 1rem;
 }
 #finner {
   width: 850px;

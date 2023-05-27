@@ -20,13 +20,3 @@ for (let i = 0; i <= question.length - 1; i++) {
   });
 }
 let kk = 0;
-function chbg(k) {
-  if (k == 1) {
-    document.getElementById("hint_id").style.display = "none";
-    kk = 0;
-  } else {
-    document.getElementById("hint_id").style.display =
-      kk == 0 ? "block" : "none";
-    kk = kk == 0 ? 1 : 0;
-  }
-}

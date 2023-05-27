@@ -5,9 +5,7 @@ const Team = require("./../models/teams");
 const { validationResult } = require("express-validator");
 
 exports.getBlackbox = async (req, res) => {
-    const email = req.user.email;
     let team = req.team;
-    console.log(team);
     const remaining_time = req.remainingTime;
     if (process.env.BLACK_LEVEL > team.blackbox_level) {
         const question = await Ques_BlackBox.findOne({ level: team.blackbox_level });
@@ -17,6 +15,7 @@ exports.getBlackbox = async (req, res) => {
             team: team,
             level: team.blackbox_level,
             variableCount: question.no_of_variables,
+            instructions: question.instructions,
             remaining_time: remaining_time,
             message: "None",
             redirect: false,
@@ -31,6 +30,7 @@ exports.getBlackbox = async (req, res) => {
             team: team,
             level: team.blackbox_level,
             variableCount: question.no_of_variables,
+            instructions: question.instructions,
             remaining_time: remaining_time,
             message: message,
             redirect: true,
@@ -338,7 +338,7 @@ exports.add_question = (req, res, next) => {
     const answer_expression = req.body.answer_expression;
     const credit = req.body.credit;
     const instructions = req.body.instructions;
-    const no_of_variables = req.body.no_of_variables;
+    const no_of_variables = req.body.noofvariabes;
 
     const addQuestion = new Ques_BlackBox({
         question_no: question_no,
@@ -359,3 +359,6 @@ exports.add_question = (req, res, next) => {
     });
 }
 
+exports.add_question_black = (req, res) => {
+	res.render("add_question_black")
+}

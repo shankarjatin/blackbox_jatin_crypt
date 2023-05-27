@@ -1,3 +1,6 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -16,16 +19,20 @@
 }
 .outl {
   width: 100vw;
-  height: 99px;
+  height: 70px;
   display: flex;
 
   justify-content: center;
   align-items: center;
 }
+/* .leaderboard_option_nav {
+  font-size: 22px;
+  font-weight: 900;
+} */
 #leaderboardMenu {
   width: 90%;
   color: white;
-  height: 90%;
+  height: 100%;
   max-width: 1313px;
   font-family: "Rubik";
   font-weight: 900;
@@ -65,6 +72,7 @@
 }
 #leaderboard_heading {
   margin-top: 26px;
+  font-family: "Orbitron";
 }
 #div1 {
   width: 50%;
@@ -85,14 +93,37 @@
   align-items: center;
 }
 #linner {
-  width: 100%;
+  width: 88%;
   overflow-y: scroll;
 }
 #linner::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
+  margin-left: 5px;
+  width: 6px;
+  /* border-radius: 20px; */
+}
+/* #crossBUt :hover{
+  color: #ee3fa2;
+  background-color: #ee3fa2;
+} */
+#div1 i:hover
+{
+  background-color: #ee3fa2;
+  /* border-radius: 110px; */
+}
+#linner::-webkit-scrollbar-thumb{
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.77)
+}
+#linner::-webkit-scrollbar-track{
+  background: rgba(217, 217, 217, 0.2);
+  border-radius: 20px;
 }
 .cryptlrow {
   line-height: 300%;
+}
+.cryptlrow th {
+  font-size: 19px;
 }
 .cryptrow {
   line-height: 300%;
@@ -106,7 +137,13 @@
 
 .leaderboard_option_nav:hover {
   cursor: pointer;
+  
 }
+/* .leaderboard_option_nav h2{
+  font-family: "Rubik";
+  font-weight: 900;
+  font-size: 22px;
+} */
 .leaderboard_close_btn {
   position: absolute;
   right: 35px;

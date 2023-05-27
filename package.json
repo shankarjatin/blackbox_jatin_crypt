@@ -14,8 +14,9 @@
   "author": "Shahbaz Ali",
   "license": "ISC",
   "dependencies": {
+    "autocannon": "^7.11.0",
     "body-parser": "^1.20.2",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.3",
     "ejs": "^3.1.6",
     "ejs-lint": "^2.0.0",
     "express": "^4.17.2",

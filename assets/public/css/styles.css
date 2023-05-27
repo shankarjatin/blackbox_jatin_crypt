@@ -285,9 +285,10 @@ body {
   padding-bottom: 7vw;
   display: flex;
   justify-content: center;
+  /* width: 70%; */
 }
 #boxdiv {
-  width: 88vw;
+  width: 70vw;
   max-width: 950px;
   /* width: 850px; */
   border: 4px solid rgba(255, 255, 255, 0.319);

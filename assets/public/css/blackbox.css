@@ -1,11 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo:wght@500&family=IBM+Plex+Sans:wght@500&family=Inter:wght@500&family=Montserrat:wght@500&family=Open+Sans:wght@500&family=Orbitron:wght@400;500;600;700&family=Roboto+Flex:opsz,wght@8..144,500&family=Work+Sans:wght@500&display=swap");
 
-
-#gamediv{
+#gamediv {
   background-image: url("public/main_background.png");
   /* background-position: center; */
   background-size: cover;
-  
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -39,7 +37,7 @@ body {
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
-body{
+body {
   color: white;
 }
 /* body {
@@ -247,7 +245,7 @@ body{
   border: none;
 }
 .inputs-list {
-  padding-top: 5rem;
+  padding-top: 1.6rem;
   display: grid;
   gap: 23px 20px;
   grid-template-columns: auto auto;

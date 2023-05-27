@@ -1,134 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* cursor: pointer; */
+  user-select: none;
+}
+#wrapperabout {
+  width: auto;
+  height: auto;
+  padding: 5rem;
+}
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    cursor: pointer;
-    user-select: none;
-  }
-  #wrapperabout {
-    width: auto;
-    height: auto;
-    padding: 5rem;
-  }
-  
-  #aboutheading h1 {
-    text-align: center;
-    color: white;
-    font-family: Orbitron;
-    font-weight: 800;
-  }
-  
+#aboutheading h1 {
+  text-align: center;
+  color: white;
+  font-family: Orbitron;
+  font-weight: 800;
+}
+
+#aboutboxes {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.625rem;
+  width: 100%;
+}
+
+#upperbox {
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+  margin-bottom: 3.688rem;
+}
+
+#lowerbox {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.makerdiv {
+  width: 14.625rem;
+  height: 18.25rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid white;
+  border-radius: 1.188rem;
+  background: linear-gradient(
+    120.21deg,
+    rgba(99, 101, 148, 0.4) 18.15%,
+    rgba(55, 57, 92, 0.1) 82.15%
+  );
+  box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12.5px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.imagediv img {
+  width: 7.5rem;
+  /* height: ; */
+}
+
+.imagediv {
+  width: 120px;
+  height: 120px;
+  margin: 32px 57px 31px 57px;
+}
+
+.namediv p {
+  font-family: Orbitron;
+  font-weight: 700;
+  margin-bottom: 23px;
+}
+
+.domaindiv {
+  font-family: Orbitron;
+  font-weight: 500;
+  color: #ee3fa2;
+}
+
+@media (max-width: 1168px) {
   #aboutboxes {
-    display: flex;
-    flex-direction: column;
-    margin-top: 2.625rem;
-    width: 100%;
+    margin-top: 1.5rem;
   }
-  
-  #upperbox {
-    display: flex;
-    justify-content: space-evenly;
-    position: relative;
-    margin-bottom: 3.688rem;
-  }
-  
-  #lowerbox {
-    display: flex;
-    justify-content: space-evenly;
-  }
-  
+
   .makerdiv {
-    width: 14.625rem;
-    height: 18.25rem;
-    backdrop-filter: blur(10px);
-    border: 1px solid white;
-    border-radius: 1.188rem;
-    background: linear-gradient(120.21deg, rgba(99, 101, 148, 0.4) 18.15%, rgba(55, 57, 92, 0.1) 82.15%);
-    box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(12.5px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 50%;
+    margin: 1rem;
+    /* padding: ; */
   }
-  .imagediv img{
-    width: 7.5rem;
-    /* height: ; */
+  #upperbox {
+    flex-wrap: wrap;
+    /* background-color: #EE3FA2; */
+    padding-bottom: 0rem;
+    margin-bottom: 0rem;
   }
-  
+  #lowerbox {
+    padding-top: 0;
+    margin-top: 0rem;
+    flex-wrap: wrap;
+    /* background-color: aqua; */
+  }
+
   .imagediv {
-    width: 120px;
-    height: 120px;
-    margin: 32px 57px 31px 57px;
+    margin: 20px;
   }
-  
+}
+/* @media () */
+
+@media (max-width: 480px) {
+  #wrapperabout {
+    padding: 2rem;
+    padding-top: 4rem;
+    /* margin-top: 2rem; */
+  }
+  #upperbox {
+    flex-wrap: wrap;
+  }
+  #lowerbox {
+    padding-top: 0;
+    margin-top: 0rem;
+    flex-wrap: wrap;
+  }
+
+  .makerdiv {
+    height: auto;
+    padding: 1.5rem;
+  }
+
   .namediv p {
-    font-family: Orbitron;
-    font-weight: 700;
-    margin-bottom: 23px;
+    margin-bottom: 10px;
   }
-  
+
   .domaindiv {
-    font-family: Orbitron;
-    font-weight: 500;
-    color: #EE3FA2;
+    margin-bottom: 10px;
   }
-  
-  @media (max-width: 1168px) {
-    #aboutboxes {
-      margin-top: 1.5rem;
-    }
-  
-    .makerdiv {
-      width: 50%;
-      margin: 1rem;
-      /* padding: ; */
-    }
-    #upperbox{
-      flex-wrap: wrap;
-      /* background-color: #EE3FA2; */
-      padding-bottom: 0rem;
-      margin-bottom: 0rem;
-    }
-    #lowerbox{
-      padding-top: 0;
-      margin-top: 0rem;
-      flex-wrap: wrap;
-      /* background-color: aqua; */
-    }
-  
-    .imagediv {
-      margin: 20px;
-    }
-  }
-  /* @media () */
-  
-  @media (max-width: 480px) {
-    #wrapperabout {
-      padding: 2rem;
-      padding-top: 4rem;
-      /* margin-top: 2rem; */
-    }
-    #upperbox{
-      flex-wrap: wrap;
-    }
-    #lowerbox{
-      padding-top: 0;
-      margin-top: 0rem;
-      flex-wrap: wrap;
-    }
-  
-    .makerdiv {
-      height: auto;
-      padding: 1.5rem;
-    }
-  
-    .namediv p {
-      margin-bottom: 10px;
-    }
-  
-    .domaindiv {
-      margin-bottom: 10px;
-    }
-  }
+}

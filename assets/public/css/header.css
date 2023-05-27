@@ -9,6 +9,9 @@ a,
   /* color: white; */
   color: inherit;
 }
+#font_primary_title_2 {
+  display: none;
+}
 .index_page_header {
   white-space: nowrap;
   user-select: none;

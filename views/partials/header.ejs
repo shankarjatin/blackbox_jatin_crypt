@@ -52,12 +52,25 @@
           </label>
 
           <div class="menu__box">
-            <li class="menu__item" id="">
-              <div onclick="hintClick()" class="ali">Hints</div>
+            <li id="crypthunt_rout" class="menu__item">
+              <a href="/" class="heading">Crypthunt</a>
             </li>
+            <li id="blackbox_rout" class="menu__item">
+              <a href="/blackbox" class="heading-side">Blackbox</a>
+            </li>
+
             <hr class="ham_menu_hr" />
             <li class="menu__item" id="">
-              <div onclick="leaderClick()" class="">Leaderboard</div>
+              <a onclick="leaderClick()" class="">Leaderboard</a>
+            </li>
+            <li class="menu__item" id="">
+              <a href="/about_us" class="">About us</a>
+            </li>
+            <hr class="ham_menu_hr" />
+            <li id="" class="menu__item ham_logout">
+              <a href="/logout" class="">
+                Logout <i class="fa fa-solid fa-right-from-bracket"></i>
+              </a>
             </li>
           </div>
         </div>
@@ -80,7 +93,7 @@
             </li>
 
             <li
-              class="header_li navbar-hints-section"
+              class="header_li_2 navbar-hints-section"
               onclick="leaderClick(1)"
               onclick="hintClick()"
               id="hints-clicker"

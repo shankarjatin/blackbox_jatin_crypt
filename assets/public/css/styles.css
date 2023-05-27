@@ -180,6 +180,7 @@ body {
   background-color: #ee3fa2;
   border: 1px solid white;
   border-radius: 10px;
+  text-align: center;
   color: white;
   font-family: "Orbitron", sans-serif;
   font-weight: bold;
@@ -652,8 +653,9 @@ table tr:last-child td:last-child {
   }
   #outercountdown {
     /* left: 8%; */
-    left: 84%;
-    top: 13%;
+    /* left: 84%;
+    top: 13%; */
+    /* right: calc(20px + 1vw); */
   }
   /*LEADERBOARD RESPONSIVE*/
   #linner {
@@ -662,7 +664,7 @@ table tr:last-child td:last-child {
 }
 @media screen and (max-width: 1100px) {
   #gameoutdiv {
-    margin-top: 86px;
+    margin-top: 48px;
   }
 }
 

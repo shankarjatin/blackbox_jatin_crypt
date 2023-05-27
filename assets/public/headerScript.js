@@ -159,10 +159,8 @@ function leaderClick(chk_close) {
     } else {
       document.getElementById("background-blur-outer").style.display =
         ct == 0 ? "block" : "none";
-      if (typeof user != "undefined") {
-        document.getElementById("leader-bar").style.borderBottom =
-          ct == 0 ? " 1px solid #ee3fa2" : "none";
-      }
+      document.getElementById("leader-bar").style.borderBottom =
+        ct == 0 ? " 1px solid #ee3fa2" : "none";
       wrapper.style.display = ct == 0 ? "block" : "none";
       ct = ct == 0 ? 1 : 0;
     }
@@ -190,9 +188,7 @@ function chbg(k) {
 $(document).on("click", function (event) {
   var $trigger = $("#hints-clicker");
   if ($trigger !== event.target && !$trigger.has(event.target).length) {
-    if (typeof user != "undefined") {
-      chbg(1);
-    }
+    chbg(1);
   }
 });
 

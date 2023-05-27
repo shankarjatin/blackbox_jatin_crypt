@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap");
+
+  @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
 
 * {
   margin: 0;
@@ -105,12 +106,16 @@
   color: #ee3fa2;
   background-color: #ee3fa2;
 } */
-
-#linner::-webkit-scrollbar-thumb {
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.77);
+#div1 i:hover
+{
+  background-color: #ee3fa2;
+  /* border-radius: 110px; */
 }
-#linner::-webkit-scrollbar-track {
+#linner::-webkit-scrollbar-thumb{
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.77)
+}
+#linner::-webkit-scrollbar-track{
   background: rgba(217, 217, 217, 0.2);
   border-radius: 20px;
 }
@@ -132,6 +137,7 @@
 
 .leaderboard_option_nav:hover {
   cursor: pointer;
+  
 }
 /* .leaderboard_option_nav h2{
   font-family: "Rubik";

@@ -7,7 +7,10 @@ function headingHandler() {
       headingbb.classList.add("font_primary");
     } else if (window.location.pathname == "/game") {
       headingch.classList.add("font_primary");
-    } else if (window.location.pathname == "/home") {
+    } else if (
+      window.location.pathname == "/home" ||
+      window.location.pathname == "/about_us"
+    ) {
       document.getElementById("blackbox_route").style.display = "none";
       document.getElementById("crypthunt_route").style.display = "none";
       document.getElementById("font_primary_title_2").style.display = "block";

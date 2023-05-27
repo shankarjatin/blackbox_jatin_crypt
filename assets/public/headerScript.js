@@ -7,6 +7,10 @@ function headingHandler() {
       headingbb.classList.add("font_primary");
     } else if (window.location.pathname == "/game") {
       headingch.classList.add("font_primary");
+    } else if (window.location.pathname == "/home") {
+      document.getElementById("blackbox_route").style.display = "none";
+      document.getElementById("crypthunt_route").style.display = "none";
+      document.getElementById("font_primary_title_2").style.display = "block";
     }
   }
 }
@@ -155,8 +159,10 @@ function leaderClick(chk_close) {
     } else {
       document.getElementById("background-blur-outer").style.display =
         ct == 0 ? "block" : "none";
-      document.getElementById("leader-bar").style.borderBottom =
-        ct == 0 ? " 1px solid #ee3fa2" : "none";
+      if (typeof user != "undefined") {
+        document.getElementById("leader-bar").style.borderBottom =
+          ct == 0 ? " 1px solid #ee3fa2" : "none";
+      }
       wrapper.style.display = ct == 0 ? "block" : "none";
       ct = ct == 0 ? 1 : 0;
     }
@@ -184,7 +190,9 @@ function chbg(k) {
 $(document).on("click", function (event) {
   var $trigger = $("#hints-clicker");
   if ($trigger !== event.target && !$trigger.has(event.target).length) {
-    chbg(1);
+    if (typeof user != "undefined") {
+      chbg(1);
+    }
   }
 });
 

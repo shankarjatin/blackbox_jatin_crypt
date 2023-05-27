@@ -84,7 +84,9 @@ a,
     0px -1.8px #2f2f2f, -1.8px 1.8px #2f2f2f, 1.8px -1.8px #2f2f2f,
     0px 0px 7px #f0d9d9;
 }
-
+#font_primary_title_2 {
+  display: none;
+}
 .header_li {
   font-family: "Orbitron";
   font-style: normal;

@@ -246,7 +246,7 @@ body {
 }
 #left {
   border: 2px solid white;
-  width: 650px;
+  width: 740px;
 }
 #contact {
   background-color: white;
@@ -257,7 +257,7 @@ body {
 }
 #icons {
   padding: 0% 2%;
-  background-color: #17132a;
+  /* background-color: #17132a; */
   color: white;
   display: flex;
   justify-content: space-between;
@@ -735,7 +735,7 @@ table tr:last-child td:last-child {
     width: 95%;
   }
   #left {
-    width: 560px;
+    width: 740px;
     font-size: 14px;
   }
   #imgindiv {
@@ -827,7 +827,7 @@ table tr:last-child td:last-child {
     display: none;
   }
   #left {
-    width: 200px;
+    width: 740px;
   }
   #icons {
     padding: 0% 0%;

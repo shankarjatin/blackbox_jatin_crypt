@@ -32,67 +32,67 @@
 
             <div class="blackbox-user-interface">
               <!-- <div class="blackbox-input-part"> -->
-                <div class="input-part-inner">
-                  <h1>Enter Values</h1>
-                  <div class="flex-center">
+              <div class="input-part-inner">
+                <h1>Enter Values</h1>
+                <div class="flex-center">
 
-                    <div class="inputs-list">
-                      <% for(let i=1; i<=variableCount ; i++){ %>
-                        <label class="input-label" for="num<%- i %>">Number <%- i %> :</label>
-                        <input type="number" name="num<%- i %>" class="numbers input-input" id="num<%- i %>" />
-                        <% } %>
-                    </div>
+                  <div class="inputs-list">
+                    <% for(let i=1; i<=variableCount ; i++){ %>
+                      <label class="input-label" for="num<%- i %>">Number <%- i %> :</label>
+                      <input type="number" name="num<%- i %>" class="numbers input-input" id="num<%- i %>" />
+                      <% } %>
                   </div>
                 </div>
-                <div class="instruction-part">
-                  <p></p>
-                  <div class="instruction-head">Instructions</div>
-                  <% if(instructions.length===0){ %>
-                    <div class="instruction-li">use a,b,c,d and e as variables!</div>
-                    <% }else{ %>
-                      <% for(let i=0; i<instructions.length;i++){ %>
-                        <li class="instruction-li"><%- instructions[i]%></li>
+              </div>
+              <div class="instruction-part">
+                <p></p>
+                <div class="instruction-head">Instructions</div>
+                <% if(instructions.length===0){ %>
+                  <div class="instruction-li">use a,b,c,d and e as variables!</div>
+                  <% }else{ %>
+                    <% for(let i=0; i<instructions.length;i++){ %>
+                      <li class="instruction-li"><%- instructions[i]%></li>
+                      <%}%>
                         <%}%>
-                          <%}%>
-                </div>
+              </div>
 
-                
+
               <!-- </div> -->
-              
-              <!-- <div class="blackbox-input-part"> -->
-                
-                <div class="history-list-container" id="list-container">
-                  <% if (team.Array.length> 0) { %>
-                    <ul class="history-list blackboxHistory">
-                      <% for(let i=(team.Array.length)-1 ; i>=0 ; i--){ %>
-                        <li class="history-list-item">
-                          <%= team.Array[i] %>
-                        </li>
-                        <% } %>
-                      </ul>
-                      <% } else{%>
-                        
-                        <p class="no_combinations_tried">No combinations tried yet!</p>
-                        <%}%>
-                </div>
-                      <div class="submit-answer-part">
-                        <label for="submit_expression">Enter your expression here!</label>
-                        <input type="text" placeholder="Enter your expression" name="user_expression" id="submit_expression"
-                        onkeypress="return /[a-e+\-*/]/i.test(event.key)" />
-                      </div>
-                      
-                    <!-- </div> -->
-                    <!-- <div class="submit-section"> -->
-                      <button class="blackbox-btn check-btn-1" onclick="checkExpression()">
-                      Check Combination
-                      </button>   
-                      <button class="blackbox-btn check-btn-2" onclick="submit()">Submit Expression</button> 
 
-      
+              <!-- <div class="blackbox-input-part"> -->
+
+              <div class="history-list-container" id="list-container">
+                <% if (team.Array.length> 0) { %>
+                  <ul class="history-list blackboxHistory">
+                    <% for(let i=(team.Array.length)-1 ; i>=0 ; i--){ %>
+                      <li class="history-list-item">
+                        <%= team.Array[i] %>
+                      </li>
+                      <% } %>
+                  </ul>
+                  <% } else{%>
+
+                    <p class="no_combinations_tried">No combinations tried yet!</p>
+                    <%}%>
+              </div>
+              <div class="submit-answer-part">
+                <label for="submit_expression">Enter your expression here!</label>
+                <input type="text" placeholder="Enter your expression" name="user_expression" id="submit_expression"
+                  onkeypress="return /[a-e+\-*/<>^%()&|!~]/i.test(event.key)" />
+              </div>
+
+              <!-- </div> -->
+              <!-- <div class="submit-section"> -->
+              <button class="blackbox-btn check-btn-1" onclick="checkExpression()">
+                Check Combination
+              </button>
+              <button class="blackbox-btn check-btn-2" onclick="submit()">Submit Expression</button>
+
+
             </div>
 
             <% if (remaining_time !="None" ) { %>
-              <script>
+              <script defer>
                 let timer = document.getElementsByClassName("countdown");
                 for (let i = 0; i <= timer.length - 1; i++) {
                   let time = Math.floor(Number("<%-remaining_time%>") / 1000);
@@ -131,7 +131,7 @@
               </script>
               <% } else { %>
                 <% } %>
-                  <script>
+                  <script defer>
                     function createUL(Array) {
                       div = document.getElementById("hint_id");
                       div.innerHTML = "";
@@ -162,7 +162,7 @@
                       });
                     }
                   </script>
-                  <script>
+                  <script defer>
                     async function submit() {
                       url = "/submit_blackbox";
                       const expression = document.getElementById("submit_expression").value;
@@ -184,7 +184,7 @@
                       }
                     }
                   </script>
-                  <script>
+                  <script defer>
                     document
                       .getElementById("background-blur-outer")
                       .addEventListener("click", () => {
@@ -245,7 +245,7 @@
                       });
                     }
                   </script>
-                  <script>
+                  <script defer>
                     // input validation for submit expression
                     const inputField = document.getElementById("submit_expression");
 
@@ -254,7 +254,7 @@
                       const pastedData = event.clipboardData.getData("text/plain");
 
                       // Remove all characters that are not a through e, +, -, *, or /
-                      const filteredData = pastedData.replace(/[^0-9a-e+\-*/]/gi, "");
+                      const filteredData = pastedData.replace(/[^0-9a-e+\-*/<>%^()&|!~]/gi, "");
 
                       // Set the input field value to the filtered data
                       inputField.value = filteredData;

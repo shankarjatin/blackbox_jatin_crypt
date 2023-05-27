@@ -8,6 +8,7 @@ const leaderBoard = require("../controllers/leaderboard.js")
 const rateLimit = require("../middlewares/rate_limiter.js");
 
 router.get("/",
+	rateLimit.ipRateLimiter,
 	game_controller.index
 );
 
@@ -16,6 +17,7 @@ router.get("/",
 // )
 
 router.get("/rules",
+	rateLimit.ipRateLimiter,
 	game_controller.rules
 );
 router.get("/home",
@@ -25,18 +27,21 @@ router.get("/home",
 	game_controller.home
 );
 router.get("/about_us",
-	// rateLimit.rateLimiter,
+	rateLimit.ipRateLimiter,
 	game_controller.about_us
 );
 
 router.get("/blackbox_leaderboard",
+	rateLimit.ipRateLimiter,
 	leaderBoard.blackbox)
 
 router.get("/original_leaderboard",
+	rateLimit.ipRateLimiter,
 	leaderBoard.original
 );
 
 router.get("/crypthunt_leaderboard",
+	rateLimit.ipRateLimiter,
 	leaderBoard.crypthunt);
 
 router.get("/game",
@@ -70,28 +75,6 @@ router.post("/get_hints",
 	rateLimit.rateLimiter,
 	game_controller.get_hints
 )
-
-router.get("/hint_manager",
-	auth_middleware.check_login,
-	auth_middleware.check_admin,
-	rateLimit.rateLimiter,
-	game_controller.hint_manager
-)
-
-router.post("/hints",
-	auth_middleware.check_login,
-	auth_middleware.check_admin,
-	rateLimit.rateLimiter,
-	game_controller.submit_hint
-)
-
-router.post("/delete_hint",
-	auth_middleware.check_login,
-	auth_middleware.check_admin,
-	rateLimit.rateLimiter,
-	game_controller.delete_hint
-)
-
 
 router.get("/test", function (req, res) {
 	res.send(req.isAuthenticated())

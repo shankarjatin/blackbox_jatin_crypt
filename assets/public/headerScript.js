@@ -7,6 +7,13 @@ function headingHandler() {
       headingbb.classList.add("font_primary");
     } else if (window.location.pathname == "/game") {
       headingch.classList.add("font_primary");
+    } else if (
+      window.location.pathname == "/home" ||
+      window.location.pathname == "/about_us"
+    ) {
+      document.getElementById("blackbox_route").style.display = "none";
+      document.getElementById("crypthunt_route").style.display = "none";
+      document.getElementById("font_primary_title_2").style.display = "block";
     }
   }
 }
@@ -52,7 +59,7 @@ function addTableRowCrypthunt(Array) {
 
     // Append the new row to the table
     table.appendChild(row);
-    if (typeof user != 'undefined') {
+    if (typeof user != "undefined") {
       chbg(1); //close the hints tab if open
     }
   }
@@ -88,7 +95,7 @@ function addTableRowBlackbox(Array) {
     // Append the new row to the table
     table.appendChild(row);
 
-    if (typeof user != 'undefined') {
+    if (typeof user != "undefined") {
       chbg(1); //close the hints tab if open
     }
   }
@@ -125,7 +132,7 @@ function addTableRowOriginal(Array) {
     // Append the new row to the table
     table.appendChild(row);
 
-    if (typeof user != 'undefined') {
+    if (typeof user != "undefined") {
       // chbg(1); //close the hints tab if open
     }
   }
@@ -139,21 +146,24 @@ function leaderClick(chk_close) {
   if (chk_close == 1) {
     document.getElementById("wrapper").style.display = "none";
     document.getElementById("background-blur-outer").style.display = "none";
+    document.getElementById("leader-bar").style.borderBottom = "none";
     ct = 0;
   } else {
     let wrapper = document.getElementById("wrapper");
-    if (typeof user != 'undefined') {
+    if (typeof user != "undefined") {
       // chbg(1); //close the hints tab if open
     }
     if (ct == 1) {
       wrapper.style.display = "none";
       document.getElementById("background-blur-outer").style.display = "none";
+      document.getElementById("leader-bar").style.borderBottom = "none";
 
       ct = 0;
     } else {
       document.getElementById("background-blur-outer").style.display =
         ct == 0 ? "block" : "none";
-
+      document.getElementById("leader-bar").style.borderBottom =
+        ct == 0 ? " 1px solid #ee3fa2" : "none";
       wrapper.style.display = ct == 0 ? "block" : "none";
       ct = ct == 0 ? 1 : 0;
     }
@@ -162,15 +172,20 @@ function leaderClick(chk_close) {
 }
 
 function chbg(k) {
-  if (typeof user != 'undefined') {
+  if (typeof user != "undefined") {
     if (k == 1) {
       document.getElementById("hint_id").style.display = "none";
+      document.getElementById("hints-clicker").style.borderBottom = "none";
       kk = 0;
     } else {
       document.getElementById("hint_id").style.display =
         kk == 0 ? "block" : "none";
       kk = kk == 0 ? 1 : 0;
     }
+  }
+  if (k == 1) {
+    document.getElementById("hint_id").style.display = "none";
+    document.getElementById("hints-clicker").style.borderBottom = "none";
   }
 }
 $(document).on("click", function (event) {

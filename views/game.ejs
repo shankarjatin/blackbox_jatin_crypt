@@ -40,9 +40,13 @@
         </div>
     </div>
     </div>
-
     <% if (message !="None" ) { %>
-        <script>alert("<%-message%>")</script>
+        <script defer>
+            window.addEventListener('load', function () {
+                // Code to be executed after the page has loaded
+                alert("<%-message%>")
+            });
+        </script>
         <% } else { %>
             <% } %>
 
@@ -123,6 +127,8 @@
 
                                         function hintClick() {
                                             document.getElementById("hint_id").style.display = "block";
+                                            document.getElementById("hints-clicker").style.borderBottom = "1px solid #ee3fa2"
+
                                             document.getElementById("hint_id")
                                             payload = { game: "Crypthunt", level: "<%-level%>" }
 

@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
   <!-- Font Awsome -->
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
   <link rel="stylesheet" href="public/css/blackbox.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" type="text/css" href="public/css/styles.css" />
@@ -29,6 +29,9 @@
         <ul id="logul">
           <a href="/logout" class="ali">
             <li class="logli">Logout</li>
+          </a>
+          <a href="/about_us" class="ali">
+            <li class="logli">About_us</li>
           </a>
         </ul>
       </div>
@@ -56,11 +59,14 @@
           <li id="blackbox_route" class="header_li">
             <a href="/blackbox" class="heading-side">Blackbox</a>
           </li>
-
+          <li class="header_title_font font_primary_title" id="font_primary_title_2">
+            <a href="/" class="" class="heading">Blockverse' 23</a>
+          </li>
           <div class="header_routes">
-            <li class="header_li navbar-hints-section" id="">
+            <li class="header_li navbar-hints-section" id="leader-bar">
               <div onclick="leaderClick()" class="">Leaderboard</div>
             </li>
+
             <li class="header_li navbar-hints-section" onclick="leaderClick(1)" onclick="hintClick()"
               id="hints-clicker">
               <p onclick="hintClick()" class="navbar-hints-label">Hints</p>
@@ -99,7 +105,7 @@
       <!-- -->
       <!-- else -->
       <% } else { %>
-      <script> const user = undefined </script>
+      <script>const user = undefined</script>
       <div class="index_page_header">
         <div class="hamburger-menu">
           <input id="menu__toggle" type="checkbox" />
@@ -113,8 +119,8 @@
             </li>
             <hr class="ham_menu_hr" />
             <li class="menu__item" id="">
-              <!-- <a href="" onclick="leaderClick()" class="">Leaderboard</a> -->
-              <div onclick="leaderClick()" class="">Leaderboard</div>
+              <!-- <a href="" onclick="leaderClick()" class="" id="leader-bar">Leaderboard</a> -->
+              <div onclick="leaderClick()" class="" id="leader-bar">Leaderboard</div>
             </li>
           </div>
         </div>
@@ -126,10 +132,13 @@
             <li class="header_li navbar-hints-section" id="">
               <div onclick="leaderClick()" class="">Leaderboard</div>
             </li>
-
             <li class="header_li navbar-hints-section" id="">
               <a href="/rules" class="">Rules</a>
             </li>
+            <li class="header_li navbar-hints-section" id="">
+              <a href="/about_us" class="">About Us</a>
+            </li>
+
 
             <li class="" id="">
               <a href="/auth/google"><button type="button" class="login_btn" id="">Login</button></a>&nbsp;
@@ -141,6 +150,3 @@
       <!-- -->
   </div>
   <% } %> <%- include("./leaderboard2.ejs"); %>
-</body>
-
-</html>

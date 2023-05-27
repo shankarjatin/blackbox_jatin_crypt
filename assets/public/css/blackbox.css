@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo:wght@500&family=IBM+Plex+Sans:wght@500&family=Inter:wght@500&family=Montserrat:wght@500&family=Open+Sans:wght@500&family=Orbitron:wght@400;500;600;700&family=Roboto+Flex:opsz,wght@8..144,500&family=Work+Sans:wght@500&display=swap");
 
+#gamediv {
+  background-image: url("public/main_background.png");
+  /* background-position: center; */
+  background-size: cover;
+}
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -10,13 +16,14 @@ input[type="number"] {
   appearance: textfield;
 }
 
+body {
+  font-size: 20px;
+}
 .blackboxHistory::-webkit-scrollbar {
   width: 6px;
 }
 .blackboxHistory::-webkit-scrollbar-thumb {
-  /* background-color: #555; */
   border-radius: 20px;
-  /* border: 4px solid #555; */
   background: rgba(255, 255, 255, 0.77);
 }
 .blackboxHistory::-webkit-scrollbar-track {
@@ -29,16 +36,16 @@ input[type="number"] {
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  /* font-family: "Orbitron", sans-serif; */
-  /* list-style-type: none; */
 }
 body {
+  color: white;
+}
+/* body {
   background-image: url("../blackbox_bg.png");
   background-size: cover;
   color: white;
-}
+} */
 
-/* Section below NavBar */
 .time-head {
   display: flex;
   align-items: center;
@@ -50,7 +57,7 @@ body {
   font-family: "Orbitron";
   font-style: normal;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 1rem;
   line-height: 24px;
   padding-top: 105px;
   padding-bottom: 25px;
@@ -72,7 +79,6 @@ body {
   box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(12.5px);
   border-radius: 55px;
-  /* padding: 2rem 4rem; */
   width: 29.18rem;
   height: 15.12rem;
   display: flex;
@@ -98,7 +104,6 @@ body {
   background: #ee3fa2;
   border: 1px solid #ffffff;
   border-radius: 35px;
-  /* padding: 2; */
   width: 20.18rem;
   height: 3.02rem;
   font-weight: bold;
@@ -139,14 +144,13 @@ body {
 }
 .blackbox-input-part,
 .blackbox-check-part {
-  /* margin-top: 60px; */
   display: flex;
-  /* z-index: -3; */
+
   gap: 10px;
   height: calc(100vh - 160px);
   align-items: center;
-  flex-direction: column;
-  max-width: 90vw;
+  flex-direction: row;
+  /* max-width: 90vw; */
   justify-content: space-between;
 }
 
@@ -154,7 +158,6 @@ body {
   border-radius: 28px;
   max-width: 468px;
   width: 468px;
-  /* width: 100%; */
   height: 270px;
   background: linear-gradient(
     120.21deg,
@@ -168,30 +171,26 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  /* padding: 40px; */
-  /* overflow-y: scroll; */
-  /* justify-content: center; */
+  margin: auto;
 }
 .flex-center {
   display: flex;
   justify-content: center;
   height: 60%;
   align-items: center;
-  width: 90%;
-  /* background-color: aqua; */
-  margin-top: 1rem;
+  width: 80%;
+
+  margin-top: 0.3rem;
   overflow-y: scroll;
-  /* padding: 1rem; */
 }
-.flex-center::-webkit-scrollbar{
+.flex-center::-webkit-scrollbar {
   width: 7px;
-  /* height: 30%; */
 }
-.flex-center::-webkit-scrollbar-thumb{
+.flex-center::-webkit-scrollbar-thumb {
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.77)
+  background: rgba(255, 255, 255, 0.77);
 }
-.flex-center::-webkit-scrollbar-track{
+.flex-center::-webkit-scrollbar-track {
   background: rgba(217, 217, 217, 0.2);
   border-radius: 20px;
 }
@@ -203,8 +202,6 @@ body {
   margin-top: 26px;
 }
 .input-label {
-  /* font-size: 16px;
-  font-weight: 500; */
   font-family: "Orbitron";
   font-style: normal;
   font-weight: 500;
@@ -215,6 +212,7 @@ body {
   width: 323px;
   height: 50px;
   left: 871.52px;
+  margin: auto;
   /* top: 523px; */
   /* margin-top: 42px; */
   background: #ee3fa2;
@@ -229,16 +227,15 @@ body {
   border: 2px solid white;
 }
 .blackbox-user-interface {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 110px;
-  /* max-height: 90vh; */
-  /* height: calc(100vh - 100px); */
-  justify-content: center;
-  /* margin-top: 29px; */
+  /* border: 1px solid white; */
+  row-gap: 4%;
+  grid-column-start: 2;
+  margin-bottom: 16px;
 }
+
 .input-input {
   background: #d9d9d9;
   border-radius: 6px;
@@ -248,16 +245,11 @@ body {
   border: none;
 }
 .inputs-list {
-  padding-top: 5rem;
+  padding-top: 1.6rem;
   display: grid;
   gap: 23px 20px;
   grid-template-columns: auto auto;
-  /* margin-bottom: 12px; */
-  /* overflow-y: scroll; */
 }
-/* .inputs-list::-webkit-scrollbar{
-
-} */
 .check-part-inner {
   display: flex;
   flex-direction: column;
@@ -273,7 +265,6 @@ body {
 .check-part-inner label {
   font-size: 20px;
   font-weight: 700;
-  /* margin-top: 72px; */
 }
 .check-part-inner input {
   color: white;
@@ -289,12 +280,12 @@ body {
   width: 290px;
   height: 50px;
   color: white !important;
-  /* margin-top: 45px; */
   text-align: center;
 }
 
 .history-list-container {
   /* z-index: -3; */
+  margin: auto;
   user-select: none;
   background: linear-gradient(
     120.21deg,
@@ -309,8 +300,6 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.101);
   width: 90vw;
   height: 175px;
-  /* margin: auto; */
-  /* margin-top: 40px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -334,21 +323,37 @@ body {
   line-height: 30px;
 }
 @media screen and (max-width: 950px) {
-  /* .blackbox-user-interface { */
-  /* flex-direction: column; */
-  /* } */
   #level-head h1 {
     font-size: 24px;
   }
   #level-head {
     padding-top: 120px;
   }
+  .blackbox-user-interface {
+    grid-template-columns: auto;
+  }
+  .instruction-part {
+    order: -2;
+  }
+  .input-part-inner {
+    order: -1;
+  }
+  .check-btn-1 {
+    order: 3;
+  }
+  .history-list-container {
+    order: 3;
+  }
+  .check-btn-2 {
+    order: 6;
+  }
+  .submit-answer-part {
+    order: 5;
+  }
 }
 #background-blur-outer {
-  /* content: ""; */
   display: none;
   z-index: 9;
-  /* overflow-y: scroll; */
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -374,6 +379,7 @@ body {
   font-family: "Orbitron";
   font-style: normal;
   margin: 2px;
+
   margin-left: 40px;
   font-weight: 500;
   font-size: 15px;
@@ -383,7 +389,9 @@ body {
   border-radius: 28px;
   max-width: 468px;
   width: 468px;
+  /* order: -1; */
   height: 270px;
+  margin: auto;
   background: linear-gradient(
     120.21deg,
     rgba(99, 101, 148, 0.4) 18.15%,
@@ -412,18 +420,16 @@ body {
   );
   box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
-  /* Note: backdrop-filter has minimal browser support */
+  margin: auto;
 
   border-radius: 28px;
   max-width: 468px;
   width: 90vw;
   height: 175px;
-  /* margin-top: 40px; */
   border: 1px solid rgba(255, 255, 255, 0.101);
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
 }
 .submit-answer-part label {
   font-family: "Orbitron";
@@ -441,7 +447,6 @@ body {
   );
   box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
-  /* Note: backdrop-filter has minimal browser support */
   border: none;
   width: 292px;
   height: 58.2px;
@@ -456,4 +461,19 @@ body {
 }
 .submit-answer-part input:focus {
   color: #ffffff;
+}
+@media screen and (max-width: 1080px) {
+  /* .input-part-inner {
+  } */
+  .instruction-part,
+  .input-part-inner,
+  .check-btn-1,
+  .history-list-container,
+  .check-btn-2,
+  .submit-answer-part {
+    transform: scale(0.85);
+  }
+  .blackbox-user-interface {
+    row-gap: 2%;
+  }
 }

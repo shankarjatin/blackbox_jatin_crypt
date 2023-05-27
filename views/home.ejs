@@ -1,4 +1,4 @@
-<%- include("./partials/header.ejs",{name:'triyon'}); %>
+<%- include("./partials/header_2.ejs",{name:'triyon'}); %>
 <!-- Below component to blur background while leaderboard is open -->
 <div id="background-blur-outer"></div>
 <div id="wraperhome">
@@ -39,46 +39,46 @@
     </div>
   </div>
 </div>
-  <!-- Below script is for redirecting if any redirect if present -->
-  <% if (remaining_time !="None" ) { %>
-  <script>
-    let timer = document.getElementsByClassName("countdown");
-    for (let i = 0; i <= timer.length - 1; i++) {
-      let time = Math.floor(Number("<%-remaining_time%>") / 1000);
-      setInterval(updatecountdown, 1000);
-      function updatecountdown() {
-        let hours = Math.floor(time / 3600);
-        let minutes = Math.floor((time % 3600) / 60);
-        let seconds = Math.floor(time - 3600 * hours - 60 * minutes);
-        if (time < 0) {
-          timer[i].innerHTML = `00 : 00 : 00`;
-          alert(
-            "Thank you for participating in Blockverse'23! Your active engagement is greatly appreciated"
-          );
-          window.location = "/submit";
-        } else {
-          timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
-        }
+<!-- Below script is for redirecting if any redirect if present -->
+<% if (remaining_time !="None" ) { %>
+<script>
+  let timer = document.getElementsByClassName("countdown");
+  for (let i = 0; i <= timer.length - 1; i++) {
+    let time = Math.floor(Number("<%-remaining_time%>") / 1000);
+    setInterval(updatecountdown, 1000);
+    function updatecountdown() {
+      let hours = Math.floor(time / 3600);
+      let minutes = Math.floor((time % 3600) / 60);
+      let seconds = Math.floor(time - 3600 * hours - 60 * minutes);
+      if (time < 0) {
+        timer[i].innerHTML = `00 : 00 : 00`;
+        alert(
+          "Thank you for participating in Blockverse'23! Your active engagement is greatly appreciated"
+        );
+        window.location = "/submit";
+      } else {
+        timer[i].innerHTML = `${hours} : ${minutes} : ${seconds}`;
+      }
 
-        time--;
-        let degs = 450 - (time * 3.6) / 108;
-        document.getElementById("yesme").style.transform =
-          "rotate(" + (degs - 45) + "deg)";
+      time--;
+      let degs = 450 - (time * 3.6) / 108;
+      document.getElementById("yesme").style.transform =
+        "rotate(" + (degs - 45) + "deg)";
+      document.getElementById("line").style.backgroundImage =
+        "linear-gradient(" +
+        degs +
+        "deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)";
+      document.getElementById("line2").style.backgroundImage =
+        "linear-gradient(" +
+        (degs - 180) +
+        "deg, transparent 50%, #EE3FA2 50%),linear-gradient(90deg, white 50%, transparent 50%)";
+      if (time < 5400) {
+        document.getElementById("line").style.visibility = "hidden";
+        document.getElementById("line2").style.visibility = "visible";
         document.getElementById("line").style.backgroundImage =
-          "linear-gradient(" +
-          degs +
-          "deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)";
-        document.getElementById("line2").style.backgroundImage =
-          "linear-gradient(" +
-          (degs - 180) +
-          "deg, transparent 50%, #EE3FA2 50%),linear-gradient(90deg, white 50%, transparent 50%)";
-        if (time < 5400) {
-          document.getElementById("line").style.visibility = "hidden";
-          document.getElementById("line2").style.visibility = "visible";
-          document.getElementById("line").style.backgroundImage =
-            "linear-gradient(0deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)";
-        }
+          "linear-gradient(0deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)";
       }
     }
-  </script>
-  <% } else { %> <% } %> <%- include("./partials/footer.ejs"); %>
+  }
+</script>
+<% } else { %> <% } %> <%- include("./partials/footer.ejs"); %>

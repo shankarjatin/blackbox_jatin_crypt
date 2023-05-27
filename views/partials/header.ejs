@@ -87,52 +87,52 @@
           >
             <a href="/" class="" class="heading">Blockverse' 23</a>
           </li>
-          <div class="header_routes">
-            <li class="header_li navbar-hints-section" id="leader-bar">
-              <div onclick="leaderClick()" class="">Leaderboard</div>
-            </li>
+          <!-- <div class="header_routes"> -->
+          <li class="header_li navbar-hints-section" id="leader-bar">
+            <div onclick="leaderClick()" class="">Leaderboard</div>
+          </li>
 
-            <li
-              class="header_li_2 navbar-hints-section"
-              onclick="leaderClick(1)"
+          <li
+            class="header_li_2 navbar-hints-section"
+            onclick="leaderClick(1)"
+            onclick="hintClick()"
+            id="hints-clicker"
+          >
+            <p onclick="hintClick()" class="navbar-hints-label">Hints</p>
+            <div
+              id="hint_id"
+              onclick="chbg(1)"
               onclick="hintClick()"
-              id="hints-clicker"
+              class="crypthunt-hints-dropdown"
             >
-              <p onclick="hintClick()" class="navbar-hints-label">Hints</p>
-              <div
-                id="hint_id"
-                onclick="chbg(1)"
-                onclick="hintClick()"
-                class="crypthunt-hints-dropdown"
-              >
-                <div class="hints-loader"></div>
-              </div>
-            </li>
+              <div class="hints-loader"></div>
+            </div>
+          </li>
 
-            <li class="header_li user-greet" id="">
-              <i class="fa-regular fa-user-circle"></i>
-              <p>
-                &nbsp; <% var full_name=user.name%> <% var
-                first_name=full_name.split(' ')[0]; %> Hi
-                <%-first_name%>!&nbsp;&nbsp;
-              </p>
+          <li class="header_li user-greet" id="">
+            <i class="fa-regular fa-user-circle"></i>
+            <p>
+              &nbsp; <% var full_name=user.name%> <% var
+              first_name=full_name.split(' ')[0]; %> Hi
+              <%-first_name%>!&nbsp;&nbsp;
+            </p>
 
-              <svg
-                onclick="logmenu()"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                style="cursor: pointer"
-                fill="currentColor"
-                class="bi bi-caret-down-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
-                />
-              </svg>
-            </li>
-          </div>
+            <svg
+              onclick="logmenu()"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              style="cursor: pointer"
+              fill="currentColor"
+              class="bi bi-caret-down-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+              />
+            </svg>
+          </li>
+          <!-- </div> -->
         </ul>
       </div>
       <!--  -->
@@ -159,6 +159,9 @@
               <div onclick="leaderClick()" class="" id="leader-bar">
                 Leaderboard
               </div>
+            </li>
+            <li class="menu__item" id="">
+              <a href="/about_us" class="ali">About Us</a>
             </li>
           </div>
         </div>

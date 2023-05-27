@@ -197,9 +197,7 @@ function chbg(k) {
 $(document).on("click", function (event) {
   var $trigger = $("#hints-clicker");
   if ($trigger !== event.target && !$trigger.has(event.target).length) {
-    if (typeof user != "undefined") {
       chbg(1);
-    }
   }
 });
 

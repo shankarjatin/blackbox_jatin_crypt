@@ -11,11 +11,9 @@ function headingHandler() {
       window.location.pathname == "/home" ||
       window.location.pathname == "/about_us"
     ) {
-      if (typeof user != "undefined") {
-        document.getElementById("blackbox_route").style.display = "none";
-        document.getElementById("crypthunt_route").style.display = "none";
-        document.getElementById("font_primary_title_2").style.display = "block";
-      }
+      document.getElementById("blackbox_route").style.display = "none";
+      document.getElementById("crypthunt_route").style.display = "none";
+      document.getElementById("font_primary_title_2").style.display = "block";
     }
   }
 }
@@ -197,9 +195,7 @@ function chbg(k) {
 $(document).on("click", function (event) {
   var $trigger = $("#hints-clicker");
   if ($trigger !== event.target && !$trigger.has(event.target).length) {
-    if (typeof user != "undefined") {
-      chbg(1);
-    }
+    chbg(1);
   }
 });
 

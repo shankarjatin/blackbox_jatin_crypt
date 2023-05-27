@@ -96,6 +96,14 @@ a,
 
   color: #ffffff;
 }
+.header_li_2 {
+  font-family: "Orbitron";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22.5px;
+
+  color: #ffffff;
+}
 .header_routes {
   display: flex;
   flex-direction: row;
@@ -141,7 +149,7 @@ a,
 }
 #menu__toggle:checked ~ .menu__box {
   left: 0 !important;
-  z-index: 2000 !important;
+  z-index: 7 !important;
 }
 .menu__btn {
   display: none;
@@ -168,6 +176,16 @@ a,
 .menu__btn > span::before {
   content: "";
   top: -12px;
+}
+.ham_logout {
+  text-align: center;
+  margin-top: 8px;
+}
+.ham_logout a {
+  padding: 4px 8px;
+}
+.ham_logout :hover {
+  background-color: #ee3fa2;
 }
 .menu__btn > span::after {
   content: "";

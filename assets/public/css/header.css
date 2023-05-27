@@ -402,8 +402,8 @@ a,
 }
 
 #outercountdown {
-  /* left: 8%; */
-  left: 84%;
+  right: calc(20px + 1vw);
+  /* right: 84%; */
   top: 12%;
 }
 .hints-loader {

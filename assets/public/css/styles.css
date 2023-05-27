@@ -285,10 +285,11 @@ body {
   padding-bottom: 7vw;
   display: flex;
   justify-content: center;
+  /* width: 70%; */
 }
 #boxdiv {
-  width: 92vw;
-  max-width: 1082px;
+  width: 70vw;
+  max-width: 950px;
   /* width: 850px; */
   border: 4px solid rgba(255, 255, 255, 0.319);
   /* outline-color: #ee3fa2; */

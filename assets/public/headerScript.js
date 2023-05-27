@@ -1,11 +1,13 @@
 function headingHandler() {
-  let headingch = document.getElementById("crypthunt_route");
-  let headingbb = document.getElementById("blackbox_route");
+  if (typeof user != undefined) {
+    let headingch = document.getElementById("crypthunt_route");
+    let headingbb = document.getElementById("blackbox_route");
 
-  if (window.location.pathname == "/blackbox") {
-    headingbb.classList.add("font_primary");
-  } else if (window.location.pathname == "/game") {
-    headingch.classList.add("font_primary");
+    if (window.location.pathname == "/blackbox") {
+      headingbb.classList.add("font_primary");
+    } else if (window.location.pathname == "/game") {
+      headingch.classList.add("font_primary");
+    }
   }
 }
 
@@ -50,11 +52,7 @@ function addTableRowCrypthunt(Array) {
 
     // Append the new row to the table
     table.appendChild(row);
-
-    if (
-      window.location.pathname == "/game" ||
-      window.location.pathname == "/blackbox"
-    ) {
+    if (typeof user != 'undefined') {
       chbg(1); //close the hints tab if open
     }
   }
@@ -90,10 +88,7 @@ function addTableRowBlackbox(Array) {
     // Append the new row to the table
     table.appendChild(row);
 
-    if (
-      window.location.pathname == "/game" ||
-      window.location.pathname == "/blackbox"
-    ) {
+    if (typeof user != 'undefined') {
       chbg(1); //close the hints tab if open
     }
   }
@@ -130,10 +125,7 @@ function addTableRowOriginal(Array) {
     // Append the new row to the table
     table.appendChild(row);
 
-    if (
-      window.location.pathname == "/game" ||
-      window.location.pathname == "/blackbox"
-    ) {
+    if (typeof user != 'undefined') {
       // chbg(1); //close the hints tab if open
     }
   }
@@ -150,10 +142,7 @@ function leaderClick(chk_close) {
     ct = 0;
   } else {
     let wrapper = document.getElementById("wrapper");
-    if (
-      window.location.pathname == "/game" ||
-      window.location.pathname == "/blackbox"
-    ) {
+    if (typeof user != 'undefined') {
       // chbg(1); //close the hints tab if open
     }
     if (ct == 1) {
@@ -173,13 +162,15 @@ function leaderClick(chk_close) {
 }
 
 function chbg(k) {
-  if (k == 1) {
-    document.getElementById("hint_id").style.display = "none";
-    kk = 0;
-  } else {
-    document.getElementById("hint_id").style.display =
-      kk == 0 ? "block" : "none";
-    kk = kk == 0 ? 1 : 0;
+  if (typeof user != 'undefined') {
+    if (k == 1) {
+      document.getElementById("hint_id").style.display = "none";
+      kk = 0;
+    } else {
+      document.getElementById("hint_id").style.display =
+        kk == 0 ? "block" : "none";
+      kk = kk == 0 ? 1 : 0;
+    }
   }
 }
 $(document).on("click", function (event) {
@@ -241,7 +232,6 @@ function logmenu() {
     document.getElementById("logdiv").style.cssText =
       "position: fixed; top: 60px; right: 2%;";
     // chbg(1);
-    console.log("Hi");
     leaderClick(1);
   } else {
     document.getElementById("logdiv").style.cssText =

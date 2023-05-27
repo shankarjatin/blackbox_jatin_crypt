@@ -26,10 +26,10 @@
               <div id="line" class="window-clock"></div>
               <div id="line2" class="window-clock2"></div>
               <div class="piechart" id="yesme">
-                  <div class="dot"></div>
+                <div class="dot"></div>
               </div>
-          </div>
-           
+            </div>
+
             <div class="blackbox-user-interface">
               <!-- <div class="blackbox-input-part"> -->
                 <div class="input-part-inner">
@@ -164,22 +164,23 @@
                   </script>
                   <script>
                     async function submit() {
-                      console.log("inside submit()");
                       url = "/submit_blackbox";
                       const expression = document.getElementById("submit_expression").value;
                       payload = { user_expression: `${expression}` };
                       const res = await axios.post(url, payload);
-                      console.log(res.data);
                       if (res.data.success == false && res.data.redirect == false) {
                         alert(res.data.message);
                         document.getElementById("submit_expression").value = "";
                       } else if (res.data.success == true && res.data.redirect == false) {
                         alert(res.data.message);
                         window.location.reload();
-                      } else {
+                      } else if (res.data.success == true && res.data.redirect == true) {
                         alert(res.data.message);
                         // console.log(res.data.url);
                         window.location.replace(res.data.url);
+                      }
+                      else {
+                        alert(res.data);
                       }
                     }
                   </script>
@@ -234,9 +235,12 @@
                         } else if (res.data.success == false && res.data.redirect == false) {
                           alert(res.data.message);
                           clear();
-                        } else {
+                        }
+                        else if (res.data.success == true && res.data.redirect == true) {
                           alert(res.data.message);
                           window.location.replace(res.data.url);
+                        } else {
+                          alert(res.data)
                         }
                       });
                     }
@@ -250,7 +254,7 @@
                       const pastedData = event.clipboardData.getData("text/plain");
 
                       // Remove all characters that are not a through e, +, -, *, or /
-                      const filteredData = pastedData.replace(/[^a-e+\-*/]/gi, "");
+                      const filteredData = pastedData.replace(/[^0-9a-e+\-*/]/gi, "");
 
                       // Set the input field value to the filtered data
                       inputField.value = filteredData;

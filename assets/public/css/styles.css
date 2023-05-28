@@ -167,7 +167,6 @@ body {
   border-radius: 10px;
   padding: 8px 22px;
   width: 11rem;
-  font-size: 20px;
   height: 3.5rem;
   color: white;
   font-family: "Orbitron", sans-serif;
@@ -640,9 +639,7 @@ table tr:last-child td:last-child {
   /* max-width: 80vw; */
   /* width: 80px; */
   /* max-width: 400px; */
-  width: calc(100vh - 300px);
-  max-width: 400px;
-  aspect-ratio: 1;
+  height: calc(100vh - 370px);
 }
 @media screen and (max-width: 1200px) {
   /*FRONT RESPONSIVE*/

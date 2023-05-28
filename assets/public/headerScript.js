@@ -4,18 +4,19 @@ function headingHandler() {
     let headingbb = document.getElementById("blackbox_route");
 
     if (window.location.pathname == "/blackbox") {
+      document.body.style.backgroundAttachment = "fixed";
       headingbb.classList.add("font_primary");
     } else if (window.location.pathname == "/game") {
+      document.body.style.backgroundAttachment = "fixed";
       headingch.classList.add("font_primary");
     } else if (
       window.location.pathname == "/home" ||
       window.location.pathname == "/about_us"
     ) {
-      if (typeof user != "undefined") {
-        document.getElementById("blackbox_route").style.display = "none";
-        document.getElementById("crypthunt_route").style.display = "none";
-        document.getElementById("font_primary_title_2").style.display = "block";
-      }
+      // document.getElementById("blackbox_route").style.display = "none";
+      // document.getElementById("hints-clicker").style.display = "none";
+      // document.getElementById("crypthunt_route").style.display = "none";
+      // document.getElementById("font_primary_title_2").style.display = "block";
     }
   }
 }
@@ -197,9 +198,7 @@ function chbg(k) {
 $(document).on("click", function (event) {
   var $trigger = $("#hints-clicker");
   if ($trigger !== event.target && !$trigger.has(event.target).length) {
-    if (typeof user != "undefined") {
-      chbg(1);
-    }
+    chbg(1);
   }
 });
 

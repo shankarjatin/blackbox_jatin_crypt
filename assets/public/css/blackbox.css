@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo:wght@500&family=IBM+Plex+Sans:wght@500&family=Inter:wght@500&family=Montserrat:wght@500&family=Open+Sans:wght@500&family=Orbitron:wght@400;500;600;700&family=Roboto+Flex:opsz,wght@8..144,500&family=Work+Sans:wght@500&display=swap");
 
 #gamediv {
-  background-image: url("public/main_background.png");
+  /* background-image: url("public/main_background.png"); */
   /* background-position: center; */
   background-size: cover;
 }
@@ -177,7 +177,7 @@ body {
   display: flex;
   justify-content: center;
   height: 60%;
-  align-items: center;
+  /* align-items: center; */
   width: 80%;
 
   margin-top: 0.3rem;
@@ -228,14 +228,15 @@ body {
 }
 .blackbox-user-interface {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto auto;
   align-items: center;
   /* border: 1px solid white; */
   row-gap: 4%;
+  /* width: 80vw; */
+  margin: auto;
   grid-column-start: 2;
   margin-bottom: 16px;
 }
-
 .input-input {
   background: #d9d9d9;
   border-radius: 6px;
@@ -249,6 +250,8 @@ body {
   display: grid;
   gap: 23px 20px;
   grid-template-columns: auto auto;
+  /* position: absolute; */
+  /* overflow: hidden; */
 }
 .check-part-inner {
   display: flex;
@@ -349,6 +352,9 @@ body {
   }
   .submit-answer-part {
     order: 5;
+  }
+  #hints-clicker {
+    margin: auto;
   }
 }
 #background-blur-outer {
@@ -475,5 +481,37 @@ body {
   }
   .blackbox-user-interface {
     row-gap: 2%;
+  }
+}
+@media screen and (max-height: 710px) {
+  /* .input-part-inner {
+  } */
+  .instruction-part,
+  .input-part-inner,
+  .check-btn-1,
+  .history-list-container,
+  .check-btn-2,
+  .submit-answer-part {
+    transform: scale(0.85);
+  }
+  .blackbox-user-interface {
+    row-gap: 2%;
+  }
+  .instruction-part,
+  .input-part-inner {
+    width: 120%;
+    height: 100%;
+    width: 90vw;
+  }
+  .history-list-container,
+  .submit-answer-part {
+    height: 100%;
+  }
+  .submit-answer-part input {
+    margin-bottom: 10px;
+  }
+  .blackbox-user-interface {
+    width: 85vw;
+    margin: auto;
   }
 }

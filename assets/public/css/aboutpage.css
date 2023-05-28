@@ -10,6 +10,10 @@
   height: auto;
   padding: 5rem;
 }
+#js_sirimg {
+  border-radius: 50%;
+  /* border: 2px solid red; */
+}
 
 #aboutheading h1 {
   text-align: center;
@@ -41,7 +45,7 @@
   width: 14.625rem;
   height: 18.25rem;
   backdrop-filter: blur(10px);
-  border: 1px solid white;
+  border: 1px solid rgba(255, 255, 255, 0.074);
   border-radius: 1.188rem;
   background: linear-gradient(
     120.21deg,

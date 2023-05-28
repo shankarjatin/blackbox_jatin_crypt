@@ -177,7 +177,7 @@ body {
   display: flex;
   justify-content: center;
   height: 60%;
-  align-items: center;
+  /* align-items: center; */
   width: 80%;
 
   margin-top: 0.3rem;
@@ -237,7 +237,6 @@ body {
   grid-column-start: 2;
   margin-bottom: 16px;
 }
-
 .input-input {
   background: #d9d9d9;
   border-radius: 6px;
@@ -251,6 +250,8 @@ body {
   display: grid;
   gap: 23px 20px;
   grid-template-columns: auto auto;
+  /* position: absolute; */
+  /* overflow: hidden; */
 }
 .check-part-inner {
   display: flex;
@@ -351,6 +352,9 @@ body {
   }
   .submit-answer-part {
     order: 5;
+  }
+  #hints-clicker {
+    margin: auto;
   }
 }
 #background-blur-outer {

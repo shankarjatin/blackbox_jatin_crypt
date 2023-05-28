@@ -167,13 +167,15 @@ body {
   border-radius: 10px;
   padding: 8px 22px;
   width: 11rem;
+  font-size: 20px;
   height: 3.5rem;
   color: white;
   font-family: "Orbitron", sans-serif;
+  cursor: pointer;
   font-weight: bold;
 }
 .lbutton:hover {
-  background-color: #ee3fa2;
+  background-color: #e44ea3;
   border-color: #17132a;
 }
 #lbutton3 {
@@ -633,6 +635,7 @@ table tr:last-child td:last-child {
   max-width: 96vw;
   /* z-index: -3; */
 }
+
 .ch-game-box img {
   /* max-width: 80vw; */
   /* width: 80px; */

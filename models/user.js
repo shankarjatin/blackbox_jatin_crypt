@@ -51,7 +51,7 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(async function (id, done) {
 	User.findById(id, async function (err, user) {
-		const team = await Team.findOne({ "$or": [{ leader_email: user.email }, { member_email: user.email }] });
+		const team = await Team.findOne({ "$or": [{ leader_email: user.email.toLowerCase() }, { member_email: user.email.toLowerCase() }] });
 		if (team) {
 			user.team = team; // attaching team to req
 		} else {

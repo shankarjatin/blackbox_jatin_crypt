@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo:wght@500&family=IBM+Plex+Sans:wght@500&family=Inter:wght@500&family=Montserrat:wght@500&family=Open+Sans:wght@500&family=Orbitron:wght@400;500;600;700&family=Roboto+Flex:opsz,wght@8..144,500&family=Work+Sans:wght@500&display=swap");
 
 #gamediv {
-  background-image: url("public/main_background.png");
+  /* background-image: url("public/main_background.png"); */
   /* background-position: center; */
   background-size: cover;
 }

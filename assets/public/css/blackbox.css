@@ -232,7 +232,7 @@ body {
   align-items: center;
   /* border: 1px solid white; */
   row-gap: 4%;
-  /* width: 80vw; */
+  width: 80vw;
   margin: auto;
   grid-column-start: 2;
   margin-bottom: 16px;

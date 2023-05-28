@@ -196,9 +196,14 @@ function chbg(k) {
   }
 }
 $(document).on("click", function (event) {
-  var $trigger = $("#hints-clicker");
-  if ($trigger !== event.target && !$trigger.has(event.target).length) {
-    chbg(1);
+  if (
+    window.location.pathname == "/blackbox" ||
+    window.location.pathname == "/game"
+  ) {
+    var $trigger = $("#hints-clicker");
+    if ($trigger !== event.target && !$trigger.has(event.target).length) {
+      chbg(1);
+    }
   }
 });
 

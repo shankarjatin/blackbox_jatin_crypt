@@ -2,6 +2,7 @@ const Team = require("../models/teams");
 
 //storing team name and details of leader and member
 const register = async (req, res) => {
+  // if (req.body.APIPin === process.env.APIKEY) {
   await Team.create({
     team_name: req.body.team_name,
     leader_name: req.body.leader_name,
@@ -10,12 +11,18 @@ const register = async (req, res) => {
     member_email: req.body.member_email,
   })
     .then(() => {
-      res.status(200).json({ success: true });
+      return res.status(200).json({ success: true });
     })
     .catch((err) => {
-      res.status(500).json({ success: false });
+      return res.status(500).json({ success: false });
       console.log(err);
     });
+  // } else {
+  //   return res.status(400).json({
+  //     success: false,
+  //     message: "Not an authorized request",
+  //   });
+  // }
 };
 
 module.exports = register;

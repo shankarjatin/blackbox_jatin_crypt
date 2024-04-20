@@ -42,6 +42,7 @@
     </div>
     <% if (message !="None" ) { %>
         <script defer>
+            console.log("<%-message%>");
             window.addEventListener('load', function () {
                 // Code to be executed after the page has loaded
                 alert("<%-message%>")

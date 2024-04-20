@@ -42,14 +42,9 @@
     </div>
     <% if (message !="None" ) { %>
         <script defer>
-            console.log("<%-message%>");
-            window.addEventListener('load', function () {
-                // Code to be executed after the page has loaded
-                alert("<%-message%>")
-            });
+          alert("<%- message %>");
         </script>
-        <% } else { %>
-            <% } %>
+        <% } %>
 
                 <!-- Below script is for redirecting if any redirect if present -->
                 <% if (redirectUrl !="" ) { %>

@@ -1,22 +1,98 @@
 <%- include("./partials/header.ejs"); %>
-    <!-- Below component to blur background while leaderboard is open -->
-    <div id="background-blur-outer">
+    <style>
+        #background-blur-outer {
+            /* Style for background blur */
+        }
 
-    </div>
-    <div style="padding-top: 60px;">
-        <h2>Team Registration</h2>
-        <form action="/register" method="post">
-            <label for="team_name">Team_Name</label>
-            <input type="text" name="team_name" id="" placeholder="team_name"><br>
-            <label for="leader_name">Leader_Name</label>
-            <input type="text" name="leader_name" placeholder="leader_name"><br>
-            <label for="leader_email">Leader_Email</label>
-            <input type="text" name="leader_email" placeholder="leader_email"><br>
-            <label for="member_name">Member_Name</label>
-            <input type="text" name="member_name" placeholder="member_name"><br>
-            <label for="member_email">Member_Email</label>
-            <input type="text" name="member_email" placeholder="member_email"><br>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-    <%- include("./partials/footer.ejs"); %>
+        .registration-container {
+            padding: 60px;
+            text-align: center;
+            /* margin: 40px; */
+        }
+
+        .registration-container-inside {
+            margin: 60px 20px 30px 20px;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(120.21deg,
+                    rgba(99, 101, 148, 0.4) 18.15%,
+                    rgba(55, 57, 92, 0.1) 82.15%);
+            border-radius: 18px;
+        }
+
+        .registration-form {
+            display: inline-block;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <!-- Below script is for displaying any message if present -->
+    <% if (message !="None" ) { %>
+        <script defer>
+            alert("<%- message %>");
+        </script>
+        <% } %>
+            <!-- Below component to blur background while leaderboard is open -->
+            <!-- Below component to blur background while leaderboard is open -->
+            <div id="background-blur-outer"></div>
+            <div class="registration-container">
+                <div class="registration-container-inside">
+                    <h2 style="margin-bottom: 20px;">Team Registration</h2>
+                    <form action="/register" method="post" class="registration-form">
+                        <div class="form-group">
+                            <label for="team_name">Team Name</label>
+                            <input type="text" style="width: 30vw;" name="team_name" id="team_name"
+                                placeholder="Team Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="leader_name">Leader Name</label>
+                            <input type="text" name="leader_name" id="leader_name" placeholder="Leader Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="leader_email">Leader Email</label>
+                            <input type="email" name="leader_email" id="leader_email" placeholder="Leader Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="member_name">Member Name</label>
+                            <input type="text" name="member_name" id="member_name" placeholder="Member Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="member_email">Member Email</label>
+                            <input type="email" name="member_email" id="member_email" placeholder="Member Email">
+                        </div>
+                        <button type="submit" class="submit-button">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+            <%- include("./partials/footer.ejs"); %>

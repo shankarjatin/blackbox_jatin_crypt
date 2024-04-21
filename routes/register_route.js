@@ -9,7 +9,9 @@ router.get(
   //   auth_middleware.check_login,
   //   auth_middleware.check_admin,
   (req, res) => {
-    res.render("register");
+    return res.render("register", {
+      message: "None",
+    });
   }
 );
 

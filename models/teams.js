@@ -30,17 +30,17 @@ const teamSchema = new schema(
       type: String,
       required: false,
       default: null,
-      validate: {
-        validator: function (value) {
-          // Check if the email domain is 'example.com'
-          if (!value) {
-            return true;
-          }
-          return value.toLowerCase().endsWith("@akgec.ac.in");
-        },
-        message: (props) =>
-          `${props.value} is not a valid email address from @akgec.ac.in`,
-      },
+      // validate: {
+      //   validator: function (value) {
+      //     // Check if the email domain is 'example.com'
+      //     if (!value) {
+      //       return true;
+      //     }
+      //     return value.toLowerCase().endsWith("@akgec.ac.in");
+      //   },
+      //   message: (props) =>
+      //     `${props.value} is not a valid email address from @akgec.ac.in`,
+      // },
     },
 
     // below fields are for storing the team's score and game details

@@ -14,13 +14,13 @@ const teamSchema = new schema(
     leader_email: {
       type: String,
       unique: true,
-      validate: {
-        validator: function (value) {
-          return value.toLowerCase().endsWith("@akgec.ac.in");
-        },
-        message: (props) =>
-          `${props.value} is not a valid email address from @akgec.ac.in`,
-      },
+      // validate: {
+      //   validator: function (value) {
+      //     return value.toLowerCase().endsWith("@akgec.ac.in");
+      //   },
+      //   message: (props) =>
+      //     `${props.value} is not a valid email address from @akgec.ac.in`,
+      // },
     },
     member_name: {
       type: String,
